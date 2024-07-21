@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Inconsolata-Bold.ttf",
+      "sha1": "d261bc37f283fc4e9104100750d2fc4c65c6cf74"
+    },
+    {
+      "path": "assets/fonts/Inconsolata-Regular.ttf",
+      "sha1": "ea94cf4a11361f33027dd6dce513ea53fdda16d2"
+    },
+    {
+      "path": "assets/fonts/Inconsolata-SemiBold.ttf",
+      "sha1": "a15a41aee641ef37a9f15f1b7b519175ce0ee575"
+    },
+    {
+      "path": "assets/fonts/Inconsolata-VariableFont.ttf",
+      "sha1": "55181a8eafc09ca273f978d6e35d2ed46e47e570"
+    },
+    {
+      "path": "assets/fonts/SpaceMono-Regular.ttf",
+      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
+    }
+  ]
+}
