@@ -18,6 +18,8 @@ module.exports = {
       'inconsolata': ['Inconsolata-SemiBold'],
       'inconsolata-bold': ['Inconsolata-Bold'],
       'inconsolata-light': ['Inconsolata-SemiBold'],
+      'fredoka': ['Fredoka-SemiBold'], 
+      'fredoka-bold': ['Fredoka-Bold'],
     }
   },
   plugins: [],
