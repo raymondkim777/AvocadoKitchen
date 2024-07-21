@@ -1,25 +1,27 @@
 import React, {useState,} from 'react';
-import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList, Dimensions } from 'react-native';
+import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import HomeBar from './HomeBar';
 
-const MealSum = ({meal, title, image}) => (
-  <View className='flex flex-col w-full h-full'>
-    <Text className=''>
-      {meal}
-    </Text>
-    <Text className=''>
-      {title}
-    </Text>
-    <Image className='w-full h-28 rounded-md' source={image} />
+const MealSum = ({title, image, cal}) => (
+  <View className='flex flex-row w-full h-full space-x-2'>
+    <Image className='flex flex-1 h-full rounded-md' source={image} />
+    <View className='flex flex-1 flex-col h-full items-center justify-center'>
+      <Text className='font-inconsolata-bold -mt-2 text-2xl text-itemText'>
+        {title}
+      </Text>
+      <View className='w-full h-12 items-center justify-center'>
+        <Text className='font-fredoka text-4xl text-itemText'>{cal} Cal</Text>
+      </View>
+    </View>
   </View>
 )
 
 const MealCard = ({title, image}) => (
-  <View className='w-56 h-44 justify-center items-center bg-itemBgLight rounded-lg'>
+  <View className='w-56 h-40 justify-center items-center bg-itemBgLight rounded-lg'>
     <Text className='font-inconsolata text-xl text-itemText -mt-1'>
       {title}
     </Text>
-    <Image className='w-[204px] h-[130px] mt-1 rounded-md' source={image} /> 
+    <Image className='w-[210px] h-[120px] mt-1 rounded-md' source={image} /> 
   </View>
 )
 
@@ -59,14 +61,17 @@ const HomePage = () => {
     {
       title: 'Waffles', 
       image: require('../assets/images/meal-1.jpg'),
+      cal: 312,
     },
     {
       title: 'Tuna Sandwich', 
       image: require('../assets/images/meal-2.jpg'),
+      cal: 746,
     },
     {
       title: 'Sirloin Steak', 
       image: require('../assets/images/meal-3.jpg'),
+      cal: 539,
     },
   ]
   const recipes = [
@@ -139,7 +144,7 @@ const HomePage = () => {
               ))}
             </View>
             {/* Calendar Content */}
-            <View className='w-full h-40 bg-itemBgLight rounded-b-lg p-2'>
+            <View className='w-full h-44 bg-itemBgLight rounded-b-lg p-2'>
               <View className='flex flex-col w-full h-full'>
                 {/* Buttons */}
                 <View className='flex flex-row w-full h-7'>
@@ -157,8 +162,8 @@ const HomePage = () => {
                   </TouchableOpacity>
                 </View>
                 {/* Meal Content */}
-                <View>
-
+                <View className='flex flex-1 h-full mt-2'>
+                  <MealSum title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
                 </View>
               </View>
             </View>
@@ -172,7 +177,7 @@ const HomePage = () => {
           </Text>
           {/* Scroll Cards */}
           <View className='h-fit mt-2'>
-            <FlatList className='w-full h-44'
+            <FlatList className='w-full h-40'
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               data={recipes}
