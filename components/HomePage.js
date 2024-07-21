@@ -139,18 +139,20 @@ const HomePage = () => {
           {nutrition.map((item, index) => (
             index == 2?
               <View key={`nut-${index + 1}`} className={`flex flex-1 items-center justify-center bg-itemBgLight rounded-lg`}>
-                <Text className='font-bold text-3xl text-itemText'>
-                  {item.value}
+                <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
+                <Text className='font-fredoka mt-3 text-4xl text-itemText'>
+                  {item.value}{ index == 0? '' : 'g' }
                 </Text>
-                <Text className='font-bold text-xs text-itemText'>
+                <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
                   {item.unit} 
                 </Text>
               </View>
             : <View key={`nut-${index + 1}`} className={`flex flex-1 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
-                <Text className='font-bold text-3xl text-itemText'>
-                  {item.value}
+                <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
+                <Text className='font-fredoka mt-3 text-4xl text-itemText'>
+                  { item.value}{ index == 0? '' : 'g' }
                 </Text>
-                <Text className='font-bold text-xs text-itemText'>
+                <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
                   {item.unit} 
                 </Text>
               </View>
