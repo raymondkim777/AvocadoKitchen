@@ -10,6 +10,8 @@ module.exports = {
         'itemBgLight': '#F8FEE8', 
         'buttonBg': '#F4F4D7', 
         'itemText': '#85855B',
+        'homeBgLight': '#E7FCF6',
+        'homeBgDark': '#CAE7DE',
       },
     },
     fontFamily: {
