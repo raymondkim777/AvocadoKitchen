@@ -2,6 +2,14 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/Fredoka-Bold.ttf",
+      "sha1": "49a29e15ae38e96548e70ae3f09c21da2ba7da65"
+    },
+    {
+      "path": "assets/fonts/Fredoka-SemiBold.ttf",
+      "sha1": "10738d8e8510bbd602eff944e35fc57254425f2e"
+    },
+    {
       "path": "assets/fonts/Inconsolata-Bold.ttf",
       "sha1": "d261bc37f283fc4e9104100750d2fc4c65c6cf74"
     },

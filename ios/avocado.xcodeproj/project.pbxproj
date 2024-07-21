@@ -19,6 +19,8 @@
 		B8BF431D69404B5D95CD3934 /* Inconsolata-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D996751743457A9342E6FD /* Inconsolata-SemiBold.ttf */; };
 		4E3339BC8515425A9C1A6E14 /* Inconsolata-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7D9F78D15745159313F012 /* Inconsolata-VariableFont.ttf */; };
 		E99C0B92C623425C813A6AAD /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C8387E6FA27482E891BB98D /* SpaceMono-Regular.ttf */; };
+		BC251805343F434590B085AD /* Fredoka-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6A94924B79647FFAD924C6F /* Fredoka-Bold.ttf */; };
+		129D7E48E2F645EF9D9E16E2 /* Fredoka-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E79CACDE8843A2B8C9D4D9 /* Fredoka-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		47D996751743457A9342E6FD /* Inconsolata-SemiBold.ttf */ = {isa = PBXFileReference; name = "Inconsolata-SemiBold.ttf"; path = "../assets/fonts/Inconsolata-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FE7D9F78D15745159313F012 /* Inconsolata-VariableFont.ttf */ = {isa = PBXFileReference; name = "Inconsolata-VariableFont.ttf"; path = "../assets/fonts/Inconsolata-VariableFont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5C8387E6FA27482E891BB98D /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; name = "SpaceMono-Regular.ttf"; path = "../assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C6A94924B79647FFAD924C6F /* Fredoka-Bold.ttf */ = {isa = PBXFileReference; name = "Fredoka-Bold.ttf"; path = "../assets/fonts/Fredoka-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		69E79CACDE8843A2B8C9D4D9 /* Fredoka-SemiBold.ttf */ = {isa = PBXFileReference; name = "Fredoka-SemiBold.ttf"; path = "../assets/fonts/Fredoka-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 				47D996751743457A9342E6FD /* Inconsolata-SemiBold.ttf */,
 				FE7D9F78D15745159313F012 /* Inconsolata-VariableFont.ttf */,
 				5C8387E6FA27482E891BB98D /* SpaceMono-Regular.ttf */,
+				C6A94924B79647FFAD924C6F /* Fredoka-Bold.ttf */,
+				69E79CACDE8843A2B8C9D4D9 /* Fredoka-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -274,6 +280,8 @@
 				B8BF431D69404B5D95CD3934 /* Inconsolata-SemiBold.ttf in Resources */,
 				4E3339BC8515425A9C1A6E14 /* Inconsolata-VariableFont.ttf in Resources */,
 				E99C0B92C623425C813A6AAD /* SpaceMono-Regular.ttf in Resources */,
+				BC251805343F434590B085AD /* Fredoka-Bold.ttf in Resources */,
+				129D7E48E2F645EF9D9E16E2 /* Fredoka-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
