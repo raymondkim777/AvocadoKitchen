@@ -4,7 +4,7 @@ import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleShe
 
 const MealCard = ({title, image}) => (
   <View className='w-48 h-40 justify-center items-center bg-itemBgLight rounded-lg'>
-    <Text style={{ fontFamily: 'inconsolata-bold' }} className='text-lg text-itemText -mt-1'>
+    <Text className='font-inconsolata text-lg text-itemText -mt-1'>
       {title}
     </Text>
 
@@ -71,7 +71,7 @@ const HomePage = () => {
     <View className='w-full h-full bg-screenBg'>
       {/* Frame 1 - Calendar */}
       <View className='h-fit mx-4 mt-10'>
-        <Text style={{ fontFamily: 'inconsolata' }} className=" mx-4 text-3xl text-screenText">
+        <Text className="font-inconsolata mx-4 text-3xl text-screenText">
           Your Meal Plan
         </Text>
         {/* Calendar */}
@@ -84,7 +84,7 @@ const HomePage = () => {
                  <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text style={{ fontFamily: 'inconsolata-bold' }} className={`text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View> 
               : index == 6? 
@@ -92,14 +92,14 @@ const HomePage = () => {
                   <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text style={{ fontFamily: 'inconsolata-bold' }} className={`text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View>
               : <View className='flex-1 items-center justify-center h-8'>
                  <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text style={{ fontFamily: 'inconsolata-bold' }} className={`text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View>
             ))}
@@ -113,7 +113,7 @@ const HomePage = () => {
 
       {/* Frame 2 - Suggested Meals */}
       <View className='h-fit mx-4 mt-6'>
-        <Text style={{ fontFamily: 'inconsolata' }} className=" mx-4 text-3xl text-screenText">
+        <Text className="font-inconsolata mx-4 text-3xl text-screenText">
           Suggested Meals
         </Text>
         {/* Scroll Cards */}
@@ -131,7 +131,7 @@ const HomePage = () => {
 
       {/* Frame 3 - Nutrition */}
       <View className='w-fit h-fit mx-4 mt-6'>
-        <Text style={{ fontFamily: 'inconsolata' }} className=" mx-4 text-3xl text-screenText">
+        <Text className="font-inconsolata mx-4 text-3xl text-screenText">
           Your Meal Plan has:
         </Text>
         {/* Three Cards */}

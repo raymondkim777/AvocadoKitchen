@@ -11,9 +11,12 @@ module.exports = {
         'buttonBg': '#F4F4D7', 
         'itemText': '#85855B',
       },
-      fontfamily: {
-      }
     },
+    fontFamily: {
+      'inconsolata': ['Inconsolata-SemiBold'],
+      'inconsolata-bold': ['Inconsolata-Bold'],
+      'inconsolata-light': ['Inconsolata-SemiBold'],
+    }
   },
   plugins: [],
 
