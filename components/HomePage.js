@@ -1,14 +1,14 @@
 import React, {useState,} from 'react';
 import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList, Dimensions } from 'react-native';
-
+import HomeBar from './HomeBar';
 
 const MealCard = ({title, image}) => (
-  <View className='w-48 h-40 justify-center items-center bg-itemBgLight rounded-lg'>
-    <Text className='font-inconsolata text-lg text-itemText -mt-1'>
+  <View className='w-56 h-44 justify-center items-center bg-itemBgLight rounded-lg'>
+    <Text className='font-inconsolata text-xl text-itemText -mt-1'>
       {title}
     </Text>
 
-    <Image className='w-[170px] h-[110px] mt-1 rounded-md' source={image} /> 
+    <Image className='w-[204px] h-[130px] mt-1 rounded-md' source={image} /> 
   </View>
 )
 
@@ -70,42 +70,42 @@ const HomePage = () => {
   return (
     <View className='w-full h-full bg-screenBg'>
       {/* Frame 1 - Calendar */}
-      <View className='h-fit mx-4 mt-10'>
+      <View className='h-fit mx-4 mt-6'>
         <Text className="font-inconsolata mx-4 text-3xl text-screenText">
           Your Meal Plan
         </Text>
         {/* Calendar */}
         <View className='h-fit mt-2'>
           
-          <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
+          <View className='flex flex-row w-full h-9 bg-itemBgDark rounded-t-lg'>
             {days.map((day,index) => (
               index == 0? 
-                <View className='flex-1 items-center justify-center h-8'>
+                <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
                  <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-2xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View> 
               : index == 6? 
-                <View className='flex-1 items-center justify-center h-8'>
+                <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
                   <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-2xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View>
-              : <View className='flex-1 items-center justify-center h-8'>
+              : <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
                  <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                   onPress={()=>setFocus(index)}
                  >
-                    <Text className={`font-inconsolata-bold text-xl ${isFocusedText[index]}`}>{day}</Text>
+                    <Text className={`font-inconsolata-bold text-2xl ${isFocusedText[index]}`}>{day}</Text>
                   </TouchableOpacity>
                 </View>
             ))}
           </View>
 
-          <View className='flex flex-row w-full h-32 bg-itemBgLight rounded-b-lg '>
+          <View className='flex flex-row w-full h-36 bg-itemBgLight rounded-b-lg '>
             
           </View>
         </View>
@@ -118,7 +118,7 @@ const HomePage = () => {
         </Text>
         {/* Scroll Cards */}
         <View className='h-fit mt-2'>
-          <FlatList className='w-full h-40'
+          <FlatList className='w-full h-44'
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={meals}
@@ -130,24 +130,24 @@ const HomePage = () => {
       </View>
 
       {/* Frame 3 - Nutrition */}
-      <View className='w-fit h-fit mx-4 mt-6'>
+      <View className='flex-1 h-auto mx-4 mt-6 mb-6'>
         <Text className="font-inconsolata mx-4 text-3xl text-screenText">
           Your Meal Plan has:
         </Text>
         {/* Three Cards */}
-        <View className='flex-row w-full col-gap-4 h-44 mt-2 mb-8'>
+        <View className='flex-row flex-1 w-full col-gap-4 h-max mt-2'>
           {nutrition.map((item, index) => (
             index == 2?
-              <View id={`nut-${index + 1}`} className={`flex flex-1 h-44 items-center justify-center bg-itemBgLight rounded-lg`}>
-                <Text className='font-bold text-xl text-itemText'>
+              <View key={`nut-${index + 1}`} className={`flex flex-1 items-center justify-center bg-itemBgLight rounded-lg`}>
+                <Text className='font-bold text-3xl text-itemText'>
                   {item.value}
                 </Text>
                 <Text className='font-bold text-xs text-itemText'>
                   {item.unit} 
                 </Text>
               </View>
-            : <View id={`nut-${index + 1}`} className={`flex flex-1 h-44 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
-                <Text className='font-bold text-xl text-itemText'>
+            : <View key={`nut-${index + 1}`} className={`flex flex-1 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
+                <Text className='font-bold text-3xl text-itemText'>
                   {item.value}
                 </Text>
                 <Text className='font-bold text-xs text-itemText'>
@@ -156,6 +156,11 @@ const HomePage = () => {
               </View>
           ))}
         </View>
+      </View>
+
+      {/* Frame 4 - Home Bar */}
+      <View className={``}>
+        <HomeBar/>
       </View>
     </View>
   )

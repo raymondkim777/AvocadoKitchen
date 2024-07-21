@@ -3,6 +3,7 @@ import { NativeWindStyleSheet } from "nativewind";
 import { SafeAreaView, Text, View, ScrollView } from 'react-native';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
+import HomeBar from './components/HomeBar';
 
 export default function HomeScreen() {
   NativeWindStyleSheet.setOutput({
