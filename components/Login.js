@@ -3,7 +3,7 @@ import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import SignUp from './Signup';
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [isSignup, setSignup] = useState(false);
     const [password, setPassword] = useState('');
@@ -26,7 +26,7 @@ const Login = () => {
 
       {/* Email/Password */}
       <View className='w-full h-1/3 flex-col justify-center items-center'>
-        <TextInput style={{ fontFamily: 'inconsolata' }} className='w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1 mb-3'
+        <TextInput style={{ fontFamily: 'inconsolata' }} className='font-inconsolata w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1 mb-3'
           placeholder="Enter your email" 
           value={username} 
           onChangeText={setUsername} 
@@ -53,7 +53,7 @@ const Login = () => {
         </Modal>
         {/* Login/SignUp */}
         <View className='w-3/4 h-1/2 flex-row mt-5 items-start justify-center '>
-          <TouchableOpacity className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
+          <TouchableOpacity  onPress={() => navigation.navigate('Homepage')} className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
             <Text style={{ fontFamily: 'inconsolata' }} className='text-xl text-itemText font-inconsolata'>LOGIN</Text>
           </TouchableOpacity>
           <View className='w-2/12'></View>
