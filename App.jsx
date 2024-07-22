@@ -11,7 +11,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className='w-full h-full'>
-      <HomePage/> 
+      <HomePage/>
     </SafeAreaView>
   );
 }
