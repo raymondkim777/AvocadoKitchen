@@ -17,11 +17,11 @@ const MealSum = ({title, image, cal}) => (
 )
 
 const MealCard = ({title, image}) => (
-  <View className='w-56 h-40 justify-center items-center bg-itemBgLight rounded-lg'>
+  <View className='w-56 h-40 justify-center items-center p-2 bg-itemBgLight rounded-lg'>
     <Text className='font-inconsolata text-xl text-itemText -mt-1'>
       {title}
     </Text>
-    <Image className='w-[210px] h-[120px] mt-1 rounded-md' source={image} /> 
+    <Image className='flex flex-1 w-full mt-1 rounded-md' source={image} /> 
   </View>
 )
 
