@@ -8,12 +8,12 @@ const SignUp = ({onClose}) => {
 
     return (
         <View>
-            <View className='w-full flex flex-col justify-end items-end h-1/6'>
+            <View className='w-full flex flex-col justify-end items-end h-[8%]'>
                 <TouchableOpacity onPress={onClose} className='w-5 h-5 bg-itemBgDark flex items-center justify-center rounded-full mb-2'>
                     <Text style={{ fontFamily: 'inconsolata' }} className='text-sm text-itemText'>X</Text>
                 </TouchableOpacity>
             </View>
-            <View className='w-full  h-5/6 bg-screenBg'>
+            <View className='w-full  h-[92%] bg-screenBg'>
                 <View className='w-full h-1/3 flex items-center justify-end'>
                     <Image className='w-[150px] h-[150px]' source={require('../assets/images/Logo.png')} />
                 </View>
