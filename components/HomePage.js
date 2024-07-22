@@ -41,8 +41,8 @@ const HomePage = () => {
     setIsFocused(new_focus);
   }
   const [mealIndex, setMealIndex] = useState(0);  // index
-  const [mealColor, setMealColor] = useState(new Array(3).fill('bg-itemBgDark'));  // button color
-  const [mealText, setMealText] = useState(new Array(3).fill('text-itemText'));  // text color
+  const [mealColor, setMealColor] = useState(['bg-itemText', 'bg-itemBgDark', 'bg-itemBgDark']);  // button color
+  const [mealText, setMealText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText']);  // text color
   const setMealFocus = (index) => {
     setMealIndex(index);
     const new_color = new Array(3).fill('bg-itemBgDark');
