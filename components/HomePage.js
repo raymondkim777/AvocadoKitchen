@@ -1,5 +1,5 @@
 import React, {useState,} from 'react';
-import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import HomeBar from './HomeBar';
 
 const MealSum = ({title, image, cal}) => (
@@ -29,7 +29,13 @@ const MealCardDiv = () => (
   <View className='w-4 h-36 bg-transparent'/>
 )
 
+const { width,height } = Dimensions.get('window');
+
+
+
 const HomePage = () => {
+  const Container = height > 800 ?  View : ScrollView;
+  const css = height > 800 ? 'flex-row flex-1 w-full h-max col-gap-4  mt-2':'flex-row w-full h-full col-gap-4  mt-2 '; 
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {
@@ -111,7 +117,7 @@ const HomePage = () => {
   
   return (
     <View id='screen' className='flex flex-col w-full h-full'>
-      <ScrollView className='flex flex-1 w-full h-full bg-screenBg p-4'>
+      <View className='flex flex-1 w-full h-full bg-screenBg p-4'>
         {/* Frame 1 - Calendar */}
         <View className='h-fit mt-2'>
           <Text className="font-inconsolata mx-4 text-3xl text-screenText">
@@ -194,7 +200,7 @@ const HomePage = () => {
             Your Meal Plan has:
           </Text>
           {/* Three Cards */}
-          <View className='flex-row flex-1 w-full col-gap-4 h-max mt-2'>
+          <View className={`${css}`}>
             {nutrition.map((item, index) => (
               index == 2?
                 <View key={`nut-${index + 1}`} className={`flex flex-1 items-center justify-center bg-itemBgLight rounded-lg`}>
@@ -218,7 +224,7 @@ const HomePage = () => {
             ))}
           </View>
         </View>
-      </ScrollView>
+      </View>
 
       {/* HomeBar */}
       <View id='homebar' className='w-full h-20'>
