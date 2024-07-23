@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
+import UserInfoInput from './UserInfoInput'
+import Modal from 'react-native-modal';
 
 const SignUp = ({onClose}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkpassword, setCheckPassword] = useState('');
-
+    const [isNext, setNext] = useState(false);
+    const handleNext = () => {
+        setNext(!isNext);
+      };
     return (
         <View>
             <View className='w-full flex flex-col justify-end items-end h-[8%]'>
@@ -53,15 +58,17 @@ const SignUp = ({onClose}) => {
                     
                     <View className='w-3/4 h-1/2 flex-row mt-5 items-start justify-center '>
                     <TouchableOpacity className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-                        <Text style={{ fontFamily: 'inconsolata' }} className='text-base text-itemText font-inconsolata'>Back</Text>
+                        <Text style={{ fontFamily: 'inconsolata' }} onPress={onClose} className='text-base text-itemText font-inconsolata'>Back</Text>
                     </TouchableOpacity>
                     <View className='w-2/12'></View>
                     <TouchableOpacity className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-                        <Text style={{ fontFamily: 'inconsolata' }} className='text-base text-itemText'>Next</Text>
+                        <Text style={{ fontFamily: 'inconsolata' }} onPress={handleNext} className='text-base text-itemText'>Next</Text>
                     </TouchableOpacity>
                     </View>
                 </View>
-
+                <Modal isVisible={isNext} onRequestClose={handleNext} animationType="slide">
+                    <UserInfoInput onNext={handleNext}></UserInfoInput>
+                </Modal>
                
             </View>
         </View>
