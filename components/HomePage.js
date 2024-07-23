@@ -113,6 +113,7 @@ const HomePage = () => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
+  
   return (
     <View id='screen' className='flex flex-col w-full h-full justify-center items-center'>
        {Platform.OS === 'ios' && (
