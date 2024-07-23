@@ -35,7 +35,7 @@ const { width,height } = Dimensions.get('window');
 
 const HomePage = () => {
   const Container = height > 800 ?  View : ScrollView;
-  const css = height > 800 ? 'flex-row flex-1 w-full h-max col-gap-4  mt-2':'flex-row w-full h-full col-gap-4  mt-2 '; 
+  const css = height > 800 ? 'flex-row flex-1 w-full h-max col-gap-4  mt-2':'flex-row w-full h-full pb-16 col-gap-4  mt-2 '; 
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {
