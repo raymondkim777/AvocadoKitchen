@@ -1,5 +1,5 @@
 import React, {useState,} from 'react';
-import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
+import { Text, View, SafeAreaView, Image,  TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import HomeBar from './HomeBar';
 
 const MealSum = ({title, image, cal}) => (
@@ -111,7 +111,7 @@ const HomePage = () => {
   
   return (
     <View id='screen' className='flex flex-col w-full h-full'>
-      <View className='flex flex-1 w-full h-full bg-screenBg p-4'>
+      <ScrollView className='flex flex-1 w-full h-full bg-screenBg p-4'>
         {/* Frame 1 - Calendar */}
         <View className='h-fit mt-2'>
           <Text className="font-inconsolata mx-4 text-3xl text-screenText">
@@ -218,7 +218,7 @@ const HomePage = () => {
             ))}
           </View>
         </View>
-      </View>
+      </ScrollView>
 
       {/* HomeBar */}
       <View id='homebar' className='w-full h-20'>
