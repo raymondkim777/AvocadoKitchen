@@ -17,7 +17,7 @@ const MealSum = ({title, image, cal}) => (
 )
 
 const MealCard = ({title, image}) => (
-  <View className='w-56 h-40 justify-center items-center p-2 bg-itemBgLight rounded-lg'>
+  <View className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
     <Text className='font-inconsolata text-xl text-itemText -mt-1'>
       {title}
     </Text>
@@ -26,17 +26,13 @@ const MealCard = ({title, image}) => (
 )
 
 const MealCardDiv = () => (
-  <View className='w-4 h-36 bg-transparent'/>
+  <View className='w-4 h-full'/>
 )
 
-const { width,height } = Dimensions.get('window');
-
-
+const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
-  const Container = height > 800 ?  View : ScrollView;
-  const css = height > 800 ? 'flex-row flex-1 w-full h-max col-gap-4  mt-2':'flex-row w-full h-full pb-16 col-gap-4  mt-2 '; 
-  {/* State/Functions */}
+    {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {
     const new_focus = new Array(7).fill('');
@@ -115,38 +111,40 @@ const HomePage = () => {
     },
   ];
   
+  {/* View */}
+  const Container = height > 800 ?  View : ScrollView;
   return (
     <View id='screen' className='flex flex-col w-full h-full justify-center items-center'>
        {Platform.OS === 'ios' && (
         <View className='w-full bg-screenBg h-8'>
         </View>
       )}
-      <Container className='w-full'>
-        <View className='w-full h-full p-4 bg-screenBg'>
+      <Container id='content' className='grow w-full h-fit'>
+        <View className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
-          <View className='h-fit mt-2'>
+          <View className='grow w-full min-h-fit mt-2'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
               Your Meal Plan
             </Text>
             {/* Calendar */}
-            <View className='h-fit mt-2'>
-              <View className='flex flex-row w-full h-9 bg-itemBgDark rounded-t-lg'>
+            <View className='grow h-52 mt-2'>
+              <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
                 {days.map((day,index) => (
                   index == 0? 
-                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
+                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                     <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
                         <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
                       </TouchableOpacity>
                     </View> 
                   : index == 6? 
-                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
+                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                       <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
                         <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
                       </TouchableOpacity>
                     </View>
-                  : <View key={`day-${index}`} className='flex-1 items-center justify-center h-9'>
+                  : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                     <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
                         <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
@@ -155,7 +153,7 @@ const HomePage = () => {
                 ))}
               </View>
               {/* Calendar Content */}
-              <View className='w-full h-44 bg-itemBgLight rounded-b-lg p-2'>
+              <View className='grow w-full h-44 bg-itemBgLight rounded-b-lg p-2'>
                 <View className='flex flex-col w-full h-full'>
                   {/* Buttons */}
                   <View className='flex flex-row w-full h-7'>
@@ -182,13 +180,13 @@ const HomePage = () => {
           </View>
 
           {/* Frame 2 - Suggested Meals */}
-          <View className='h-fit mt-6'>
+          <View className='grow min-h-fit mt-6'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
               Suggested Meals
             </Text>
             {/* Scroll Cards */}
-            <View className='h-fit mt-2'>
-              <FlatList className='w-full h-40'
+            <View className='grow w-full h-fit mt-2'>
+              <FlatList className='grow w-full h-40'
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={recipes}
@@ -200,15 +198,15 @@ const HomePage = () => {
           </View>
 
           {/* Frame 3 - Nutrition */}
-          <View className='flex-1 h-auto mt-6 mb-2'>
+          <View className='grow min-h-fit mt-6 mb-2'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
               Your Meal Plan has:
             </Text>
             {/* Three Cards */}
-            <View className={`${css}`}>
+            <View className={`grow flex-row w-full h-40 mt-2`}>
               {nutrition.map((item, index) => (
                 index == 2?
-                  <View key={`nut-${index + 1}`} className={`flex flex-1 items-center justify-center bg-itemBgLight rounded-lg`}>
+                  <View key={`nut-${index + 1}`} className={`flex-1 min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
                     <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
                     <Text className='font-fredoka mt-3 text-3xl text-itemText'>
                       {item.value}{ index == 0? '' : 'g' }
@@ -217,7 +215,7 @@ const HomePage = () => {
                       {item.unit} 
                     </Text>
                   </View>
-                : <View key={`nut-${index + 1}`} className={`flex flex-1 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
+                : <View key={`nut-${index + 1}`} className={`flex-1 min-h-40 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
                     <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
                     <Text className='font-fredoka mt-3 text-3xl text-itemText'>
                       { item.value}{ index == 0? '' : 'g' }
