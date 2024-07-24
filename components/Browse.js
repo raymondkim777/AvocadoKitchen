@@ -1,16 +1,51 @@
 import React, {useState,} from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 
-const OptionButton = ({callback}) => (
-  <TouchableOpacity activeOpacity={0.5} className='w-8 h-8 ml-2 bg-buttonBg rounded-lg'>
+const OptionButton = ({callback, showOptions}) => (
+  <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 ml-2 bg-buttonBg rounded-lg'
+    onPress={()=>callback(!showOptions)}>
 
   </TouchableOpacity>
 )
 
-const DietButton = ({title, index}) => (
+const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, catColor, catText}) => (
+  <View className={`w-full h-fit mt-6`}>
+    {/* Checkbox */}
+    <View className='w-full min-h-16 h-fit items-center justify-center px-2 bg-buttonBg rounded-lg'>
+      <View className='flex-row flex-wrap w-full h-fit'>
+        {optionList.map((option_name, index) => (
+          <DietButton callback={updateDiet} css={dietCSS} title={option_name} index={index}/>
+        ))}
+      </View>
+    </View>
+
+    {/* Sliders */}
+    <View className='flex-row w-full h-16 mt-2 bg-buttonBg rounded-lg'>
+      {/* ADD LATER */}
+    </View>
+
+    {/* More Search Options */}
+    <View className='flex-row w-full h-8 mt-2 items-center justify-center px-3 bg-buttonBg rounded-lg'>
+      <Text className='font-inconsolata text-base'>
+        Search By:
+      </Text>
+      <View className='flex-row grow w-fit h-fit items-center justify-center'>
+        {categories.map((cat, index) => (
+          <TouchableOpacity className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
+            activeOpacity={1} onPress={()=>setCatFocus(index)}>
+            <Text className={`font-inconsolata text-base ${catText[index]}`}>{cat}</Text>
+          </TouchableOpacity>
+        ))}
+        <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>
+      </View>
+    </View>
+  </View>
+)
+
+const DietButton = ({callback, css, title, index}) => (
   <View className='flex-row w-fit h-7 items-center justify-center'>
-    <TouchableOpacity activeOpacity={1} className='w-4 h-4 rounded-md border-2 border-itemText mr-2'
-    />
+    <TouchableOpacity activeOpacity={1} className={`w-4 h-4 rounded-md border-2 ${css[index]} border-itemText mr-2`}
+      onPress={()=>callback(index)}/>
     <Text className='font-inconsolata text-base mr-5'>
       {title}
     </Text>
@@ -159,6 +194,24 @@ const Browse = () => {
   { /* State/Functions */}
   const [searchQuery, setSearchQuery] = useState('');
 
+  const [showOptions, setShowOptions] = useState(false);
+
+  const [dietIndex, setDietIndex] = useState(-1);
+  const [dietButtonCSS, setDietButtonCSS] = useState(new Array(optionList.length).fill(''));
+  const updateDiet = (index) => {
+    if (index == dietIndex) {
+      setDietIndex(-1);
+      const new_css = new Array(optionList.length).fill('');
+      setDietButtonCSS(new_css);
+    } else {
+      setDietIndex(index);
+      const new_css = new Array(optionList.length).fill('');
+      new_css[index] = 'bg-itemText'
+      setDietButtonCSS(new_css);
+    }
+  }
+
+
   const [options, setOptions] = useState(new Array(optionList.length).fill(false))
   const updateOptions = (index) => {
     const new_options = options;
@@ -196,43 +249,24 @@ const Browse = () => {
                 onChangeText={setSearchQuery} 
                 underlineColorAndroid={'transparent'}
               />
-              <OptionButton/>
+              <OptionButton callback={setShowOptions} showOptions={showOptions}/>
 
             </View>
           </View>
 
           {/* Frame 2 - Options */}
-          <View className='w-full h-fit mt-6'>
-            {/* Checkbox */}
-            <View className='w-full min-h-16 h-fit items-center justify-center px-2 bg-buttonBg rounded-lg'>
-              <View className='flex-row flex-wrap w-full h-fit'>
-                {optionList.map((option_name, index) => (
-                  <DietButton title={option_name} index={index}/>
-                ))}
-              </View>
-            </View>
-
-            {/* Sliders */}
-            <View className='flex-row w-full h-16 mt-2 bg-buttonBg rounded-lg'>
-              
-            </View>
-
-            {/* More Search Options */}
-            <View className='flex-row w-full h-8 mt-2 items-center justify-center px-3 bg-buttonBg rounded-lg'>
-              <Text className='font-inconsolata text-base'>
-                Search By:
-              </Text>
-              <View className='flex-row grow w-fit h-fit items-center justify-center'>
-                {categories.map((cat, index) => (
-                  <TouchableOpacity className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
-                    activeOpacity={1} onPress={()=>setCatFocus(index)}>
-                    <Text className={`font-inconsolata text-base ${catText[index]}`}>{cat}</Text>
-                  </TouchableOpacity>
-                ))}
-                <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>
-              </View>
-            </View>
-          </View>
+          {
+            showOptions
+            ? <OptionsMenu 
+                optionList={optionList} 
+                updateDiet={updateDiet}
+                dietCSS = {dietButtonCSS}
+                categories={categories}
+                setCatFocus={setCatFocus}
+                catColor={catColor} 
+                catText={catText}/> 
+            : null
+          }
 
           {/* Frame 3 - Results */}
           <View className='flex-col w-full h-fit mt-6'>
