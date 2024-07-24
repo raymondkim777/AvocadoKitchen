@@ -16,10 +16,10 @@ module.exports = {
     },
     fontFamily: {
       'inconsolata': ['Inconsolata-SemiBold'],
-      'inconsolata-bold': ['Inconsolata-Bold'],
-      'inconsolata-light': ['Inconsolata-SemiBold'],
+      'inconsolataBold': ['Inconsolata-Bold'],
+      'inconsolataLight': ['Inconsolata-Regular'],
       'fredoka': ['Fredoka-SemiBold'], 
-      'fredoka-bold': ['Fredoka-Bold'],
+      'fredokaBold': ['Fredoka-Bold'],
     }
   },
   plugins: [],

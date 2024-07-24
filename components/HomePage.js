@@ -120,8 +120,8 @@ const HomePage = () => {
         <View className='w-full bg-screenBg h-8'>
         </View>
       )}
-      <Container id='content' className='grow w-full h-fit'>
-        <View className='grow w-full h-fit p-4 bg-screenBg'>
+      <Container id='scroll' className='grow w-full h-fit'>
+        <View id='content' className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
           <View className='grow w-full min-h-fit mt-2'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
