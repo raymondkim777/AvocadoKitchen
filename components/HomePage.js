@@ -6,7 +6,7 @@ const MealSum = ({title, image, cal}) => (
   <View className='flex flex-row w-full h-full space-x-2'>
     <Image className='flex flex-1 h-full rounded-md' source={image} />
     <View className='flex flex-1 flex-col h-full items-center justify-center'>
-      <Text className='font-inconsolata-bold -mt-2 text-2xl text-itemText'>
+      <Text className='font-inconsolataBold -mt-2 text-2xl text-itemText'>
         {title}
       </Text>
       <View className='w-full h-12 items-center justify-center'>
@@ -135,20 +135,20 @@ const HomePage = () => {
                     <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                     <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
+                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
                       </TouchableOpacity>
                     </View> 
                   : index == 6? 
                     <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                       <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
+                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
                       </TouchableOpacity>
                     </View>
                   : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                     <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                       onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolata-bold text-2xl text-itemText`}>{day}</Text>
+                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
                       </TouchableOpacity>
                     </View>
                 ))}
@@ -160,15 +160,15 @@ const HomePage = () => {
                   <View className='flex flex-row w-full h-7'>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
                       activeOpacity={1} onPress={()=>setMealFocus(0)}>
-                      <Text className={`font-inconsolata-bold text-xl ${mealText[0]}`}>Breakfast</Text>
+                      <Text className={`font-inconsolataBold text-xl ${mealText[0]}`}>Breakfast</Text>
                     </TouchableOpacity>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
                       activeOpacity={1} onPress={()=>setMealFocus(1)}>
-                      <Text className={`font-inconsolata-bold text-xl ${mealText[1]}`}>Lunch</Text>
+                      <Text className={`font-inconsolataBold text-xl ${mealText[1]}`}>Lunch</Text>
                     </TouchableOpacity>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
                       activeOpacity={1} onPress={()=>setMealFocus(2)}>
-                      <Text className={`font-inconsolata-bold text-xl ${mealText[2]}`}>Dinner</Text>
+                      <Text className={`font-inconsolataBold text-xl ${mealText[2]}`}>Dinner</Text>
                     </TouchableOpacity>
                   </View>
                   {/* Meal Content */}
