@@ -251,7 +251,7 @@ const Browse = () => {
                 onChangeText={setSearchQuery} 
                 underlineColorAndroid={'transparent'}
               />
-              <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-md '></TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
               <OptionButton callback={setShowOptions} showOptions={showOptions}/>
 
             </View>
