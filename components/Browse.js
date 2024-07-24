@@ -14,7 +14,7 @@ const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, 
     <View className='w-full min-h-16 h-fit items-center justify-center px-2 bg-buttonBg rounded-lg'>
       <View className='flex-row flex-wrap w-full h-fit'>
         {optionList.map((option_name, index) => (
-          <DietButton callback={updateDiet} css={dietCSS} title={option_name} index={index}/>
+          <DietButton key={`diet-bt-${index}`} callback={updateDiet} css={dietCSS} title={option_name} index={index}/>
         ))}
       </View>
     </View>
@@ -31,7 +31,7 @@ const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, 
       </Text>
       <View className='flex-row grow w-fit h-fit items-center justify-center'>
         {categories.map((cat, index) => (
-          <TouchableOpacity className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
+          <TouchableOpacity key={`search-opt-${index}`} className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
             activeOpacity={1} onPress={()=>setCatFocus(index)}>
             <Text className={`font-inconsolata text-base ${catText[index]}`}>{cat}</Text>
           </TouchableOpacity>
@@ -95,7 +95,7 @@ const RecipeCard = ({title, nutrition, tags, data, image}) => (
       {/* Tags */}
       <View className='flex-row w-full h-fit items-center justify-center mt-1'>
         {tags.map((tag, index) => (
-          <Text className='font-inconsolata text-itemBgMid text-base mr-3'>
+          <Text key={`tag-${index}`} className='font-inconsolata text-itemBgMid text-base mr-3'>
             #{tag}
           </Text>
         ))}
