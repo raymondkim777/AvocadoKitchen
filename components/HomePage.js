@@ -32,32 +32,8 @@ const MealCardDiv = () => (
 const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
-    {/* State/Functions */}
-  const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
-  const setFocus = (index) => {
-    const new_focus = new Array(7).fill('');
-    new_focus[index] = 'bg-itemBgLight';
-    // const new_text = new Array(7).fill('text-itemText')
-    // new_text[index] = 'text-itemBgLight' 
-    // setFocusedText(new_text)
-    setIsFocused(new_focus);
-  }
-  const [mealIndex, setMealIndex] = useState(0);  // index
-  const [mealColor, setMealColor] = useState(['bg-itemText', 'bg-itemBgDark', 'bg-itemBgDark']);  // button color
-  const [mealText, setMealText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText']);  // text color
-  const setMealFocus = (index) => {
-    setMealIndex(index);
-    const new_color = new Array(3).fill('bg-itemBgDark');
-    new_color[index] = 'bg-itemText';
-    setMealColor(new_color);
-
-    const new_text = new Array(3).fill('text-itemText');
-    new_text[index] = 'text-itemBgLight';
-    setMealText(new_text);
-  }
 
   {/* Data */}
-  const views = new Array(7).fill(null);
   const days = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
   const meals = [
     {
@@ -110,6 +86,30 @@ const HomePage = () => {
       unit: 'Carbs',
     },
   ];
+
+  {/* State/Functions */}
+  const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
+  const setFocus = (index) => {
+    const new_focus = new Array(7).fill('');
+    new_focus[index] = 'bg-itemBgLight';
+    // const new_text = new Array(7).fill('text-itemText')
+    // new_text[index] = 'text-itemBgLight' 
+    // setFocusedText(new_text)
+    setIsFocused(new_focus);
+  }
+  const [mealIndex, setMealIndex] = useState(0);  // index
+  const [mealColor, setMealColor] = useState(['bg-itemText', 'bg-itemBgDark', 'bg-itemBgDark']);  // button color
+  const [mealText, setMealText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText']);  // text color
+  const setMealFocus = (index) => {
+    setMealIndex(index);
+    const new_color = new Array(meals.length).fill('bg-itemBgDark');
+    new_color[index] = 'bg-itemText';
+    setMealColor(new_color);
+
+    const new_text = new Array(meals.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setMealText(new_text);
+  }
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
@@ -158,17 +158,17 @@ const HomePage = () => {
                 <View className='flex flex-col w-full h-full'>
                   {/* Buttons */}
                   <View className='flex flex-row w-full h-7'>
-                    <TouchableOpacity activeOpacity={1} className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
-                      onPress={()=>setMealFocus(0)}>
-                        <Text className={`font-inconsolata-bold text-xl ${mealText[0]}`}>Breakfast</Text>
+                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
+                      activeOpacity={1} onPress={()=>setMealFocus(0)}>
+                      <Text className={`font-inconsolata-bold text-xl ${mealText[0]}`}>Breakfast</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1} className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
-                      onPress={()=>setMealFocus(1)}>
-                        <Text className={`font-inconsolata-bold text-xl ${mealText[1]}`}>Lunch</Text>
+                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
+                      activeOpacity={1} onPress={()=>setMealFocus(1)}>
+                      <Text className={`font-inconsolata-bold text-xl ${mealText[1]}`}>Lunch</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1} className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
-                      onPress={()=>setMealFocus(2)}>
-                        <Text className={`font-inconsolata-bold text-xl ${mealText[2]}`}>Dinner</Text>
+                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
+                      activeOpacity={1} onPress={()=>setMealFocus(2)}>
+                      <Text className={`font-inconsolata-bold text-xl ${mealText[2]}`}>Dinner</Text>
                     </TouchableOpacity>
                   </View>
                   {/* Meal Content */}
