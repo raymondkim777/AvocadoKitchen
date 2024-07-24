@@ -17,6 +17,62 @@ const DietButton = ({title, index}) => (
   </View>
 )
 
+const RecipeCard = ({title, nutrition, tags, data, image}) => (
+  <View className='flex-col w-full h-64 p-1 bg-itemBgLight rounded-xl'>
+    <Image className='flex-1 w-full rounded-lg' source={image}/>
+    <View className='flex-col w-full h-fit mt-1'>
+      {/* Data */}
+      <View className='flex-row w-full h-6 justify-start'>
+        <View className='flex-row w-10 h-6 items-center justify-center'>
+          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
+          <Text className='font-inconsolata text-base'>{data.likes}</Text>
+        </View>
+        <View className='flex-row w-10 h-6 items-center justify-center'>
+          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
+          <Text className='font-inconsolata text-base'>{data.likes}</Text>
+        </View>
+        <View className='flex-row w-10 h-6 items-center justify-center'>
+          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
+          <Text className='font-inconsolata text-base'>{data.likes}</Text>
+        </View>
+      </View>
+
+      {/* Title */}
+      <View className='w-full h-fit items-center justify-center mt-1'>
+        <Text className='font-inconsolataBold text-itemText text-3xl'>
+          {title}
+        </Text>
+      </View>
+
+      {/* Nutrition */}
+      <View className='flex-row w-full h-fit -mt-2 items-center justify-center'>
+        <Text className='font-inconsolata text-itemText text-base mr-5'>
+          {nutrition.cal} Cal
+        </Text>
+        <Text className='font-inconsolata text-itemText text-base mr-5'>
+          {nutrition.protein}g Protein
+        </Text>
+        <Text className='font-inconsolata text-itemText text-base'>
+          {nutrition.carb}g Carbs
+        </Text>
+      </View>
+
+      {/* Tags */}
+      <View className='flex-row w-full h-fit items-center justify-center mt-1'>
+        {tags.map((tag, index) => (
+          <Text className='font-inconsolata text-itemBgMid text-base mr-3'>
+            #{tag}
+          </Text>
+        ))}
+      </View>
+    </View>
+  </View>
+)
+
+const RecipeCardDiv = () => (
+  <View className='w-full h-2'/>
+)
+
 const { width, height } = Dimensions.get('window');
 
 const Browse = () => {
@@ -30,9 +86,74 @@ const Browse = () => {
     'Vegetarian', 
     'Pescastarian',
   ]
-
   const categories = [
     'All', 'Name', 'User', 'Tag',
+  ]
+  const recipes = [
+    {
+      id: 'recipe-1',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-2',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-3',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../assets/images/recipe-1.webp'),
+    },
   ]
 
   { /* State/Functions */}
@@ -61,8 +182,8 @@ const Browse = () => {
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center'>
-      <ScrollView id='scroll' className='grow w-full h-full bg-red-100'>
-        <View id='content' className='grow w-full h-fit p-4 bg-screenBg'>
+      <ScrollView id='scroll' className='w-full h-full bg-red-100'>
+        <View id='content' className='w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
@@ -114,16 +235,41 @@ const Browse = () => {
           </View>
 
           {/* Frame 3 - Results */}
-          <View className='flex-col w-full h-fit mt-6 bg-blue-100'>
-            <View className='flex-row w-full h-fit justify-between bg-red-100'>
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='flex-row w-full h-fit justify-between'>
               <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
                 Results
               </Text>
               <OptionButton/>
             </View>
-            <View className='w-full h-20'>
+            {/* List */}
+            <FlatList className='flex-col w-full h-fit mt-2'
+              horizontal={false}
+              showsHorizontalScrollIndicator={false}
+              data={recipes}
+              renderItem={({item}) => 
+                <RecipeCard 
+                  title={item.title}
+                  nutrition={item.nutrition}
+                  tags={item.tags}
+                  data={item.data}
+                  image={item.image}/>}
+              ItemSeparatorComponent={<RecipeCardDiv/>}
+              keyExtractor={item => item.id}
+              />
 
+            {/*
+            <View className='flex-col w-full h-fit mt-2'>
+              {recipes.map((item, index) => (
+                <RecipeCard 
+                  title={item.title} 
+                  nutrition={item.nutrition}
+                  tags={item.tags}
+                  data={item.data}
+                  image={item.image}/>
+              ))}
             </View>
+            */}
           </View>
         </View>
       </ScrollView>
