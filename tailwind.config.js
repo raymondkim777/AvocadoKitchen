@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         'screenBg': '#90BCAF',
         'screenText': '#F4F4D7', 
-        'itemBgDark': '#DFDFC8', 
+        'itemBgDark': '#DFDFC8',
+        'itemBgMid': '#B4B479', 
         'itemBgLight': '#F8FEE8', 
         'buttonBg': '#F4F4D7', 
         'itemText': '#85855B',
