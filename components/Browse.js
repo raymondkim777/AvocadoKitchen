@@ -2,8 +2,8 @@ import React, {useState,} from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 
 const OptionButton = ({callback, showOptions}) => (
-  <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 ml-2 bg-buttonBg rounded-lg'
-    onPress={()=>callback(!showOptions)}>
+  <TouchableOpacity className='w-8 h-8 ml-2 bg-itemBgDark rounded-lg'
+  activeOpacity={0.7} onPress={()=>callback(!showOptions)}>
 
   </TouchableOpacity>
 )
@@ -44,11 +44,13 @@ const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, 
 
 const DietButton = ({callback, css, title, index}) => (
   <View className='flex-row w-fit h-7 items-center justify-center'>
-    <TouchableOpacity activeOpacity={1} className={`w-4 h-4 rounded-md border-2 ${css[index]} border-itemText mr-2`}
-      onPress={()=>callback(index)}/>
-    <Text className='font-inconsolata text-base mr-5'>
-      {title}
-    </Text>
+    <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
+      activeOpacity={1} onPress={()=>callback(index)}>
+      <View className={`w-4 h-4 rounded-md border-2 ${css[index]} border-itemText mr-2`}/>
+      <Text className='font-inconsolata text-base'>
+        {title}
+      </Text>
+    </TouchableOpacity>
   </View>
 )
 
@@ -242,13 +244,14 @@ const Browse = () => {
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
               Browse Recipes
             </Text>
-            <View className='flex-row items-center justify-center w-full h-fit mt-2 '>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 bg-itemBgLight text-itemText text-xl rounded-lg pl-4 pb-1'
+            <View className='flex-row items-center justify-center w-full h-10 mt-2 px-1 bg-itemBgLight rounded-lg'>
+              <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pl-3 pb-1'
                 placeholder="ex. Neapolitan Pizza" 
                 value={searchQuery} 
                 onChangeText={setSearchQuery} 
                 underlineColorAndroid={'transparent'}
               />
+              <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-md '></TouchableOpacity>
               <OptionButton callback={setShowOptions} showOptions={showOptions}/>
 
             </View>
@@ -270,7 +273,7 @@ const Browse = () => {
 
           {/* Frame 3 - Results */}
           <View className='flex-col w-full h-fit mt-6'>
-            <View className='flex-row w-full h-fit justify-between'>
+            <View className='flex-row w-full h-fit justify-between px-1'>
               <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
                 Results
               </Text>
