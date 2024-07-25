@@ -17,8 +17,8 @@ const MealSum = ({title, image, cal}) => (
 )
 
 const MealCard = ({title, image}) => (
-  <View className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
-    <Text className='font-inconsolata text-xl text-itemText -mt-1'>
+  <View className='w-52 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
+    <Text className='font-inconsolata text-xl text-itemText text-center -mt-1'>
       {title}
     </Text>
     <Image className='flex flex-1 w-full mt-1 rounded-md' source={image} /> 
@@ -84,7 +84,7 @@ const HomePage = () => {
     },
     {
       id: 'meal-2',
-      title: '1 Hour Chili Hot Dog', 
+      title: 'Chili Hot Dog', 
       image: require('../assets/images/image-recipe-1.jpg'), 
     },
     {
@@ -182,7 +182,7 @@ const HomePage = () => {
             </Text>
             {/* Scroll Cards */}
             <View className='grow w-full h-fit mt-2'>
-              <FlatList className='grow w-full h-40'
+              <FlatList className='grow w-full h-36'
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={recipes}
