@@ -32,8 +32,32 @@ const MealCardDiv = () => (
 const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
+    {/* State/Functions */}
+  const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
+  const setFocus = (index) => {
+    const new_focus = new Array(7).fill('');
+    new_focus[index] = 'bg-itemBgLight';
+    // const new_text = new Array(7).fill('text-itemText')
+    // new_text[index] = 'text-itemBgLight' 
+    // setFocusedText(new_text)
+    setIsFocused(new_focus);
+  }
+  const [mealIndex, setMealIndex] = useState(0);  // index
+  const [mealColor, setMealColor] = useState(['bg-itemText', 'bg-itemBgDark', 'bg-itemBgDark']);  // button color
+  const [mealText, setMealText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText']);  // text color
+  const setMealFocus = (index) => {
+    setMealIndex(index);
+    const new_color = new Array(3).fill('bg-itemBgDark');
+    new_color[index] = 'bg-itemText';
+    setMealColor(new_color);
+
+    const new_text = new Array(3).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setMealText(new_text);
+  }
 
   {/* Data */}
+  const views = new Array(7).fill(null);
   const days = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
   const meals = [
     {
@@ -86,45 +110,16 @@ const HomePage = () => {
       unit: 'Carbs',
     },
   ];
-
-  {/* State/Functions */}
-  const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
-  const setFocus = (index) => {
-    const new_focus = new Array(7).fill('');
-    new_focus[index] = 'bg-itemBgLight';
-    // const new_text = new Array(7).fill('text-itemText')
-    // new_text[index] = 'text-itemBgLight' 
-    // setFocusedText(new_text)
-    setIsFocused(new_focus);
-  }
-  const [mealIndex, setMealIndex] = useState(0);  // index
-  const [mealColor, setMealColor] = useState(['bg-itemText', 'bg-itemBgDark', 'bg-itemBgDark']);  // button color
-  const [mealText, setMealText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText']);  // text color
-  const setMealFocus = (index) => {
-    setMealIndex(index);
-    const new_color = new Array(meals.length).fill('bg-itemBgDark');
-    new_color[index] = 'bg-itemText';
-    setMealColor(new_color);
-
-    const new_text = new Array(meals.length).fill('text-itemText');
-    new_text[index] = 'text-itemBgLight';
-    setMealText(new_text);
-  }
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
-  
   return (
-    <View id='screen' className='flex flex-col w-full h-full justify-center items-center'>
-       {Platform.OS === 'ios' && (
-        <View className='w-full bg-screenBg h-8'>
-        </View>
-      )}
-      <Container id='scroll' className='grow w-full h-fit bg-screenBg'>
-        <View id='content' className='grow w-full h-fit p-4'>
+    <SafeAreaView id='screen' className='bg-screenBg flex flex-col w-full h-full justify-center items-center'>
+      <Container id='content' className='grow w-full h-fit'>
+        <View className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
           <View className='grow w-full min-h-fit mt-2'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <Text className="font-inconsolata mx-4 text-3xl text-screenText mt-2">
               Your Meal Plan
             </Text>
             {/* Calendar */}
@@ -235,7 +230,7 @@ const HomePage = () => {
       <View id='homebar' className='w-full h-20'>
         <HomeBar/>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
