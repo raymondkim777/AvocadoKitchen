@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82073820898",
+    "project_id": "avocadokitchen",
+    "storage_bucket": "avocadokitchen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82073820898:android:887f76ba6ae7f306fd08bb",
+        "android_client_info": {
+          "package_name": "com.avocado"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEbOB56U4exnoQeAlVPbRDFf_4Te2Xjhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
