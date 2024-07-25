@@ -1,4 +1,4 @@
-import React, {useState,} from 'react';
+import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 
 const OptionButton = ({callback, showOptions}) => (
@@ -54,6 +54,31 @@ const DietButton = ({callback, css, title, index}) => (
   </View>
 )
 
+const PageButton = ({callback, index, buttonColor, buttonText}) => (
+  <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl ${buttonColor}`}
+    activeOpacity={1} onPress={()=>callback(index)}>
+    <Text className={`font-inconsolataBold text-xl ${buttonText}`}>{index + 1}</Text>
+  </TouchableOpacity>
+)
+
+const PageMenu = ({pageButtons, shiftPageIndex}) => (
+  <View className='w-full h-8 mt-2 items-center justify-center'>
+    <View className='flex-row w-fit h-8 items-center justify-center bg-buttonBg rounded-xl'>
+      <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl`}
+        activeOpacity={1} onPress={()=>shiftPageIndex(-1)}>
+        <Text className={`font-inconsolataBold text-xl text-itemText`}> {'<'} </Text>
+      </TouchableOpacity>
+      {
+        pageButtons
+      }
+      <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl`}
+        activeOpacity={1} onPress={()=>shiftPageIndex(1)}>
+        <Text className={`font-inconsolataBold text-xl text-itemText`}> {'>'} </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+)
+
 const RecipeCard = ({title, nutrition, tags, data, image}) => (
   <View className='flex-col w-full h-64 p-1 bg-itemBgLight rounded-xl'>
     <Image className='flex-1 w-full rounded-lg' source={image}/>
@@ -106,13 +131,11 @@ const RecipeCard = ({title, nutrition, tags, data, image}) => (
   </View>
 )
 
-const RecipeCardDiv = () => (
-  <View className='w-full h-2'/>
-)
-
 const { width, height } = Dimensions.get('window');
 
 const Browse = () => {
+  {/* References */}
+  const scrollRef = useRef();
   
   {/* Data */}
   const optionList = [
@@ -192,6 +215,10 @@ const Browse = () => {
       image: require('../assets/images/recipe-1.webp'),
     },
   ]
+  const recipesShown = [];
+  const recipeMaxCnt = 6;
+  const pageCount = Math.floor(recipes.length / recipeMaxCnt) + 1 * (recipes.length % recipeMaxCnt != 0);
+
 
   { /* State/Functions */}
   const [searchQuery, setSearchQuery] = useState('');
@@ -212,7 +239,6 @@ const Browse = () => {
       setDietButtonCSS(new_css);
     }
   }
-
 
   const [options, setOptions] = useState(new Array(optionList.length).fill(false))
   const updateOptions = (index) => {
@@ -235,9 +261,67 @@ const Browse = () => {
     setCatText(new_text);
   }
 
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('')));
+  const [pageButtonText, setPageButtonText] = useState(['text-itemBgLight'].concat(new Array(pageCount).fill('text-itemText')));
+  const updatePageIndex = (index) => {
+    if (index == pageIndex) return;
+    setPageIndex(index);  // STARTS AT 0
+
+    {/* Page Button CSS */}
+    const new_color = new Array(pageCount).fill('');
+    new_color[index] = 'bg-itemText';
+    setPageButtonColor(new_color);
+
+    const new_text = new Array(pageCount).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setPageButtonText(new_text);
+    
+    {/* Scroll to Top */}
+    scrollRef.current?.scrollTo({
+      y:0,
+      animated: true,
+    });
+  }
+  const shiftPageIndex = (value) => {  // value is -1 or 1
+    if (value == 1 && pageIndex < pageCount - 1) {
+      updatePageIndex(pageIndex + 1);
+    } else if (value == -1 && pageIndex > 0) {
+      updatePageIndex(pageIndex - 1);
+    }
+  }
+
+  {/* Page Button Selection */}
+  let pageIndicesShown = [];
+  for (let i = 0; i < pageCount; i++) {
+    if (pageIndex <= 1 && i <= 4) {
+      pageIndicesShown.push(i)
+    } else if (pageIndex >= pageCount - 2 && i >= pageCount - 5) {
+      pageIndicesShown.push(i);
+    } else if (Math.abs(pageIndex - i) <= 2) {
+      pageIndicesShown.push(i);
+    }
+  }
+  let pageButtons = pageIndicesShown.map(function(index) {
+    return (<PageButton 
+      callback={updatePageIndex}
+      index={index} 
+      buttonColor={pageButtonColor[index]} 
+      buttonText={pageButtonText[index]} />)
+  })
+
+  {/* Recipe Selection */}
+  for (
+    let i = recipeMaxCnt * pageIndex; 
+    i < Math.min(recipeMaxCnt * (pageIndex + 1), recipes.length); 
+    i++
+  ) {
+    recipesShown.push(recipes[i]);
+  }
+
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <ScrollView className='w-full h-full'>
+      <ScrollView ref={scrollRef} className='w-full h-full'>
         <View id='content' className='w-full h-fit p-4'>
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
@@ -279,10 +363,11 @@ const Browse = () => {
               </Text>
               <OptionButton/>
             </View>
+            
             {/* List */}
             <View className='flex-col w-full h-fit mt-2'>
-            {recipes.map((item, index) => (
-              <View key={`recipe-card-${index}`} className='w-full h-fit mb-2'>
+            {recipesShown.map((item) => (
+              <View key={`${item.id}`} className='w-full h-fit mb-2'>
                 <RecipeCard 
                   title={item.title}
                   nutrition={item.nutrition}
@@ -293,18 +378,8 @@ const Browse = () => {
             ))}
             </View>
 
-            {/*
-            <View className='flex-col w-full h-fit mt-2'>
-              {recipes.map((item, index) => (
-                <RecipeCard 
-                  title={item.title} 
-                  nutrition={item.nutrition}
-                  tags={item.tags}
-                  data={item.data}
-                  image={item.image}/>
-              ))}
-            </View>
-            */}
+            {/* Page Numbers */}
+            <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
           </View>
         </View>
       </ScrollView>
