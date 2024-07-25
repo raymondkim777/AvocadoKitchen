@@ -236,8 +236,8 @@ const Browse = () => {
   }
 
   return (
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center'>
-      <View id='content' className='w-full h-fit p-4 bg-screenBg'>
+    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+      <View id='content' className='w-full h-fit p-4'>
         {/* Frame 1 - Search Bar */}
         <View className='w-full h-fit mt-2'>
           <Text className="font-inconsolata mx-4 text-3xl text-screenText">
