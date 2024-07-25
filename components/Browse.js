@@ -237,77 +237,77 @@ const Browse = () => {
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <View id='content' className='w-full h-fit p-4'>
-        {/* Frame 1 - Search Bar */}
-        <View className='w-full h-fit mt-2'>
-          <Text className="font-inconsolata mx-4 text-3xl text-screenText">
-            Browse Recipes
-          </Text>
-          <View className='flex-row items-center justify-center w-full h-10 mt-2 px-1 bg-itemBgLight rounded-lg'>
-            <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pl-3 pb-1'
-              placeholder="ex. Neapolitan Pizza" 
-              value={searchQuery} 
-              onChangeText={setSearchQuery} 
-              underlineColorAndroid={'transparent'}
-            />
-            <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
-            <OptionButton callback={setShowOptions} showOptions={showOptions}/>
-
-          </View>
-        </View>
-
-        {/* Frame 2 - Options */}
-        {
-          showOptions
-          ? <OptionsMenu 
-              optionList={optionList} 
-              updateDiet={updateDiet}
-              dietCSS = {dietButtonCSS}
-              categories={categories}
-              setCatFocus={setCatFocus}
-              catColor={catColor} 
-              catText={catText}/> 
-          : null
-        }
-
-        {/* Frame 3 - Results */}
-        <View className='flex-col w-full h-fit mt-6'>
-          <View className='flex-row w-full h-fit justify-between px-1'>
-            <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
-              Results
+      <ScrollView className='w-full h-full'>
+        <View id='content' className='w-full h-fit p-4'>
+          {/* Frame 1 - Search Bar */}
+          <View className='w-full h-fit mt-2'>
+            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+              Browse Recipes
             </Text>
-            <OptionButton/>
-          </View>
-          {/* List */}
-          <FlatList className='flex-col w-full h-fit mt-2'
-            horizontal={false}
-            showsHorizontalScrollIndicator={false}
-            data={recipes}
-            renderItem={({item}) => 
-              <RecipeCard 
-                title={item.title}
-                nutrition={item.nutrition}
-                tags={item.tags}
-                data={item.data}
-                image={item.image}/>}
-            ItemSeparatorComponent={<RecipeCardDiv/>}
-            keyExtractor={item => item.id}
-            />
+            <View className='flex-row items-center justify-center w-full h-10 mt-2 px-1 bg-itemBgLight rounded-lg'>
+              <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pl-3 pb-1'
+                placeholder="ex. Neapolitan Pizza" 
+                value={searchQuery} 
+                onChangeText={setSearchQuery} 
+                underlineColorAndroid={'transparent'}
+              />
+              <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
+              <OptionButton callback={setShowOptions} showOptions={showOptions}/>
 
-          {/*
-          <View className='flex-col w-full h-fit mt-2'>
-            {recipes.map((item, index) => (
-              <RecipeCard 
-                title={item.title} 
-                nutrition={item.nutrition}
-                tags={item.tags}
-                data={item.data}
-                image={item.image}/>
-            ))}
+            </View>
           </View>
-          */}
+
+          {/* Frame 2 - Options */}
+          {
+            showOptions
+            ? <OptionsMenu 
+                optionList={optionList} 
+                updateDiet={updateDiet}
+                dietCSS = {dietButtonCSS}
+                categories={categories}
+                setCatFocus={setCatFocus}
+                catColor={catColor} 
+                catText={catText}/> 
+            : null
+          }
+
+          {/* Frame 3 - Results */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='flex-row w-full h-fit justify-between px-1'>
+              <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
+                Results
+              </Text>
+              <OptionButton/>
+            </View>
+            {/* List */}
+            <View className='flex-col w-full h-fit mt-2'>
+            {recipes.map((item, index) => (
+              <View key={`recipe-card-${index}`} className='w-full h-fit mb-2'>
+                <RecipeCard 
+                  title={item.title}
+                  nutrition={item.nutrition}
+                  tags={item.tags}
+                  data={item.data}
+                  image={item.image}/>
+              </View>
+            ))}
+            </View>
+
+            {/*
+            <View className='flex-col w-full h-fit mt-2'>
+              {recipes.map((item, index) => (
+                <RecipeCard 
+                  title={item.title} 
+                  nutrition={item.nutrition}
+                  tags={item.tags}
+                  data={item.data}
+                  image={item.image}/>
+              ))}
+            </View>
+            */}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
