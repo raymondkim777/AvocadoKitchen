@@ -1,135 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
-
-const OptionButton = ({callback, showOptions}) => (
-  <TouchableOpacity className='w-8 h-8 ml-2 bg-itemBgDark rounded-lg'
-  activeOpacity={0.7} onPress={()=>callback(!showOptions)}>
-
-  </TouchableOpacity>
-)
-
-const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, catColor, catText}) => (
-  <View className={`w-full h-fit mt-6`}>
-    {/* Checkbox */}
-    <View className='w-full min-h-16 h-fit items-center justify-center px-2 bg-buttonBg rounded-lg'>
-      <View className='flex-row flex-wrap w-full h-fit'>
-        {optionList.map((option_name, index) => (
-          <DietButton key={`diet-bt-${index}`} callback={updateDiet} css={dietCSS} title={option_name} index={index}/>
-        ))}
-      </View>
-    </View>
-
-    {/* Sliders */}
-    <View className='flex-row w-full h-16 mt-2 bg-buttonBg rounded-lg'>
-      {/* ADD LATER */}
-    </View>
-
-    {/* More Search Options */}
-    <View className='flex-row w-full h-8 mt-2 items-center justify-center px-3 bg-buttonBg rounded-lg'>
-      <Text className='font-inconsolata text-base'>
-        Search By:
-      </Text>
-      <View className='flex-row grow w-fit h-fit items-center justify-center'>
-        {categories.map((cat, index) => (
-          <TouchableOpacity key={`search-opt-${index}`} className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
-            activeOpacity={1} onPress={()=>setCatFocus(index)}>
-            <Text className={`font-inconsolata text-base ${catText[index]}`}>{cat}</Text>
-          </TouchableOpacity>
-        ))}
-        <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>
-      </View>
-    </View>
-  </View>
-)
-
-const DietButton = ({callback, css, title, index}) => (
-  <View className='flex-row w-fit h-7 items-center justify-center'>
-    <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
-      activeOpacity={1} onPress={()=>callback(index)}>
-      <View className={`w-4 h-4 rounded-md border-2 ${css[index]} border-itemText mr-2`}/>
-      <Text className='font-inconsolata text-base'>
-        {title}
-      </Text>
-    </TouchableOpacity>
-  </View>
-)
-
-const PageButton = ({callback, index, buttonColor, buttonText}) => (
-  <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl ${buttonColor}`}
-    activeOpacity={1} onPress={()=>callback(index)}>
-    <Text className={`font-inconsolataBold text-xl ${buttonText}`}>{index + 1}</Text>
-  </TouchableOpacity>
-)
-
-const PageMenu = ({pageButtons, shiftPageIndex}) => (
-  <View className='w-full h-8 mt-2 items-center justify-center'>
-    <View className='flex-row w-fit h-8 items-center justify-center bg-buttonBg rounded-xl'>
-      <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl`}
-        activeOpacity={1} onPress={()=>shiftPageIndex(-1)}>
-        <Text className={`font-inconsolataBold text-xl text-itemText`}> {'<'} </Text>
-      </TouchableOpacity>
-      {
-        pageButtons
-      }
-      <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl`}
-        activeOpacity={1} onPress={()=>shiftPageIndex(1)}>
-        <Text className={`font-inconsolataBold text-xl text-itemText`}> {'>'} </Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-)
-
-const RecipeCard = ({title, nutrition, tags, data, image}) => (
-  <View className='flex-col w-full h-64 p-1 bg-itemBgLight rounded-xl'>
-    <Image className='flex-1 w-full rounded-lg' source={image}/>
-    <View className='flex-col w-full h-fit mt-1'>
-      {/* Data */}
-      <View className='flex-row w-full h-6 justify-start'>
-        <View className='flex-row w-10 h-6 items-center justify-center'>
-          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-          <Text className='font-inconsolata text-base'>{data.likes}</Text>
-        </View>
-        <View className='flex-row w-10 h-6 items-center justify-center'>
-          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-          <Text className='font-inconsolata text-base'>{data.likes}</Text>
-        </View>
-        <View className='flex-row w-10 h-6 items-center justify-center'>
-          <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-          <Text className='font-inconsolata text-base'>{data.likes}</Text>
-        </View>
-      </View>
-
-      {/* Title */}
-      <View className='w-full h-fit items-center justify-center mt-1'>
-        <Text className='font-inconsolataBold text-itemText text-3xl'>
-          {title}
-        </Text>
-      </View>
-
-      {/* Nutrition */}
-      <View className='flex-row w-full h-fit -mt-2 items-center justify-center'>
-        <Text className='font-inconsolata text-itemText text-base mr-5'>
-          {nutrition.cal} Cal
-        </Text>
-        <Text className='font-inconsolata text-itemText text-base mr-5'>
-          {nutrition.protein}g Protein
-        </Text>
-        <Text className='font-inconsolata text-itemText text-base'>
-          {nutrition.carb}g Carbs
-        </Text>
-      </View>
-
-      {/* Tags */}
-      <View className='flex-row w-full h-fit items-center justify-center mt-1'>
-        {tags.map((tag, index) => (
-          <Text key={`tag-${index}`} className='font-inconsolata text-itemBgMid text-base mr-3'>
-            #{tag}
-          </Text>
-        ))}
-      </View>
-    </View>
-  </View>
-)
+import OptionsButton from './browse/OptionsButton';
+import OptionsMenu from './browse/OptionsMenu';
+import PageButton from './browse/PageButton';
+import PageMenu from './browse/PageMenu';
+import RecipeCard from './browse/RecipeCard';
 
 const { width, height } = Dimensions.get('window');
 
@@ -336,7 +211,7 @@ const Browse = () => {
                 underlineColorAndroid={'transparent'}
               />
               <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
-              <OptionButton callback={setShowOptions} showOptions={showOptions}/>
+              <OptionsButton callback={setShowOptions} showOptions={showOptions}/>
 
             </View>
           </View>
@@ -361,7 +236,7 @@ const Browse = () => {
               <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
                 Results
               </Text>
-              <OptionButton/>
+              <OptionsButton/>
             </View>
             
             {/* List */}
