@@ -12,8 +12,9 @@ const HomeBar = () => {
   ]
 
   return (
-    <View className={` flex flex-row w-full h-20 bg-homeBgLight items-center justify-center`}>
-      {buttons.map((item, index) => (
+    <View className={`flex flex-row w-full h-20 bg-homeBgLight items-center justify-center`}>
+      {
+        buttons.map((item, index) => (
         index == 0? 
           <View key={`${item.id}-view`} className='flex flex-1 h-full ml-2 items-center justify-center'>
             <TouchableOpacity activeOpacity={0.5} key={item.id} className={`w-16 h-16 rounded-full bg-homeBgDark`}/>
