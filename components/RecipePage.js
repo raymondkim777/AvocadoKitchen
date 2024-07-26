@@ -15,9 +15,9 @@ const IngredientRow = ({item, index}) => (
 )
 
 const ProcedureCard = ({item, width}) => (
-  <View className={`flex-col w-[${width}] h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
+  <View style={{width}} className={`flex-col w-[${width}px] h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
     <Text className='font-inconsolataBold text-itemText text-xl'>
-      Step {item.step}
+      Step  {item.step} {width}
     </Text>
     <Image className='flex flex-1 w-full' source={item.image}/>
     <View className='w-full h-1/3 items-center justify-center'>
@@ -173,7 +173,7 @@ const RecipePage = ({
                 snapToAlignment='start'
                 decelerationRate='fast'
                 data={procedure}
-                renderItem={({item}) => <ProcedureCard item={item}/>}
+                renderItem={({item}) => <ProcedureCard item={item} width={viewWidth}/>}
                 ItemSeparatorComponent={<ProcedureDiv width={viewWidth}/>}
                 keyExtractor={item => item.id}
                 />
