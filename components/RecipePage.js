@@ -20,10 +20,14 @@ const ProcedureCard = ({item, width}) => (
       Step {item.step}
     </Text>
     <Image className='flex flex-1 w-full' source={item.image}/>
-    <View className='w-full h-fit max-h-1/3 items-center justify-center mt-2'>
-      <Text className='font-inconsolata text-itemText text-center text-base leading-4'>
-        {item.description}
-      </Text>
+    <View className='w-full h-fit max-h-[30%] items-center justify-center mt-2'>
+      <ScrollView nestedScrollEnabled={true} className='w-full'>
+        <View className='w-full h-fit max-h-1/3 items-center justify-center'>
+          <Text className='font-inconsolata text-itemText text-center text-base leading-4'>
+            {item.description}
+          </Text>
+        </View>
+      </ScrollView>
     </View>
   </View>
 )
@@ -147,7 +151,7 @@ const RecipePage = ({
                 
                 {/* Content */}
                 <View className='grow w-full h-40 bg-itemBgLight overflow-hidden rounded-b-lg'>
-                  <ScrollView className='w-full h-fit rounded-b-lg'>
+                  <ScrollView nestedScrollEnabled={true} className='w-full h-fit rounded-b-lg'>
                     {ingredients.map((item, index) => (
                       <IngredientRow item={item} index={index}/>
                     ))}
