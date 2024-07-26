@@ -62,17 +62,17 @@ const HomePage = () => {
   const meals = [
     {
       title: 'Waffles', 
-      image: require('../assets/images/meal-1.jpg'),
+      image: require('../assets/images/meal-example/meal-1.jpg'),
       cal: 312,
     },
     {
       title: 'Tuna Sandwich', 
-      image: require('../assets/images/meal-2.jpg'),
+      image: require('../assets/images/meal-example/meal-2.jpg'),
       cal: 746,
     },
     {
       title: 'Sirloin Steak', 
-      image: require('../assets/images/meal-3.jpg'),
+      image: require('../assets/images/meal-example/meal-3.jpg'),
       cal: 539,
     },
   ]
@@ -80,17 +80,17 @@ const HomePage = () => {
     {
       id: 'meal-1',
       title: 'Tuna Sandwich', 
-      image: require('../assets/images/image-recipe-1.jpg'), 
+      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
     {
       id: 'meal-2',
       title: 'Chili Hot Dog', 
-      image: require('../assets/images/image-recipe-1.jpg'), 
+      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
     {
       id: 'meal-3',
       title: 'Apple Pie', 
-      image: require('../assets/images/image-recipe-1.jpg'), 
+      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
   ];
   const nutrition = [
