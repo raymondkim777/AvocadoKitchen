@@ -15,12 +15,12 @@ const IngredientRow = ({item, index}) => (
 )
 
 const ProcedureCard = ({item, width}) => (
-  <View style={{width}} className={`flex-col w-[${width}px] h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
+  <View style={{width}} className={`flex-col h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
     <Text className='font-inconsolataBold text-itemText text-xl'>
-      Step  {item.step}
+      Step {item.step}
     </Text>
     <Image className='flex flex-1 w-full' source={item.image}/>
-    <View className='w-full h-1/3 items-center justify-center'>
+    <View className='w-full h-fit max-h-1/3 items-center justify-center mt-2'>
       <Text className='font-inconsolata text-itemText text-center text-base leading-4'>
         {item.description}
       </Text>
@@ -103,9 +103,11 @@ const RecipePage = ({
     setViewWidth(width);
   };
 
+  {/* View */}
+  const Container = height > 800 ?  View : ScrollView;
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <ScrollView className='w-full h-full'>
+      <Container className='grow w-full h-fit'>
         <View id='content' className='w-full h-full p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
@@ -116,23 +118,23 @@ const RecipePage = ({
           </View>
 
           {/* Name / Ingredients */}
-          <View className='flex-col w-full h-fit items-center justify-center mt-4'>
+          <View className='grow flex-col w-full h-fit items-center justify-center mt-4'>
             {/* Name */}
-            <View className='flex-row w-full h-8 items-center'>
+            <View className='flex-row w-full h-10 items-center'>
               <Text className='font-inconsolata mx-4 text-screenText text-xl'>
                 Name: {name}
               </Text>
             </View>
 
             {/* Ingredients */}
-            <View className='flex-col w-full h-fit items-center justify-center mt-2'>
+            <View className='grow flex-col w-full h-fit items-center justify-center'>
               <View className='flex-row w-full h-8 items-center'>
                 <Text className='font-inconsolata mx-4 text-screenText text-xl'>
                   Ingredients
                 </Text>
               </View>
 
-              <View className='w-full h-52 items-center justify-center'>
+              <View className='grow w-full h-52 items-center justify-center'>
                 {/* Header */}
                 <View className='flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
                   <View className='w-2/3 h-full items-center justify-center'>
@@ -144,7 +146,7 @@ const RecipePage = ({
                 </View>
                 
                 {/* Content */}
-                <View className='w-full h-40 bg-itemBgLight overflow-hidden rounded-b-lg'>
+                <View className='grow w-full h-40 bg-itemBgLight overflow-hidden rounded-b-lg'>
                   <ScrollView className='w-full h-fit rounded-b-lg'>
                     {ingredients.map((item, index) => (
                       <IngredientRow item={item} index={index}/>
@@ -156,7 +158,7 @@ const RecipePage = ({
           </View>
 
           {/* Procedure */}
-          <View className='flex-col w-full h-fit items-center justify-center mt-2'>
+          <View className='grow flex-col w-full h-fit items-center justify-center mt-2'>
             <View className='flex-row w-full h-10 items-center'>
               <Text className='font-inconsolata mx-4 text-screenText text-xl'>
                 Procedure
@@ -164,24 +166,24 @@ const RecipePage = ({
             </View>
 
             {/* Procedure Cards */}
-            <View onLayout={onLayout} className='w-full h-fit rounded-xl overflow-hidden'>
+            <View onLayout={onLayout} className='grow w-full h-fit rounded-xl overflow-hidden'>
               <FlatList className='w-full h-80'
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 pagingEnabled
-                snapToInterval={viewWidth}
+                snapToInterval={viewWidth + 14}
                 snapToAlignment='start'
                 decelerationRate='fast'
                 data={procedure}
                 renderItem={({item}) => <ProcedureCard item={item} width={viewWidth}/>}
-                ItemSeparatorComponent={<ProcedureDiv width={viewWidth}/>}
+                ItemSeparatorComponent={<ProcedureDiv width={4}/>}
                 keyExtractor={item => item.id}
                 />
             </View>
           </View>
 
           {/* Buttons */}
-          <View className='flex-row w-full h-fit items-center justify-between mt-8 px-6'>
+          <View className='flex-row w-full h-fit items-center justify-between mt-8 mb-4 px-6'>
             {/* Likes */}
             <TouchableOpacity className='w-12 h-12 items-center justify-center bg-buttonBg rounded-xl'
               activeOpacity={0.7}>
@@ -200,7 +202,7 @@ const RecipePage = ({
           </View>
           
         </View>
-      </ScrollView>
+      </Container>
     </SafeAreaView>
   )
 }
