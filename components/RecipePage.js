@@ -14,8 +14,8 @@ const IngredientRow = ({item, index}) => (
   </TouchableOpacity>
 )
 
-const ProcedureCard = ({item}) => (
-  <View className={`flex-col w-80 h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
+const ProcedureCard = ({item, width}) => (
+  <View className={`flex-col w-[${width}] h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
     <Text className='font-inconsolataBold text-itemText text-xl'>
       Step {item.step}
     </Text>
@@ -96,6 +96,12 @@ const RecipePage = ({
   ];
    
   { /* State/Functions */}
+  const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
+
+  const onLayout = (event) => {
+    const { width } = event.nativeEvent.layout;
+    setViewWidth(width);
+  };
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -158,13 +164,17 @@ const RecipePage = ({
             </View>
 
             {/* Procedure Cards */}
-            <View className='w-full h-fit rounded-xl overflow-hidden'>
+            <View onLayout={onLayout} className='w-full h-fit rounded-xl overflow-hidden'>
               <FlatList className='w-full h-80'
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                snapToInterval={viewWidth}
+                snapToAlignment='start'
+                decelerationRate='fast'
                 data={procedure}
                 renderItem={({item}) => <ProcedureCard item={item}/>}
-                ItemSeparatorComponent={<ProcedureDiv width={4}/>}
+                ItemSeparatorComponent={<ProcedureDiv width={viewWidth}/>}
                 keyExtractor={item => item.id}
                 />
             </View>
