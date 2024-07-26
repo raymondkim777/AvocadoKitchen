@@ -17,7 +17,7 @@ const IngredientRow = ({item, index}) => (
 const ProcedureCard = ({item, width}) => (
   <View style={{width}} className={`flex-col w-[${width}px] h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
     <Text className='font-inconsolataBold text-itemText text-xl'>
-      Step  {item.step} {width}
+      Step  {item.step}
     </Text>
     <Image className='flex flex-1 w-full' source={item.image}/>
     <View className='w-full h-1/3 items-center justify-center'>
