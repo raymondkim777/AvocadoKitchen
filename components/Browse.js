@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import ExitButton from './ExitButton';
 import OptionsButton from './browse/OptionsButton';
 import OptionsMenu from './browse/OptionsMenu';
 import PageButton from './browse/PageButton';
@@ -200,19 +201,23 @@ const Browse = () => {
         <View id='content' className='w-full h-fit p-4'>
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
-              Browse Recipes
-            </Text>
-            <View className='flex-row items-center justify-center w-full h-10 mt-2 px-1 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pl-3 pb-1'
-                placeholder="ex. Neapolitan Pizza" 
-                value={searchQuery} 
-                onChangeText={setSearchQuery} 
-                underlineColorAndroid={'transparent'}
-              />
-              <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
+            <View className='flex-row w-full h-fit items-center justify-between'>
+              <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+                Browse Recipes
+              </Text>
+              <ExitButton/>
+            </View>
+            <View className='flex-row items-center justify-center w-full h-fit mt-2'>
+              <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 bg-itemBgLight rounded-lg'>
+                <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
+                  placeholder="ex. Neapolitan Pizza" 
+                  value={searchQuery} 
+                  onChangeText={setSearchQuery} 
+                  underlineColorAndroid={'transparent'}
+                />
+                <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
+              </View>
               <OptionsButton callback={setShowOptions} showOptions={showOptions}/>
-
             </View>
           </View>
 
@@ -232,7 +237,7 @@ const Browse = () => {
 
           {/* Frame 3 - Results */}
           <View className='flex-col w-full h-fit mt-6'>
-            <View className='flex-row w-full h-fit justify-between px-1'>
+            <View className='flex-row w-full h-fit justify-between'>
               <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
                 Results
               </Text>

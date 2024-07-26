@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-const OptionsButton = ({callback, showOptions}) => (
+const ExitButton = ({}) => (
   <TouchableOpacity className='w-8 h-8 ml-2 bg-buttonBg rounded-lg'
-  activeOpacity={0.7} onPress={()=>callback(!showOptions)}>
+  activeOpacity={0.7}>
 
   </TouchableOpacity>
 )
 
-export default OptionsButton
+export default ExitButton
