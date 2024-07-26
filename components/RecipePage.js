@@ -124,7 +124,7 @@ const RecipePage = ({
           {/* Name / Ingredients */}
           <View className='grow flex-col w-full h-fit items-center justify-center mt-4'>
             {/* Name */}
-            <View className='flex-row w-full h-10 items-center'>
+            <View className='flex-row w-full h-12 items-center'>
               <Text className='font-inconsolata mx-4 text-screenText text-xl'>
                 Name: {name}
               </Text>
