@@ -201,12 +201,15 @@ const Browse = () => {
         <View id='content' className='w-full h-fit p-4'>
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
-            <View className='flex-row w-full h-fit items-center justify-between'>
+            {/* Title */}
+            <View className='flex-row w-full h-10 items-center justify-between'>
               <Text className="font-inconsolata mx-4 text-3xl text-screenText">
                 Browse Recipes
               </Text>
               <ExitButton/>
             </View>
+
+            {/* Search Bar */}
             <View className='flex-row items-center justify-center w-full h-fit mt-2'>
               <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 bg-itemBgLight rounded-lg'>
                 <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
@@ -236,16 +239,16 @@ const Browse = () => {
           }
 
           {/* Frame 3 - Results */}
-          <View className='flex-col w-full h-fit mt-6'>
-            <View className='flex-row w-full h-fit justify-between'>
-              <Text className='font-inconsolata text-xl ml-4 text-itemBgLight'>
+          <View className='flex-col w-full h-fit mt-2'>
+            <View className='flex-row w-full h-10 items-center justify-between'>
+              <Text className='font-inconsolata text-xl ml-4 mt-2 text-itemBgLight'>
                 Results
               </Text>
               <OptionsButton/>
             </View>
             
             {/* List */}
-            <View className='flex-col w-full h-fit mt-2'>
+            <View className='flex-col w-full h-fit mt-1'>
             {recipesShown.map((item) => (
               <View key={`${item.id}`} className='w-full h-fit mb-2'>
                 <RecipeCard 
