@@ -25,7 +25,7 @@ export default function HomeScreen() {
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={IngredientRowLarge} />
+          <Stack.Screen name="Login" component={ProcedureCardLarge} />
           <Stack.Screen name="Homepage" component={Browse} />
         </Stack.Navigator>
       </NavigationContainer>

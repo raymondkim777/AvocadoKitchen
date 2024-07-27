@@ -16,27 +16,27 @@ const IngredientRowLarge = () => {
         <Text className='font-inconsolataBold text-itemText text-2xl'>
           Ingredient Info 
         </Text>
-        <Image className='grow h-72  w-full mt-2 rounded-lg' source={item.image}/>
+        <Image className='shrink h-72 w-full mt-2 rounded-lg' source={item.image}/>
         <View className='shrink w-full h-28 items-center justify-center mt-4'>
           <ScrollView nestedScrollEnabled={true} className='w-full'>
             <View className='flex-col w-full h-fit items-center justify-center'>
-              <View className='flex-row w-full h-8 items-center bg-blue-300'>
+              <View className='flex-row w-full h-8 items-center'>
                 <Text className='font-inconsolata h-full text-itemText text-center text-lg'>
                   Name: {item.name}
                 </Text>
               </View>
-              <View className='flex-row w-full h-8 items-center bg-blue-300'>
+              <View className='flex-row w-full h-8 items-center'>
                 <Text className='font-inconsolata h-full text-itemText text-center text-lg'>
                   Amount: {item.amount}
                 </Text>
               </View>
-              <View className='flex-row w-full h-8 items-center bg-blue-300'>
+              <View className='flex-row w-full h-8 items-center'>
                 <Text className='font-inconsolata h-full text-itemText text-center text-lg'>
                   Coupang/MarketCurly link:
                 </Text>
               </View>
-              <View className='flex-row w-full h-fit items-center bg-blue-300'>
-                <Text className='font-inconsolata h-full text-hyperLink text-center text-lg leading-4'>
+              <View className='flex-row w-full h-fit items-center'>
+                <Text className='font-inconsolata h-full text-hyperLink text-left text-lg leading-4'>
                   {item.link}
                 </Text>
               </View>
