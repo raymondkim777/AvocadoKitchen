@@ -7,7 +7,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
 import Browse from './components/Browse';
-import RecipePage from './components/RecipePage'
+import RecipePage from './components/RecipePage';
+import ProcedureCardLarge from './components/recipe/ProcedureCardLarge';
+import IngredientRowLarge from './components/recipe/IngredientRowLarge';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +25,7 @@ export default function HomeScreen() {
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={RecipePage} />
+          <Stack.Screen name="Login" component={IngredientRowLarge} />
           <Stack.Screen name="Homepage" component={Browse} />
         </Stack.Navigator>
       </NavigationContainer>
