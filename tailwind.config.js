@@ -14,6 +14,8 @@ module.exports = {
         'homeBgLight': '#E7FCF6',
         'homeBgDark': '#CAE7DE',
         'hyperLink': '#7D8AFF',
+        'redHighlight': '#CB1400', 
+        'greenHighlight': '#478047',
       },
       height: {
         '112': '28rem',
