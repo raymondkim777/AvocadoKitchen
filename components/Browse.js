@@ -214,6 +214,7 @@ const Browse = () => {
               <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 bg-itemBgLight rounded-lg'>
                 <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
                   placeholder="ex. Neapolitan Pizza" 
+                  placeholderTextColor={'#85855B'}
                   value={searchQuery} 
                   onChangeText={setSearchQuery} 
                   underlineColorAndroid={'transparent'}
