@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 
-const IngredientRowLarge = () => {
+const IngredientCardLarge = () => {
   const item = {
     id: 'canned-tuna',
     name: 'Canned Tuna',
@@ -49,4 +49,4 @@ const IngredientRowLarge = () => {
 }
   
 
-export default IngredientRowLarge
+export default IngredientCardLarge

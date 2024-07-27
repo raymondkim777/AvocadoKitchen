@@ -9,7 +9,7 @@ import HomePage from './components/HomePage';
 import Browse from './components/Browse';
 import RecipePage from './components/RecipePage';
 import ProcedureCardLarge from './components/recipe/ProcedureCardLarge';
-import IngredientRowLarge from './components/recipe/IngredientRowLarge';
+import IngredientCardLarge from './components/recipe/IngredientCardLarge';
 
 const Stack = createStackNavigator();
 
@@ -25,7 +25,7 @@ export default function HomeScreen() {
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={ProcedureCardLarge} />
+          <Stack.Screen name="Login" component={Browse} />
           <Stack.Screen name="Homepage" component={Browse} />
         </Stack.Navigator>
       </NavigationContainer>
