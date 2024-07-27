@@ -13,6 +13,14 @@ module.exports = {
         'itemText': '#85855B',
         'homeBgLight': '#E7FCF6',
         'homeBgDark': '#CAE7DE',
+        'hyperLink': '#7D8AFF',
+      },
+      height: {
+        '112': '28rem',
+        '128': '32rem',
+        '144': '36rem',
+        '160': '40rem',
+        '176': '44rem',
       },
     },
     fontFamily: {
