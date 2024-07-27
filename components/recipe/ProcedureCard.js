@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 const ProcedureCard = ({item, width}) => (
-  <View style={{width}} className={`flex-col h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
+  <TouchableOpacity style={{width}} className={`flex-col h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}
+    activeOpacity={0.9}>
     <Text className='font-inconsolataBold text-itemText text-xl'>
       Step {item.step}
     </Text>
@@ -16,7 +17,7 @@ const ProcedureCard = ({item, width}) => (
         </View>
       </ScrollView>
     </View>
-  </View>
+  </TouchableOpacity>
 )
 
 export default ProcedureCard

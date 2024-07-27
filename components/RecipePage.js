@@ -20,38 +20,47 @@ const RecipePage = ({
   const name = "Tuna Sandwich";
   const ingredients = [
     {
+      id: 'canned-tuna',
       name: 'Canned Tuna',
       amount: '20 oz',
     },
     {
+      id: 'celery',
       name: 'Celery',
       amount: '1/3 cup',
     },
     {
+      id: 'red-onion',
       name: 'Red Onion',
       amount: '2 tbsp',
     },
     {
+      id: 'pickle-relish',
       name: 'Sweet Pickle Relish',
       amount: '2 tbsp',
     },
     {
+      id: 'lemon',
       name: 'Lemon',
       amount: 'x1',
     },
     {
+      id: 'garlic-clove',
       name: 'Garlic Clove',
       amount: 'x1',
     },
     {
+      id: 'salt',
       name: 'Salt',
       amount: 'N/A',
     },
     {
+      id: 'black-pepper',
       name: 'Black Pepper',
       amount: 'N/A',
     },
     {
+      id: 'mayo',
       name: 'Mayonnaise',
       amount: '1 cup',
     },
