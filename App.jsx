@@ -28,11 +28,8 @@ export default function HomeScreen() {
           initialRouteName="Login"
           screenOptions={{ headerShown: false }}
         >
-<<<<<<< HEAD
-          <Stack.Screen name="Login" component={AddMealPage2} />
-=======
+
           <Stack.Screen name="Login" component={HomePage} />
->>>>>>> 1be0a16 (language)
           <Stack.Screen name="Homepage" component={Browse} />
         </Stack.Navigator>
       </NavigationContainer>
