@@ -7,7 +7,7 @@ import ProcedureTable from './recipe/ProcedureTable';
 
 const { width, height } = Dimensions.get('window');
 
-const RecipePage = ({}) => {
+const AddMealPage = ({}) => {
   {/* References */}
   
   {/* Data */}
@@ -96,7 +96,7 @@ const RecipePage = ({}) => {
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <TouchableOpacity className='w-36 h-12 items-center justify-center bg-buttonBg rounded-xl'
+            <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
               activeOpacity={0.7}>
                 <Text className='font-inconsolata text-center text-itemText text-2xl'>Continue</Text>
             </TouchableOpacity>
@@ -107,4 +107,4 @@ const RecipePage = ({}) => {
   )
 }
 
-export default RecipePage;
+export default AddMealPage;

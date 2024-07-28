@@ -1,0 +1,230 @@
+import React, { useState, } from 'react';
+import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import ExitButton from './ExitButton';
+import IngredientsTable from './recipe/IngredientsTable';
+import SmallButton from './addmeal/SmallButton';
+import ProcedureTable from './recipe/ProcedureTable';
+import BackButton from './BackButton';
+import MealTag from './addmeal/MealTag';
+import TagSuggest from './addmeal/TagSuggest';
+
+const { width, height } = Dimensions.get('window');
+
+const AddMealPage2 = ({}) => {
+  {/* References */}
+  
+  {/* Data */}
+  const nutrientNames = ['Cal', 'Protein', 'Carbs'];
+   
+  { /* State/Functions */}
+  const allIngredientsFound = false;
+
+  const [minBudget, setMinBudget] = useState(16000);
+  const [maxBudget, setMaxBudget] = useState(22000);
+  
+  const [nutrientsData, setNutrientsData] = useState([
+    {
+      id: 'calorie',
+      value: '1261',
+      type: 'Cal',
+      unit: '',
+    },
+    {
+      id: 'protein',
+      value: '140',
+      type: 'Protein',
+      unit: 'g',
+    },
+    {
+      id: 'carb',
+      value: '724',
+      type: 'Carbs',
+      unit: 'g',
+    },
+  ]);
+  const updateCal = (value) => {
+    const new_data = nutrientsData;
+    new_data[0].value = value;
+    setNutrientsData(new_data);
+  }
+  const updateProtein = (value) => {
+    const new_data = nutrientsData;
+    new_data[1].value = value;
+    setNutrientsData(new_data);
+  }
+  const updateCarb = (value) => {
+    const new_data = nutrientsData;
+    new_data[2].value = value;
+    setNutrientsData(new_data);
+  }
+
+  const [tags, setTags] = useState([
+    {
+      id: '0',
+      text: 'Chicken'
+    },
+    {
+      id: '0',
+      text: 'Sandwich'
+    },
+    {
+      id: '0',
+      text: 'Healthy'
+    },
+    {
+      id: '0',
+      text: 'Protein'
+    },
+    {
+      id: '0',
+      text: 'SomeOtherTag'
+    },
+  ]);
+  const [tagInput, setTagInput] = useState('');
+  const addNewTag = () => {
+    const new_arr = tags;
+    new_arr.push({id: '0', text: tagName})
+    setTags(new_arr);
+  }
+  const addTagByID = (id) => {
+    // ADD LATER
+  }
+  const removeTag = (tagID) => {
+
+  }
+
+  const [publish, setPublish] = useState(false);
+  const [publishButtonCSS, setPublishButtonCSS] = useState(['', 'bg-screenText']);
+  const updatePublishButton = (index) => {
+    setPublish(index == 0);
+    const new_css = ['', ''];
+    new_css[index] = 'bg-screenText';
+    setPublishButtonCSS(new_css);
+  }
+
+  {/* View */}
+
+  return (
+    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+      <ScrollView className='grow w-full h-fit'>
+        <View id='content' className='grow w-full h-fit p-4'>
+          {/* Title */}
+          <View className='flex-row w-full h-10 items-center justify-between'>
+            <BackButton/>
+            <ExitButton/>
+          </View>
+
+          {/* Coupang/MarketCurly Error */}
+          {
+            allIngredientsFound
+            ? null
+            : <View className='w-full h-fit items-center justify-center px-6 mt-6'>
+                <View className='flex-col w-fit h-fit p-2 bg-itemBgLight rounded-xl'>
+                  <Text className='font-inconsolata text-xl text-center leading-6 text-itemText'>
+                    We're having trouble finding some ingredients. 
+                  </Text>
+                  <Text className='mt-1 font-inconsolataBold text-bases text-center leading-6 text-hyperLink'>
+                    Please add all ingredient links.
+                  </Text>
+                </View>
+              </View>
+          }
+
+          {/* Estimated Budget */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <Text className='font-inconsolata text-screenText text-xl mx-4'>Estimated Budget</Text>
+            </View>
+            <View className='flex-row w-full h-fit items-center justify-center mt-4'>
+              <View className='w-fit h-12 items-center justify-center px-3 py-2 bg-itemBgLight rounded-xl'>
+                <Text className='font-inconsolataBold text-3xl text-itemText'>
+                  ₩{minBudget} ~ ₩{maxBudget}
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Nutrient Information */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <Text className='font-inconsolata text-screenText text-xl mx-4'>Nutrient Information</Text>
+            </View>
+            <View className='flex-row w-full h-fit items-center justify-center space-x-2 mt-4'>
+              {nutrientsData.map((item, index)=>(
+                <View className='flex-1 flex-col w-full h-32 items-center justify-center bg-itemBgLight rounded-xl'>
+                  <Text className='font-fredoka text-3xl text-itemText'>
+                    {item.value}{item.unit}
+                  </Text>
+                  <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
+                    {item.type}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+
+          {/* Tags */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <Text className='font-inconsolata text-screenText text-xl mx-4'>Tags (Optional)</Text>
+            </View>
+            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
+              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
+                placeholder="Add Tag" 
+                placeholderTextColor={'#85855B'}
+                value={tagInput} 
+                onChangeText={setTagInput} 
+                underlineColorAndroid={'transparent'}
+              />
+
+              {/* Suggested Tag */}
+              <View className='flex-row w-fit h-10 items-center justify-center'>
+                <TagSuggest tagQuery={tagInput} addTag={addTagByID} />
+              </View>
+            </View>
+
+            {/* Display Tags */}
+            <View className='flex-row flex-wrap mt-2 -mr-2'>
+              {tags.map((item, index) => (
+                <MealTag tagID={item.id} tagName={item.text} removeTag={removeTag} />
+              ))}
+            </View>
+          </View>
+
+          {/* Publish Recipe */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <Text className='font-inconsolata text-screenText text-xl mx-4'>Publish Recipe</Text>
+            </View>
+            <View className='flex-row w-full h-8 mt-2 px-4'>
+              <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
+                activeOpacity={1} onPress={()=>updatePublishButton(0)}>
+                <View className={`w-4 h-4 rounded-md border-2 ${publishButtonCSS[0]} border-screenText mr-2`}/>
+                <Text className='font-inconsolata text-xl text-screenText'>
+                  Yes
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
+                activeOpacity={1} onPress={()=>updatePublishButton(1)}>
+                <View className={`w-4 h-4 rounded-md border-2 ${publishButtonCSS[1]} border-screenText mr-2`}/>
+                <Text className='font-inconsolata text-xl text-screenText'>
+                  No
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* Finish */}
+          <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
+            <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
+              activeOpacity={0.7}>
+                <Text className='font-inconsolata text-center text-itemText text-2xl'>Finish</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  )
+}
+
+export default AddMealPage2;
