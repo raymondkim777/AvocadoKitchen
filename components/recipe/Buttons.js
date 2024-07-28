@@ -9,7 +9,7 @@ const Buttons = () => (
 
     </TouchableOpacity>
     {/* Add Meal */}
-    <TouchableOpacity className='w-36 h-12 items-center justify-center bg-buttonBg rounded-xl'
+    <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
       activeOpacity={0.7}>
         <Text className='font-inconsolata text-center text-itemText text-2xl'>Add Meal</Text>
     </TouchableOpacity>

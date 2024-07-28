@@ -16,7 +16,7 @@ const IngredientsTableRowExpand = ({
 
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [foundResults, setFoundResults] = useState(false);
+  const [foundResults, setFoundResults] = useState(true);
 
   const [mealName, setMealName] = useState('');
   
@@ -39,7 +39,7 @@ const IngredientsTableRowExpand = ({
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
-              Add Ingredient
+              Add/Edit Ingredient
             </Text>
             <ExitButton/>
           </View>
@@ -74,10 +74,10 @@ const IngredientsTableRowExpand = ({
             : null
           }
 
-          {/* Manual Add */}
+          {/* Manual Add/Edit */}
           <View className='flex-row w-full h-10 items-center mt-10'>
             <Text className="font-inconsolata mx-4 text-3xl text-screenText">
-              Manual Add
+              Manual Add/Edit
             </Text>
           </View>
           

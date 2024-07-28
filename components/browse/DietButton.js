@@ -6,7 +6,7 @@ const DietButton = ({callback, css, title, index}) => (
     <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
       activeOpacity={1} onPress={()=>callback(index)}>
       <View className={`w-4 h-4 rounded-md border-2 ${css[index]} border-itemText mr-2`}/>
-      <Text className='font-inconsolata text-base'>
+      <Text className='font-inconsolata text-base text-itemText'>
         {title}
       </Text>
     </TouchableOpacity>
