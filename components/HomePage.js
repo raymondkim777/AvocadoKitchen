@@ -1,13 +1,17 @@
-import React, {useState,} from 'react';
+import React, {useState, useTransition,} from 'react';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import HomeBar from './HomeBar';
+import * as RNLocalize from "react-native-localize";
+import { useTransition } from 'react-i18next';
+import './i18n'
+
 
 const MealSum = ({title, image, cal}) => (
   <View className='flex flex-row w-full h-full space-x-2'>
     <Image className='flex flex-1 h-full rounded-md' source={image} />
     <View className='flex flex-1 flex-col h-full items-center justify-center'>
       <Text className='font-inconsolataBold -mt-2 text-2xl text-itemText'>
-        {title}
+        {title} 
       </Text>
       <View className='w-full h-12 items-center justify-center'>
         <Text className='font-fredoka text-4xl text-itemText'>{cal} Cal</Text>
@@ -113,14 +117,18 @@ const HomePage = () => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
+  const {t,i18n} = useTransition();
+  const changeLanguage = (lng) => {
+    I18n.changeLanguage(lng);
+  }
   return (
     <SafeAreaView id='screen' className='bg-screenBg flex flex-col w-full h-full justify-center items-center'>
       <Container id='content' className='grow w-full h-fit'>
         <View className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
           <View className='grow w-full min-h-fit mt-2'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText mt-2">
-              Your Meal Plan
+            <Text className={`${(currentLocale.startsWith('ko')) ? 'font-koreanFont' : 'font-inconsolata'} mx-4 text-3xl text-screenText mt-2`}>
+              {t('YourMealPlan')}
             </Text>
             {/* Calendar */}
             <View className='grow h-52 mt-2'>
