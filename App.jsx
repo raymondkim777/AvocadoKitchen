@@ -29,8 +29,8 @@ export default function HomeScreen() {
           screenOptions={{ headerShown: false }}
         >
 
-          <Stack.Screen name="Login" component={HomePage} />
-          <Stack.Screen name="Homepage" component={Browse} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Homepage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

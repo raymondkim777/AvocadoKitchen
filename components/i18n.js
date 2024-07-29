@@ -10,7 +10,7 @@ const resources = {
   },
   ko: {
     translation: {
-      "YourMealPlan": "안녕"
+      "YourMealPlan": "식단 계획표"
     }
   },
 };

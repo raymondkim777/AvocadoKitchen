@@ -125,7 +125,7 @@ const HomePage = () => {
         <View className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
           <View className='grow w-full min-h-fit mt-2'>
-            <Text className={`${(currentLanguage  === 'ko') ? 'font-koreanFont' : 'font-inconsolata'} mx-4 text-3xl text-screenText mt-2`}>
+            <Text className={`${(currentLanguage  === 'ko-KR') ? 'font-koreanFont' : 'font-inconsolata'} mx-4 text-3xl text-screenText mt-2`}>
               {t('YourMealPlan')}
             </Text>
             {/* Calendar */}

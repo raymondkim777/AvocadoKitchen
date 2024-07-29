@@ -30,12 +30,12 @@
       "sha1": "55181a8eafc09ca273f978d6e35d2ed46e47e570"
     },
     {
-      "path": "assets/fonts/SpaceMono-Regular.ttf",
-      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
+      "path": "assets/fonts/KoreanFont.ttf",
+      "sha1": "7bd300e07977d07b47359e75f529967f49d2ed2a"
     },
     {
-      "path": "assets/fonts/배은혜체.ttf",
-      "sha1": "7bd300e07977d07b47359e75f529967f49d2ed2a"
+      "path": "assets/fonts/SpaceMono-Regular.ttf",
+      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
     }
   ]
 }

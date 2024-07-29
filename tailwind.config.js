@@ -31,7 +31,7 @@ module.exports = {
       'inconsolataLight': ['Inconsolata-Regular'],
       'fredoka': ['Fredoka-SemiBold'], 
       'fredokaBold': ['Fredoka-Bold'],
-      'koreanFont': ['배은혜체'],
+      'koreanFont': ['KoreanFont'],
     }
   },
   plugins: [],

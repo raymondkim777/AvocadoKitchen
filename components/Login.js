@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
           value={username} 
           onChangeText={setUsername} 
         />
-        <TextInput className='font-inconsolataLight w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1'
+        <TextInput className='placeholder:[#90BCAF] font-inconsolataLight w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1'
           placeholder="Enter your password" 
           value={password} 
           onChangeText={setPassword} 
@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
         {/* Login/SignUp */}
         <View className='w-3/4 h-1/2 flex-row mt-5 items-start justify-center '>
           <TouchableOpacity  onPress={() => navigation.navigate('Homepage')} className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-            <Text className='font-inconsolata text-xl text-itemText font-inconsolata'>LOGIN</Text>
+            <Text className='font-inconsolata text-xl text-itemText'>LOGIN</Text>
           </TouchableOpacity>
           <View className='w-2/12'></View>
           <TouchableOpacity onPress={handleSignup} className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
