@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/BaeEun.ttf",
+      "sha1": "7bd300e07977d07b47359e75f529967f49d2ed2a"
+    },
+    {
       "path": "assets/fonts/Fredoka-Bold.ttf",
       "sha1": "49a29e15ae38e96548e70ae3f09c21da2ba7da65"
     },
@@ -30,8 +34,20 @@
       "sha1": "55181a8eafc09ca273f978d6e35d2ed46e47e570"
     },
     {
-      "path": "assets/fonts/KoreanFont.ttf",
-      "sha1": "7bd300e07977d07b47359e75f529967f49d2ed2a"
+      "path": "assets/fonts/LeeSeoyun.otf",
+      "sha1": "b3345390d6ee5672159aca050bd6a5c5d8fab681"
+    },
+    {
+      "path": "assets/fonts/NPS-Bold.ttf",
+      "sha1": "c4ed26b54dbbb1a5c28361390afa9baeddfae0ab"
+    },
+    {
+      "path": "assets/fonts/NPS-ExtraBold.ttf",
+      "sha1": "e57bcbd37c267a94edf9a6707e59cbd44a291b94"
+    },
+    {
+      "path": "assets/fonts/NPS-Regular.ttf",
+      "sha1": "6fc90379823d9b32d925d1a4ccaa4d81fe6e07af"
     },
     {
       "path": "assets/fonts/SpaceMono-Regular.ttf",

@@ -2,11 +2,14 @@ import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from './ExitButton';
 import IngredientsTable from './recipe/IngredientsTable';
-import SmallButton from './addmeal/SmallButton';
+import SmallButton from './addfunction/SmallButton';
 import ProcedureTable from './recipe/ProcedureTable';
 import BackButton from './BackButton';
-import MealTag from './addmeal/MealTag';
-import TagSuggest from './addmeal/TagSuggest';
+import MealTag from './addfunction/MealTag';
+import TagSuggest from './addfunction/TagSuggest';
+import TitleTextComponent from './text/TitleTextComponent';
+import ItemLargeTextComponent from './text/ItemLargeTextComponent';
+import ItemTextInputComponent from './text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -120,12 +123,12 @@ const AddMealPage2 = ({}) => {
             ? null
             : <View className='w-full h-fit items-center justify-center px-6 mt-6'>
                 <View className='flex-col w-fit h-fit p-2 bg-itemBgLight rounded-xl'>
-                  <Text className='font-inconsolata text-xl text-center leading-6 text-itemText'>
-                    We're having trouble finding some ingredients. 
-                  </Text>
-                  <Text className='mt-1 font-inconsolataBold text-bases text-center leading-6 text-hyperLink'>
-                    Please add all ingredient links.
-                  </Text>
+                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-center leading-6 text-itemText'}>
+                    (Error Message 1)
+                  </TitleTextComponent>
+                  <TitleTextComponent translate={true} sizeDiff={-1} size={'text-base'} css={'mt-1 text-center leading-6 text-hyperLink'}>
+                    (Error Message 2)
+                  </TitleTextComponent>
                 </View>
               </View>
           }
@@ -133,7 +136,9 @@ const AddMealPage2 = ({}) => {
           {/* Estimated Budget */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Estimated Budget</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Estimated Budget
+              </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center justify-center mt-4'>
               <View className='w-fit h-12 items-center justify-center px-3 py-2 bg-itemBgLight rounded-xl'>
@@ -147,17 +152,19 @@ const AddMealPage2 = ({}) => {
           {/* Nutrient Information */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Nutrient Information</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Nutrient Information
+              </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center justify-center space-x-2 mt-4'>
               {nutrientsData.map((item, index)=>(
                 <View className='flex-1 flex-col w-full h-32 items-center justify-center bg-itemBgLight rounded-xl'>
-                  <Text className='font-fredoka text-3xl text-itemText'>
+                  <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'text-itemText'}>
                     {item.value}{item.unit}
-                  </Text>
-                  <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
+                  </ItemLargeTextComponent>
+                  <ItemLargeTextComponent translate={true} bold={true} size={'text-2xl'} css={' text-itemText'}>
                     {item.type}
-                  </Text>
+                  </ItemLargeTextComponent>
                 </View>
               ))}
             </View>
@@ -166,15 +173,20 @@ const AddMealPage2 = ({}) => {
           {/* Tags */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Tags (Optional)</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Tags (Optional)
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
-                placeholder="Add Tag" 
-                placeholderTextColor={'#85855B'}
-                value={tagInput} 
-                onChangeText={setTagInput} 
-                underlineColorAndroid={'transparent'}
+              <ItemTextInputComponent
+              translate={true}
+              size={'text-xl'}
+              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+              placeholder="Add Tag" 
+              placeholderTextColor={'#85855B'}
+              value={tagInput} 
+              onChangeText={setTagInput} 
+              underlineColorAndroid={'transparent'}
               />
 
               {/* Suggested Tag */}
@@ -194,22 +206,24 @@ const AddMealPage2 = ({}) => {
           {/* Publish Recipe */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Publish Recipe</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Publish Recipe
+              </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-8 mt-2 px-4'>
               <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
                 activeOpacity={1} onPress={()=>updatePublishButton(0)}>
                 <View className={`w-4 h-4 rounded-md border-2 ${publishButtonCSS[0]} border-screenText mr-2`}/>
-                <Text className='font-inconsolata text-xl text-screenText'>
-                  Yes
-                </Text>
+                <TitleTextComponent translate={true} size={'text-xl'} sizeDiff={-1} css={'text-screenText'}>
+                  Publish Yes
+                </TitleTextComponent>
               </TouchableOpacity>
               <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
                 activeOpacity={1} onPress={()=>updatePublishButton(1)}>
                 <View className={`w-4 h-4 rounded-md border-2 ${publishButtonCSS[1]} border-screenText mr-2`}/>
-                <Text className='font-inconsolata text-xl text-screenText'>
-                  No
-                </Text>
+                <TitleTextComponent translate={true} size={'text-xl'} sizeDiff={-1} css={'text-screenText'}>
+                  Publish No
+                </TitleTextComponent>
               </TouchableOpacity>
             </View>
           </View>

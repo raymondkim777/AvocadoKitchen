@@ -6,6 +6,7 @@ import ProcedureSection from './recipe/ProcedureSection';
 import IngredientsSectionEmpty from './recipe/IngredientsSectionEmpty';
 import Buttons from './recipe/Buttons';
 import ProcedureSectionEmpty from './recipe/ProcedureSectionEmpty';
+import TitleTextComponent from './text/TitleTextComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -68,12 +69,12 @@ const RecipePage = ({
   const procedure = [
     {
       step: 1, 
-      description: 'Combine tuna, mayonnaise, celery, onion, parsley, lemon juice, garlic powder, salt, and pepper in a large bowl.',
+      description: '(Recipe Step 1)',
       image: require('../assets/images/procedure-example/step-1.webp'),
     },
     {
       step: 2, 
-      description: 'Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.',
+      description: '(Recipe Step 2)',
       image: require('../assets/images/procedure-example/step-2.jpg'),
     },
   ];
@@ -94,9 +95,9 @@ const RecipePage = ({
         <View id='content' className='grow w-full h-fit p-4 pb-0'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
               Recipe Info
-            </Text>
+            </TitleTextComponent>
             <ExitButton/>
           </View>
 
@@ -104,9 +105,15 @@ const RecipePage = ({
           <View className={`${(procedure.length == 0 || ingredients.length == 0) ? '' : 'grow'} flex-col w-full h-fit items-center justify-center mt-4`}>
             {/* Name */}
             <View className='flex-row w-full h-12 items-center'>
-              <Text className='font-inconsolata mx-4 text-screenText text-xl'>
-                Name: {name} 
-              </Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4'}>
+                Recipe Name
+              </TitleTextComponent>
+              <TitleTextComponent size={'text-xl'} css={'text-screenText mr-2'}>
+                :
+              </TitleTextComponent>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText'}>
+                {name}
+              </TitleTextComponent>
             </View>
 
             {/* Ingredients */}

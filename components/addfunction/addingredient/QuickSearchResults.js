@@ -18,7 +18,7 @@ const QuickSearchResults = ({}) => {
   const ingredients = [
     {
       site: 'Coupang', 
-      name: 'Result 1 Long Name', 
+      name: "(Quick Result 1)", 
       price: '19140', 
       deliver: '7/28',
       image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),
@@ -26,7 +26,7 @@ const QuickSearchResults = ({}) => {
     }, 
     {
       site: 'Coupang', 
-      name: 'Result 2', 
+      name: "(Quick Result 2)", 
       price: '19140', 
       deliver: '7/28',
       image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),
@@ -34,7 +34,7 @@ const QuickSearchResults = ({}) => {
     },
     {
       site: 'Coupang', 
-      name: 'Result 3', 
+      name: "(Quick Result 2)", 
       price: '19140', 
       deliver: '7/28',
       image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),

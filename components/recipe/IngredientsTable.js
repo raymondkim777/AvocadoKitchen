@@ -1,16 +1,21 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import IngredientsTableRow from './IngredientsTableRow';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const IngredientsTable = ({ingredients}) => (
   <View className='grow w-full h-48 items-center justify-center'>
     {/* Header */}
     <View className='flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
       <View className='w-2/3 h-full items-center justify-center'>
-        <Text className='font-inconsolataBold text-xl text-itemText'>Name</Text>
+        <TitleTextComponent translate={true} bold={true} size={'text-xl'} css={'text-itemText'}>
+          Ingredient Name
+        </TitleTextComponent>
       </View>
       <View className='w-1/3 h-full items-center justify-center'>
-        <Text className='font-inconsolataBold text-xl text-itemText'>Amount</Text>
+        <TitleTextComponent translate={true} bold={true} size={'text-xl'} css={'text-itemText'}>
+          Amount
+        </TitleTextComponent>
       </View>
     </View>
     

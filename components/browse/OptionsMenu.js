@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import DietButton from './DietButton';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, catColor, catText}) => (
   <View className={`w-full h-fit mt-6`}>
@@ -20,14 +21,16 @@ const OptionsMenu = ({optionList, updateDiet, dietCSS, categories, setCatFocus, 
 
     {/* More Search Options */}
     <View className='flex-row w-full h-8 mt-2 items-center justify-center px-3 bg-buttonBg rounded-lg'>
-      <Text className='font-inconsolata text-base'>
+      <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
         Search By:
-      </Text>
+      </TitleTextComponent>
       <View className='flex-row grow w-fit h-fit items-center justify-center'>
         {categories.map((cat, index) => (
           <TouchableOpacity key={`search-opt-${index}`} className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
-            activeOpacity={1} onPress={()=>setCatFocus(index)}>
-            <Text className={`font-inconsolata text-base ${catText[index]}`}>{cat}</Text>
+          activeOpacity={1} onPress={()=>setCatFocus(index)}>
+            <TitleTextComponent translate={true} size={'text-base'} css={catText[index]}>
+              {cat}
+            </TitleTextComponent> 
           </TouchableOpacity>
         ))}
         <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>

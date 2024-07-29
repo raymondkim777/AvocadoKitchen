@@ -1,11 +1,13 @@
 import React, { useState, } from 'react';
 import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import TitleTextComponent from '../text/TitleTextComponent';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import ExitButton from '../ExitButton';
-import QuickSearchResults from './addingr/QuickSearchResults';
-import QuickSearchResultsEmpty from './addingr/QuickSearchResultsEmpty';
-import SmallButton from '../addmeal/SmallButton';
+import QuickSearchResults from './addingredient/QuickSearchResults';
+import QuickSearchResultsEmpty from './addingredient/QuickSearchResultsEmpty';
+import SmallButton from './SmallButton';
 
-const IngredientsTableRowExpand = ({
+const AddIngredient = ({
   // item, index
 }) => {
   const item = {
@@ -16,7 +18,7 @@ const IngredientsTableRowExpand = ({
 
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [foundResults, setFoundResults] = useState(true);
+  const [foundResults, setFoundResults] = useState(false);
 
   const [mealName, setMealName] = useState('');
   
@@ -38,24 +40,29 @@ const IngredientsTableRowExpand = ({
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
               Add/Edit Ingredient
-            </Text>
+            </TitleTextComponent>
             <ExitButton/>
           </View>
 
           {/* Quick Search */}
-          <View className='flex-col w-full h-fit mt-4'>
+          <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Quick Search</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Quick Search
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
-                placeholder="ex. Canned Tuna" 
-                placeholderTextColor={'#85855B'}
-                value={ingSearchQuery} 
-                onChangeText={setIngSearchQuery} 
-                underlineColorAndroid={'transparent'}
+              <ItemTextInputComponent
+              translate={true}
+              size={'text-xl'}
+              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+              placeholder="ex. Canned Tuna" 
+              placeholderTextColor={'#85855B'}
+              value={ingSearchQuery} 
+              onChangeText={setIngSearchQuery} 
+              underlineColorAndroid={'transparent'}
               />
               <TouchableOpacity className='w-8 h-8 bg-itemBgDark rounded-lg'
                 activeOpacity={0.7} onPress={()=>setShowResults(!showResults)}>
@@ -76,23 +83,28 @@ const IngredientsTableRowExpand = ({
 
           {/* Manual Add/Edit */}
           <View className='flex-row w-full h-10 items-center mt-10'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
               Manual Add/Edit
-            </Text>
+            </TitleTextComponent>
           </View>
           
           {/* Name */}
-          <View className='flex-col w-full h-fit mt-2'>
+          <View className='flex-col w-full h-fit mt-4'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Name</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Ingredient Name
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
-                placeholder="ex. Canned Tuna" 
-                placeholderTextColor={'#85855B'}
-                value={mealName} 
-                onChangeText={setMealName} 
-                underlineColorAndroid={'transparent'}
+              <ItemTextInputComponent
+              translate={true}
+              size={'text-xl'}
+              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+              placeholder={"ex. Canned Tuna"}
+              placeholderTextColor={'#85855B'}
+              value={mealName} 
+              onChangeText={setMealName} 
+              underlineColorAndroid={'transparent'}
               />
             </View>
           </View>
@@ -100,18 +112,23 @@ const IngredientsTableRowExpand = ({
           {/* Amount */}
           <View className='flex-col w-full h-fit mt-4'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Amount</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Amount
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3 bg-itemBgLight rounded-lg'
-                placeholder="ex. 30" 
-                placeholderTextColor={'#85855B'}
-                value={amount} 
-                onChangeText={setAmount} 
-                underlineColorAndroid={'transparent'}
+              <ItemTextInputComponent
+              translate={true}
+              size={'text-xl'}
+              css={'shrink w-full h-10 text-itemText pb-1 pl-3 bg-itemBgLight rounded-lg'}
+              placeholder="ex. 30" 
+              placeholderTextColor={'#85855B'}
+              value={amount} 
+              onChangeText={setAmount} 
+              underlineColorAndroid={'transparent'}
               />
               <View className='w-16 h-10 items-center justify-center bg-itemBgLight ml-2 rounded-lg'>
-                <Text className='font-inconsolataLight text-xl text-itemText'>oz.</Text>
+                <TitleTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText'}>oz.</TitleTextComponent>
               </View>
             </View>
           </View>
@@ -119,7 +136,9 @@ const IngredientsTableRowExpand = ({
           {/* Image */}
           <View className='flex-col w-full h-fit mt-4'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Image</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Image
+              </TitleTextComponent>
             </View>
             <View className='flex-col items-center justify-center shrink w-full h-fit pr-1 mt-2'>
               {
@@ -141,7 +160,9 @@ const IngredientsTableRowExpand = ({
           {/* Coupang/MarketCurly Link */}
           <View className='flex-col w-full h-fit mt-4'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Coupang/MarketCurly Link</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Coupang/MarketCurly Link
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
               <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
@@ -156,9 +177,11 @@ const IngredientsTableRowExpand = ({
 
           {/* Save */}
           <View className='w-full h-fit items-center justify-center mt-10 mb-6'>
-            <TouchableOpacity className='w-36 h-12 items-center justify-center bg-buttonBg rounded-xl'
+            <TouchableOpacity className='w-fit h-12 items-center justify-center px-8 bg-buttonBg rounded-xl'
               activeOpacity={0.7}>
-                <Text className='font-inconsolata text-center text-itemText text-2xl'>Save</Text>
+                <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-center text-itemText'}>
+                  Save
+                </TitleTextComponent>
             </TouchableOpacity>
           </View>
 
@@ -168,4 +191,4 @@ const IngredientsTableRowExpand = ({
   )
 }
 
-export default IngredientsTableRowExpand
+export default AddIngredient

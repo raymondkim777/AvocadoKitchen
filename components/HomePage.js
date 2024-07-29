@@ -1,20 +1,28 @@
 import React, {useState, useTransition,} from 'react';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import HomeBar from './HomeBar';
+import TitleTextComponent from './text/TitleTextComponent';
+import ItemTextComponent from './text/ItemTextComponent';
+import ItemLargeTextComponent from './text/ItemLargeTextComponent';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
-import './i18n'
+import './text/i18n'
 
 
 const MealSum = ({title, image, cal}) => (
   <View className='flex flex-row w-full h-full space-x-2'>
     <Image className='flex flex-1 h-full rounded-md' source={image} />
     <View className='flex flex-1 flex-col h-full items-center justify-center'>
-      <Text className='font-inconsolataBold -mt-2 text-2xl text-itemText'>
-        {title} 
-      </Text>
-      <View className='w-full h-12 items-center justify-center'>
-        <Text className='font-fredoka text-4xl text-itemText'>{cal} Cal</Text>
+      <TitleTextComponent translate={true} size={'text-2xl'} bold={true} css={'text-itemText -mt-2'}>
+        {title}
+      </TitleTextComponent>
+      <View className='flex-row w-full h-12 items-center justify-center'>
+        <ItemLargeTextComponent bold={true} size={'text-4xl'} css={'text-itemText mr-2'}>
+          {cal}
+        </ItemLargeTextComponent>
+        <ItemLargeTextComponent translate={true} size={'text-3xl'} css={'text-itemText'}>
+          Cal
+        </ItemLargeTextComponent>
       </View>
     </View>
   </View>
@@ -22,15 +30,27 @@ const MealSum = ({title, image, cal}) => (
 
 const MealCard = ({title, image}) => (
   <View className='w-52 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
-    <Text className='font-inconsolata text-xl text-itemText text-center -mt-1'>
+    <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-itemText text-center'}>
       {title}
-    </Text>
+    </ItemTextComponent>
     <Image className='flex flex-1 w-full mt-1 rounded-md' source={image} /> 
   </View>
 )
 
 const MealCardDiv = () => (
   <View className='w-4 h-full'/>
+)
+
+const NutritionCard = ({item, index}) => (
+  <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
+    <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
+    <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'text-itemText mt-3'}>
+      {item.value}{ index == 0? '' : 'g' }
+    </ItemLargeTextComponent>
+    <ItemLargeTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-itemText'}>
+      {item.unit}
+    </ItemLargeTextComponent>
+  </View>
 )
 
 const { width, height } = Dimensions.get('window');
@@ -117,17 +137,19 @@ const HomePage = () => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
+  
   const {t,i18n} = useTranslation();
   const currentLanguage = i18n.language;
+
   return (
-    <SafeAreaView id='screen' className='bg-screenBg flex flex-col w-full h-full justify-center items-center'>
+    <SafeAreaView id='screen' className='flex flex-col w-full h-full justify-center items-center'>
       <Container id='content' className='grow w-full h-fit'>
         <View className='grow w-full h-fit p-4 bg-screenBg'>
           {/* Frame 1 - Calendar */}
           <View className='grow w-full min-h-fit mt-2'>
-            <Text className={`${(currentLanguage  === 'ko-KR') ? 'font-koreanFont' : 'font-inconsolata'} mx-4 text-3xl text-screenText mt-2`}>
-              {t('YourMealPlan')}
-            </Text>
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText mt-2'}>
+              Your Meal Plan
+            </TitleTextComponent>
             {/* Calendar */}
             <View className='grow h-52 mt-2'>
               <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
@@ -160,16 +182,22 @@ const HomePage = () => {
                   {/* Buttons */}
                   <View className='flex flex-row w-full h-7'>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
-                      activeOpacity={1} onPress={()=>setMealFocus(0)}>
-                      <Text className={`font-inconsolataBold text-xl ${mealText[0]}`}>Breakfast</Text>
+                    activeOpacity={1} onPress={()=>setMealFocus(0)}>
+                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
+                        Breakfast
+                      </TitleTextComponent>
                     </TouchableOpacity>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
                       activeOpacity={1} onPress={()=>setMealFocus(1)}>
-                      <Text className={`font-inconsolataBold text-xl ${mealText[1]}`}>Lunch</Text>
+                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
+                        Lunch
+                      </TitleTextComponent>
                     </TouchableOpacity>
                     <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
                       activeOpacity={1} onPress={()=>setMealFocus(2)}>
-                      <Text className={`font-inconsolataBold text-xl ${mealText[2]}`}>Dinner</Text>
+                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
+                        Dinner
+                      </TitleTextComponent>
                     </TouchableOpacity>
                   </View>
                   {/* Meal Content */}
@@ -183,9 +211,9 @@ const HomePage = () => {
 
           {/* Frame 2 - Suggested Meals */}
           <View className='grow min-h-fit mt-6'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Suggested Meals
-            </Text>
+            </TitleTextComponent>
             {/* Scroll Cards */}
             <View className='grow w-full h-fit mt-2'>
               <FlatList className='grow w-full h-36'
@@ -201,31 +229,15 @@ const HomePage = () => {
 
           {/* Frame 3 - Nutrition */}
           <View className='grow min-h-fit mt-6 mb-2'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Your Meal Plan has:
-            </Text>
+            </TitleTextComponent>
             {/* Three Cards */}
-            <View className={`grow flex-row w-full h-40 mt-2`}>
+            <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
               {nutrition.map((item, index) => (
-                index == 2?
-                  <View key={`nut-${index + 1}`} className={`flex-1 min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
-                    <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
-                    <Text className='font-fredoka mt-3 text-3xl text-itemText'>
-                      {item.value}{ index == 0? '' : 'g' }
-                    </Text>
-                    <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
-                      {item.unit} 
-                    </Text>
-                  </View>
-                : <View key={`nut-${index + 1}`} className={`flex-1 min-h-40 mr-4 items-center justify-center bg-itemBgLight rounded-lg`}>
-                    <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
-                    <Text className='font-fredoka mt-3 text-3xl text-itemText'>
-                      { item.value}{ index == 0? '' : 'g' }
-                    </Text>
-                    <Text className='font-fredoka -mt-1 text-2xl text-itemText'>
-                      {item.unit} 
-                    </Text>
-                  </View>
+                <View className='shrink w-full h-full'>
+                  <NutritionCard item={item} index={index} />
+                </View>
               ))}
             </View>
           </View>

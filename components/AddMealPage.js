@@ -2,8 +2,10 @@ import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from './ExitButton';
 import IngredientsTable from './recipe/IngredientsTable';
-import SmallButton from './addmeal/SmallButton';
+import SmallButton from './addfunction/SmallButton';
 import ProcedureTable from './recipe/ProcedureTable';
+import TitleTextComponent from './text/TitleTextComponent';
+import ItemTextInputComponent from './text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,18 +17,65 @@ const AddMealPage = ({}) => {
   { /* State/Functions */}
   const [mealName, setMealName] = useState('');
 
-  const [ingredients, setIngredients] = useState(new Array(0));
+  // const [ingredients, setIngredients] = useState(new Array(0));
   // const [procedure, setProcedure] = useState(new Array(0));
 
+  const ingredients = [
+    {
+      id: 'canned-tuna',
+      name: 'Canned Tuna',
+      amount: '20 oz',
+    },
+    {
+      id: 'celery',
+      name: 'Celery',
+      amount: '1/3 cup',
+    },
+    {
+      id: 'red-onion',
+      name: 'Red Onion',
+      amount: '2 tbsp',
+    },
+    {
+      id: 'pickle-relish',
+      name: 'Sweet Pickle Relish',
+      amount: '2 tbsp',
+    },
+    {
+      id: 'lemon',
+      name: 'Lemon',
+      amount: 'x1',
+    },
+    {
+      id: 'garlic-clove',
+      name: 'Garlic Clove',
+      amount: 'x1',
+    },
+    {
+      id: 'salt',
+      name: 'Salt',
+      amount: 'N/A',
+    },
+    {
+      id: 'black-pepper',
+      name: 'Black Pepper',
+      amount: 'N/A',
+    },
+    {
+      id: 'mayo',
+      name: 'Mayonnaise',
+      amount: '1 cup',
+    },
+  ];
   const procedure = [
     {
       step: 1, 
-      description: 'Combine tuna, mayonnaise, celery, onion, parsley, lemon juice, garlic powder, salt, and pepper in a large bowl.',
+      description: '(Recipe Step 1)',
       image: require('../assets/images/procedure-example/step-1.webp'),
     },
     {
       step: 2, 
-      description: 'Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.',
+      description: '(Recipe Step 2)',
       image: require('../assets/images/procedure-example/step-2.jpg'),
     },
   ];
@@ -39,37 +88,43 @@ const AddMealPage = ({}) => {
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
-            <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Add Your Meal
-            </Text>
+            </TitleTextComponent>
             <ExitButton/>
           </View>
 
           {/* Choose Recipe Button */}
-          <View className='flex-row w-full h-fit items-center mt-2'>
+          <View className='flex-row w-full h-fit items-center mt-4'>
             <SmallButton text='Choose a Recipe' callback={null}/>
           </View>
 
           {/* Name */}
-          <View className='flex-col w-full h-fit mt-4'>
+          <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Name</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Recipe Name
+              </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
-                placeholder="ex. Chicken Sandwich" 
-                placeholderTextColor={'#85855B'}
-                value={mealName} 
-                onChangeText={setMealName} 
-                underlineColorAndroid={'transparent'}
+              <ItemTextInputComponent translate={true} 
+              size={'text-xl'}
+              css={'shrink w-full h-10 pb-1 pl-3'}
+              placeholder={"ex. Chicken Sandwich"}
+              placeholderTextColor={'#85855B'}
+              value={mealName} 
+              onChangeText={setMealName} 
+              underlineColorAndroid={'transparent'}
               />
             </View>
           </View>
 
           {/* Ingredients */}
-          <View className='flex-col w-full h-fit mt-4'>
+          <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Ingredients</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Ingredients
+              </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
               <SmallButton text='Add Ingredient' callback={null}/>
@@ -81,9 +136,11 @@ const AddMealPage = ({}) => {
           </View>
 
           {/* Procedure */}
-          <View className='flex-col w-full h-fit mt-4'>
+          <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <Text className='font-inconsolata text-screenText text-xl mx-4'>Procedure (Optional)</Text>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Procedure (Optional)
+              </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
               <SmallButton text='Add Step' callback={null}/>
@@ -98,7 +155,9 @@ const AddMealPage = ({}) => {
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
             <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
               activeOpacity={0.7}>
-                <Text className='font-inconsolata text-center text-itemText text-2xl'>Continue</Text>
+                <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-center text-itemText'}>
+                  Continue
+                </TitleTextComponent>
             </TouchableOpacity>
           </View>
         </View>

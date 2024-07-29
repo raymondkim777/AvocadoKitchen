@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import ProcedureTableRow from './ProcedureTableRow';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const ProcedureTable = ({procedure}) => (
   <View className='grow w-full h-48 items-center justify-center'>
     {/* Header */}
     <View className='flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
       <View className='w-12 h-full items-center justify-center'>
-        <Text className='font-inconsolataBold text-xl text-itemText'>#</Text>
+        <TitleTextComponent size={'text-xl'} sizeDiff={-1} css={'text-itemText'}>#</TitleTextComponent>
       </View>
       <View className='shrink w-full h-full items-center justify-center'>
-        <Text className='font-inconsolataBold text-xl text-itemText'>Description</Text>
+      <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+        Description
+      </TitleTextComponent>
       </View>
     </View>
     

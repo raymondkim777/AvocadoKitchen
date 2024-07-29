@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import ProcedureCard from './ProcedureCard';
 import ProcedureDiv from './ProcedureDiv';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const ProcedureSection = ({onLayout, viewWidth, procedure, divWidth}) => (
   <View className='grow flex-col w-full h-fit items-center justify-center mt-2'>
     <View className='flex-row w-full h-10 items-center'>
-      <Text className='font-inconsolata mx-4 text-screenText text-xl'>
+      <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
         Procedure
-      </Text>
+      </TitleTextComponent>
     </View>
 
     {/* Procedure Cards */}

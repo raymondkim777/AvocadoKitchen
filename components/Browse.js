@@ -1,11 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import TitleTextComponent from './text/TitleTextComponent';
+import ItemTextComponent from './text/ItemTextComponent';
 import ExitButton from './ExitButton';
 import OptionsButton from './browse/OptionsButton';
 import OptionsMenu from './browse/OptionsMenu';
 import PageButton from './browse/PageButton';
 import PageMenu from './browse/PageMenu';
 import RecipeCard from './browse/RecipeCard';
+import ItemTextInputComponent from './text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,7 +23,7 @@ const Browse = () => {
     'Ovo', 
     'Vegan',
     'Vegetarian', 
-    'Pescastarian',
+    'Pescatarian',
   ]
   const categories = [
     'All', 'Name', 'User', 'Tag',
@@ -203,21 +206,24 @@ const Browse = () => {
           <View className='w-full h-fit mt-2'>
             {/* Title */}
             <View className='flex-row w-full h-10 items-center justify-between'>
-              <Text className="font-inconsolata mx-4 text-3xl text-screenText">
+              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                 Browse Recipes
-              </Text>
+              </TitleTextComponent>
               <ExitButton/>
             </View>
 
             {/* Search Bar */}
             <View className='flex-row items-center justify-center w-full h-fit mt-2'>
               <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 bg-itemBgLight rounded-lg'>
-                <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
-                  placeholder="ex. Neapolitan Pizza" 
-                  placeholderTextColor={'#85855B'}
-                  value={searchQuery} 
-                  onChangeText={setSearchQuery} 
-                  underlineColorAndroid={'transparent'}
+                <ItemTextInputComponent
+                translate={true}
+                size={'text-xl'}
+                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                placeholder={"ex. Neapolitan Pizza"}
+                placeholderTextColor={'#85855B'}
+                value={searchQuery} 
+                onChangeText={setSearchQuery} 
+                underlineColorAndroid={'transparent'}
                 />
                 <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
               </View>
@@ -242,23 +248,24 @@ const Browse = () => {
           {/* Frame 3 - Results */}
           <View className='flex-col w-full h-fit mt-2'>
             <View className='flex-row w-full h-10 items-center justify-between'>
-              <Text className='font-inconsolata text-xl ml-4 mt-2 text-itemBgLight'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4 mt-2'}>
                 Results
-              </Text>
+              </TitleTextComponent>
               <OptionsButton/>
             </View>
             
             {/* List */}
             <View className='flex-col w-full h-fit mt-1'>
             {recipesShown.map((item) => (
-              <View key={`${item.id}`} className='w-full h-fit mb-2'>
+              <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
+              activeOpacity={0.9}>
                 <RecipeCard 
                   title={item.title}
                   nutrition={item.nutrition}
                   tags={item.tags}
                   data={item.data}
                   image={item.image}/>
-              </View>
+              </TouchableOpacity>
             ))}
             </View>
 

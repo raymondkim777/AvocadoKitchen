@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const Buttons = () => (
   <View className='flex-row w-full h-20 items-center justify-between px-6'>
@@ -10,8 +11,10 @@ const Buttons = () => (
     </TouchableOpacity>
     {/* Add Meal */}
     <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
-      activeOpacity={0.7}>
-        <Text className='font-inconsolata text-center text-itemText text-2xl'>Add Meal</Text>
+    activeOpacity={0.7}>
+      <TitleTextComponent translate={true} size={'text-2xl'} css={'text-itemText text-center'}>
+        Add Meal
+      </TitleTextComponent>
     </TouchableOpacity>
     {/* Comments */}
     <TouchableOpacity className='w-12 h-12 items-center justify-center bg-buttonBg rounded-xl'
