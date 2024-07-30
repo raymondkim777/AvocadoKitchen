@@ -68,11 +68,11 @@ const AddProcedure = ({
                 Description
               </TitleTextComponent>
             </View>
-            <View className='flex-row shrink w-full h-56 p-2 mt-2 bg-itemBgLight rounded-lg'>
+            <View className='flex-row shrink w-full h-56 px-2 mt-2 bg-itemBgLight rounded-lg'>
               <ItemTextInputComponent
               translate={true}
               size={'text-xl'}
-              css={'shrink w-full h-full text-wrap text-itemText'}
+              css={'shrink w-full h-full text-wrap text-itemText -mt-1'}
               multiline={true}
               placeholder={"Insert procedure step here"}
               placeholderTextColor={'#85855B'}
