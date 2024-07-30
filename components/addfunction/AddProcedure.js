@@ -38,24 +38,21 @@ const AddProcedure = ({
 
           {/* Step Number */}
           <View className='flex-row w-full h-fit items-center justify-center mt-6'>
-            <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4'}>
-              Step
-            </TitleTextComponent>
-            <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-1 mr-2'}>
+            <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4 mr-2'}>
               #
             </TitleTextComponent>
             <ItemTextInputComponent
             translate={false}
             size={'text-xl'}
-            css={'w-12 h-9 text-itemText text-center pb-1 bg-itemBgLight rounded-lg'}
+            css={'w-12 h-9 text-itemText text-center pb-1 -mt-1 bg-itemBgLight rounded-lg'}
             placeholder="ex.1" 
             placeholderTextColor={'#85855B'}
             value={stepNum} 
             onChangeText={setStepNum} 
             underlineColorAndroid={'transparent'}
             />
-            <View className='shrink w-full h-10 items-center justify-center ml-4'>
-              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText text-center'}>
+            <View className='shrink w-full h-10 items-center justify-center mr-2'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText text-right'}>
                 This will insert a new step after Step 2.
               </TitleTextComponent>
             </View>
@@ -68,7 +65,7 @@ const AddProcedure = ({
                 Description
               </TitleTextComponent>
             </View>
-            <View className='flex-row shrink w-full h-56 px-2 mt-2 bg-itemBgLight rounded-lg'>
+            <View className='flex-row shrink w-full h-48 px-2 mt-2 bg-itemBgLight rounded-lg'>
               <ItemTextInputComponent
               translate={true}
               size={'text-xl'}
@@ -91,7 +88,7 @@ const AddProcedure = ({
                 Image
               </TitleTextComponent>
             </View>
-            <View className='flex-col items-center justify-center shrink w-full h-fit pr-1 mt-2'>
+            <View className='flex-col items-center justify-center shrink w-full h-fit mt-2'>
               {
                 imageFound
                 ? (
@@ -109,7 +106,7 @@ const AddProcedure = ({
           </View>
 
           {/* Save */}
-          <View className='w-full h-fit items-center justify-center mt-10 mb-6'>
+          <View className='w-full h-fit items-center justify-center mt-8 mb-6'>
             <TouchableOpacity className='w-fit h-12 items-center justify-center px-8 bg-buttonBg rounded-xl'
               activeOpacity={0.7}>
                 <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-center text-itemText'}>

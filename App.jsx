@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './components/Login';
+import Login2 from './components/Login2';
+import SignUp from './components/Signup';
+import SignUp2 from './components/SignUp2';
 import HomePage from './components/HomePage';
 import Browse from './components/Browse';
 import RecipePage from './components/RecipePage';
@@ -30,7 +33,7 @@ export default function HomeScreen() {
           screenOptions={{ headerShown: false }}
         >
 
-          <Stack.Screen name="Login" component={AddProcedure} />
+          <Stack.Screen name="Login" component={SignUp2} />
           <Stack.Screen name="Homepage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>

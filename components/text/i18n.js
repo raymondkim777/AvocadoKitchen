@@ -5,6 +5,18 @@ import * as RNLocalize from 'react-native-localize';
 const resources = {
   en: {
     translation: {
+      // Login / Signup
+      "Enter your email": "Enter your email",
+      "Enter your password": "Enter your password",
+      "Enter your password again": "Enter your password again",
+      "Continue with Google": "Continue with Google",
+      "Login": "Login",
+      "Sign Up": "Sign Up",
+      "Coupang Account": "Coupang Account",
+      "Market Kurly Account": "Market Kurly Account", 
+      "Back": "Back", 
+      "Next": "Next",
+
       // HomePage
       "Your Meal Plan": "Your Meal Plan",
       "Suggested Meals": "Suggested Meals",
@@ -121,13 +133,25 @@ const resources = {
       "Add Procedure Step": "Add Procedure Step",
       "Step": "Step",
       "Step Number": "Step Number",
-      "This will insert a new step after Step 2.": "Inserted after Step 2",
+      "This will insert a new step after Step 2.": "(Inserted after Step 2)",
       "Description": "Description", 
       "Insert procedure step here": "Insert procedure step here",
     }
   },
   ko: {
     translation: {
+      // Login / Signup
+      "Enter your email": "이메일 입력",
+      "Enter your password": "비밀번호 입력",
+      "Enter your password again": "비밀번호 재입력",
+      "Continue with Google": "구글로 로그인",
+      "Login": "로그인",
+      "Sign Up": "회원가입",
+      "Coupang Account": "쿠팡 계정",
+      "Market Kurly Account": "마켓컬리 계정", 
+      "Back": "뒤로가기", 
+      "Next": "넘어가기",
+
       // HomePage
       "Your Meal Plan": "식단 계획표",
       "Suggested Meals": "추천 음식",
@@ -242,7 +266,7 @@ const resources = {
       "Add Procedure Step": "조리법 단계 추가",
       "Step": "Step",
       "Step Number": "단계 번호",
-      "This will insert a new step after Step 2.": "Step 2 뒤에 추가됨",
+      "This will insert a new step after Step 2.": "(Step 2 뒤에 추가됨)",
       "Description": "설명", 
       "Insert procedure step here": "조리법 단계 설명을 적으세요.",
     }

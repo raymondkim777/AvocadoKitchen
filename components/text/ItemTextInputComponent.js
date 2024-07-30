@@ -16,6 +16,7 @@ const ItemTextInputComponent = ({
   multiline=false,
   maxLength,
   inputMode,
+  secureTextEntry = false,
   textAlignVertical
 }) => {
   const {t, i18n} = useTranslation();

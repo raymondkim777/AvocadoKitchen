@@ -4,17 +4,17 @@ import Modal from 'react-native-modal';
 import SignUp from './Signup';
 
 const Login = ({ navigation }) => {
-    const [username, setUsername] = useState('');
-    const [isSignup, setSignup] = useState(false);
-    const [password, setPassword] = useState('');
-    /*
-    const handleLogin = () => {
-        console.log('Username:', username);
-        console.log('Password:', password);
-      };
-    */
+  const [username, setUsername] = useState('');
+  const [isSignup, setSignup] = useState(false);
+  const [password, setPassword] = useState('');
+  /*
+  const handleLogin = () => {
+      console.log('Username:', username);
+      console.log('Password:', password);
+    };
+  */
 
-    const handleSignup = () => {
+  const handleSignup = () => {
     setSignup(!isSignup);
   };
   return (

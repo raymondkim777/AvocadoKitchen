@@ -21,7 +21,8 @@ const TitleTextComponent = ({ translate = false, children, size, sizeDiff = 0, b
     'text-6xl', 
     'text-7xl', 
     'text-8xl', 
-    'text-9xl'];
+    'text-9xl',
+  ];
   let sizeIdx = sizes.indexOf(size) + sizeDiff * (currentLanguage == 'ko-KR');
   if (sizeIdx > 12) {
     sizeIdx = 12;

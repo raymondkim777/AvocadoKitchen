@@ -140,7 +140,7 @@ const AddIngredient = ({
                 Image
               </TitleTextComponent>
             </View>
-            <View className='flex-col items-center justify-center shrink w-full h-fit pr-1 mt-2'>
+            <View className='flex-col items-center justify-center shrink w-full h-fit mt-2'>
               {
                 imageFound
                 ? (
