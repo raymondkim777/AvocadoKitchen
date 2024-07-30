@@ -80,7 +80,7 @@ const AddMealPage2 = ({}) => {
     },
     {
       id: '0',
-      text: 'SomeOtherTag'
+      text: 'SomeOtherTagasdfasdfasdfasdfasdfasdf'
     },
   ]);
   const [tagInput, setTagInput] = useState('');

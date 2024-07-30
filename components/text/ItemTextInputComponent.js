@@ -12,7 +12,11 @@ const ItemTextInputComponent = ({
   placeholderTextColor, 
   value, 
   onChangeText, 
-  underlineColorAndroid
+  underlineColorAndroid,
+  multiline=false,
+  maxLength,
+  inputMode,
+  textAlignVertical
 }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
@@ -51,6 +55,10 @@ const ItemTextInputComponent = ({
     value={value} 
     onChangeText={onChangeText} 
     underlineColorAndroid={underlineColorAndroid}
+    multiline={multiline}
+    maxLength={maxLength}
+    inputMode={inputMode}
+    textAlignVertical={textAlignVertical}
     />
   )
 }

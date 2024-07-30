@@ -20,6 +20,7 @@ const resources = {
       "Tuna Sandwich": "Tuna Sandwich", 
       "Chili Hot Dog": "Chili Hot Dog", 
       "Apple Pie": "Apple Pie",
+      "Sirloin Steak": "안심 스테이크",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -55,6 +56,7 @@ const resources = {
       "Coupang/MarketCurly Link": "Coupang/MarketCurly Link",
 
       // ProcedureCardLarge
+      //////////
       "(Recipe Step 2 Long)": 'Tap the tray several times to remove air bubbles. Allow to sit for 40-60 minutes so the macaron batter forms a skin. You should be able to touch the shell and feel a dry surface. Heat oven to 300F. Bake for 12-15 minutes. You’ll know they’re done if the macaron shells don’t wobble when you move them, but if they do then you may need to give them a bit more time in the oven if they are not done. Allow them to cool for about 10 minutes on the pan then transfer to a wire rack to cool completely. Pipe your filling onto the back of half the macaron shells. Form a sandwich and your french macarons are ready to enjoy!',
 
       // AddMealPage
@@ -117,8 +119,9 @@ const resources = {
 
       // AddProcedure
       "Add Procedure Step": "Add Procedure Step",
+      "Step": "Step",
       "Step Number": "Step Number",
-      "This will insert a new step after Step 2.": "This will insert a new step after Step 2.",
+      "This will insert a new step after Step 2.": "Inserted after Step 2",
       "Description": "Description", 
       "Insert procedure step here": "Insert procedure step here",
     }
@@ -237,8 +240,9 @@ const resources = {
 
       // Add Procedure
       "Add Procedure Step": "조리법 단계 추가",
+      "Step": "Step",
       "Step Number": "단계 번호",
-      "This will insert a new step after Step 2.": "2단계 이후에 새 단계를 추가합니다.등등등등등등등",
+      "This will insert a new step after Step 2.": "Step 2 뒤에 추가됨",
       "Description": "설명", 
       "Insert procedure step here": "조리법 단계 설명을 적으세요.",
     }

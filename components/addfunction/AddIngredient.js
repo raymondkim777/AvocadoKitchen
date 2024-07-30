@@ -18,7 +18,7 @@ const AddIngredient = ({
 
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [foundResults, setFoundResults] = useState(false);
+  const [foundResults, setFoundResults] = useState(true);
 
   const [mealName, setMealName] = useState('');
   
@@ -171,6 +171,7 @@ const AddIngredient = ({
                 value={itemLink} 
                 onChangeText={setItemLink} 
                 underlineColorAndroid={'transparent'}
+                inputMode={'url'}
               />
             </View>
           </View>

@@ -17,6 +17,12 @@ const AddProcedure = ({
   const currentLanguage = i18n.language;
 
   const [stepNum, setStepNum] = useState(0);
+  const [description, setDescription] = useState('');
+  const [imageFound, setImageFound] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState('');
+  const updateImage = () => {
+    setImageFound(!imageFound);
+  }
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -31,32 +37,73 @@ const AddProcedure = ({
           </View>
 
           {/* Step Number */}
-          <View className='flex-col w-full h-fit mt-6'>
-            <View className='w-full h-6'>
-              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
-                Step Number
+          <View className='flex-row w-full h-fit items-center justify-center mt-6'>
+            <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4'}>
+              Step
+            </TitleTextComponent>
+            <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-1 mr-2'}>
+              #
+            </TitleTextComponent>
+            <ItemTextInputComponent
+            translate={false}
+            size={'text-xl'}
+            css={'w-12 h-9 text-itemText text-center pb-1 bg-itemBgLight rounded-lg'}
+            placeholder="ex.1" 
+            placeholderTextColor={'#85855B'}
+            value={stepNum} 
+            onChangeText={setStepNum} 
+            underlineColorAndroid={'transparent'}
+            />
+            <View className='shrink w-full h-10 items-center justify-center ml-4'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText text-center'}>
+                This will insert a new step after Step 2.
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2'>
+          </View>
+
+          {/* Description */}
+          <View className='flex-col w-full h-fit mt-4'>
+            <View className='w-full h-6'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Description
+              </TitleTextComponent>
+            </View>
+            <View className='flex-row shrink w-full h-56 p-2 mt-2 bg-itemBgLight rounded-lg'>
               <ItemTextInputComponent
-              translate={false}
+              translate={true}
               size={'text-xl'}
-              css={'w-16 h-10 text-itemText text-center pb-1 bg-itemBgLight rounded-lg'}
-              placeholder="ex.1" 
+              css={'shrink w-full h-full text-wrap text-itemText'}
+              multiline={true}
+              placeholder={"Insert procedure step here"}
               placeholderTextColor={'#85855B'}
-              value={stepNum} 
-              onChangeText={setStepNum} 
+              value={description} 
+              onChangeText={setDescription} 
               underlineColorAndroid={'transparent'}
+              textAlignVertical={'top'}
               />
-              <View className='shrink w-full h-10 items-center justify-center ml-4'>
-                <Text className={`
-                  ${(currentLanguage === 'ko-KR') 
-                    ? 'font-koreanFont1 text-screenText text-center text-lg leading-5' 
-                    : 'font-inconsolata text-screenText text-center text-lg leading-4'} 
-                `}>
-                  {t('This will insert a new step after Step 2.')}
-                </Text>
-                
+            </View>
+          </View>
+
+          {/* Image */}
+          <View className='flex-col w-full h-fit mt-4'>
+            <View className='w-full h-6'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Image
+              </TitleTextComponent>
+            </View>
+            <View className='flex-col items-center justify-center shrink w-full h-fit pr-1 mt-2'>
+              {
+                imageFound
+                ? (
+                  <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2'>
+                  </View>
+                )
+                : null
+              }
+              
+              {/* Add/Change Image */}
+              <View className='flex-row w-full h-fit items-center'>
+                <SmallButton text={imageFound ? 'Change Image' : 'Add Image'} callback={updateImage}/>
               </View>
             </View>
           </View>

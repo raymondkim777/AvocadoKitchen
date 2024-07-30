@@ -30,7 +30,7 @@ export default function HomeScreen() {
           screenOptions={{ headerShown: false }}
         >
 
-          <Stack.Screen name="Login" component={RecipePage} />
+          <Stack.Screen name="Login" component={AddProcedure} />
           <Stack.Screen name="Homepage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
