@@ -21,7 +21,8 @@ const ItemTextComponent = ({ translate, children, size, sizeDiff = 0, bold = fal
     'text-6xl', 
     'text-7xl', 
     'text-8xl', 
-    'text-9xl'];
+    'text-9xl',
+  ];
   let sizeIdx = sizes.indexOf(size) + (sizeDiff + 4) * (currentLanguage == 'ko-KR');
   if (sizeIdx > 12) {
     sizeIdx = 12;

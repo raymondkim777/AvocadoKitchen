@@ -55,7 +55,7 @@ const resources = {
       "Coupang/MarketCurly Link": "Coupang/MarketCurly Link",
 
       // ProcedureCardLarge
-      "(Recipe Step 2 Long)": 'Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.',
+      "(Recipe Step 2 Long)": 'Tap the tray several times to remove air bubbles. Allow to sit for 40-60 minutes so the macaron batter forms a skin. You should be able to touch the shell and feel a dry surface. Heat oven to 300F. Bake for 12-15 minutes. You’ll know they’re done if the macaron shells don’t wobble when you move them, but if they do then you may need to give them a bit more time in the oven if they are not done. Allow them to cool for about 10 minutes on the pan then transfer to a wire rack to cool completely. Pipe your filling onto the back of half the macaron shells. Form a sandwich and your french macarons are ready to enjoy!',
 
       // AddMealPage
       "Add Your Meal": "Add Your Meal",
@@ -81,7 +81,7 @@ const resources = {
       "Black Pepper": "Black Pepper", 
       "Mayonnaise": "Mayonnaise",
       "(Recipe Step 1)": 'Combine tuna, mayonnaise, celery, onion, parsley, lemon juice, garlic powder, salt, and pepper in a large bowl.',
-      "(Recipe Step 2)": 'Mix well. Season with paprika; refrigerate until chilled. Divide tuna mixture evenly onto two slices of bread; top with remaining slices of bread.',
+      "(Recipe Step 2)": 'Tap the tray several times to remove air bubbles. Allow to sit for 40-60 minutes so the macaron batter forms a skin. You should be able to touch the shell and feel a dry surface. Heat oven to 300F. Bake for 12-15 minutes. You’ll know they’re done if the macaron shells don’t wobble when you move them, but if they do then you may need to give them a bit more time in the oven if they are not done. Allow them to cool for about 10 minutes on the pan then transfer to a wire rack to cool completely. Pipe your filling onto the back of half the macaron shells. Form a sandwich and your french macarons are ready to enjoy!',
       
       // AddMealPage2
       "Back": "Back",
@@ -114,6 +114,13 @@ const resources = {
       "ex. Canned Tuna": "ex. Canned Tuna", 
       "(Quick Result 1)": "Result 1 Long Name",
       "(Quick Result 2)": "Result 2",
+
+      // AddProcedure
+      "Add Procedure Step": "Add Procedure Step",
+      "Step Number": "Step Number",
+      "This will insert a new step after Step 2.": "This will insert a new step after Step 2.",
+      "Description": "Description", 
+      "Insert procedure step here": "Insert procedure step here",
     }
   },
   ko: {
@@ -158,8 +165,8 @@ const resources = {
       "Recipe Name": "이름",
       "Ingredients - None Listed": "재료 - 없음",
       "Ingredients": "재료",
-      "Procedure - None Listed": "요리방식 - 없음", 
-      "Procedure": "요리방식",
+      "Procedure - None Listed": "조리법 - 없음", 
+      "Procedure": "조리법",
       "Step": "단계",
       "Add Meal": "레시피 추가",
 
@@ -178,7 +185,7 @@ const resources = {
       "Recipe Name": "음식 이름", 
       "Ingredient Name": "재료 이름",
       "Amount": "용량",
-      "Procedure (Optional)": "요리방식 (선택)",
+      "Procedure (Optional)": "조리법 (선택)",
       "Add Step": "단계 추가",
       "Description": "설명",
       "Continue": "다음 페이지",
@@ -227,6 +234,13 @@ const resources = {
       "ex. Canned Tuna": "ex. 참치 통조림", 
       "(Quick Result 1)": "참치 통조림 12팩 긴 이름",
       "(Quick Result 2)": "참치 통조림",
+
+      // Add Procedure
+      "Add Procedure Step": "조리법 단계 추가",
+      "Step Number": "단계 번호",
+      "This will insert a new step after Step 2.": "2단계 이후에 새 단계를 추가합니다.등등등등등등등",
+      "Description": "설명", 
+      "Insert procedure step here": "조리법 단계 설명을 적으세요.",
     }
   },
 };

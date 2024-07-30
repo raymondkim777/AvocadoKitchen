@@ -13,6 +13,7 @@ import ProcedureCardLarge from './components/recipe/ProcedureCardLarge';
 import AddMealPage from './components/AddMealPage';
 import AddMealPage2 from './components/AddMealPage2';
 import AddIngredient from './components/addfunction/AddIngredient';
+import AddProcedure from './components/addfunction/AddProcedure';
 
 const Stack = createStackNavigator();
 
