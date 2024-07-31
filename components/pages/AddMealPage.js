@@ -2,7 +2,8 @@ import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from '../general/ExitButton';
 import IngredientsTable from '../recipe/IngredientsTable';
-import SmallButton from '../addfunction/SmallButton';
+import SmallButton from '../general/SmallButton';
+import LargeButton from '../general/LargeButton';
 import ProcedureTable from '../recipe/ProcedureTable';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
@@ -153,12 +154,7 @@ const AddMealPage = ({}) => {
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
-              activeOpacity={0.7}>
-                <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-center text-itemText'}>
-                  Continue
-                </TitleTextComponent>
-            </TouchableOpacity>
+            <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={null} />
           </View>
         </View>
       </ScrollView>

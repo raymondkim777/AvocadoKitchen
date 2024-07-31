@@ -119,13 +119,6 @@ const Browse = () => {
     }
   }
 
-  const [options, setOptions] = useState(new Array(optionList.length).fill(false))
-  const updateOptions = (index) => {
-    const new_options = options;
-    new_options[index] = !options[index];
-    setOptions(new_options);
-  }
-
   const [searchCat, setSearchCat] = useState(0);
   const [catColor, setCatColor] = useState(['bg-itemText', '', '', '']);
   const [catText, setCatText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText', 'text-itemText']);

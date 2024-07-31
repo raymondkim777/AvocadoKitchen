@@ -2,11 +2,12 @@ import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from '../general/ExitButton';
 import BackButton from '../general/BackButton';
-import MealTag from '../addfunction/MealTag';
+import Tag from '../addfunction/Tag';
 import TagSuggest from '../addfunction/TagSuggest';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -83,7 +84,7 @@ const AddMealPage2 = ({}) => {
   const [tagInput, setTagInput] = useState('');
   const addNewTag = () => {
     const new_arr = tags;
-    new_arr.push({id: '0', text: tagName})
+    new_arr.push({id: '0', text: ''})
     setTags(new_arr);
   }
   const addTagByID = (id) => {
@@ -195,7 +196,7 @@ const AddMealPage2 = ({}) => {
             {/* Display Tags */}
             <View className='flex-row flex-wrap mt-2 -mr-2'>
               {tags.map((item, index) => (
-                <MealTag tagID={item.id} tagName={item.text} removeTag={removeTag} />
+                <Tag tagID={item.id} tagName={item.text} removeTag={removeTag} />
               ))}
             </View>
           </View>
@@ -227,11 +228,9 @@ const AddMealPage2 = ({}) => {
 
           {/* Finish */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <TouchableOpacity className='w-fit h-12 items-center justify-center px-4 bg-buttonBg rounded-xl'
-              activeOpacity={0.7}>
-                <Text className='font-inconsolata text-center text-itemText text-2xl'>Finish</Text>
-            </TouchableOpacity>
+            <LargeButton css={'px-4'} text={'Finish'} textSize={'text-2xl'}/>
           </View>
+          
         </View>
       </ScrollView>
     </SafeAreaView>
