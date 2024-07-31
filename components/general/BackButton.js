@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import TitleTextComponent from './text/TitleTextComponent';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const BackButton = ({}) => (
   <TouchableOpacity className='w-fit h-9 items-center justify-center px-3 bg-buttonBg rounded-lg'

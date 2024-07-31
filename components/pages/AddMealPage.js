@@ -1,11 +1,11 @@
 import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
-import ExitButton from './ExitButton';
-import IngredientsTable from './recipe/IngredientsTable';
-import SmallButton from './addfunction/SmallButton';
-import ProcedureTable from './recipe/ProcedureTable';
-import TitleTextComponent from './text/TitleTextComponent';
-import ItemTextInputComponent from './text/ItemTextInputComponent';
+import ExitButton from '../general/ExitButton';
+import IngredientsTable from '../recipe/IngredientsTable';
+import SmallButton from '../addfunction/SmallButton';
+import ProcedureTable from '../recipe/ProcedureTable';
+import TitleTextComponent from '../text/TitleTextComponent';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -71,12 +71,12 @@ const AddMealPage = ({}) => {
     {
       step: 1, 
       description: '(Recipe Step 1)',
-      image: require('../assets/images/procedure-example/step-1.webp'),
+      image: require('../../assets/images/procedure-example/step-1.webp'),
     },
     {
       step: 2, 
       description: '(Recipe Step 2)',
-      image: require('../assets/images/procedure-example/step-2.jpg'),
+      image: require('../../assets/images/procedure-example/step-2.jpg'),
     },
   ];
 

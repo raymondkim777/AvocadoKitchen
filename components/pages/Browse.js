@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
-import TitleTextComponent from './text/TitleTextComponent';
-import ItemTextComponent from './text/ItemTextComponent';
-import ExitButton from './ExitButton';
-import OptionsButton from './browse/OptionsButton';
-import OptionsMenu from './browse/OptionsMenu';
-import PageButton from './browse/PageButton';
-import PageMenu from './browse/PageMenu';
-import RecipeCard from './browse/RecipeCard';
-import ItemTextInputComponent from './text/ItemTextInputComponent';
+import TitleTextComponent from '../text/TitleTextComponent';
+import ItemTextComponent from '../text/ItemTextComponent';
+import ExitButton from '../general/ExitButton';
+import OptionsButton from '../browse/OptionsButton';
+import OptionsMenu from '../browse/OptionsMenu';
+import PageButton from '../browse/PageButton';
+import PageMenu from '../browse/PageMenu';
+import RecipeCard from '../browse/RecipeCard';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -43,7 +43,7 @@ const Browse = () => {
         comments: 4, 
         downloads: 7,
       },
-      image: require('../assets/images/recipe-1.webp'),
+      image: require('../../assets/images/recipe-1.webp'),
     },
     {
       id: 'recipe-2',
@@ -59,7 +59,7 @@ const Browse = () => {
         comments: 4, 
         downloads: 7,
       },
-      image: require('../assets/images/recipe-1.webp'),
+      image: require('../../assets/images/recipe-1.webp'),
     },
     {
       id: 'recipe-3',
@@ -75,7 +75,7 @@ const Browse = () => {
         comments: 4, 
         downloads: 7,
       },
-      image: require('../assets/images/recipe-1.webp'),
+      image: require('../../assets/images/recipe-1.webp'),
     },
     {
       id: 'recipe-4',
@@ -91,7 +91,7 @@ const Browse = () => {
         comments: 4, 
         downloads: 7,
       },
-      image: require('../assets/images/recipe-1.webp'),
+      image: require('../../assets/images/recipe-1.webp'),
     },
   ]
   const recipesShown = [];

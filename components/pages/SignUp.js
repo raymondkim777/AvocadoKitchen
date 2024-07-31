@@ -20,7 +20,7 @@ const SignUp = ({onClose}) => {
             </View>
             <View className='w-full  h-[92%] bg-screenBg'>
                 <View className='w-full h-1/3 flex items-center justify-end'>
-                    <Image className='w-[150px] h-[150px]' source={require('../assets/images/Logo.png')} />
+                    <Image className='w-[150px] h-[150px]' source={require('../../assets/images/Logo.png')} />
                 </View>
 
                 {/* Email/Password */}

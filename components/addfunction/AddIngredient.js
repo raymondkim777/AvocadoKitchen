@@ -2,7 +2,7 @@ import React, { useState, } from 'react';
 import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
-import ExitButton from '../ExitButton';
+import ExitButton from '../general/ExitButton';
 import QuickSearchResults from './addingredient/QuickSearchResults';
 import QuickSearchResultsEmpty from './addingredient/QuickSearchResultsEmpty';
 import SmallButton from './SmallButton';

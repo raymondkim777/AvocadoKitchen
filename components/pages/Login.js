@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import SignUp from './Signup';
+import SignUp from './SignUp';
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -21,7 +21,7 @@ const Login = ({ navigation }) => {
     <View className='w-full h-full bg-screenBg ' >
       {/* Logo */}
       <View className='w-full h-1/3 flex items-center justify-end'>
-          <Image className='w-[150px] h-[150px]' source={require('../assets/images/Logo.png')} />
+          <Image className='w-[150px] h-[150px]' source={require('../../assets/images/Logo.png')} />
       </View>
 
       {/* Email/Password */}
@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
       <View className='w-full h-1/3 flex-col items-center'>
         {/* Continue w/ Google */}
         <TouchableOpacity className='w-3/4 h-12 bg-itemBgDark flex-row items-center justify-center rounded-md py-2'>
-          <Image className='w-[30px] h-[30px] mr-5' source={require('../assets/images/google.png')} />
+          <Image className='w-[30px] h-[30px] mr-5' source={require('../../assets/images/google.png')} />
   
           <Text className='font-inconsolata text-xl text-itemText'>Continue with Google</Text>
         </TouchableOpacity>

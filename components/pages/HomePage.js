@@ -1,12 +1,12 @@
 import React, {useState, useTransition,} from 'react';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
-import HomeBar from './HomeBar';
-import TitleTextComponent from './text/TitleTextComponent';
-import ItemTextComponent from './text/ItemTextComponent';
-import ItemLargeTextComponent from './text/ItemLargeTextComponent';
+import HomeBar from '../general/HomeBar';
+import TitleTextComponent from '../text/TitleTextComponent';
+import ItemTextComponent from '../text/ItemTextComponent';
+import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
-import './text/i18n'
+import '../text/i18n'
 
 
 const MealSum = ({title, image, cal}) => (
@@ -86,17 +86,17 @@ const HomePage = () => {
   const meals = [
     {
       title: 'Waffles', 
-      image: require('../assets/images/meal-example/meal-1.jpg'),
+      image: require('../../assets/images/meal-example/meal-1.jpg'),
       cal: 312,
     },
     {
       title: 'Tuna Sandwich', 
-      image: require('../assets/images/meal-example/meal-2.jpg'),
+      image: require('../../assets/images/meal-example/meal-2.jpg'),
       cal: 746,
     },
     {
       title: 'Sirloin Steak', 
-      image: require('../assets/images/meal-example/meal-3.jpg'),
+      image: require('../../assets/images/meal-example/meal-3.jpg'),
       cal: 539,
     },
   ]
@@ -104,17 +104,17 @@ const HomePage = () => {
     {
       id: 'meal-1',
       title: 'Tuna Sandwich', 
-      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
+      image: require('../../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
     {
       id: 'meal-2',
       title: 'Chili Hot Dog', 
-      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
+      image: require('../../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
     {
       id: 'meal-3',
       title: 'Apple Pie', 
-      image: require('../assets/images/suggested-example/image-recipe-1.jpg'), 
+      image: require('../../assets/images/suggested-example/image-recipe-1.jpg'), 
     },
   ];
   const nutrition = [

@@ -1,12 +1,12 @@
 import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
-import ExitButton from './ExitButton';
-import IngredientsSection from './recipe/IngredientsSection';
-import ProcedureSection from './recipe/ProcedureSection';
-import IngredientsSectionEmpty from './recipe/IngredientsSectionEmpty';
-import Buttons from './recipe/Buttons';
-import ProcedureSectionEmpty from './recipe/ProcedureSectionEmpty';
-import TitleTextComponent from './text/TitleTextComponent';
+import ExitButton from '../general/ExitButton';
+import IngredientsSection from '../recipe/IngredientsSection';
+import ProcedureSection from '../recipe/ProcedureSection';
+import IngredientsSectionEmpty from '../recipe/IngredientsSectionEmpty';
+import Buttons from '../recipe/Buttons';
+import ProcedureSectionEmpty from '../recipe/ProcedureSectionEmpty';
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const { width, height } = Dimensions.get('window');
 
@@ -70,12 +70,12 @@ const RecipePage = ({
     {
       step: 1, 
       description: '(Recipe Step 1)',
-      image: require('../assets/images/procedure-example/step-1.webp'),
+      image: require('../../assets/images/procedure-example/step-1.webp'),
     },
     {
       step: 2, 
       description: '(Recipe Step 2)',
-      image: require('../assets/images/procedure-example/step-2.jpg'),
+      image: require('../../assets/images/procedure-example/step-2.jpg'),
     },
   ];
    

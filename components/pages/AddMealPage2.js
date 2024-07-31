@@ -1,15 +1,12 @@
 import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
-import ExitButton from './ExitButton';
-import IngredientsTable from './recipe/IngredientsTable';
-import SmallButton from './addfunction/SmallButton';
-import ProcedureTable from './recipe/ProcedureTable';
-import BackButton from './BackButton';
-import MealTag from './addfunction/MealTag';
-import TagSuggest from './addfunction/TagSuggest';
-import TitleTextComponent from './text/TitleTextComponent';
-import ItemLargeTextComponent from './text/ItemLargeTextComponent';
-import ItemTextInputComponent from './text/ItemTextInputComponent';
+import ExitButton from '../general/ExitButton';
+import BackButton from '../general/BackButton';
+import MealTag from '../addfunction/MealTag';
+import TagSuggest from '../addfunction/TagSuggest';
+import TitleTextComponent from '../text/TitleTextComponent';
+import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
