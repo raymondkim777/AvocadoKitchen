@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 
 const SmallButton = ({text, callback}) => (

@@ -3,9 +3,10 @@ import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity } fro
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import ExitButton from '../general/ExitButton';
-import QuickSearchResults from './addingredient/QuickSearchResults';
-import QuickSearchResultsEmpty from './addingredient/QuickSearchResultsEmpty';
-import SmallButton from './SmallButton';
+import QuickSearchResults from '../addfunction/QuickSearchResults';
+import QuickSearchResultsEmpty from '../addfunction/QuickSearchResultsEmpty';
+import SmallButton from '../general/SmallButton';
+import LargeButton from '../general/LargeButton';
 
 const AddIngredient = ({
   // item, index
@@ -178,12 +179,7 @@ const AddIngredient = ({
 
           {/* Save */}
           <View className='w-full h-fit items-center justify-center mt-10 mb-6'>
-            <TouchableOpacity className='w-fit h-12 items-center justify-center px-8 bg-buttonBg rounded-xl'
-              activeOpacity={0.7}>
-                <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-center text-itemText'}>
-                  Save
-                </TitleTextComponent>
-            </TouchableOpacity>
+            <LargeButton css={'px-8'} text={'Save'} textSize={'text-2xl'} callback={null} />
           </View>
 
         </View>

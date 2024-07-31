@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
-import '../../text/i18n';
+import '../text/i18n';
 
 const msg = "(Quick Search Error)";
 

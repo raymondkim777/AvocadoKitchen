@@ -21,7 +21,7 @@ const QuickSearchResults = ({}) => {
       name: "(Quick Result 1)", 
       price: '19140', 
       deliver: '7/28',
-      image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
       empty: false,
     }, 
     {
@@ -29,7 +29,7 @@ const QuickSearchResults = ({}) => {
       name: "(Quick Result 2)", 
       price: '19140', 
       deliver: '7/28',
-      image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
       empty: false,
     },
     {
@@ -37,7 +37,7 @@ const QuickSearchResults = ({}) => {
       name: "(Quick Result 2)", 
       price: '19140', 
       deliver: '7/28',
-      image: require('../../../assets/images/ingredient-example/ingredient-1.jpg'),
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
       empty: false,
     },
     

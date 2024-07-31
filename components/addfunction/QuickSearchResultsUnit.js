@@ -2,8 +2,8 @@ import React, { useState, } from 'react';
 import { View, Text, Image } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
-import '../../text/i18n'
-import TitleTextComponent from '../../text/TitleTextComponent';
+import '../text/i18n'
+import TitleTextComponent from '../text/TitleTextComponent';
 
 const QuickSearchResultsUnit = ({item}) => {
   const {t, i18n} = useTranslation();
