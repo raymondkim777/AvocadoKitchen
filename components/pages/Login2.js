@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
+import LargeButton from '../general/LargeButton';
 
 const Login2 = ({}) => {
 
@@ -60,18 +61,8 @@ const Login2 = ({}) => {
 
           {/* Login/SignUp */}
           <View className='flex-row w-full h-fit items-center justify-center mt-2'>
-            <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl mr-2'
-              activeOpacity={0.9}>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
-                  Login
-                </TitleTextComponent>
-            </TouchableOpacity>
-            <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl'
-              activeOpacity={0.9}>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
-                  Sign Up
-                </TitleTextComponent>
-            </TouchableOpacity>
+            <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={null} />
+            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={null} />
           </View>
         </View>
 
