@@ -8,6 +8,7 @@ import Login from './components/pages/Login';
 import Login2 from './components/pages/Login2';
 import SignUp from './components/pages/SignUp';
 import SignUp2 from './components/pages/SignUp2';
+import SignUp2_2 from './components/pages/SignUp2_2';
 import HomePage from './components/pages/HomePage';
 import Browse from './components/pages/Browse';
 import RecipePage from './components/pages/RecipePage';
@@ -15,8 +16,10 @@ import IngredientCardLarge from './components/recipe/IngredientCardLarge';
 import ProcedureCardLarge from './components/recipe/ProcedureCardLarge';
 import AddMealPage from './components/pages/AddMealPage';
 import AddMealPage2 from './components/pages/AddMealPage2';
-import AddIngredient from './components/addfunction/AddIngredient';
-import AddProcedure from './components/addfunction/AddProcedure';
+import AddIngredient from './components/pages/AddIngredient';
+import AddProcedure from './components/pages/AddProcedure';
+import ProfilePage from './components/pages/ProfilePage';
+import UserInfoPage from './components/pages/UserInfoPage';
 
 const Stack = createStackNavigator();
 
@@ -33,7 +36,7 @@ export default function HomeScreen() {
           screenOptions={{ headerShown: false }}
         >
 
-          <Stack.Screen name="Login" component={SignUp2} />
+          <Stack.Screen name="Login" component={UserInfoPage} />
           <Stack.Screen name="Homepage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>

@@ -5,7 +5,7 @@ import * as RNLocalize from 'react-native-localize';
 const resources = {
   en: {
     translation: {
-      // Login / Signup
+      // Login / SignUp
       "Enter your email": "Enter your email",
       "Enter your password": "Enter your password",
       "Enter your password again": "Enter your password again",
@@ -16,6 +16,37 @@ const resources = {
       "Market Kurly Account": "Market Kurly Account", 
       "Back": "Back", 
       "Next": "Next",
+
+      // SignUp2_2
+      "Dietary Restrictions": "Dietary Restrictions",
+      "Select your diet": "Select your diet",
+      "Specific (Optional)": "Specific (Optional)",
+      "Allergies (Optional)": "Allergies (Optional)",
+      "Per Meal": "Per Meal",
+      "Daily": "Daily", 
+      "Weekly": "Weekly",
+      "Budget": "Budget",
+      ////////
+      "Peanut": "Peanut",
+      "Kiwi": "Kiwi",
+      "Peach": "Peach",
+      "Gluten Free": "Gluten Free",
+
+      // Profile
+      "Logout": "Logout", 
+      "Coupang/MarketCurly Accounts": "Coupang/MarketCurly Accounts",
+
+      // UserInfoPage
+      "Information": "Information",
+      "Diet Category": "Diet Category",
+      "Substances/Food to Avoid": "Food to Avoid",
+      "Suggested Food": "Suggested Food",
+      "Caution": "Caution",
+      "(Legal Notice)": "This application is intended to serve as a general reference for diet restrictions and allergies. It is not a substitute for professional medical advice, diagnosis, or treatment. Please be aware that the app does not have access to individual users' personal health conditions. As such, it is the responsibility of each user to ensure that their diet meets their specific health needs.",
+      ////////
+      "Vegan": "Vegan",
+      "Fried Chicken": "Fried Chicken",
+      "Tofu": "Tofu",
 
       // HomePage
       "Your Meal Plan": "Your Meal Plan",
@@ -109,6 +140,7 @@ const resources = {
       "Publish Recipe": "Publish Recipe",
       "Publish Yes": "Yes",
       "Publish No": "No",
+      "Finish": "Finish",
       ////////
       "Chicken": "Chicken",
       "SomeOtherTag": "SomeOtherTag",
@@ -140,7 +172,7 @@ const resources = {
   },
   ko: {
     translation: {
-      // Login / Signup
+      // Login / SignUp
       "Enter your email": "이메일 입력",
       "Enter your password": "비밀번호 입력",
       "Enter your password again": "비밀번호 재입력",
@@ -151,6 +183,37 @@ const resources = {
       "Market Kurly Account": "마켓컬리 계정", 
       "Back": "뒤로가기", 
       "Next": "넘어가기",
+
+      // SignUp2_2
+      "Dietary Restrictions": "식사 제한 사항",
+      "Select your diet": "다이어트 고르세요",
+      "Specific (Optional)": "위에 없을시 아래에 적으세요",
+      "Allergies (Optional)": "알러지 (선택)",
+      "Per Meal": "한 끼당",
+      "Daily": "하루 당", 
+      "Weekly": "주 당",
+      "Budget": "예산",
+      ////////
+      "Peanut": "땅콩",
+      "Kiwi": "키위",
+      "Peach": "복숭아",
+      "Gluten Free": "글루텐 프리",
+
+      // Profile
+      "Logout": "로그아웃", 
+      "Coupang/MarketCurly Accounts": "쿠팡/마켓컬리 계정",
+
+      // UserInfoPage
+      "Information": "당신의 식단 정보",
+      "Diet Category": "식단 분류",
+      "Substances/Food to Avoid": "주의해야 할 재료/음식",
+      "Suggested Food": "추천되는 음식",
+      "Caution": "주의하세요",
+      "(Legal Notice)": "This application is intended to serve as a general reference for diet restrictions and allergies. It is not a substitute for professional medical advice, diagnosis, or treatment. Please be aware that the app does not have access to individual users' personal health conditions. As such, it is the responsibility of each user to ensure that their diet meets their specific health needs.",
+      /////////
+      "Vegan": "비건",
+      "Fried Chicken": "치킨",
+      "Tofu": "두부",
 
       // HomePage
       "Your Meal Plan": "식단 계획표",
@@ -242,6 +305,7 @@ const resources = {
       "Publish Recipe": "레시피 공유",
       "Publish Yes": "공유하기",
       "Publish No": "공유안하기",
+      "Finish": "레시피 저장",
       ////////
       "Chicken": "치킨",
       "SomeOtherTag": "어쩌고저쩌고",
