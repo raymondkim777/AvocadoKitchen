@@ -6,6 +6,7 @@ import DietButton from '../browse/DietButton';
 import Tag from '../addfunction/Tag';
 import TagSuggest from '../addfunction/TagSuggest';
 import AccountButton from '../profile/AccountButton';
+import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -101,7 +102,7 @@ const SignUp2_2 = () => {
           </View>
 
           {/* Diet Options */}
-          <View className='flex-col w-full min-h-16 h-fit items-center justify-center mt-6'>
+          <View className='flex-col w-full min-h-16 h-fit items-center justify-center mt-8'>
             <View className='w-full h-6'>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
                 Select your diet
@@ -209,6 +210,11 @@ const SignUp2_2 = () => {
             <View className='w-full h-12 bg-itemBgLight rounded-lg mt-2'>
 
             </View>
+          </View>
+
+          {/* Sign Up */}
+          <View className='w-full h-fit items-center justify-center mt-8 mb-4'>
+            <LargeButton css={'px-8'} text={'Sign Up'} textSize={'text-2xl'}/>
           </View>
 
 

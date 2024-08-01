@@ -64,7 +64,7 @@ const resources = {
       "Tuna Sandwich": "Tuna Sandwich", 
       "Chili Hot Dog": "Chili Hot Dog", 
       "Apple Pie": "Apple Pie",
-      "Sirloin Steak": "안심 스테이크",
+      "Sirloin Steak": "Sirloin Steak",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -105,8 +105,6 @@ const resources = {
 
       // AddMealPage
       "Add Your Meal": "Add Your Meal",
-      "Meal Time": "Meal Time",
-      "Quick Meal Search": "Quick Meal Search",
       "Choose a Recipe": "Choose a Recipe",
       "Ingredients": "Ingredients",
       "Add Ingredient": "Add Ingredient",
@@ -177,25 +175,25 @@ const resources = {
     translation: {
       // Login / SignUp
       "Enter your email": "이메일 입력",
-      "Enter a username": "유저네임 입력",
+      "Enter a username": "아이디 입력",
       "Enter your password": "비밀번호 입력",
-      "Enter your password again": "비밀번호 재입력",
-      "Continue with Google": "구글로 로그인",
+      "Enter your password again": "비밀번호 확인",
+      "Continue with Google": "Continue with Google",
       "Login": "로그인",
       "Sign Up": "회원가입",
       "Coupang Account": "쿠팡 계정",
       "Market Kurly Account": "마켓컬리 계정", 
-      "Back": "뒤로가기", 
-      "Next": "넘어가기",
+      "Back": "Back", 
+      "Next": "Next",
 
       // SignUp2_2
       "Dietary Restrictions": "식사 제한 사항",
-      "Select your diet": "다이어트 고르세요",
-      "Specific (Optional)": "위에 없을시 아래에 적으세요",
+      "Select your diet": "식단 추천 유형 선택",
+      "Specific (Optional)": "추가 추천 옵션 (선택)",
       "Allergies (Optional)": "알러지 (선택)",
-      "Per Meal": "한 끼당",
-      "Daily": "하루 당", 
-      "Weekly": "주 당",
+      "Per Meal": "한 끼",
+      "Daily": "하루", 
+      "Weekly": "한 주",
       "Budget": "예산",
       ////////
       "Peanut": "땅콩",
@@ -208,12 +206,12 @@ const resources = {
       "Coupang/MarketCurly Accounts": "쿠팡/마켓컬리 계정",
 
       // UserInfoPage
-      "Information": "당신의 식단 정보",
+      "Information": "식단 정보",
       "Diet Category": "식단 분류",
       "Substances/Food to Avoid": "주의해야 할 재료/음식",
-      "Suggested Food": "추천되는 음식",
-      "Caution": "주의하세요",
-      "(Legal Notice)": "This application is intended to serve as a general reference for diet restrictions and allergies. It is not a substitute for professional medical advice, diagnosis, or treatment. Please be aware that the app does not have access to individual users' personal health conditions. As such, it is the responsibility of each user to ensure that their diet meets their specific health needs.",
+      "Suggested Food": "추천 음식",
+      "Caution": "주의사항",
+      "(Legal Notice)": "이 앱은 식단 제한 및 알레르기에 대한 일반적인 참고 자료로 개발되었습니다. 전문적인 의학적 소견, 진단 또는 처방을 대체하지 않습니다. 이 앱은 개별 사용자의 개인 건강 상태에 접근권한이 없습니다. 따라서 각 사용자는 자신의 식단이 자신의 상황에 맞게 충족 되었는지 확인해야 할 책임이 있습니다.",
       /////////
       "Vegan": "비건",
       "Fried Chicken": "치킨",
@@ -226,7 +224,7 @@ const resources = {
       "Breakfast": "아침",
       "Lunch": "점심", 
       "Dinner": "저녁",
-      "Cal": "칼로리", 
+      "Cal": "Cal", 
       "Protein": "프로틴", 
       "Carbs": "탄수화물",
       ////////
@@ -237,7 +235,7 @@ const resources = {
 
       // Browse
       "Browse Recipes": "레시피 찾기",
-      "Results": "검색 결과",
+      "Results": "결과",
       "Lacto-Ovo": "락토-오보", 
       "Lacto": "락토",
       "Ovo": "오보",
@@ -250,18 +248,18 @@ const resources = {
       "User": '유저',
       "Tag": '태그', 
       ////////
-      "ex. Neapolitan Pizza": "ex. 네오폴리탄 피자",
+      "ex. Neapolitan Pizza": "ex. 나폴리 피자",
       "Sandwich": "샌드위치", 
       "Healthy": "건강식",
 
       // RecipePage
       "Recipe Info": "레시피 정보",
-      "Recipe Name": "이름",
+      "Recipe Name": "요리 이름",
       "Ingredients - None Listed": "재료 - 없음",
       "Ingredients": "재료",
       "Procedure - None Listed": "조리법 - 없음", 
       "Procedure": "조리법",
-      "Step": "단계",
+      "Step": "Step",
       "Add Meal": "레시피 추가",
 
       // IngredientCardLarge
@@ -274,15 +272,15 @@ const resources = {
       // AddMealPage
       "Add Your Meal": "음식 추가",
       "Meal Time": "식사 시간",
-      "Quick Meal Search": "간편 음식 검색",
+      "Quick Meal Search": "간편 검색",
       "Choose a Recipe": "레시피 고르기",
       "Ingredients": "재료",
       "Add Ingredient": "재료 추가",
-      "Recipe Name": "음식 이름", 
+      "Recipe Name": "요리 이름", 
       "Ingredient Name": "재료 이름",
       "Amount": "용량",
       "Procedure (Optional)": "조리법 (선택)",
-      "Add Step": "단계 추가",
+      "Add Step": "조리과정 추가",
       "Description": "설명",
       "Continue": "다음 페이지",
       ////////
@@ -301,7 +299,7 @@ const resources = {
       
       // AddMealPage2
       "Back": "뒤로가기",
-      "(Error Message 1)": "쿠팡/컬리에서 몇가지 재료를 못 찾고 있습니다.",
+      "(Error Message 1)": "쿠팡/컬리에서 몇가지 재료를 찾지 못하였습니다.",
       "(Error Message 2)": "재료 쿠팡/컬리 링크를 전부 추가해주세요.",
       "Estimated Budget": "예상 비용",
       "Nutrient Information": "레시피 영양성분",
@@ -321,11 +319,11 @@ const resources = {
       "Quick Search": "간편 검색", 
       "Coupang": "쿠팡", 
       "Curly": "컬리",
-      "(Quick Search Error)": "재료를 못 찾겠습니다.",
+      "(Quick Search Error)": "검색한 재료가 없습니다.",
       "Manual Add/Edit": "직접 추가하기",
       "Image": "사진",
       "Add Image": "사진 올리기",
-      "Change Image": "사진 바꾸기",
+      "Change Image": "사진 변경",
       "Save": "저장",
       ////////
       "ex. Canned Tuna": "ex. 참치 통조림", 
@@ -333,9 +331,9 @@ const resources = {
       "(Quick Result 2)": "참치 통조림",
 
       // Add Procedure
-      "Add Procedure Step": "조리법 단계 추가",
+      "Add Procedure Step": "조리과정 추가",
       "Step": "Step",
-      "Step Number": "단계 번호",
+      "Step Number": "레시피 순서",
       "This will insert a new step after Step 2.": "(Step 2 뒤에 추가됨)",
       "Description": "설명", 
       "Insert procedure step here": "조리법 단계 설명을 적으세요.",

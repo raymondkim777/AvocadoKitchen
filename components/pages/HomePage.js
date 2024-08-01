@@ -20,7 +20,7 @@ const MealSum = ({title, image, cal}) => (
         <ItemLargeTextComponent bold={true} size={'text-4xl'} css={'text-itemText mr-2'}>
           {cal}
         </ItemLargeTextComponent>
-        <ItemLargeTextComponent translate={true} size={'text-3xl'} css={'text-itemText'}>
+        <ItemLargeTextComponent translate={true} bold={true} size={'text-4xl'} css={'text-itemText'}>
           Cal
         </ItemLargeTextComponent>
       </View>

@@ -15,7 +15,7 @@ const SignUp2 = ({}) => {
       <View id='content' className='grow w-full h-full items-center justify-center p-8'>
 
         {/* Logo */}
-        <View className='grow w-full h-36 max-h-56 flex items-center justify-end'>
+        <View className='grow w-full h-36 max-h-64 flex items-center justify-end'>
           <Image className='w-[160px] h-[160px]' source={require('../../assets/images/Logo.png')} />
         </View>
 
@@ -51,7 +51,7 @@ const SignUp2 = ({}) => {
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-6 bg-itemBgLight rounded-xl'}
             placeholder={'Enter your password'}
             placeholderTextColor={'#85855B'}
             value={emailInput}
@@ -74,9 +74,10 @@ const SignUp2 = ({}) => {
             />
           </View>
 
+          
           {/* Buttons */}
           <View className='flex-col w-full h-fit mt-10'>
-            {/* Account Link */}
+            {/* Account Link
             <View className='flex-col w-full h-fit items-center justify-center'>
               <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl'
               activeOpacity={0.9}>
@@ -93,6 +94,7 @@ const SignUp2 = ({}) => {
                 </TitleTextComponent>
               </TouchableOpacity>
             </View>
+            */}
 
             {/* Back/Next */}
             <View className='flex-row w-full h-fit items-center justify-center mt-10'>
