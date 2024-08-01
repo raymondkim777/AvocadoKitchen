@@ -5,7 +5,7 @@ import TitleTextComponent from '../text/TitleTextComponent';
 const FoodCard = ({text, image, css = '', variable = null}) => {
   // variable = {total, index}
 
-  let dimensionsCSS = 'w-48 h-36';
+  let dimensionsCSS = 'w-56 h-40';
 
   if (variable != null) {
     css = 'mb-4';

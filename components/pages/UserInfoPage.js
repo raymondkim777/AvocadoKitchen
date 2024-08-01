@@ -15,22 +15,22 @@ const UserInfoPage = ({}) => {
     {
       id: '0',
       text: 'Fried Chicken',
-      image: require('../../assets/images/avoid-example/fried-chicken.jpg'),
+      image: require('../../assets/images/info-example/fried-chicken.jpg'),
     },
     {
       id: '1',
       text: 'Fried Chicken',
-      image: require('../../assets/images/avoid-example/fried-chicken.jpg'),
+      image: require('../../assets/images/info-example/fried-chicken.jpg'),
     },
     {
       id: '2',
       text: 'Fried Chicken',
-      image: require('../../assets/images/avoid-example/fried-chicken.jpg'),
+      image: require('../../assets/images/info-example/fried-chicken.jpg'),
     },
     {
       id: '3',
       text: 'Fried Chicken',
-      image: require('../../assets/images/avoid-example/fried-chicken.jpg'),
+      image: require('../../assets/images/info-example/fried-chicken.jpg'),
     },
   ];
   const suggestedFood = [
