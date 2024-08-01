@@ -7,6 +7,7 @@ const resources = {
     translation: {
       // Login / SignUp
       "Enter your email": "Enter your email",
+      "Enter a username": "Enter a username",
       "Enter your password": "Enter your password",
       "Enter your password again": "Enter your password again",
       "Continue with Google": "Continue with Google",
@@ -174,6 +175,7 @@ const resources = {
     translation: {
       // Login / SignUp
       "Enter your email": "이메일 입력",
+      "Enter a username": "유저네임 입력",
       "Enter your password": "비밀번호 입력",
       "Enter your password again": "비밀번호 재입력",
       "Continue with Google": "구글로 로그인",
