@@ -95,9 +95,37 @@ const AddMealPage = ({}) => {
             <ExitButton/>
           </View>
 
+          {/* Choose Day */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Meal Time
+              </TitleTextComponent>
+            </View>
+            <View className='flex-row items-center justify-center shrink w-full h-fit mt-2'>
+              <View className='shrink w-full h-9 items-center justify-center bg-itemBgLight rounded-lg mr-4'>
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                  Thursday
+                </TitleTextComponent>
+              </View>
+              <View className='shrink w-full h-9 items-center justify-center bg-itemBgLight rounded-lg'>
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                  Lunch
+                </TitleTextComponent>
+              </View>
+            </View>
+          </View>
+
           {/* Choose Recipe Button */}
-          <View className='flex-row w-full h-fit items-center mt-4'>
-            <SmallButton text='Choose a Recipe' callback={null}/>
+          <View className='flex-col w-full h-fit items-center justify-center mt-6'>
+            <View className='w-full h-6'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Quick Meal Search
+              </TitleTextComponent>
+            </View>
+            <View className='flex-row w-full h-fit justify-start mt-2'>
+                <SmallButton text='Choose a Recipe' callback={null}/>
+            </View>
           </View>
 
           {/* Name */}
