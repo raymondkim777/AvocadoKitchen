@@ -105,6 +105,8 @@ const resources = {
 
       // AddMealPage
       "Add Your Meal": "Add Your Meal",
+      "Meal Time": "Meal Time",
+      "Quick Meal Search": "Quick Meal Search",
       "Choose a Recipe": "Choose a Recipe",
       "Ingredients": "Ingredients",
       "Add Ingredient": "Add Ingredient",
@@ -271,6 +273,8 @@ const resources = {
 
       // AddMealPage
       "Add Your Meal": "음식 추가",
+      "Meal Time": "식사 시간",
+      "Quick Meal Search": "간편 음식 검색",
       "Choose a Recipe": "레시피 고르기",
       "Ingredients": "재료",
       "Add Ingredient": "재료 추가",

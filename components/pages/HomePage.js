@@ -151,7 +151,7 @@ const HomePage = () => {
               Your Meal Plan
             </TitleTextComponent>
             {/* Calendar */}
-            <View className='grow h-52 mt-2'>
+            <View className='grow h-48 mt-2'>
               <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
                 {days.map((day,index) => (
                   index == 0? 
@@ -177,7 +177,7 @@ const HomePage = () => {
                 ))}
               </View>
               {/* Calendar Content */}
-              <View className='grow w-full h-44 bg-itemBgLight rounded-b-lg p-2'>
+              <View className='grow w-full h-40 bg-itemBgLight rounded-b-lg p-2'>
                 <View className='flex flex-col w-full h-full'>
                   {/* Buttons */}
                   <View className='flex flex-row w-full h-7'>
