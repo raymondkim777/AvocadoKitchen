@@ -7,6 +7,7 @@ import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../text/i18n'
+import SideBar from '../general/SideBar';
 
 
 const MealSum = ({title, image, cal}) => (
@@ -29,7 +30,7 @@ const MealSum = ({title, image, cal}) => (
 )
 
 const MealCard = ({title, image}) => (
-  <View className='w-52 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
+  <View className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
     <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-itemText text-center'}>
       {title}
     </ItemTextComponent>
@@ -56,7 +57,10 @@ const NutritionCard = ({item, index}) => (
 const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
-    {/* State/Functions */}
+  {/* SideBar */}
+  const [username, setUsername] = useState('Username');
+
+  {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {
     const new_focus = new Array(7).fill('');
@@ -137,116 +141,131 @@ const HomePage = () => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
+  const wideScreen = (height / width) < 1.4;
   
-  const {t,i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
   return (
-    <SafeAreaView id='screen' className='flex flex-col w-full h-full justify-center items-center'>
-      <Container id='content' className='grow w-full h-fit'>
-        <View className='grow w-full h-fit p-4 bg-screenBg'>
-          {/* Frame 1 - Calendar */}
-          <View className='grow w-full min-h-fit mt-2'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText mt-2'}>
-              Your Meal Plan
-            </TitleTextComponent>
-            {/* Calendar */}
-            <View className='grow h-48 mt-2'>
-              <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
-                {days.map((day,index) => (
-                  index == 0? 
-                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
-                    <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                      onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
-                      </TouchableOpacity>
-                    </View> 
-                  : index == 6? 
-                    <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
+    <SafeAreaView id='screen' className='flex flex-row w-full h-full justify-center items-center'>
+      {/* SideBar */}
+      {
+        wideScreen 
+        ? <SideBar username={username}/>
+        : null
+      }
+
+      {/* Content */}
+      <View className='flex-col shrink w-full h-full'>
+        <Container id='content' className='grow w-full h-fit'>
+          <View className='grow w-full h-fit p-4 bg-screenBg'>
+            {/* Frame 1 - Calendar */}
+            <View className='grow w-full min-h-fit mt-2'>
+              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText mt-2'}>
+                Your Meal Plan
+              </TitleTextComponent>
+              {/* Calendar */}
+              <View className='grow h-48 mt-2'>
+                <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
+                  {days.map((day,index) => (
+                    index == 0? 
+                      <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                       <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                      onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                        onPress={()=>setFocus(index)}>
+                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                        </TouchableOpacity>
+                      </View> 
+                    : index == 6? 
+                      <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
+                        <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
+                        onPress={()=>setFocus(index)}>
+                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                        </TouchableOpacity>
+                      </View>
+                    : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
+                      <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
+                        onPress={()=>setFocus(index)}>
+                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                        </TouchableOpacity>
+                      </View>
+                  ))}
+                </View>
+                {/* Calendar Content */}
+                <View className='grow w-full h-40 bg-itemBgLight rounded-b-lg p-2'>
+                  <View className='flex flex-col w-full h-full'>
+                    {/* Buttons */}
+                    <View className='flex flex-row w-full h-7'>
+                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
+                      activeOpacity={1} onPress={()=>setMealFocus(0)}>
+                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
+                          Breakfast
+                        </TitleTextComponent>
+                      </TouchableOpacity>
+                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
+                        activeOpacity={1} onPress={()=>setMealFocus(1)}>
+                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
+                          Lunch
+                        </TitleTextComponent>
+                      </TouchableOpacity>
+                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
+                        activeOpacity={1} onPress={()=>setMealFocus(2)}>
+                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
+                          Dinner
+                        </TitleTextComponent>
                       </TouchableOpacity>
                     </View>
-                  : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
-                    <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                      onPress={()=>setFocus(index)}>
-                        <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
-                      </TouchableOpacity>
+                    {/* Meal Content */}
+                    <View className='flex flex-1 h-full mt-2'>
+                      <MealSum title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
                     </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            {/* Frame 2 - Suggested Meals */}
+            <View className='grow min-h-fit mt-6'>
+              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+                Suggested Meals
+              </TitleTextComponent>
+              {/* Scroll Cards */}
+              <View className='grow w-full h-fit mt-2'>
+                <FlatList className='grow w-full h-36'
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  data={recipes}
+                  renderItem={({item}) => <MealCard title={item.title} image={item.image} />}
+                  ItemSeparatorComponent={<MealCardDiv/>}
+                  keyExtractor={item => item.id}
+                  />
+              </View>
+            </View>
+
+            {/* Frame 3 - Nutrition */}
+            <View className='grow min-h-fit mt-6 mb-2'>
+              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+                Your Meal Plan has:
+              </TitleTextComponent>
+              {/* Three Cards */}
+              <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
+                {nutrition.map((item, index) => (
+                  <View className='shrink w-full h-full'>
+                    <NutritionCard item={item} index={index} />
+                  </View>
                 ))}
               </View>
-              {/* Calendar Content */}
-              <View className='grow w-full h-40 bg-itemBgLight rounded-b-lg p-2'>
-                <View className='flex flex-col w-full h-full'>
-                  {/* Buttons */}
-                  <View className='flex flex-row w-full h-7'>
-                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
-                    activeOpacity={1} onPress={()=>setMealFocus(0)}>
-                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
-                        Breakfast
-                      </TitleTextComponent>
-                    </TouchableOpacity>
-                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
-                      activeOpacity={1} onPress={()=>setMealFocus(1)}>
-                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
-                        Lunch
-                      </TitleTextComponent>
-                    </TouchableOpacity>
-                    <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
-                      activeOpacity={1} onPress={()=>setMealFocus(2)}>
-                      <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
-                        Dinner
-                      </TitleTextComponent>
-                    </TouchableOpacity>
-                  </View>
-                  {/* Meal Content */}
-                  <View className='flex flex-1 h-full mt-2'>
-                    <MealSum title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
-                  </View>
-                </View>
-              </View>
             </View>
           </View>
+        </Container>
 
-          {/* Frame 2 - Suggested Meals */}
-          <View className='grow min-h-fit mt-6'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-              Suggested Meals
-            </TitleTextComponent>
-            {/* Scroll Cards */}
-            <View className='grow w-full h-fit mt-2'>
-              <FlatList className='grow w-full h-36'
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                data={recipes}
-                renderItem={({item}) => <MealCard title={item.title} image={item.image} />}
-                ItemSeparatorComponent={<MealCardDiv/>}
-                keyExtractor={item => item.id}
-                />
+        {/* HomeBar */}
+        {
+          wideScreen 
+          ? null
+          : <View id='homebar' className='w-full h-20'>
+              <HomeBar/>
             </View>
-          </View>
-
-          {/* Frame 3 - Nutrition */}
-          <View className='grow min-h-fit mt-6 mb-2'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-              Your Meal Plan has:
-            </TitleTextComponent>
-            {/* Three Cards */}
-            <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
-              {nutrition.map((item, index) => (
-                <View className='shrink w-full h-full'>
-                  <NutritionCard item={item} index={index} />
-                </View>
-              ))}
-            </View>
-          </View>
-        </View>
-      </Container>
-
-      {/* HomeBar */}
-      <View id='homebar' className='w-full h-20'>
-        <HomeBar/>
+        }
       </View>
     </SafeAreaView>
   )

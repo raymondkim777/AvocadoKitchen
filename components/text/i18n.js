@@ -5,6 +5,16 @@ import * as RNLocalize from 'react-native-localize';
 const resources = {
   en: {
     translation: {
+      // SideBar
+      "Home": "Hom",
+      "Recipe Search": "Recipe Search",
+      "Add a Meal": "Add a Meal",
+      "Info": "Info",
+      "Profile": "Profile",
+      "Tutorial": "Tutorial",
+      "Privacy Policy": "Privacy Policy",
+      "Terms of Service": "Terms of Service",
+
       // Login / SignUp
       "Enter your email": "Enter your email",
       "Enter a username": "Enter a username",
@@ -173,6 +183,16 @@ const resources = {
   },
   ko: {
     translation: {
+      // SideBar
+      "Home": "홈",
+      "Recipe Search": "레시피 검색",
+      "Add a Meal": "음식 추가",
+      "Info": "정보",
+      "Profile": "설정",
+      "Tutorial": "투토리얼",
+      "Privacy Policy": "개인정보처리방침",
+      "Terms of Service": "이용약관",
+
       // Login / SignUp
       "Enter your email": "이메일 입력",
       "Enter a username": "아이디 입력",
