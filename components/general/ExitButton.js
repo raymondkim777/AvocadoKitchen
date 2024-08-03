@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 const ExitButton = ({}) => (
   <TouchableOpacity className='w-8 h-8 ml-2 bg-buttonBg rounded-lg'
-  activeOpacity={0.7}>
+  activeOpacity={0.9}>
 
   </TouchableOpacity>
 )
