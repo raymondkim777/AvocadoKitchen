@@ -94,10 +94,10 @@ const AddMealPage2 = ({}) => {
 
   }
 
-  const [publish, setPublish] = useState(false);
+  const [publishTrue, setPublishTrue] = useState(false);
   const [publishButtonCSS, setPublishButtonCSS] = useState(['', 'bg-screenText']);
   const updatePublishButton = (index) => {
-    setPublish(index == 0);
+    setPublishTrue(index == 0);
     const new_css = ['', ''];
     new_css[index] = 'bg-screenText';
     setPublishButtonCSS(new_css);
@@ -138,11 +138,16 @@ const AddMealPage2 = ({}) => {
                 Estimated Budget
               </TitleTextComponent>
             </View>
-            <View className='flex-row w-full h-fit items-center justify-center mt-4'>
+            <View className='flex-col w-full px-8 h-fit items-center justify-center mt-4'>
               <View className='w-fit h-12 items-center justify-center px-3 py-2 bg-itemBgLight rounded-xl'>
                 <Text className='font-inconsolataBold text-3xl text-itemText'>
                   ₩{minBudget} ~ ₩{maxBudget}
                 </Text>
+              </View>
+              <View className='w-fit h-fit items-center justify-center mt-2'>
+                <TitleTextComponent translate={true} size={'text-base'} css={'text-center text-screenText leading-5'}>
+                  (Budget Notice)
+                </TitleTextComponent>
               </View>
             </View>
           </View>
