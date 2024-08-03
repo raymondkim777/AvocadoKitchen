@@ -11,8 +11,7 @@ const ProcedureCard = ({item, width}) => {
   const currentLanguage = i18n.language;
 
   return (
-    <TouchableOpacity style={{width}} className={`flex-col h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}
-    activeOpacity={0.9}>
+    <View style={{width}} className={`flex-col h-full justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
       <View className='flex-row w-full h-fit items-center justify-center'>
         <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mr-2'}>
           Step
@@ -21,7 +20,10 @@ const ProcedureCard = ({item, width}) => {
           {item.step}
         </TitleTextComponent> 
       </View>
-      <Image className='flex flex-1 w-full mt-1 rounded-md' source={item.image}/>
+      <TouchableOpacity className='flex flex-1 w-full mt-1 items-center justify-center'
+      activeOpacity={0.9}>
+        <Image className='flex flex-1 w-full rounded-md' source={item.image}/>
+      </TouchableOpacity>
       <View className='w-full h-fit max-h-[30%] items-center justify-center'>
         <ScrollView nestedScrollEnabled={true} className='w-full mt-2'>
           <View className='w-full h-fit max-h-1/3 items-center justify-center'>
@@ -36,7 +38,7 @@ const ProcedureCard = ({item, width}) => {
           </View>
         </ScrollView>
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 
