@@ -10,8 +10,9 @@ import '../text/i18n'
 import SideBar from '../general/SideBar';
 
 
-const MealSum = ({title, image, cal}) => (
-  <View className='flex flex-row w-full h-full space-x-2'>
+const MealSum = ({callback, title, image, cal}) => (
+  <TouchableOpacity className='flex flex-row w-full h-full space-x-2'
+  activeOpacity={0.7} onPress={()=>callback()}>
     <Image className='flex flex-1 h-full rounded-md' source={image} />
     <View className='flex flex-1 flex-col h-full items-center justify-center'>
       <TitleTextComponent translate={true} size={'text-2xl'} bold={true} css={'text-itemText -mt-2'}>
@@ -26,16 +27,17 @@ const MealSum = ({title, image, cal}) => (
         </ItemLargeTextComponent>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 )
 
-const MealCard = ({title, image}) => (
-  <View className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'>
+const MealCard = ({callback, title, image}) => (
+  <TouchableOpacity className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'
+  activeOpacity={0.9} onPress={()=>callback()}>
     <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-itemText text-center'}>
       {title}
     </ItemTextComponent>
     <Image className='flex flex-1 w-full mt-1 rounded-md' source={image} /> 
-  </View>
+  </TouchableOpacity>
 )
 
 const MealCardDiv = () => (
@@ -216,7 +218,7 @@ const HomePage = () => {
                     </View>
                     {/* Meal Content */}
                     <View className='flex flex-1 h-full mt-2'>
-                      <MealSum title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
+                      <MealSum callback={null} title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
                     </View>
                   </View>
                 </View>
@@ -234,7 +236,7 @@ const HomePage = () => {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                   data={recipes}
-                  renderItem={({item}) => <MealCard title={item.title} image={item.image} />}
+                  renderItem={({item}) => <MealCard callback={null} title={item.title} image={item.image} />}
                   ItemSeparatorComponent={<MealCardDiv/>}
                   keyExtractor={item => item.id}
                   />
