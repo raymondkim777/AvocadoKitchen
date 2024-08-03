@@ -17,6 +17,15 @@ const AddIngredient = ({
     image: require('../../assets/images/procedure-example/step-1.webp'),
   }
 
+  const [orderTrue, setOrderTrue] = useState(false);
+  const [orderButtonCSS, setOrderButtonCSS] = useState(['', 'bg-screenText']);
+  const updateOrderButton = (index) => {
+    setOrderTrue(index == 0);
+    const new_css = ['', ''];
+    new_css[index] = 'bg-screenText';
+    setOrderButtonCSS(new_css);
+  }
+
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
@@ -45,6 +54,31 @@ const AddIngredient = ({
               Add/Edit Ingredient
             </TitleTextComponent>
             <ExitButton/>
+          </View>
+
+          {/* Order / Not Order */}
+          <View className='flex-col w-full h-fit mt-6'>
+            <View className='w-full h-6'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                Order Ingredient
+              </TitleTextComponent>
+            </View>
+            <View className='flex-row w-full h-8 mt-2 px-4'>
+              <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
+                activeOpacity={1} onPress={()=>updateOrderButton(0)}>
+                <View className={`w-4 h-4 rounded-md border-2 ${orderButtonCSS[0]} border-screenText mr-2`}/>
+                <TitleTextComponent translate={true} size={'text-xl'} sizeDiff={-1} css={'text-screenText'}>
+                  Order Yes
+                </TitleTextComponent>
+              </TouchableOpacity>
+              <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center mr-5'
+                activeOpacity={1} onPress={()=>updateOrderButton(1)}>
+                <View className={`w-4 h-4 rounded-md border-2 ${orderButtonCSS[1]} border-screenText mr-2`}/>
+                <TitleTextComponent translate={true} size={'text-xl'} sizeDiff={-1} css={'text-screenText'}>
+                  Order No
+                </TitleTextComponent>
+              </TouchableOpacity>
+            </View>
           </View>
 
           {/* Quick Search */}
