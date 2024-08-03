@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Text } from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import 'intl-pluralrules';
 import './i18n'
 

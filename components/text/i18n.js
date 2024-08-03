@@ -144,6 +144,7 @@ const resources = {
       "(Error Message 1)": "We're having trouble finding some ingredients.",
       "(Error Message 2)": "Please add all ingredient links.",
       "Estimated Budget": "Estimated Budget",
+      "(Budget Notice)": "*Price range for selected ingredients from Coupang/Markey Curly*",
       "Nutrient Information": "Nutrient Information",
       "Tags (Optional)": "Tags (Optional)",
       "Add Tag" : "Add Tag",
@@ -158,6 +159,9 @@ const resources = {
 
       // AddIngredient
       "Add/Edit Ingredient": "Add/Edit Ingredient",
+      "Order Ingredient": "Order Ingredient",
+      "Order Yes": "Order Yes",
+      "Order No": "Order No",
       "Quick Search": "Quick Search",
       "Coupang": "Coupang", 
       "Curly": "Curly",
@@ -322,6 +326,7 @@ const resources = {
       "(Error Message 1)": "쿠팡/컬리에서 몇가지 재료를 찾지 못하였습니다.",
       "(Error Message 2)": "재료 쿠팡/컬리 링크를 전부 추가해주세요.",
       "Estimated Budget": "예상 비용",
+      "(Budget Notice)": "*주문할 재료들의 가격대, 쿠팡/컬리 기준*",
       "Nutrient Information": "레시피 영양성분",
       "Tags (Optional)": "태그 (선택)",
       "Add Tag" : "태그 추가",
@@ -336,6 +341,9 @@ const resources = {
       
       // AddIngredient
       "Add/Edit Ingredient": "재료 추가/수정",
+      "Order Ingredient": "재료 주문하기",
+      "Order Yes": "주문하기",
+      "Order No": "주문안하기",
       "Quick Search": "간편 검색", 
       "Coupang": "쿠팡", 
       "Curly": "컬리",
