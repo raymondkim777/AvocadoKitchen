@@ -7,10 +7,10 @@ import Tag from '../addfunction/Tag';
 import TagSuggest from '../addfunction/TagSuggest';
 import AccountButton from '../profile/AccountButton';
 import LargeButton from '../general/LargeButton';
-
+import MealplanDropdown from '../dropdown/MealplanDropdown';
 const { width, height } = Dimensions.get('window');
 
-const SignUp2_2 = () => {
+const SignUp2_2 = ({ navigation }) => {
   {/* References */}
 
   {/* Data */}
@@ -89,7 +89,7 @@ const SignUp2_2 = () => {
   const removeAllergy = (tagID) => {
     // ADD LATER
   }
-  
+  const options = ["Per Meal", 'Daily', 'Weekly'];
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView className='w-full h-full'>
@@ -191,12 +191,8 @@ const SignUp2_2 = () => {
 
           {/* Budget */}
           <View className='flex-col w-full h-fit mt-10'>
-            <View className='flex-row w-full h-fit items-center'>
-              <View className='w-24 h-8 ml-4 bg-itemBgLight rounded-lg'>
-                <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText mx-2 text-center mt-0.5'}>
-                  Per Meal
-                </TitleTextComponent>
-              </View>
+            <View className='flex-row w-full h-fit items-center'>    
+                <MealplanDropdown options={options}></MealplanDropdown>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-3'}>
                 Budget
               </TitleTextComponent>
@@ -207,15 +203,19 @@ const SignUp2_2 = () => {
                 ₩50,000
               </TitleTextComponent>
             </View>
+            {/*
             <View className='w-full h-12 bg-itemBgLight rounded-lg mt-2'>
 
             </View>
+            */}
           </View>
 
           {/* Sign Up */}
+          {/*
           <View className='w-full h-fit items-center justify-center mt-8 mb-4'>
             <LargeButton css={'px-8'} text={'Sign Up'} textSize={'text-2xl'}/>
           </View>
+          */}
 
 
         </View>

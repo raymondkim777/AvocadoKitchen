@@ -4,11 +4,19 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 
-const SignUp2 = ({}) => {
+const SignUp2 = ({navigation}) => {
 
   const [emailInput, setEmailInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const handleNext = ({}) => {
+    navigation.navigate('SignUp2_2')
+  }
+
+  const handleBack = ({}) => {
+    navigation.navigate('Login2')
+  }
+ 
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -98,8 +106,8 @@ const SignUp2 = ({}) => {
 
             {/* Back/Next */}
             <View className='flex-row w-full h-fit items-center justify-center mt-10'>
-              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={null}/>
-              <LargeButton css={'shrink w-full'} text={'Next'} callback={null}/>
+              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
+              <LargeButton css={'shrink w-full'} text={'Next'} callback={handleNext}/>
             </View>
           </View>
         </View>

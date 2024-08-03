@@ -4,9 +4,7 @@ import { SafeAreaView, Text, View, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Login from './components/pages/Login';
 import Login2 from './components/pages/Login2';
-import SignUp from './components/pages/SignUp';
 import SignUp2 from './components/pages/SignUp2';
 import SignUp2_2 from './components/pages/SignUp2_2';
 import HomePage from './components/pages/HomePage';
@@ -32,12 +30,25 @@ export default function HomeScreen() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator 
-          initialRouteName="Login"
+          initialRouteName="Login2"
           screenOptions={{ headerShown: false }}
         >
 
-          <Stack.Screen name="Login" component={AddMealPage2} />
-          <Stack.Screen name="Homepage" component={HomePage} />
+          <Stack.Screen name="Login2" component={Login2} />
+          <Stack.Screen name="SignUp2" component={SignUp2} />
+          <Stack.Screen name="SignUp2_2" component={SignUp2_2} />
+          <Stack.Screen name="HomePage" component={HomePage} />
+          <Stack.Screen name="Browse" component={Browse} />
+          <Stack.Screen name="RecipePage" component={RecipePage} />
+          <Stack.Screen name="IngredientCardLarge" component={IngredientCardLarge} />
+          <Stack.Screen name="ProcedureCardLarge" component={ProcedureCardLarge} />
+          <Stack.Screen name="AddMealPage" component={AddMealPage} />
+          <Stack.Screen name="AddMealPage2" component={AddMealPage2} />
+          <Stack.Screen name="AddIngredient" component={AddIngredient} />
+          <Stack.Screen name="AddProcedure" component={AddProcedure} />
+          <Stack.Screen name="ProfilePage" component={ProfilePage} />
+          <Stack.Screen name="UserInfoPage" component={UserInfoPage} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

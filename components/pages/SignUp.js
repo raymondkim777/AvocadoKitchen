@@ -3,7 +3,7 @@ import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
 import UserInfoInput from './UserInfoInput'
 import Modal from 'react-native-modal';
 
-const SignUp = ({onClose}) => {
+const SignUp = ({ navigation, onClose}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkpassword, setCheckPassword] = useState('');

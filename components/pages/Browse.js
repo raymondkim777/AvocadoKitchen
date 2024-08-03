@@ -12,7 +12,7 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
-const Browse = () => {
+const Browse = ({ navigation }) => {
   {/* References */}
   const scrollRef = useRef();
   

@@ -4,10 +4,18 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 
-const Login2 = ({}) => {
+const Login2 = ({ navigation }) => {
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const handleLogin = ({}) => {
+    navigation.navigate('HomePage')
+  }
+
+  const handleSignup = ({}) => {
+    navigation.navigate('SignUp2')
+  }
+ 
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -39,8 +47,8 @@ const Login2 = ({}) => {
           css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
           placeholder={'Enter your password'}
           placeholderTextColor={'#85855B'}
-          value={emailInput}
-          onChangeText={setEmailInput}
+          value={passwordInput}
+          onChangeText={setPasswordInput}
           underlineColorAndroid={'transparent'}
           secureTextEntry={true}
           />
@@ -61,8 +69,8 @@ const Login2 = ({}) => {
 
           {/* Login/SignUp */}
           <View className='flex-row w-full h-fit items-center justify-center mt-2'>
-            <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={null} />
-            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={null} />
+            <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={handleLogin} />
+            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignup} />
           </View>
         </View>
 
