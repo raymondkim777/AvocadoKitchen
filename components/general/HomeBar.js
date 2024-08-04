@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
-import HombarPopup from './HombarPopup';
+import HomebarPopup from './HomebarPopup';
 const HomeBar = ({navigation}) => {
 
   const buttons = [
@@ -34,7 +34,7 @@ const HomeBar = ({navigation}) => {
             <TouchableOpacity onPress={() => handleHomebar(index)} activeOpacity={0.5} key={item.id} className={`w-16 h-16 rounded-full bg-homeBgDark`}/>
           </View>
       ))}
-     <HombarPopup popup={popup} setPopup={setPopup} />
+     <HomebarPopup popup={popup} setPopup={setPopup} />
       
     </View>
   )
