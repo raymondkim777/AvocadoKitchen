@@ -6,7 +6,7 @@ const resources = {
   en: {
     translation: {
       // SideBar
-      "Home": "Hom",
+      "Home": "Home",
       "Recipe Search": "Recipe Search",
       "Add a Meal": "Add a Meal",
       "Info": "Info",
@@ -61,6 +61,13 @@ const resources = {
 
       // HomePage
       "Your Meal Plan": "Your Meal Plan",
+      "Su": "Su",
+      "M": "M",
+      "T": "T",
+      "W": "W",
+      "Th": "Th",
+      "F": "F",
+      "Sa": "Sa",
       "Suggested Meals": "Suggested Meals",
       "Your Meal Plan has:": "Your Meal Plan has:",
       "Breakfast": "Breakfast",
@@ -243,6 +250,13 @@ const resources = {
 
       // HomePage
       "Your Meal Plan": "식단 계획표",
+      "Su": "일",
+      "M": "월",
+      "T": "화",
+      "W": "수",
+      "Th": "목",
+      "F": "금",
+      "Sa": "토",
       "Suggested Meals": "추천 음식",
       "Your Meal Plan has:": "식단 영양성분",
       "Breakfast": "아침",
