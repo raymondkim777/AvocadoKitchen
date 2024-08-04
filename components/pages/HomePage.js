@@ -58,7 +58,7 @@ const NutritionCard = ({item, index}) => (
 
 const { width, height } = Dimensions.get('window');
 
-const HomePage = ({ navigation }) => {
+const HomePage = () => {
   {/* SideBar */}
   const [username, setUsername] = useState('Username');
 
@@ -149,7 +149,7 @@ const HomePage = ({ navigation }) => {
   const currentLanguage = i18n.language;
 
   return (
-    <SafeAreaView id='screen' className='flex-1 flex flex-row w-full h-full justify-center items-center bg-screenBg'>
+    <View id='screen' className='flex flex-row w-full h-full justify-center items-center '>
       {/* SideBar */}
       {
         wideScreen 
@@ -269,7 +269,7 @@ const HomePage = ({ navigation }) => {
             </View>
         }
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
