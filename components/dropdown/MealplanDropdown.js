@@ -25,7 +25,6 @@ const MealplanDropdown = ({options}) => {
             height: 96,
             borderRadius: 8, 
             marginTop: 7,
-            marginLeft: (currentLanguage  === 'ko-KR') ? -35:-23,
             backgroundColor:'#F8FEE8',
             overflow: 'hidden', 
             borderWidth: 0,
