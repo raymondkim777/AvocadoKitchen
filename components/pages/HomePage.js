@@ -159,7 +159,7 @@ const HomePage = ({ navigation }) => {
 
       {/* Content */}
       <View className='flex-col shrink w-full h-full'>
-        <Container id='content' className='shrink w-full h-full'>
+        <Container id='content' className='grow w-full h-fit'>
           <View className='grow w-full h-fit p-4 bg-screenBg'>
             {/* Frame 1 - Calendar */}
             <View className='grow w-full min-h-fit mt-2'>
