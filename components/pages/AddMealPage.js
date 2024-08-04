@@ -7,6 +7,8 @@ import LargeButton from '../general/LargeButton';
 import ProcedureTable from '../recipe/ProcedureTable';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import AddMealPage2 from './AddMealPage2';
+import Modal from 'react-native-modal';
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,6 +19,11 @@ const AddMealPage = ({}) => {
    
   { /* State/Functions */}
   const [mealName, setMealName] = useState('');
+  const [getcontinue, setContinue] = useState(false);
+
+  const handleContinue = ()=>{
+    setContinue(!getcontinue)
+  }
 
   // const [ingredients, setIngredients] = useState(new Array(0));
   // const [procedure, setProcedure] = useState(new Array(0));
@@ -82,6 +89,7 @@ const AddMealPage = ({}) => {
   ];
 
   {/* View */}
+ 
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -182,9 +190,17 @@ const AddMealPage = ({}) => {
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={null} />
+            <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>
+        <Modal
+            className='shrink w-full h-full mx-0 mt-12'
+            isVisible={getcontinue}
+            animationType="slide"
+            onSwipeComplete={handleContinue}
+            swipeDirection="down"  >
+            <AddMealPage2 />
+        </Modal>
       </ScrollView>
     </SafeAreaView>
   )
