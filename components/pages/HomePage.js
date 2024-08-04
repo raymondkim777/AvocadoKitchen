@@ -8,6 +8,7 @@ import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../text/i18n'
 import SideBar from '../general/SideBar';
+import SideBarButton from '../general/SideBarButton';
 
 
 const MealSum = ({callback, title, image, cal}) => (
@@ -60,6 +61,10 @@ const { width, height } = Dimensions.get('window');
 
 const HomePage = () => {
   {/* SideBar */}
+  const [showSideBar, setShowSideBar] = useState(false);
+  const toggleSideBar = () => {
+    setShowSideBar(!showSideBar);
+  }
   const [username, setUsername] = useState('Username');
 
   {/* State/Functions */}
@@ -149,23 +154,33 @@ const HomePage = () => {
   const currentLanguage = i18n.language;
 
   return (
-    <View id='screen' className='flex flex-row w-full h-full justify-center items-center '>
+    <View id='screen' className='flex flex-row w-full h-full justify-center items-center'>
       {/* SideBar */}
-      {
-        wideScreen 
-        ? <SideBar username={username}/>
-        : null
-      }
+      <SideBar 
+      wideScreen={wideScreen}
+      username={username}
+      showSideBar={showSideBar}
+      setShowSideBar={setShowSideBar}
+      />
 
       {/* Content */}
       <View className='flex-col shrink w-full h-full'>
-        <Container id='content' className='grow w-full h-fit'>
+        <ScrollView 
+        contentContainerStyle={{flexGrow: 1}} 
+        id='content' 
+        className='grow w-full h-fit'
+        showsVerticalScrollIndicator={false}>
           <View className='grow w-full h-fit p-4 bg-screenBg'>
             {/* Frame 1 - Calendar */}
             <View className='grow w-full min-h-fit mt-2'>
-              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText mt-2'}>
-                Your Meal Plan
-              </TitleTextComponent>
+              <View className='flex-row w-full h-fit mt-2'>
+                {
+                  wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+                }
+                <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+                  Your Meal Plan
+                </TitleTextComponent>
+              </View>
               {/* Calendar */}
               <View className='grow h-48 mt-2'>
                 <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
@@ -174,20 +189,26 @@ const HomePage = () => {
                       <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                       <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                         onPress={()=>setFocus(index)}>
-                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                            {day}
+                          </TitleTextComponent>
                         </TouchableOpacity>
                       </View> 
                     : index == 6? 
                       <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                         <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                         onPress={()=>setFocus(index)}>
-                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                            {day}
+                          </TitleTextComponent>
                         </TouchableOpacity>
                       </View>
                     : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
                       <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
                         onPress={()=>setFocus(index)}>
-                          <Text className={`font-inconsolataBold text-2xl text-itemText`}>{day}</Text>
+                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                            {day}
+                          </TitleTextComponent>
                         </TouchableOpacity>
                       </View>
                   ))}
@@ -258,16 +279,7 @@ const HomePage = () => {
               </View>
             </View>
           </View>
-        </Container>
-
-        {/* HomeBar */}
-        {
-          wideScreen 
-          ? null
-          : <View id='homebar' className='w-full h-20'>
-              <HomeBar/>
-            </View>
-        }
+        </ScrollView>
       </View>
     </View>
   )
