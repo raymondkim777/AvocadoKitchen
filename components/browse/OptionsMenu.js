@@ -25,7 +25,7 @@ categories, setCatFocus, catColor, catText,
       </View>
 
       {/* Sliders */}
-      <View className='flex-row w-full h-16 mt-2 px-6 py-1 items-center justify-center bg-buttonBg rounded-lg'>
+      <View className='flex-row w-full h-16 mt-2 px-6 items-center justify-center bg-buttonBg rounded-lg'>
         <View className='flex-col shrink w-full h-fit mr-8 items-center justify-center'>
           <View className='w-full h-fit items-center justify-center'>
             <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
@@ -41,7 +41,7 @@ categories, setCatFocus, catColor, catText,
           step={100}
           minimumTrackTintColor={'#85855B'}
           maximumTrackTintColor={'#85855B'}
-          style={{ width: "100%", height: 12, marginBottom: 2, }}
+          style={{ width: "100%", height: 14, }}
           trackStyle={{ height: 4, borderRadius: 20, }}
           thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent', }}
           thumbProps={{
@@ -72,7 +72,7 @@ categories, setCatFocus, catColor, catText,
           step={1000}
           minimumTrackTintColor={'#85855B'}
           maximumTrackTintColor={'#85855B'}
-          style={{ width: "100%", height: 12, marginBottom: 2, }}
+          style={{ width: "100%", height: 12, }}
           trackStyle={{ height: 4, borderRadius: 20, }}
           thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent', }}
           thumbProps={{
