@@ -120,6 +120,14 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
     }
   }
 
+  const [calorieValue, setCalorieValue] = useState(2000);
+  const calorieMinValue = 0;
+  const calorieMaxValue = 5000;
+
+  const [budgetValue, setBudgetValue] = useState(20000);
+  const budgetMinValue = 0;
+  const budgetMaxValue = 100000;
+
   const [searchCat, setSearchCat] = useState(0);
   const [catColor, setCatColor] = useState(['bg-itemText', '', '', '']);
   const [catText, setCatText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText', 'text-itemText']);
@@ -235,6 +243,17 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
                 optionList={optionList} 
                 updateDiet={updateDiet}
                 dietCSS = {dietButtonCSS}
+
+                calorieValue={calorieValue} 
+                setCalorieValue={setCalorieValue}
+                calorieMinValue={calorieMinValue} 
+                calorieMaxValue={calorieMaxValue} 
+
+                budgetValue={budgetValue}
+                setBudgetValue={setBudgetValue}
+                budgetMinValue={budgetMinValue} 
+                budgetMaxValue={budgetMaxValue}
+
                 categories={categories}
                 setCatFocus={setCatFocus}
                 catColor={catColor} 
