@@ -8,23 +8,23 @@ import UserInfoPage from '../pages/UserInfoPage';
 import ProfilePage from '../pages/ProfilePage';
 import Tutorial from '../pages/Tutorial';
 
-const HomeBarPopup = ({ index, setShowSideBar }) => {
+const HomeBarPopup = ({ wideScreen, index, setShowSideBar }) => {
   return (
-      <View className='flex-1'>
-      {index === 0 ? (
-          <HomePage setShowSideBar={setShowSideBar}/>
-      ) : index === 1 ? (
-          <Browse setShowSideBar={setShowSideBar}/>
-      ) : index === 2? (
-          <AddMealPage setShowSideBar={setShowSideBar}/>
-      ) : index === 3 ? (
-          <UserInfoPage setShowSideBar={setShowSideBar}/>
-      ) : index === 4 ? (
-          <ProfilePage setShowSideBar={setShowSideBar}/>
-      ) : index === 5 ? (
-         <Tutorial setShowSideBar={setShowSideBar}/>
-      ) : null}
-          </View>
+    <View className='flex-1'>
+    {index === 0 ? (
+        <HomePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : index === 1 ? (
+        <Browse wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : index === 2? (
+        <AddMealPage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : index === 3 ? (
+        <UserInfoPage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : index === 4 ? (
+        <ProfilePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : index === 5 ? (
+        <Tutorial wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+    ) : null}
+        </View>
   );
 };
 

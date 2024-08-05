@@ -21,17 +21,21 @@ const SideBarView = ({
         </View>
 
         {/* Profile */}
-        <View className='flex-row w-full h-24 px-4 items-center justify-center mt-2'>
-          <View className='w-16 h-16 items-center justify-center border-2 border-itemBgMid rounded-full overflow-hidden bg-buttonBg'>
-            <Image className='w-full h-11' source={require('../../assets/images/logo-transparent.png')} />
+        <View className='flex-row w-full h-fit items-center justify-center mt-6 px-4'>
+          <View className='flex-col w-fit h-fit items-center'>
+            <View className='w-16 h-16 items-center justify-center border-2 border-itemBgMid rounded-full overflow-hidden bg-buttonBg'>
+              <Image className='w-full h-11' source={require('../../assets/images/logo-transparent.png')} />
+            </View>
           </View>
-          <View className='flex-row shrink w-full h-8 mx-2 items-center justify-center'>
-            <TitleTextComponent size={'text-lg'} css={'h-8 text-itemText'}>
-              @
-            </TitleTextComponent>
-            <TitleTextComponent size={'text-lg'} css={'h-8 text-itemText'}>
-              {username}
-            </TitleTextComponent>
+
+          <View className='flex-col shrink w-full ml-2 justify-center'>
+            <View className='grow flex-col w-full items-center justify-center '>
+              <View className='flex-col w-full h-8 justify-center'>
+                <TitleTextComponent size={'text-xl'} sizeDiff={-1} css={'h-8 text-itemText'}>
+                  @{username}
+                </TitleTextComponent>
+              </View>
+            </View>
           </View>
         </View>
 
