@@ -15,6 +15,10 @@ import LargeButton from '../general/LargeButton';
 const { width, height } = Dimensions.get('window');
 
 const ProfilePage = ({ wideScreen, setShowSideBar }) => {
+  const handleLogOut = ({}) => {
+    navigation.navigate('Login2')
+  }
+
   {/* References */}
 
   {/* Data */}
@@ -119,7 +123,7 @@ const ProfilePage = ({ wideScreen, setShowSideBar }) => {
                 <AccountImage image={require('../../assets/images/logo-transparent.png')}/>
               </View>
               <View className='w-28 h-fit mt-2'>
-                <SmallButton text='Logout' callback={null}/>
+                <SmallButton text='Logout' callback={handleLogOut}/>
               </View>
             </View>
 

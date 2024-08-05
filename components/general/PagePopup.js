@@ -8,7 +8,7 @@ import UserInfoPage from '../pages/UserInfoPage';
 import ProfilePage from '../pages/ProfilePage';
 import Tutorial from '../pages/Tutorial';
 
-const HomeBarPopup = ({ wideScreen, index, setShowSideBar }) => {
+const PagePopup = ({ wideScreen, index, setShowSideBar }) => {
   return (
     <View className='flex-1'>
     {index === 0 ? (
@@ -28,4 +28,4 @@ const HomeBarPopup = ({ wideScreen, index, setShowSideBar }) => {
   );
 };
 
-export default HomeBarPopup;
+export default PagePopup;

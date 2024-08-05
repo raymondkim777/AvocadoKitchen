@@ -1,11 +1,9 @@
 import React, {useState, useTransition,} from 'react';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
-import HomeBar from '../general/HomeBar';
 import 'intl-pluralrules';
 import '../text/i18n'
 import SideBar from '../general/SideBar';
-import HomePage from './HomePage';
-import HomeBarPopup from '../general/HomebarPopup';
+import PagePopup from '../general/PagePopup';
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,7 +32,7 @@ const HomeControl = ({ navigation }) => {
         setScreenIdx = {setScreenIdx}
         />
         
-        <HomeBarPopup 
+        <PagePopup 
         wideScreen={wideScreen}
         index={showScreenIdx} 
         setShowSideBar={setShowSideBar}/>
