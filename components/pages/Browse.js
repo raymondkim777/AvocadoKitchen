@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
+import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import OptionsButton from '../browse/OptionsButton';
 import OptionsMenu from '../browse/OptionsMenu';
@@ -12,7 +13,7 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
-const Browse = ({ navigation }) => {
+const Browse = ({ wideScreen, setShowSideBar }) => {
   {/* References */}
   const scrollRef = useRef();
   
@@ -198,7 +199,10 @@ const Browse = ({ navigation }) => {
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
             {/* Title */}
-            <View className='flex-row w-full h-10 items-center justify-between'>
+            <View className='flex-row w-full h-10 justify-between'>
+              {
+                wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+              }
               <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                 Browse Recipes
               </TitleTextComponent>

@@ -10,34 +10,37 @@ import HomeBarPopup from '../general/HomebarPopup';
 const { width, height } = Dimensions.get('window');
 
 const HomeControl = ({ navigation }) => {
-    {/* SideBar */}
-    const [showSideBar, setShowSideBar] = useState(false);
-    
-    const [username, setUsername] = useState('Username');
-    
-    const [showScreenIdx,setScreenIdx] = useState(0);
-    const handleScreenIdx = (index) => {
-        setScreenIdx(index);
-    }
+  {/* SideBar */}
+  const [showSideBar, setShowSideBar] = useState(false);
+  
+  const [username, setUsername] = useState('Username');
+  
+  const [showScreenIdx,setScreenIdx] = useState(0);
+  const handleScreenIdx = (index) => {
+      setScreenIdx(index);
+  }
 
-    
-    const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
-    const Container = wideScreen ?  View : SafeAreaView;
-    return (
-        <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
-            {/* SideBar */}
-            <SideBar 
-            wideScreen={wideScreen}
-            username={username}
-            showSideBar={showSideBar}
-            setShowSideBar={setShowSideBar}
-            setScreenIdx = {setScreenIdx}
-            />
-            
-            <HomeBarPopup index={showScreenIdx} setShowSideBar={setShowSideBar}/>
-            
-        </Container>
-    );
+  
+  const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
+  const Container = wideScreen ?  View : SafeAreaView;
+  return (
+    <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
+        {/* SideBar */}
+        <SideBar 
+        wideScreen={wideScreen}
+        username={username}
+        showSideBar={showSideBar}
+        setShowSideBar={setShowSideBar}
+        setScreenIdx = {setScreenIdx}
+        />
+        
+        <HomeBarPopup 
+        wideScreen={wideScreen}
+        index={showScreenIdx} 
+        setShowSideBar={setShowSideBar}/>
+        
+    </Container>
+  );
 }
 
 export default HomeControl;

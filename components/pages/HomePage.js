@@ -59,11 +59,7 @@ const NutritionCard = ({item, index}) => (
 
 const { width, height } = Dimensions.get('window');
 
-const HomePage = ({setShowSideBar}) => {
-  const toggleSideBar = () => {
-    setShowSideBar(!showSideBar);
-}
-
+const HomePage = ({wideScreen, setShowSideBar}) => {
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {
@@ -145,7 +141,6 @@ const HomePage = ({setShowSideBar}) => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
-  const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
@@ -163,9 +158,11 @@ const HomePage = ({setShowSideBar}) => {
             {/* Frame 1 - Calendar */}
             <View className='grow w-full min-h-fit mt-2'>
               <View className='flex-row w-full h-fit mt-2'>
-                {
-                  wideScreen ? null : <SideBarButton callback={setShowSideBar} />
-                }
+                <View className='w-fit h-fit ml-2'>
+                  {
+                    wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+                  }
+                </View>
                 <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                   Your Meal Plan
                 </TitleTextComponent>

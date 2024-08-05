@@ -3,6 +3,7 @@ import { SafeAreaView, ScrollView, View, Text, FlatList, } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import FoodCard from '../profile/FoodCard';
 
@@ -10,7 +11,7 @@ const FoodCardDiv = () => (
   <View className='w-4'/>
 )
 
-const UserInfoPage = ({}) => {
+const UserInfoPage = ({ wideScreen, setShowSideBar }) => {
   const avoidFood = [
     {
       id: '0',
@@ -71,7 +72,10 @@ const UserInfoPage = ({}) => {
       <ScrollView className='grow w-full h-fit'>
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
-          <View className='flex-row w-full h-10 items-center justify-between'>
+          <View className='flex-row w-full h-10 justify-between'>
+            {
+              wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+            }
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Information
             </TitleTextComponent>

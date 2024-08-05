@@ -1,5 +1,6 @@
 import React, { useState, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import IngredientsTable from '../recipe/IngredientsTable';
 import SmallButton from '../general/SmallButton';
@@ -12,7 +13,7 @@ import Modal from 'react-native-modal';
 
 const { width, height } = Dimensions.get('window');
 
-const AddMealPage = ({}) => {
+const AddMealPage = ({ wideScreen, setShowSideBar }) => {
   {/* References */}
   
   {/* Data */}
@@ -96,9 +97,12 @@ const AddMealPage = ({}) => {
       <ScrollView className='grow w-full h-fit'>
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
-          <View className='flex-row w-full h-10 items-center justify-between'>
+          <View className='flex-row w-full h-fit justify-between mt-2'>
+            {
+              wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+            }
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-              Add Your Meal
+            Add Your Meal
             </TitleTextComponent>
             <ExitButton/>
           </View>
