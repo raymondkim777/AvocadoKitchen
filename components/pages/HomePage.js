@@ -59,13 +59,10 @@ const NutritionCard = ({item, index}) => (
 
 const { width, height } = Dimensions.get('window');
 
-const HomePage = () => {
-  {/* SideBar */}
-  const [showSideBar, setShowSideBar] = useState(false);
+const HomePage = ({setShowSideBar}) => {
   const toggleSideBar = () => {
     setShowSideBar(!showSideBar);
-  }
-  const [username, setUsername] = useState('Username');
+}
 
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
@@ -148,21 +145,13 @@ const HomePage = () => {
   
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
-  const wideScreen = (height / width) < 1.4;
+  const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
   return (
-    <View id='screen' className='flex flex-row w-full h-full justify-center items-center'>
-      {/* SideBar */}
-      <SideBar 
-      wideScreen={wideScreen}
-      username={username}
-      showSideBar={showSideBar}
-      setShowSideBar={setShowSideBar}
-      />
-
+    <View id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
       <View className='flex-col shrink w-full h-full'>
         <ScrollView 

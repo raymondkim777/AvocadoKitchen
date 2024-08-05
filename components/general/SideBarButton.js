@@ -8,4 +8,4 @@ const SideBarButton = ({ callback }) => (
   </TouchableOpacity>
 )
 
-export default SideBarButton
+export default SideBarButton;

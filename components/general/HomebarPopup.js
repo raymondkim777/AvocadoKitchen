@@ -1,40 +1,30 @@
 import React from 'react';
 import Modal from 'react-native-modal';
 import { View } from 'react-native';
+import HomePage from '../pages/HomePage';
 import Browse from '../pages/Browse';
 import AddMealPage from '../pages/AddMealPage';
+import UserInfoPage from '../pages/UserInfoPage';
+import ProfilePage from '../pages/ProfilePage';
+import Tutorial from '../pages/Tutorial';
 
-const HomeBarPopup = ({ popup, setPopup }) => {
-
-  const handleCloseModal = (index) => {
-    const newPopup = [...popup];
-    newPopup[index] = false; 
-    setPopup(newPopup);
-  };
-
+const HomeBarPopup = ({ index, setShowSideBar }) => {
   return (
-    <>
-      {popup.map((isVisible, index) => {
-        return (
-          <Modal
-            className='shrink w-full h-full mx-0 mt-6'
-            key={`modal-${index}`}
-            isVisible={isVisible}
-            animationType="slide"
-            onSwipeComplete={() => handleCloseModal(index)}
-            swipeDirection="down"  
-          >
-            <View className='w-full h-full'>
-            {index === 0 ? (
-                <Browse />
-            ) : index === 1 ? (
-                <AddMealPage />
-            ) : null}
-            </View>
-          </Modal>
-        );
-      })}
-    </>
+      <View className='flex-1'>
+      {index === 0 ? (
+          <HomePage setShowSideBar={setShowSideBar}/>
+      ) : index === 1 ? (
+          <Browse setShowSideBar={setShowSideBar}/>
+      ) : index === 2? (
+          <AddMealPage setShowSideBar={setShowSideBar}/>
+      ) : index === 3 ? (
+          <UserInfoPage setShowSideBar={setShowSideBar}/>
+      ) : index === 4 ? (
+          <ProfilePage setShowSideBar={setShowSideBar}/>
+      ) : index === 5 ? (
+         <Tutorial setShowSideBar={setShowSideBar}/>
+      ) : null}
+          </View>
   );
 };
 

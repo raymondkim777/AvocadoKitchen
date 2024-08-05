@@ -6,7 +6,7 @@ import SideBarModal from './SideBarModal';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SideBarView from './SideBarView';
 
-const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar }) => {
+const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar ,setScreenIdx }) => {
   const pages = [
     'Home', 
     'Recipe Search', 
@@ -27,6 +27,7 @@ const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar }) => {
     const new_text = new Array(pages.length).fill('text-itemText');
     new_text[index] = 'text-itemBgLight';
     setTextCSS(new_text);
+    setScreenIdx(index);
   }
 
   return (
@@ -36,7 +37,8 @@ const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar }) => {
       username={username}
       updatePage={updatePage}
       buttonCSS={buttonCSS}
-      textCSS={textCSS} />
+      textCSS={textCSS} 
+      />
     : <SideBarModal 
       pages={pages}
       username={username}

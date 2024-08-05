@@ -5,7 +5,7 @@ import SideBarPage from './SideBarPage';
 
 const SideBarView = ({
   pages, username, 
-  updatePage, buttonCSS, textCSS
+  updatePage, buttonCSS, textCSS, setScreenIdx
 }) => (
   <View className='w-64 h-full'>
     <ScrollView 
@@ -43,7 +43,8 @@ const SideBarView = ({
             callback={updatePage} 
             index={index}
             buttonCSS={buttonCSS}
-            textCSS={textCSS} />
+            textCSS={textCSS}
+             />
           ))}
         </View>
 

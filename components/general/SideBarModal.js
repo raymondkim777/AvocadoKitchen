@@ -7,7 +7,7 @@ import SideBarView from './SideBarView';
 const SideBarModal = ({ 
   pages, username, 
   updatePage, buttonCSS, textCSS,
-  showSideBar, setShowSideBar,
+  showSideBar, setShowSideBar,setScreenIdx
  }) => (
   <Modal 
   className='w-full h-full m-0'
@@ -23,7 +23,8 @@ const SideBarModal = ({
     username={username}
     updatePage={updatePage}
     buttonCSS={buttonCSS}
-    textCSS={textCSS} />
+    textCSS={textCSS}
+    setScreenIdx={setScreenIdx} />
   </Modal>
 )
 

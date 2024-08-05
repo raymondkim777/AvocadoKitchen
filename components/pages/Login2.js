@@ -9,7 +9,7 @@ const Login2 = ({ navigation }) => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const handleLogin = ({}) => {
-    navigation.navigate('HomePage')
+    navigation.navigate('HomeControl')
   }
 
   const handleSignup = ({}) => {

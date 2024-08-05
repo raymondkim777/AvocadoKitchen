@@ -18,7 +18,7 @@ import AddIngredient from './components/pages/AddIngredient';
 import AddProcedure from './components/pages/AddProcedure';
 import ProfilePage from './components/pages/ProfilePage';
 import UserInfoPage from './components/pages/UserInfoPage';
-
+import HomeControl from './components/pages/HomeControl';
 const Stack = createStackNavigator();
 
 export default function HomeScreen() {
@@ -48,7 +48,7 @@ export default function HomeScreen() {
           <Stack.Screen name="AddProcedure" component={AddProcedure} />
           <Stack.Screen name="ProfilePage" component={ProfilePage} />
           <Stack.Screen name="UserInfoPage" component={UserInfoPage} />
-
+          <Stack.Screen name="HomeControl" component={HomeControl} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
