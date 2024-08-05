@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, ScrollView,  } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import SideBarButton from '../general/SideBarButton';
+import ExitButton from '../general/ExitButton';
 import DietButton from '../browse/DietButton';
 import Tag from '../addfunction/Tag';
 import TagSuggest from '../addfunction/TagSuggest';
@@ -12,10 +14,13 @@ import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
-const ProfilePage = () => {
+const ProfilePage = ({ wideScreen, setShowSideBar }) => {
   {/* References */}
 
   {/* Data */}
+  const username = 'Username';
+  const email = 'testemailaddress.gmail.com';
+
   const optionList = [
     'Lacto-Ovo', 
     'Lacto', 
@@ -96,22 +101,45 @@ const ProfilePage = () => {
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView className='w-full h-full'>
         <View id='content' className='w-full h-fit p-4'>
+          {/* Title */}
+          <View className='flex-row w-full h-fit justify-between mt-2'>
+            {
+              wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+            }
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+              Profile Settings
+            </TitleTextComponent>
+            <ExitButton/>
+          </View>
+
           {/* Profile */}
-          <View className='flex-col w-full h-fit'>
-            <View className='flex-row w-full h-fit'>
+          <View className='flex-row w-full h-fit items-center justify-center mt-6'>
+            <View className='flex-col w-fit h-fit items-center'>
               <View className='w-28 h-fit items-center justify-center'>
                 <AccountImage image={require('../../assets/images/logo-transparent.png')}/>
               </View>
-            </View>
-            <View className='flex-row w-full h-fit justify-start mt-2'>
-              <View className='w-28 h-fit'>
+              <View className='w-28 h-fit mt-2'>
                 <SmallButton text='Logout' callback={null}/>
               </View>
+            </View>
+
+            <View className='flex-col shrink w-full ml-2 justify-center'>
+              <View className='grow flex-col w-full items-center justify-center '>
+                <View className='flex-col w-full h-12'>
+                  <TitleTextComponent size={'text-2xl'} css={'h-8 text-screenText'}>
+                    @{username}
+                  </TitleTextComponent>
+                  <TitleTextComponent size={'text-lg'} css={'h-6 -mt-1 text-screenText'}>
+                    {email}
+                  </TitleTextComponent>
+                </View>
+              </View>
+              <View className='w-full h-11'/>
             </View>
           </View>
           
           {/* Diet Options */}
-          <View className='flex-col w-full min-h-16 h-fit items-center justify-center mt-6'>
+          <View className='flex-col w-full min-h-16 h-fit items-center justify-center mt-10'>
             <View className='w-full h-6'>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
                 Select your diet
