@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, ScrollView,  } from 'react-native';
+import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import SideBarButton from '../general/SideBarButton';
@@ -100,6 +101,10 @@ const ProfilePage = ({ wideScreen, setShowSideBar }) => {
   const removeAllergy = (tagID) => {
     // ADD LATER
   }
+
+  const budgetMinValue = 0;
+  const budgetMaxValue = 100000;
+  const [budgetValue, setBudgetValue] = useState(20000);
   
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -245,11 +250,28 @@ const ProfilePage = ({ wideScreen, setShowSideBar }) => {
                 :
               </TitleTextComponent>
               <TitleTextComponent size={'text-xl'} css={'text-screenText'}>
-                ₩50,000
+                ₩{budgetValue}
               </TitleTextComponent>
             </View>
-            <View className='w-full h-12 bg-itemBgLight rounded-lg mt-2'>
-
+            <View className='w-full h-fit mt-4'>
+              <Slider
+              value={budgetValue}
+              onValueChange={(value)=>setBudgetValue(value)}
+              onSlidingComplete={(value)=>setBudgetValue(value)}
+              minimumValue={budgetMinValue}
+              maximumValue={budgetMaxValue}
+              step={1000}
+              minimumTrackTintColor={'#DFDFC8'}
+              maximumTrackTintColor={'#DFDFC8'}
+              style={{ width: "100%", height: 14, }}
+              trackStyle={{ height: 6, borderRadius: 20, }}
+              thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent', }}
+              thumbProps={{
+                children: (
+                  <View className='w-full h-full rounded-full bg-itemBgLight border-2 border-itemText'/>
+                )
+              }}
+              />
             </View>
           </View>
 
