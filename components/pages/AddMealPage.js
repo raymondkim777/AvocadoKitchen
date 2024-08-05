@@ -197,13 +197,15 @@ const AddMealPage = ({ wideScreen, setShowSideBar }) => {
             <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>
+
         <Modal
-            className='shrink w-full h-full mx-0 mt-12'
-            isVisible={getcontinue}
-            animationType="slide"
-            onSwipeComplete={handleContinue}
-            swipeDirection="down"  >
-            <AddMealPage2 />
+          className='shrink w-full h-full mx-0 mt-12'
+          isVisible={getcontinue}
+          animationType="slide"
+          onSwipeComplete={handleContinue}
+          swipeDirection="down"
+          propagateSwipe>
+          <AddMealPage2 />
         </Modal>
       </ScrollView>
     </SafeAreaView>
