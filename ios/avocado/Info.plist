@@ -63,5 +63,11 @@
 		<string>NPS-Bold.ttf</string>
 		<string>NPS-ExtraBold.ttf</string>
 	</array>
+	<key>Supported Platforms</key>
+	<array>
+		<string>iPhoneOS</string>
+		<string>iPadOS</string>
+		<string>macOS</string>
+	</array>
 </dict>
 </plist>

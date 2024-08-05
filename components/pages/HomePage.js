@@ -149,7 +149,7 @@ const HomePage = () => {
   const currentLanguage = i18n.language;
 
   return (
-    <View id='screen' className='flex flex-row w-full h-full justify-center items-center '>
+    <SafeAreaView id='screen' className='flex flex-row w-full h-full justify-center items-center flex-1 '>
       {/* SideBar */}
       {
         wideScreen 
@@ -269,7 +269,7 @@ const HomePage = () => {
             </View>
         }
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
