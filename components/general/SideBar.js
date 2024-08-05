@@ -16,11 +16,25 @@ const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar ,setScreenI
     'Tutorial',
   ];
   const [pageIndex, setPageIndex] = useState(0);
-  const [buttonCSS, setButtonCSS] = useState(new Array(pages.length).fill('bg-itemBgLight'));
-  const [textCSS, setTextCSS] = useState(new Array(pages.length).fill('text-itemText'));
+  const [buttonCSS, setButtonCSS] = useState(
+    new Array(pageIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(pages.length - pageIndex - 1).fill('')
+      )
+    )
+  );
+  const [textCSS, setTextCSS] = useState(
+    new Array(pageIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(pages.length - pageIndex - 1).fill('text-itemText')
+      )
+    )
+  );
   const updatePage = (index) => {
     setPageIndex(index);
-    const new_button = new Array(pages.length).fill('bg-itemBgLight');
+    setShowSideBar(false);
+
+    const new_button = new Array(pages.length).fill('');
     new_button[index] = 'bg-itemText';
     setButtonCSS(new_button);
 

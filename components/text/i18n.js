@@ -44,7 +44,7 @@ const resources = {
       "Gluten Free": "Gluten Free",
 
       // Profile
-      "Profile Settings": "Profile Settings",
+      "Profile": "Profile",
       "Logout": "Logout", 
       "Coupang/MarketCurly Accounts": "Coupang/MarketCurly Accounts",
 
@@ -234,7 +234,7 @@ const resources = {
       "Gluten Free": "글루텐 프리",
 
       // Profile
-      "Profile Settings": "유저 설정",
+      "Profile": "유저 설정",
       "Logout": "로그아웃", 
       "Coupang/MarketCurly Accounts": "쿠팡/마켓컬리 계정",
 

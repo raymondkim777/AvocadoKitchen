@@ -107,7 +107,7 @@ const ProfilePage = ({ wideScreen, setShowSideBar }) => {
               wideScreen ? null : <SideBarButton callback={setShowSideBar} />
             }
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-              Profile Settings
+              Profile
             </TitleTextComponent>
             <ExitButton/>
           </View>

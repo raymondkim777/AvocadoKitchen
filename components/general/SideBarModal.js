@@ -13,7 +13,9 @@ const SideBarModal = ({
   className='w-full h-full m-0'
   isVisible={showSideBar}
   animationIn={'slideInLeft'}
+  animationInTiming={300}
   animationOut={'slideOutLeft'}
+  animationOutTiming={600}
   onSwipeComplete={() => setShowSideBar(false)}
   swipeDirection='left'
   onBackdropPress={() => setShowSideBar(false)}
