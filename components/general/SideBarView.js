@@ -40,7 +40,7 @@ const SideBarView = ({
         </View>
 
         {/* Page Buttons */}
-        <View className='grow flex-col w-full h-fit items-center justify-center py-2'>
+        <View className='grow flex-col w-full h-fit items-center justify-center py-2 mt-4'>
           {pages.map((item, index) => (
             <SideBarPage 
             text={item} 
