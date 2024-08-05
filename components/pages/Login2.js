@@ -12,14 +12,14 @@ const Login2 = ({ navigation }) => {
     navigation.navigate('HomeControl')
   }
 
-  const handleSignup = ({}) => {
+  const handleSignUp = ({}) => {
     navigation.navigate('SignUp2')
   }
  
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <View id='content' className='grow w-full h-full items-center justify-center p-8'>
+      <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>
         {/* Logo */}
         <View className='w-full h-fit flex items-center justify-end -mt-12'>
           <Image className='w-[160px] h-[160px]' source={require('../../assets/images/Logo.png')} />
@@ -70,7 +70,7 @@ const Login2 = ({ navigation }) => {
           {/* Login/SignUp */}
           <View className='flex-row w-full h-fit items-center justify-center mt-2'>
             <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={handleLogin} />
-            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignup} />
+            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUp} />
           </View>
         </View>
 

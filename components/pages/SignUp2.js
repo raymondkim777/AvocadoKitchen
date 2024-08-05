@@ -20,7 +20,7 @@ const SignUp2 = ({navigation}) => {
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <View id='content' className='grow w-full h-full items-center justify-center p-8'>
+      <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>
 
         {/* Logo */}
         <View className='grow w-full h-36 max-h-64 flex items-center justify-end'>
