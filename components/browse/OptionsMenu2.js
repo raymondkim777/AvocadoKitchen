@@ -60,7 +60,7 @@ const OptionsMenu2 = ({
             {/* DropDown */}
             {
               showDropDown 
-              ? <View className='absolute -bottom-40 z-10 left-0 w-24 h-40 py-2'>
+              ? <View className='absolute -bottom-40 left-0 w-24 h-40 py-2'>
                   <View className='flex-col w-24 h-fit bg-buttonBg rounded-xl'>
                     {filterList.map((item, index)=>(
                       <TouchableOpacity className={`w-24 h-7 items-center justify-center rounded-xl ${dropDownButtonCSS[index]}`}
