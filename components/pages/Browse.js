@@ -5,7 +5,7 @@ import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import OptionsButton from '../browse/OptionsButton';
-import OptionsMenu from '../browse/OptionsMenu';
+import OptionsMenu1 from '../browse/OptionsMenu1';
 import PageButton from '../browse/PageButton';
 import PageMenu from '../browse/PageMenu';
 import RecipeCard from '../browse/RecipeCard';
@@ -239,7 +239,7 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
           {/* Frame 2 - Options */}
           {
             showOptions
-            ? <OptionsMenu 
+            ? <OptionsMenu1 
                 optionList={optionList} 
                 updateDiet={updateDiet}
                 dietCSS = {dietButtonCSS}

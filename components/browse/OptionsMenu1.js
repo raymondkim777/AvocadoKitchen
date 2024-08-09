@@ -4,7 +4,7 @@ import { Slider } from '@rneui/themed';
 import DietButton from './DietButton';
 import TitleTextComponent from '../text/TitleTextComponent';
 
-const OptionsMenu = ({
+const OptionsMenu1 = ({
 optionList, updateDiet, dietCSS,
 calorieValue, setCalorieValue, calorieMinValue, calorieMaxValue,
 budgetValue, setBudgetValue, budgetMinValue, budgetMaxValue,
@@ -111,4 +111,4 @@ categories, setCatFocus, catColor, catText,
   )
 }
 
-export default OptionsMenu
+export default OptionsMenu1
