@@ -266,7 +266,7 @@ const HomePage = ({wideScreen, setShowSideBar}) => {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

@@ -6,7 +6,7 @@ import SideBarModal from './SideBarModal';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SideBarView from './SideBarView';
 
-const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar ,setScreenIdx }) => {
+const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar, setScreenIdx }) => {
   const pages = [
     'Home', 
     'Recipe Search', 

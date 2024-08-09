@@ -1,6 +1,5 @@
 import React from 'react';
 import { NativeWindStyleSheet } from "nativewind";
-import { SafeAreaView, Text, View, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -19,6 +18,7 @@ import AddProcedure from './components/pages/AddProcedure';
 import ProfilePage from './components/pages/ProfilePage';
 import UserInfoPage from './components/pages/UserInfoPage';
 import HomeControl from './components/pages/HomeControl';
+
 const Stack = createStackNavigator();
 
 export default function HomeScreen() {

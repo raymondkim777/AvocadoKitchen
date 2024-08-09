@@ -4,7 +4,7 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 
-const SignUp2 = ({navigation}) => {
+const SignUp2 = ({ navigation }) => {
 
   const [emailInput, setEmailInput] = useState('');
   const [usernameInput, setUsernameInput] = useState('');

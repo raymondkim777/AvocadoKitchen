@@ -13,18 +13,17 @@ import Modal from 'react-native-modal';
 
 const { width, height } = Dimensions.get('window');
 
-const AddMealPage = ({ wideScreen, setShowSideBar }) => {
+const AddMealPage = ({ navigation, wideScreen, setShowSideBar }) => {
+  const handleContinue = ()=>{
+    navigation.navigate('AddMealPage2')
+  }
+  
   {/* References */}
   
   {/* Data */}
    
   { /* State/Functions */}
   const [mealName, setMealName] = useState('');
-  const [getcontinue, setContinue] = useState(false);
-
-  const handleContinue = ()=>{
-    setContinue(!getcontinue)
-  }
 
   // const [ingredients, setIngredients] = useState(new Array(0));
   // const [procedure, setProcedure] = useState(new Array(0));
@@ -197,16 +196,6 @@ const AddMealPage = ({ wideScreen, setShowSideBar }) => {
             <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>
-
-        <Modal
-          className='shrink w-full h-full mx-0 mt-12'
-          isVisible={getcontinue}
-          animationType="slide"
-          onSwipeComplete={handleContinue}
-          swipeDirection="down"
-          propagateSwipe>
-          <AddMealPage2 />
-        </Modal>
       </ScrollView>
     </SafeAreaView>
   )

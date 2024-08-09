@@ -33,6 +33,7 @@ const HomeControl = ({ navigation }) => {
         />
         
         <PagePopup 
+        navigation={navigation}
         wideScreen={wideScreen}
         index={showScreenIdx} 
         setShowSideBar={setShowSideBar}/>

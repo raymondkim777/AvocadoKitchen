@@ -11,7 +11,11 @@ import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
-const AddMealPage2 = ({}) => {
+const AddMealPage2 = ({ navigation }) => {
+  const handleBack = ()=>{
+    navigation.navigate('AddMealPage')
+  }
+
   {/* References */}
   
   {/* Data */}
@@ -111,7 +115,7 @@ const AddMealPage2 = ({}) => {
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
-            <BackButton/>
+            <BackButton callback={handleBack}/>
             <ExitButton/>
           </View>
 
