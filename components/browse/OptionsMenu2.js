@@ -6,7 +6,7 @@ const OptionsMenu2 = ({
   filterList, filterIndex, updateFilterIndex,
   filterDir, filterDirIdx, shiftFilterDirIdx
 }) => {
-  const [showDropDown, setShowDropDown] = useState(true);
+  const [showDropDown, setShowDropDown] = useState(false);
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
     new Array(filterIndex).fill('').concat(
       ['bg-itemText'].concat(
