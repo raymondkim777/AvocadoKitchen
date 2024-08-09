@@ -6,6 +6,7 @@ import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import OptionsButton from '../browse/OptionsButton';
 import OptionsMenu1 from '../browse/OptionsMenu1';
+import OptionsMenu2 from '../browse/OptionsMenu2';
 import PageButton from '../browse/PageButton';
 import PageMenu from '../browse/PageMenu';
 import RecipeCard from '../browse/RecipeCard';
@@ -103,7 +104,8 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
   { /* State/Functions */}
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [showOptions, setShowOptions] = useState(false);
+  const [showOptions1, setShowOptions1] = useState(false);
+  const [showOptions2, setShowOptions2] = useState(false);
 
   const [dietIndex, setDietIndex] = useState(-1);
   const [dietButtonCSS, setDietButtonCSS] = useState(new Array(optionList.length).fill(''));
@@ -232,13 +234,13 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
                 />
                 <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
               </View>
-              <OptionsButton callback={setShowOptions} showOptions={showOptions}/>
+              <OptionsButton callback={setShowOptions1} showOptions={showOptions1}/>
             </View>
           </View>
 
           {/* Frame 2 - Options */}
           {
-            showOptions
+            showOptions1
             ? <OptionsMenu1 
                 optionList={optionList} 
                 updateDiet={updateDiet}
@@ -267,11 +269,19 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4 mt-2'}>
                 Results
               </TitleTextComponent>
-              <OptionsButton/>
+              <OptionsButton callback={setShowOptions2} showOptions={showOptions2}/>
             </View>
             
-            {/* List */}
-            <View className='flex-col w-full h-fit mt-1'>
+            {
+              showOptions2 
+              ? <OptionsMenu2 />
+              : null
+            }
+          </View>
+
+
+          {/* Frame 4 - Cards */}
+          <View className='flex-col w-full h-fit mt-1'>
             {recipesShown.map((item) => (
               <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
               activeOpacity={0.9}>
@@ -288,7 +298,6 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
             {/* Page Numbers */}
             <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
           </View>
-        </View>
       </ScrollView>
     </SafeAreaView>
   )
