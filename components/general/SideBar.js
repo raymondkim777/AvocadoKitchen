@@ -9,6 +9,7 @@ import SideBarView from './SideBarView';
 const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar, setScreenIdx }) => {
   const pages = [
     'Home', 
+    'My Meals',
     'Recipe Search', 
     'Add a Meal', 
     'Info', 

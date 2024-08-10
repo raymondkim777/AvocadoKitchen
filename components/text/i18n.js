@@ -7,6 +7,7 @@ const resources = {
     translation: {
       // SideBar
       "Home": "Home",
+      "My Meals": "My Meals",
       "Recipe Search": "Recipe Search",
       "Add a Meal": "Add a Meal",
       "Info": "Info",
@@ -83,6 +84,17 @@ const resources = {
       "Chili Hot Dog": "Chili Hot Dog", 
       "Apple Pie": "Apple Pie",
       "Sirloin Steak": "Sirloin Steak",
+
+      // My Meals
+      "My Meals": "My Meals",
+      "Average Daily Stats": "Average Daily Stats",
+      "Sunday": "Sunday",
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -199,6 +211,7 @@ const resources = {
     translation: {
       // SideBar
       "Home": "홈",
+      "My Meals": "내 식단",
       "Recipe Search": "레시피 검색",
       "Add a Meal": "음식 추가",
       "Info": "정보",
@@ -274,6 +287,18 @@ const resources = {
       "Tuna Sandwich": "참치 샌드위치", 
       "Chili Hot Dog": "칠리 핫도그", 
       "Apple Pie": "애플 파이",
+      "Sirloin Steak": "안심 스테이크",
+
+      // My Meals
+      "My Meals": "내 식단",
+      "Average Daily Stats": "하루 당 영앙성분",
+      "Sunday": "일요일",
+      "Monday": "월요일",
+      "Tuesday": "화요일",
+      "Wednesday": "수요일",
+      "Thursday": "목요일",
+      "Friday": "금요일",
+      "Saturday": "토요일",
 
       // Browse
       "Browse Recipes": "레시피 찾기",

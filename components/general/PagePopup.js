@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import HomePage from '../pages/HomePage';
+import MyMeals from '../pages/MyMeals';
 import Browse from '../pages/Browse';
 import AddMealPage from '../pages/AddMealPage';
 import UserInfoPage from '../pages/UserInfoPage';
@@ -13,14 +14,16 @@ const PagePopup = ({ navigation, wideScreen, index, setShowSideBar }) => {
       {index === 0 ? (
         <HomePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : index === 1 ? (
+        <MyMeals wideScreen={wideScreen} setShowSideBar={setShowSideBar} />
+      ) : index === 2 ? (
         <Browse wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
-      ) : index === 2? (
+      ) : index === 3? (
         <AddMealPage navigation={navigation} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
-      ) : index === 3 ? (
-        <UserInfoPage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : index === 4 ? (
-        <ProfilePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+        <UserInfoPage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : index === 5 ? (
+        <ProfilePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+      ) : index === 6 ? (
         <Tutorial wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : null}
     </View>

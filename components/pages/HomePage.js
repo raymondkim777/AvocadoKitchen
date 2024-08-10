@@ -15,15 +15,12 @@ const MealSum = ({callback, title, image, cal}) => (
   activeOpacity={0.7} onPress={()=>callback()}>
     <Image className='flex flex-1 h-full rounded-md' source={image} />
     <View className='flex flex-1 flex-col h-full items-center justify-center'>
-      <TitleTextComponent translate={true} size={'text-2xl'} bold={true} css={'text-itemText -mt-2'}>
+      <TitleTextComponent translate={true} size={'text-2xl'} bold={true} css={'text-center text-itemText -mt-2'}>
         {title}
       </TitleTextComponent>
       <View className='flex-row w-full h-12 items-center justify-center'>
-        <ItemLargeTextComponent bold={true} size={'text-4xl'} css={'text-itemText mr-2'}>
-          {cal}
-        </ItemLargeTextComponent>
-        <ItemLargeTextComponent translate={true} bold={true} size={'text-4xl'} css={'text-itemText'}>
-          Cal
+        <ItemLargeTextComponent bold={true} size={'text-4xl'} css={'text-itemText'}>
+          {cal} Cal
         </ItemLargeTextComponent>
       </View>
     </View>
@@ -33,7 +30,7 @@ const MealSum = ({callback, title, image, cal}) => (
 const MealCard = ({callback, title, image}) => (
   <TouchableOpacity className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'
   activeOpacity={0.9} onPress={()=>callback()}>
-    <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-itemText text-center'}>
+    <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-center text-itemText text-center'}>
       {title}
     </ItemTextComponent>
     <Image className='flex flex-1 w-full mt-1 rounded-md' source={image} /> 

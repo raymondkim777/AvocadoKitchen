@@ -23,20 +23,20 @@ const HomeControl = ({ navigation }) => {
   const Container = wideScreen ?  View : SafeAreaView;
   return (
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
-        {/* SideBar */}
-        <SideBar 
-        wideScreen={wideScreen}
-        username={username}
-        showSideBar={showSideBar}
-        setShowSideBar={setShowSideBar}
-        setScreenIdx = {setScreenIdx}
-        />
-        
-        <PagePopup 
-        navigation={navigation}
-        wideScreen={wideScreen}
-        index={showScreenIdx} 
-        setShowSideBar={setShowSideBar}/>
+      {/* SideBar */}
+      <SideBar 
+      wideScreen={wideScreen}
+      username={username}
+      showSideBar={showSideBar}
+      setShowSideBar={setShowSideBar}
+      setScreenIdx = {setScreenIdx}
+      />
+      
+      <PagePopup 
+      navigation={navigation}
+      wideScreen={wideScreen}
+      index={showScreenIdx} 
+      setShowSideBar={setShowSideBar}/>
         
     </Container>
   );
