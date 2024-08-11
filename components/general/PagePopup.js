@@ -22,7 +22,7 @@ const PagePopup = ({ navigation, wideScreen, index, setShowSideBar }) => {
       ) : index === 4 ? (
         <UserInfoPage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : index === 5 ? (
-        <ProfilePage wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
+        <ProfilePage navigation={navigation} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : index === 6 ? (
         <Tutorial wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>
       ) : null}

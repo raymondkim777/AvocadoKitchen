@@ -15,7 +15,7 @@ import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
-const ProfilePage = ({ wideScreen, setShowSideBar }) => {
+const ProfilePage = ({ navigation, wideScreen, setShowSideBar }) => {
   const handleLogOut = ({}) => {
     navigation.navigate('Login2')
   }
