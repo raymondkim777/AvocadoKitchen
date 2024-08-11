@@ -11,7 +11,7 @@ const FoodCardDiv = () => (
   <View className='w-4'/>
 )
 
-const UserInfoPage = ({ wideScreen, setShowSideBar }) => {
+const UserInfoPage = ({ navigation, wideScreen, setShowSideBar }) => {
   const avoidFood = [
     {
       id: '0',

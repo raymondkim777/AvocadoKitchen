@@ -1,12 +1,18 @@
 import React, { useState, } from 'react';
-import { View, Image, TouchableOpacity, Modal, } from 'react-native';
-import TitleTextComponent from '../text/TitleTextComponent';
-import SideBarPage from './SideBarPage';
+import { CommonActions } from '@react-navigation/native';
 import SideBarModal from './SideBarModal';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SideBarView from './SideBarView';
 
-const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar, setScreenIdx }) => {
+const SideBar = ({ navigation, PageStack, wideScreen, username, showSideBar, setShowSideBar }) => {
+  const pageID = [
+    'HomePage', 
+    'MyMeals',
+    'Browse',
+    'AddMealPage',
+    'UserInfoPage',
+    'ProfilePage',
+    'Tutorial',
+  ];
   const pages = [
     'Home', 
     'My Meals',
@@ -42,7 +48,10 @@ const SideBar = ({ wideScreen, username, showSideBar, setShowSideBar, setScreenI
     const new_text = new Array(pages.length).fill('text-itemText');
     new_text[index] = 'text-itemBgLight';
     setTextCSS(new_text);
-    setScreenIdx(index);
+
+    navigation.dispatch(
+      CommonActions.navigate(pageID[index])
+    );
   }
 
   return (

@@ -36,7 +36,7 @@ const MealCardThin = ({item}) => (
   </View>
 )
 
-const MyMeals = ({ wideScreen, setShowSideBar }) => {
+const MyMeals = ({ navigation, wideScreen, setShowSideBar }) => {
 
   const nutrition = [
     {

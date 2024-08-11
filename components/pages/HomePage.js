@@ -55,7 +55,8 @@ const NutritionCard = ({item, index}) => (
 
 const { width, height } = Dimensions.get('window');
 
-const HomePage = ({wideScreen, setShowSideBar}) => {
+const HomePage = ({ navigation, wideScreen, setShowSideBar }) => {
+
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
   const setFocus = (index) => {

@@ -14,7 +14,7 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
-const Browse = ({ wideScreen, setShowSideBar }) => {
+const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
   {/* References */}
   const scrollRef = useRef();
   
