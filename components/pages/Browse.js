@@ -324,10 +324,10 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
 
           {/* Frame 4 - Cards */}
           <View className='relative z-0 flex-col w-full h-fit mt-1'>
-            <Pressable 
-            className="absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10" 
-            onPress={closeDropDown} 
-          />
+            {showDropDown && <Pressable 
+              className="absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10" 
+              onPress={closeDropDown} 
+            />}
             {recipesShown.map((item) => (
               <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
               activeOpacity={0.9}>
