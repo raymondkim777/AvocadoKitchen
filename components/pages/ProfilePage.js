@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { MyContext } from './HomeControl';
+import { SideBarContext } from './HomeControl';
 import { View, SafeAreaView, Pressable, Dimensions, TouchableOpacity, ScrollView, } from 'react-native';
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
@@ -17,7 +17,7 @@ import LargeButton from '../general/LargeButton';
 const { width, height } = Dimensions.get('window');
 
 const ProfilePage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const handleLogOut = ({}) => {
     navigation.navigate('Login2')
@@ -160,7 +160,7 @@ const ProfilePage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Profile
             </TitleTextComponent>
-            <ExitButton/>
+            <ExitButton navigation={navigation}/>
           </View>
 
           {/* Profile */}

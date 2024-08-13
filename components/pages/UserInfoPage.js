@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { MyContext } from './HomeControl';
+import { SideBarContext } from './HomeControl';
 import { SafeAreaView, ScrollView, View, Text, FlatList, } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -13,7 +13,7 @@ const FoodCardDiv = () => (
 )
 
 const UserInfoPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const avoidFood = [
     {
@@ -82,7 +82,7 @@ const UserInfoPage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Information
             </TitleTextComponent>
-            <ExitButton/>
+            <ExitButton navigation={navigation}/>
           </View>
 
           {/* Diet Category */}

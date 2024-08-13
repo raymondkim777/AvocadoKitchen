@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { MyContext } from './HomeControl';
+import { SideBarContext } from './HomeControl';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get('window');
 
 const Browse = ({ navigation }) => {
   const scrollRef = useRef();
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   {/* Data */}
   const optionList = [
@@ -245,7 +245,7 @@ const Browse = ({ navigation }) => {
               <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                 Browse Recipes
               </TitleTextComponent>
-              <ExitButton/>
+              <ExitButton navigation={navigation}/>
             </View>
 
             {/* Search Bar */}

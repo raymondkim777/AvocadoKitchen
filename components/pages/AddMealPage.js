@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { MyContext } from './HomeControl';
+import { SideBarContext } from './HomeControl';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
@@ -15,7 +15,7 @@ import Modal from 'react-native-modal';
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const handleContinue = ()=>{
     navigation.navigate('AddMealPage2')
@@ -106,7 +106,7 @@ const AddMealPage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
             Add Your Meal
             </TitleTextComponent>
-            <ExitButton/>
+            <ExitButton navigation={navigation}/>
           </View>
 
           {/* Choose Day */}

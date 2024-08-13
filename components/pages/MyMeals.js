@@ -6,7 +6,7 @@ import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import EditButton from '../general/EditButton';
-import { MyContext } from './HomeControl';
+import { SideBarContext } from './HomeControl';
 
 const NutritionCard = ({item, index}) => (
   <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
@@ -38,7 +38,12 @@ const MealCardThin = ({item}) => (
 )
 
 const MyMeals = ({ navigation }) => {
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  const handleExit = ({}) => {
+
+  }
+
   const nutrition = [
     {
       id: 'calorie',
@@ -239,7 +244,7 @@ const MyMeals = ({ navigation }) => {
               <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                 My Meals
               </TitleTextComponent>
-              <ExitButton/>
+              <ExitButton navigation={navigation}/>
             </View>
           </View>
 

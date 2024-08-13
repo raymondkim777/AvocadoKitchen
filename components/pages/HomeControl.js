@@ -1,4 +1,4 @@
-import React, {useState, useTransition, useContext, createContext} from 'react';
+import React, {useState, useTransition, createContext} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CommonActions } from '@react-navigation/native';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
@@ -17,17 +17,68 @@ import PagePopup from '../general/PagePopup';
 
 const { width, height } = Dimensions.get('window');
 const PageStack = createStackNavigator();
-export const MyContext = createContext();
+export const SideBarContext = createContext();
+
 const HomeControl = ({ navigation }) => {
-  {/* SideBar */}
+  {/* SideBar Context */}
   const [showSideBar, setShowSideBar] = useState(false);
+  const pageID = [
+    'HomePage', 
+    'MyMeals',
+    'Browse',
+    'AddMealPage',
+    'UserInfoPage',
+    'ProfilePage',
+    'Tutorial',
+  ];
+  const pages = [
+    'Home', 
+    'My Meals',
+    'Recipe Search', 
+    'Add a Meal', 
+    'Info', 
+    'Profile', 
+    'Tutorial',
+  ];
+  const [pageIndex, setPageIndex] = useState(0);
+  const [buttonCSS, setButtonCSS] = useState(
+    new Array(pageIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(pages.length - pageIndex - 1).fill('')
+      )
+    )
+  );
+  const [textCSS, setTextCSS] = useState(
+    new Array(pageIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(pages.length - pageIndex - 1).fill('text-itemText')
+      )
+    )
+  );
+  const updatePage = (index) => {
+    setPageIndex(index);
+    setShowSideBar(false);
+
+    const new_button = new Array(pages.length).fill('');
+    new_button[index] = 'bg-itemText';
+    setButtonCSS(new_button);
+
+    const new_text = new Array(pages.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setTextCSS(new_text);
+
+    navigation.dispatch(
+      CommonActions.navigate(pageID[index])
+    );
+  }
   
+  {/* HomeControl */}
   const [username, setUsername] = useState('Username');
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   const Container = wideScreen ?  View : SafeAreaView;
 
-  const contextValue = {wideScreen, setShowSideBar};
+  const SideBarContextValue = {wideScreen, setShowSideBar, updatePage};
   return (
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
       {/* SideBar */}
@@ -38,8 +89,12 @@ const HomeControl = ({ navigation }) => {
       username={username}
       showSideBar={showSideBar}
       setShowSideBar={setShowSideBar}
+      pages={pages}
+      buttonCSS={buttonCSS}
+      textCSS={textCSS} 
+      updatePage={updatePage}
       />
-      <MyContext.Provider value={contextValue}>
+      <SideBarContext.Provider value={SideBarContextValue}>
         <PageStack.Navigator 
           initialRouteName="HomePage"
           screenOptions={{ headerShown: false }}
@@ -52,7 +107,7 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />
         </PageStack.Navigator>        
-      </MyContext.Provider>
+      </SideBarContext.Provider>
 
 
       {/*
