@@ -40,30 +40,30 @@ const HomeControl = ({ navigation }) => {
       setShowSideBar={setShowSideBar}
       />
       <MyContext.Provider value={contextValue}>
-      <PageStack.Navigator 
-        initialRouteName="HomePage"
-        screenOptions={{ headerShown: false }}
-      >
-        <PageStack.Screen name="HomePage">
-          {(props) => <HomePage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-        <PageStack.Screen name="MyMeals" component={MyMeals} />
-        <PageStack.Screen name="Browse">
-          {(props) => <Browse {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-        <PageStack.Screen name="AddMealPage">
-          {(props) => <AddMealPage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-        <PageStack.Screen name="UserInfoPage">
-          {(props) => <UserInfoPage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-        <PageStack.Screen name="ProfilePage">
-          {(props) => <ProfilePage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-        <PageStack.Screen name="Tutorial">
-          {(props) => <Tutorial {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
-        </PageStack.Screen>
-      </PageStack.Navigator>        
+        <PageStack.Navigator 
+          initialRouteName="HomePage"
+          screenOptions={{ headerShown: false }}
+        >
+          <PageStack.Screen name="HomePage">
+            {(props) => <HomePage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+          <PageStack.Screen name="MyMeals" component={MyMeals} />
+          <PageStack.Screen name="Browse">
+            {(props) => <Browse {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+          <PageStack.Screen name="AddMealPage">
+            {(props) => <AddMealPage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+          <PageStack.Screen name="UserInfoPage">
+            {(props) => <UserInfoPage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+          <PageStack.Screen name="ProfilePage">
+            {(props) => <ProfilePage {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+          <PageStack.Screen name="Tutorial">
+            {(props) => <Tutorial {...props} wideScreen={wideScreen} setShowSideBar={setShowSideBar}/>}
+          </PageStack.Screen>
+        </PageStack.Navigator>        
       </MyContext.Provider>
 
 
