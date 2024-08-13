@@ -1,11 +1,11 @@
 import React, { useState, } from 'react';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Pressable, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 
 const OptionsMenu2 = ({
   filterList, filterIndex, updateFilterIndex,
   filterDir, filterDirIdx, shiftFilterDirIdx,
-  showDropDown, setShowDropDown
+  showDropDown, setShowDropDown, closeDropDown
 }) => {
   
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
@@ -40,7 +40,7 @@ const OptionsMenu2 = ({
   }
 
   return(
-    <View className={`w-full h-8 my-2`}>
+    <View className={`w-full h-8 mt-3`}>
       {/* More Search Options */}
       <View className='flex-row w-full h-8 items-center justify-center px-3 bg-buttonBg rounded-lg'>
         <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
@@ -50,18 +50,17 @@ const OptionsMenu2 = ({
           :
         </TitleTextComponent>
         <View className='flex-row shrink w-full h-fit items-center justify-center'>
-          <View className='relative w-fit h-fit'>
+          <View className='relative z-0 w-fit h-fit'>
             <TouchableOpacity className={`w-24 h-6 items-center justify-center rounded-full bg-itemText`}
             activeOpacity={1} onPress={()=>setShowDropDown(!showDropDown)}>
               <TitleTextComponent translate={true} size={'text-base'} css={'text-itemBgLight'}>
                 {filterList[filterIndex]}
               </TitleTextComponent>
             </TouchableOpacity>
-
             {/* DropDown */}
             {
               showDropDown 
-              ? <View className='absolute -bottom-40 left-0 w-24 h-40 py-2'>
+              ? <View className='absolute -bottom-40 z-10 left-0 w-24 h-40 py-2'>
                   <View className='flex-col w-24 h-fit bg-buttonBg rounded-xl'>
                     {filterList.map((item, index)=>(
                       <TouchableOpacity className={`w-24 h-7 items-center justify-center rounded-xl ${dropDownButtonCSS[index]}`}
