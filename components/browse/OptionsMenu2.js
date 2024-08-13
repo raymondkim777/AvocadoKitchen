@@ -5,9 +5,9 @@ import TitleTextComponent from '../text/TitleTextComponent';
 import { assertEasingIsWorklet } from 'react-native-reanimated/lib/typescript/animation/util';
 
 const OptionsMenu2 = ({
-  filterList, filterIndex, updateFilterIndex,
+  filterList, filterIndex, setFilterIndex,
   filterDir, filterDirIdx, shiftFilterDirIdx,
-  showDropDown, setShowDropDown, closeDropDown
+  showDropDown, setShowDropDown,
 }) => {
 
   const {wideScreen, setShowSideBar} = useContext(MyContext);
@@ -37,7 +37,7 @@ const OptionsMenu2 = ({
     setDropDownText(new_text);
   }
   const updateDropDown = (index) => {
-    updateFilterIndex(index);
+    setFilterIndex(index);
     updateButtonCSS(index);
     updateTextCSS(index);
     setShowDropDown(!showDropDown);

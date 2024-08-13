@@ -164,15 +164,8 @@ const Browse = ({ navigation }) => {
   // Options Menu 2
   const [showOptions2, setShowOptions2] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
-  
-  const closeDropDown=()=>{
-    setShowDropDown(false);
-  }
 
   const [filterIndex, setFilterIndex] = useState(0);
-  const updateFilterIndex = (index) => {
-    setFilterIndex(index);
-  }
   const [filterDirIdx, setFilterDirIdx] = useState(0);
   const shiftFilterDirIdx = () => {
     setFilterDirIdx((filterDirIdx + 1) % filterDirShort.length);
@@ -301,8 +294,8 @@ const Browse = ({ navigation }) => {
           
           {
             showDropDown ? 
-            <Pressable className='absolute z-10 top-0 left-0 right-0 bottom-0 w-screen h-screen justify-center items-center' 
-            onPress={closeDropDown}/>
+            <Pressable className='absolute z-10 w-screen h-screen justify-center items-center' 
+            onPress={()=>setShowDropDown(false)}/>
             : null
           }
           {/* Frame 3 - Results */}
@@ -310,7 +303,7 @@ const Browse = ({ navigation }) => {
             {
               showDropDown ? 
               <Pressable className='absolute z-10 w-full h-full justify-center items-center' 
-              onPress={closeDropDown}/>
+              onPress={()=>setShowDropDown(false)}/>
               : null
             }
             <View className='flex-row w-full h-10 -mb-2 items-center justify-between'>
@@ -325,24 +318,22 @@ const Browse = ({ navigation }) => {
                 ? <OptionsMenu2 
                   filterList={filterList}
                   filterIndex={filterIndex}
-                  updateFilterIndex={updateFilterIndex}
+                  setFilterIndex={setFilterIndex}
                   filterDir={filterDirLong}
                   filterDirIdx={filterDirIdx}
                   shiftFilterDirIdx={shiftFilterDirIdx}
                   showDropDown={showDropDown} 
                   setShowDropDown={setShowDropDown}
-                  closeDropDown={closeDropDown}
                   />
                 : <OptionsMenu2 
                   filterList={filterList}
                   filterIndex={filterIndex}
-                  updateFilterIndex={updateFilterIndex}
+                  setFilterIndex={setFilterIndex}
                   filterDir={filterDirShort}
                   filterDirIdx={filterDirIdx}
                   shiftFilterDirIdx={shiftFilterDirIdx}
                   showDropDown={showDropDown} 
                   setShowDropDown={setShowDropDown}
-                  closeDropDown={closeDropDown}
                   />
               : null
             }
