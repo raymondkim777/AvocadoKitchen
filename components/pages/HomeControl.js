@@ -99,7 +99,7 @@ const HomeControl = ({ navigation }) => {
           initialRouteName="HomePage"
           screenOptions={{ headerShown: false }}
         >
-          <PageStack.Screen name="HomePage" component={HomePage} />
+          <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
           <PageStack.Screen name="Browse" component={Browse} />
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
