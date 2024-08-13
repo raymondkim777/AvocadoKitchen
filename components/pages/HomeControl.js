@@ -36,8 +36,8 @@ const HomeControl = ({ navigation }) => {
       navigation={navigation}
       wideScreen={wideScreen}
       index={showScreenIdx} 
-      setShowSideBar={setShowSideBar}/>
-        
+      setShowSideBar={setShowSideBar}
+      />
     </Container>
   );
 }
