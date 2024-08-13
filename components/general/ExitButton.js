@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext, } from 'react';
+import { SideBarContext } from '../pages/HomeControl';
 import { TouchableOpacity } from 'react-native';
 
-const ExitButton = ({}) => (
-  <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg'
-  activeOpacity={0.9}>
+const ExitButton = ({ navigation }) => {
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  return(
+    <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg'
+    activeOpacity={0.9} onPress={()=>(updatePage(0))}>
 
-  </TouchableOpacity>
-)
+    </TouchableOpacity>
+  )
+}
 
 export default ExitButton
