@@ -1,5 +1,5 @@
 import React, {useState, useTransition,} from 'react';
-import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
+import { Text, View, Dimensions, SafeAreaView, TouchableWithoutFeedback, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
@@ -143,7 +143,7 @@ const HomePage = ({ navigation, wideScreen, setShowSideBar }) => {
   const currentLanguage = i18n.language;
 
   return (
-    <View id='screen' className='w-full h-full flex-row justify-center items-center'>
+    <SafeAreaView id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
       <View className='flex-col shrink w-full h-full'>
         <ScrollView 
@@ -264,7 +264,7 @@ const HomePage = ({ navigation, wideScreen, setShowSideBar }) => {
           </View>
         </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

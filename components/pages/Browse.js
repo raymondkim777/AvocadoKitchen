@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
@@ -29,6 +29,18 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
   ]
   const categories = [
     'All', 'Name', 'User', 'Tag',
+  ]
+  const filterList = [
+    'Relevance', 
+    'Likes', 
+    'Downloads', 
+    'Calories',
+    'Protein', 
+    'Carbs',
+  ]
+  const filterDir = [
+    'Asc', 
+    'Des',
   ]
   const recipes = [
     {
@@ -102,10 +114,10 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
 
 
   { /* State/Functions */}
+  // Options Menu 1
   const [searchQuery, setSearchQuery] = useState('');
 
   const [showOptions1, setShowOptions1] = useState(false);
-  const [showOptions2, setShowOptions2] = useState(false);
 
   const [dietIndex, setDietIndex] = useState(-1);
   const [dietButtonCSS, setDietButtonCSS] = useState(new Array(optionList.length).fill(''));
@@ -143,6 +155,25 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
     new_text[index] = 'text-itemBgLight';
     setCatText(new_text);
   }
+
+  // Options Menu 2
+  const [showOptions2, setShowOptions2] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
+  
+  const closeDropDown=()=>{
+    setShowDropDown(false);
+  }
+
+  const [filterIndex, setFilterIndex] = useState(0);
+  const updateFilterIndex = (index) => {
+    setFilterIndex(index);
+  }
+  const [filterDirIdx, setFilterDirIdx] = useState(0);
+  const shiftFilterDirIdx = () => {
+    setFilterDirIdx((filterDirIdx + 1) % filterDir.length);
+  }
+
+  // Pages
 
   const [pageIndex, setPageIndex] = useState(0);
   const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('')));
@@ -203,9 +234,9 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
   }
 
   return (
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <ScrollView ref={scrollRef} className='w-full h-full'>
-        <View id='content' className='w-full h-fit p-4'>
+    <SafeAreaView id='screen' className='relative w-full h-full bg-screenBg'>
+      <ScrollView ref={scrollRef} className='static w-full h-full'>
+        <View id='content' className='static w-full h-fit p-4'>
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
             {/* Title */}
@@ -262,26 +293,46 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
                 catText={catText}/> 
             : null
           }
-
+          
+          {
+            showDropDown ? 
+            <Pressable className='absolute z-10 top-0 left-0 right-0 bottom-0 w-screen h-screen justify-center items-center' 
+            onPress={closeDropDown}/>
+            : null
+          }
           {/* Frame 3 - Results */}
-          <View className='flex-col w-full h-fit mt-2'>
-            <View className='flex-row w-full h-10 items-center justify-between'>
+          <View className='relative z-20 flex-col w-full h-fit mt-2'>
+            {
+              showDropDown ? 
+              <Pressable className='absolute z-10 w-full h-full justify-center items-center' 
+              onPress={closeDropDown}/>
+              : null
+            }
+            <View className='flex-row w-full h-10 -mb-2 items-center justify-between'>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4 mt-2'}>
                 Results
               </TitleTextComponent>
               <OptionsButton callback={setShowOptions2} showOptions={showOptions2}/>
             </View>
-            
             {
               showOptions2 
-              ? <OptionsMenu2 />
+              ? <OptionsMenu2 
+              filterList={filterList}
+              filterIndex={filterIndex}
+              updateFilterIndex={updateFilterIndex}
+              filterDir={filterDir}
+              filterDirIdx={filterDirIdx}
+              shiftFilterDirIdx={shiftFilterDirIdx}
+              showDropDown={showDropDown} 
+              setShowDropDown={setShowDropDown}
+              closeDropDown={closeDropDown}
+              />
               : null
             }
           </View>
 
-
           {/* Frame 4 - Cards */}
-          <View className='flex-col w-full h-fit mt-1'>
+          <View className='relative z-0 flex-col w-full h-fit mt-3'>
             {recipesShown.map((item) => (
               <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
               activeOpacity={0.9}>
@@ -296,7 +347,11 @@ const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
             </View>
 
             {/* Page Numbers */}
-            <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
+            {
+              recipes.length != 0 
+              ? <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
+              : null
+            }
           </View>
       </ScrollView>
     </SafeAreaView>
