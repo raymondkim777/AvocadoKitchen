@@ -39,9 +39,13 @@ const Browse = ({ navigation }) => {
     'Protein', 
     'Carbs',
   ]
-  const filterDir = [
+  const filterDirShort = [
     'Asc', 
     'Des',
+  ]
+  const filterDirLong = [
+    'Ascending',
+    'Descending',
   ]
   const recipes = [
     {
@@ -171,7 +175,7 @@ const Browse = ({ navigation }) => {
   }
   const [filterDirIdx, setFilterDirIdx] = useState(0);
   const shiftFilterDirIdx = () => {
-    setFilterDirIdx((filterDirIdx + 1) % filterDir.length);
+    setFilterDirIdx((filterDirIdx + 1) % filterDirShort.length);
   }
 
   // Pages
@@ -317,17 +321,29 @@ const Browse = ({ navigation }) => {
             </View>
             {
               showOptions2 
-              ? <OptionsMenu2 
-              filterList={filterList}
-              filterIndex={filterIndex}
-              updateFilterIndex={updateFilterIndex}
-              filterDir={filterDir}
-              filterDirIdx={filterDirIdx}
-              shiftFilterDirIdx={shiftFilterDirIdx}
-              showDropDown={showDropDown} 
-              setShowDropDown={setShowDropDown}
-              closeDropDown={closeDropDown}
-              />
+              ? wideScreen 
+                ? <OptionsMenu2 
+                  filterList={filterList}
+                  filterIndex={filterIndex}
+                  updateFilterIndex={updateFilterIndex}
+                  filterDir={filterDirLong}
+                  filterDirIdx={filterDirIdx}
+                  shiftFilterDirIdx={shiftFilterDirIdx}
+                  showDropDown={showDropDown} 
+                  setShowDropDown={setShowDropDown}
+                  closeDropDown={closeDropDown}
+                  />
+                : <OptionsMenu2 
+                  filterList={filterList}
+                  filterIndex={filterIndex}
+                  updateFilterIndex={updateFilterIndex}
+                  filterDir={filterDirShort}
+                  filterDirIdx={filterDirIdx}
+                  shiftFilterDirIdx={shiftFilterDirIdx}
+                  showDropDown={showDropDown} 
+                  setShowDropDown={setShowDropDown}
+                  closeDropDown={closeDropDown}
+                  />
               : null
             }
           </View>

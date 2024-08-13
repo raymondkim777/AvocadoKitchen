@@ -1,12 +1,16 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext} from 'react';
+import { MyContext } from '../pages/HomeControl';
 import { View, Text, Pressable, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
+import { assertEasingIsWorklet } from 'react-native-reanimated/lib/typescript/animation/util';
 
 const OptionsMenu2 = ({
   filterList, filterIndex, updateFilterIndex,
   filterDir, filterDirIdx, shiftFilterDirIdx,
   showDropDown, setShowDropDown, closeDropDown
 }) => {
+
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
   
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
     new Array(filterIndex).fill('').concat(
@@ -75,12 +79,21 @@ const OptionsMenu2 = ({
               : null
             }
           </View>
-          <TouchableOpacity className={`flex-row w-12 h-6 ml-4 items-center justify-center rounded-full bg-itemText`}
-          activeOpacity={1} onPress={()=>shiftFilterDirIdx()}>
-            <TitleTextComponent translate={true} size={'text-base'} css={'text-itemBgLight'}>
-              {filterDir[filterDirIdx]}
-            </TitleTextComponent>
-          </TouchableOpacity>
+          {
+            wideScreen
+            ? <TouchableOpacity className={`flex-row w-24 h-6 ml-4 items-center justify-center rounded-full bg-itemText`}
+              activeOpacity={1} onPress={()=>shiftFilterDirIdx()}>
+                <TitleTextComponent translate={true} size={'text-base'} css={'text-itemBgLight'}>
+                  {filterDir[filterDirIdx]}
+                </TitleTextComponent>
+              </TouchableOpacity>
+            : <TouchableOpacity className={`flex-row w-12 h-6 ml-4 items-center justify-center rounded-full bg-itemText`}
+              activeOpacity={1} onPress={()=>shiftFilterDirIdx()}>
+                <TitleTextComponent translate={true} size={'text-base'} css={'text-itemBgLight'}>
+                  {filterDir[filterDirIdx]}
+                </TitleTextComponent>
+              </TouchableOpacity>
+          }
         </View>
       </View>
       

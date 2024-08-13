@@ -121,6 +121,8 @@ const resources = {
       "Carbs": "Carbs",
       "Asc": "(Asc)",
       "Des": "(Des)",
+      "Ascending": "Ascending",
+      "Descending": "Descending",
       //////////
       "ex. Neapolitan Pizza": "ex. Neapolitan Pizza", 
       "Sandwich": "Sandwich", 
@@ -334,6 +336,8 @@ const resources = {
       "Carbs": "탄수화물",
       "Asc": "오름",
       "Des": "내림",
+      "Ascending": "오름차수열",
+      "Descending": "내림차수열",
       ////////
       "ex. Neapolitan Pizza": "ex. 나폴리 피자",
       "Sandwich": "샌드위치", 
