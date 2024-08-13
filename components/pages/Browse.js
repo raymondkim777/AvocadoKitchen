@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
@@ -158,6 +158,11 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
 
   // Options Menu 2
   const [showOptions2, setShowOptions2] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
+  
+  const closeDropDown=()=>{
+    setShowDropDown(false);
+  }
 
   const [filterIndex, setFilterIndex] = useState(0);
   const updateFilterIndex = (index) => {
@@ -229,9 +234,11 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
   }
 
   return (
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+    <SafeAreaView id='screen' className='w-full h-full bg-screenBg'>
       <ScrollView ref={scrollRef} className='w-full h-full'>
+      <Pressable className='w-full h-full justify-center items-center ' onPress={closeDropDown}>
         <View id='content' className='w-full h-fit p-4'>
+  
           {/* Frame 1 - Search Bar */}
           <View className='w-full h-fit mt-2'>
             {/* Title */}
@@ -307,6 +314,8 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
               filterDir={filterDir}
               filterDirIdx={filterDirIdx}
               shiftFilterDirIdx={shiftFilterDirIdx}
+              showDropDown={showDropDown} 
+              setShowDropDown={setShowDropDown}
               />
               : null
             }
@@ -315,6 +324,10 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
 
           {/* Frame 4 - Cards */}
           <View className='relative z-0 flex-col w-full h-fit mt-1'>
+            <Pressable 
+            className="absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10" 
+            onPress={closeDropDown} 
+          />
             {recipesShown.map((item) => (
               <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
               activeOpacity={0.9}>
@@ -335,7 +348,9 @@ const Browse = ({ wideScreen, setShowSideBar }) => {
               : null
             }
           </View>
+          </Pressable>
       </ScrollView>
+      
     </SafeAreaView>
   )
 }

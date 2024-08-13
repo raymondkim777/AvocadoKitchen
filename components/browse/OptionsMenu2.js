@@ -4,9 +4,10 @@ import TitleTextComponent from '../text/TitleTextComponent';
 
 const OptionsMenu2 = ({
   filterList, filterIndex, updateFilterIndex,
-  filterDir, filterDirIdx, shiftFilterDirIdx
+  filterDir, filterDirIdx, shiftFilterDirIdx,
+  showDropDown, setShowDropDown
 }) => {
-  const [showDropDown, setShowDropDown] = useState(false);
+  
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
     new Array(filterIndex).fill('').concat(
       ['bg-itemText'].concat(
