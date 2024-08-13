@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
 import { SafeAreaView, ScrollView, View, Image } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -6,6 +6,7 @@ import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import EditButton from '../general/EditButton';
+import { MyContext } from './HomeControl';
 
 const NutritionCard = ({item, index}) => (
   <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
@@ -36,8 +37,8 @@ const MealCardThin = ({item}) => (
   </View>
 )
 
-const MyMeals = ({ navigation, wideScreen, setShowSideBar }) => {
-
+const MyMeals = ({ navigation }) => {
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
   const nutrition = [
     {
       id: 'calorie',
