@@ -1,4 +1,5 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
+import { MyContext } from './HomeControl';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
@@ -13,7 +14,9 @@ import Modal from 'react-native-modal';
 
 const { width, height } = Dimensions.get('window');
 
-const AddMealPage = ({ navigation, wideScreen, setShowSideBar }) => {
+const AddMealPage = ({ navigation }) => {
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  
   const handleContinue = ()=>{
     navigation.navigate('AddMealPage2')
   }

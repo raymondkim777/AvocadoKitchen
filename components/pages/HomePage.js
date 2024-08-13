@@ -1,4 +1,5 @@
-import React, {useState, useTransition,} from 'react';
+import React, {useState, useContext, } from 'react';
+import { MyContext } from './HomeControl';
 import { Text, View, Dimensions, SafeAreaView, TouchableWithoutFeedback, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -55,7 +56,8 @@ const NutritionCard = ({item, index}) => (
 
 const { width, height } = Dimensions.get('window');
 
-const HomePage = ({ navigation, wideScreen, setShowSideBar }) => {
+const HomePage = ({ navigation }) => {
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
 
   {/* State/Functions */}
   const [isFocused, setIsFocused] = useState(new Array(7).fill(''));

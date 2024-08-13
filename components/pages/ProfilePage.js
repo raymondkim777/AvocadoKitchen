@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext, } from 'react';
+import { MyContext } from './HomeControl';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, ScrollView,  } from 'react-native';
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
@@ -15,7 +16,9 @@ import LargeButton from '../general/LargeButton';
 
 const { width, height } = Dimensions.get('window');
 
-const ProfilePage = ({ navigation, wideScreen, setShowSideBar }) => {
+const ProfilePage = ({ navigation }) => {
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  
   const handleLogOut = ({}) => {
     navigation.navigate('Login2')
   }

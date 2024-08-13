@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
+import { MyContext } from './HomeControl';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -14,9 +15,9 @@ import ItemTextInputComponent from '../text/ItemTextInputComponent';
 
 const { width, height } = Dimensions.get('window');
 
-const Browse = ({ navigation, wideScreen, setShowSideBar }) => {
-  {/* References */}
+const Browse = ({ navigation }) => {
   const scrollRef = useRef();
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
   
   {/* Data */}
   const optionList = [

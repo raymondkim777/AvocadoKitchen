@@ -1,4 +1,5 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
+import { MyContext } from './HomeControl';
 import { SafeAreaView, ScrollView, View, Text, FlatList, } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -11,7 +12,9 @@ const FoodCardDiv = () => (
   <View className='w-4'/>
 )
 
-const UserInfoPage = ({ navigation, wideScreen, setShowSideBar }) => {
+const UserInfoPage = ({ navigation }) => {
+  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  
   const avoidFood = [
     {
       id: '0',
