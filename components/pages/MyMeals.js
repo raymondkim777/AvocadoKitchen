@@ -271,7 +271,6 @@ const MyMeals = ({ navigation }) => {
         className='w-full h-fit p-4 bg-screenBg'
         contentContainerStyle={{flexGrow: 1}} 
         sections={meals}
-        keyExtractor={(item) => item.day + "-meals"}  
         renderItem={({item}) => (
           <View className='flex-col w-full h-fit'>
             {/* Cards */}
@@ -282,7 +281,7 @@ const MyMeals = ({ navigation }) => {
         )}
         renderSectionHeader={({section: {day}}) => (
           <View className='w-full h-fit mb-2'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 mt-2 text-screenText'}>
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 mt-4 text-screenText'}>
               {day}
             </TitleTextComponent>
           </View>
