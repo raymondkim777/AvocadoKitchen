@@ -338,9 +338,6 @@ const SignUp2_2 = ({ navigation }) => {
               <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
               <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUpComplete}/>
             </View>
-            
-
-
           </View>
         </View>
       </ScrollView>
