@@ -155,7 +155,6 @@ const HomePage = ({ navigation }) => {
   ];
   
   {/* View */}
-  const Container = height > 800 ?  View : ScrollView;
   
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
