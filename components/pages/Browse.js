@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react';
 import { SideBarContext } from './HomeControl';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList, Pressable } from 'react-native';
+import { Text, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
@@ -12,6 +12,22 @@ import PageButton from '../browse/PageButton';
 import PageMenu from '../browse/PageMenu';
 import RecipeCard from '../browse/RecipeCard';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+
+const RecipeDisplayCard = ({item}) => (
+  <TouchableOpacity key={`${item.id}`} className='w-full h-fit'
+  activeOpacity={0.9}>
+    <RecipeCard 
+      title={item.title}
+      nutrition={item.nutrition}
+      tags={item.tags}
+      data={item.data}
+      image={item.image}/>
+  </TouchableOpacity>
+)
+
+const CardDiv = () => (
+  <View className='w-full h-2' />
+)
 
 const { width, height } = Dimensions.get('window');
 
@@ -341,17 +357,13 @@ const Browse = ({ navigation }) => {
 
           {/* Frame 4 - Cards */}
           <View className='relative z-0 flex-col w-full h-fit mt-3'>
-            {recipesShown.map((item) => (
-              <TouchableOpacity key={`${item.id}`} className='w-full h-fit mb-2'
-              activeOpacity={0.9}>
-                <RecipeCard 
-                  title={item.title}
-                  nutrition={item.nutrition}
-                  tags={item.tags}
-                  data={item.data}
-                  image={item.image}/>
-              </TouchableOpacity>
-            ))}
+            <FlatList 
+            scrollEnabled={false}
+            className='w-full h-fit'
+            data={recipesShown}
+            renderItem={({item}) => <RecipeDisplayCard item={item} />}
+            ItemSeparatorComponent={CardDiv}
+            />
             </View>
 
             {/* Page Numbers */}
