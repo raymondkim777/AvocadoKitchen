@@ -1,6 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import IngredientsTable from '../recipe/IngredientsTable';
@@ -24,13 +24,6 @@ const AddMealPage = ({ navigation }) => {
   {/* References */}
   
   {/* Data */}
-   
-  { /* State/Functions */}
-  const [mealName, setMealName] = useState('');
-
-  // const [ingredients, setIngredients] = useState(new Array(0));
-  // const [procedure, setProcedure] = useState(new Array(0));
-
   const ingredients = [
     {
       id: 'canned-tuna',
@@ -90,12 +83,93 @@ const AddMealPage = ({ navigation }) => {
       image: require('../../assets/images/procedure-example/step-2.jpg'),
     },
   ];
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const mealTime = ['Breakfast', 'Lunch', 'Dinner'];
 
-  {/* View */}
+  { /* State/Functions */}
+  const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
+
+  const onLayout = (event) => {
+    const { width } = event.nativeEvent.layout;
+    setViewWidth(width);
+  };
+
+  {/* DropDowns */}
+  const [dayIndex, setDayIndex] = useState(0);
+  const [mealTimeIndex, setMealTimeIndex] = useState(0);
+
+  const [showDropDown1, setShowDropDown1] = useState(false)
+  const [showDropDown2, setShowDropDown2] = useState(false)
+  const closeDropDowns = () => {
+    setShowDropDown1(false);
+    setShowDropDown2(false);
+  }
+
+  const [dropDown1ButtonCSS, setDropDown1ButtonCSS] = useState(
+    new Array(dayIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(days.length - dayIndex - 1).fill('')
+      )
+    )
+  );
+  const [dropDown1Text, setDropDown1Text] = useState(
+    new Array(dayIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(days.length - dayIndex - 1).fill('')
+      )
+    )
+  );
+  const update1ButtonCSS = (index) => {
+    const new_css = new Array(days.length).fill('');
+    new_css[index] = 'bg-itemText';
+    setDropDown1ButtonCSS(new_css);
+  }
+  const update1TextCSS = (index) => {
+    const new_text = new Array(days.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setDropDown1Text(new_text);
+  }
+  const updateDropDown1 = (index) => {
+    setDayIndex(index);
+    update1ButtonCSS(index);
+    update1TextCSS(index);
+    setShowDropDown1(!showDropDown1);
+  }
+  const [dropDown2ButtonCSS, setDropDown2ButtonCSS] = useState(
+    new Array(mealTimeIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(mealTime.length - mealTimeIndex - 1).fill('')
+      )
+    )
+  );
+  const [dropDown2Text, setDropDown2Text] = useState(
+    new Array(mealTimeIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(mealTime.length - mealTimeIndex - 1).fill('')
+      )
+    )
+  );
+  const update2ButtonCSS = (index) => {
+    const new_css = new Array(mealTime.length).fill('');
+    new_css[index] = 'bg-itemText';
+    setDropDown2ButtonCSS(new_css);
+  }
+  const update2TextCSS = (index) => {
+    const new_text = new Array(mealTime.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setDropDown2Text(new_text);
+  }
+  const updateDropDown2 = (index) => {
+    setMealTimeIndex(index);
+    update2ButtonCSS(index);
+    update2TextCSS(index);
+    setShowDropDown2(!showDropDown2);
+  }
+
+  const [mealName, setMealName] = useState('');
  
-
   return (
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+    <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView className='grow w-full h-fit'>
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
@@ -109,6 +183,13 @@ const AddMealPage = ({ navigation }) => {
             <ExitButton navigation={navigation}/>
           </View>
 
+          {
+            showDropDown1 || showDropDown2 ? 
+            <Pressable className='absolute z-10 w-screen h-screen justify-center items-center' 
+            onPress={closeDropDowns}/>
+            : null
+          }
+
           {/* Choose Day */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
@@ -117,15 +198,53 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit mt-2'>
-              <View className='shrink w-full h-9 items-center justify-center bg-itemBgLight rounded-lg mr-4'>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-                  Thursday
-                </TitleTextComponent>
+              <View onLayout={onLayout} className='relative z-10 shrink w-full h-fit items-center mr-4'>
+                <TouchableOpacity className='w-full h-9 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
+                activeOpacity={1} onPress={()=>setShowDropDown1(!showDropDown1)}>
+                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                    {days[dayIndex]}
+                  </TitleTextComponent>
+                </TouchableOpacity>
+                {
+                  showDropDown1 
+                  ? <View style={{width: viewWidth}} className='absolute left-0 -bottom-60 z-10 h-60 py-2'>
+                      <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
+                        {days.map((item, index)=>(
+                          <TouchableOpacity style={{width: viewWidth}} className={`shrink h-full items-center justify-center rounded-xl ${dropDown1ButtonCSS[index]}`}
+                          activeOpacity={1} onPress={()=>updateDropDown1(index)}>
+                            <TitleTextComponent translate={true} size={'text-lg'} css={dropDown1Text[index]}>
+                              {item}
+                            </TitleTextComponent>
+                          </TouchableOpacity>
+                        ))}
+                      </View>
+                    </View>
+                  : null
+                }
               </View>
-              <View className='shrink w-full h-9 items-center justify-center bg-itemBgLight rounded-lg'>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-                  Lunch
-                </TitleTextComponent>
+              <View className='relative z-10 shrink w-full h-fit items-center'>
+                <TouchableOpacity className='w-full h-9 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
+                activeOpacity={1} onPress={()=>setShowDropDown2(!showDropDown2)}>
+                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                    {mealTime[mealTimeIndex]}
+                  </TitleTextComponent>
+                </TouchableOpacity>
+                {
+                  showDropDown2
+                  ? <View style={{width: viewWidth}} className='absolute left-0 -bottom-28 z-10 h-28 py-2'>
+                      <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
+                        {mealTime.map((item, index)=>(
+                          <TouchableOpacity style={{width: viewWidth}} className={`shrink h-full items-center justify-center rounded-xl ${dropDown2ButtonCSS[index]}`}
+                          activeOpacity={1} onPress={()=>updateDropDown2(index)}>
+                            <TitleTextComponent translate={true} size={'text-lg'} css={dropDown2Text[index]}>
+                              {item}
+                            </TitleTextComponent>
+                          </TouchableOpacity>
+                        ))}
+                      </View>
+                    </View>
+                  : null
+                }
               </View>
             </View>
           </View>
