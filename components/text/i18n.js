@@ -241,8 +241,8 @@ const resources = {
       "Sign Up": "회원가입",
       "Coupang Account": "쿠팡 계정",
       "Market Kurly Account": "마켓컬리 계정", 
-      "Back": "Back", 
-      "Next": "Next",
+      "Back": "뒤로가기", 
+      "Next": "넘어가기",
 
       // SignUp2_2
       "Dietary Restrictions": "식사 제한 사항",

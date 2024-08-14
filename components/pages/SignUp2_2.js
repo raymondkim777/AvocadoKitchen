@@ -12,6 +12,10 @@ import MealplanDropdown from '../dropdown/MealplanDropdown';
 const { width, height } = Dimensions.get('window');
 
 const SignUp2_2 = ({ navigation }) => {
+  const handleBack = ({}) => {
+    navigation.navigate('SignUp2')
+  }
+
   const handleSignUpComplete = ({}) => {
     navigation.navigate('Login2')
   }
@@ -330,9 +334,9 @@ const SignUp2_2 = ({ navigation }) => {
             </View>
 
             {/* Sign Up */}
-            
-            <View className='w-full h-fit items-center justify-center mt-8 mb-4'>
-              <LargeButton css={'px-8'} text={'Sign Up'} textSize={'text-2xl'} callback={handleSignUpComplete}/>
+            <View className='flex-row w-full h-fit items-center justify-center mt-8 mb-4'>
+              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
+              <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUpComplete}/>
             </View>
             
 
