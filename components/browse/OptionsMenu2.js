@@ -1,5 +1,5 @@
 import React, { useState, useContext} from 'react';
-import { MyContext } from '../pages/HomeControl';
+import { SideBarContext } from '../pages/HomeControl';
 import { View, Text, Pressable, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import { assertEasingIsWorklet } from 'react-native-reanimated/lib/typescript/animation/util';
@@ -10,7 +10,7 @@ const OptionsMenu2 = ({
   showDropDown, setShowDropDown,
 }) => {
 
-  const {wideScreen, setShowSideBar} = useContext(MyContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
     new Array(filterIndex).fill('').concat(
