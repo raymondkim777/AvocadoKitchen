@@ -268,7 +268,6 @@ const MyMeals = ({ navigation }) => {
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center'>
       <View className='w-full h-full'>
         <SectionList
-        scrollEnabled={false}
         className='w-full h-fit p-4 bg-screenBg'
         contentContainerStyle={{flexGrow: 1}} 
         sections={meals}

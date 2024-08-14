@@ -60,6 +60,7 @@ const ItemTextInputComponent = ({
     maxLength={maxLength}
     inputMode={inputMode}
     textAlignVertical={textAlignVertical}
+    secureTextEntry={secureTextEntry}
     />
   )
 }

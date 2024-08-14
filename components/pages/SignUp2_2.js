@@ -3,12 +3,9 @@ import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
-import DietButton from '../browse/DietButton';
 import Tag from '../addfunction/Tag';
 import TagSuggest from '../addfunction/TagSuggest';
-import AccountButton from '../profile/AccountButton';
 import LargeButton from '../general/LargeButton';
-import MealplanDropdown from '../dropdown/MealplanDropdown';
 const { width, height } = Dimensions.get('window');
 
 const SignUp2_2 = ({ navigation }) => {
