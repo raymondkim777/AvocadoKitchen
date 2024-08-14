@@ -141,12 +141,28 @@ const ProfilePage = ({ navigation }) => {
     setBudgetTypeIndex(index);
     updateButtonCSS(index);
     updateTextCSS(index);
+    setBudgetDisplayValue(budgetValues[index]);
     setShowDropDown(!showDropDown);
   }
 
-  const budgetMinValue = 0;
-  const budgetMaxValue = 100000;
-  const [budgetValue, setBudgetValue] = useState(20000);
+  const budgetValuesMinMax = [
+    {
+      min: 0, max: 100000,
+    },
+    {
+      min: 0, max: 500000,
+    },
+    {
+      min: 0, max: 1000000,
+    },
+  ];
+  const [budgetValues, setBudgetValues] = useState([20000, 100000, 200000]);
+  const [budgetDisplayValue, setBudgetDisplayValue] = useState(budgetValues[budgetTypeIndex]);
+  const updateBudgetValue = (value) => {
+    const new_values = budgetValues;
+    new_values[budgetTypeIndex] = value;
+    setBudgetValues(new_values);
+  }
   
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
@@ -324,16 +340,16 @@ const ProfilePage = ({ navigation }) => {
                 :
               </TitleTextComponent>
               <TitleTextComponent size={'text-xl'} css={'text-screenText'}>
-                ₩{budgetValue}
+                ₩{budgetDisplayValue}
               </TitleTextComponent>
             </View>
             <View className='w-full h-fit mt-4'>
               <Slider
-              value={budgetValue}
-              onValueChange={(value)=>setBudgetValue(value)}
-              onSlidingComplete={(value)=>setBudgetValue(value)}
-              minimumValue={budgetMinValue}
-              maximumValue={budgetMaxValue}
+              value={budgetValues[budgetTypeIndex]}
+              onValueChange={(value)=>setBudgetDisplayValue(value)}
+              onSlidingComplete={(value)=>updateBudgetValue(value)}
+              minimumValue={budgetValuesMinMax[budgetTypeIndex].min}
+              maximumValue={budgetValuesMinMax[budgetTypeIndex].max}
               step={1000}
               minimumTrackTintColor={'#DFDFC8'}
               maximumTrackTintColor={'#DFDFC8'}

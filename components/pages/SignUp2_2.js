@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, ScrollView,  } from 'react-native';
+import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import DietButton from '../browse/DietButton';
@@ -93,7 +94,66 @@ const SignUp2_2 = ({ navigation }) => {
   const removeAllergy = (tagID) => {
     // ADD LATER
   }
-  const options = ["Per Meal", 'Daily', 'Weekly'];
+
+  const budgetType = [
+    'Per Meal', 
+    'Daily', 
+    'Weekly',
+  ];
+  const [budgetTypeIndex, setBudgetTypeIndex] = useState(0);
+
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
+    new Array(budgetTypeIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(budgetType.length - budgetTypeIndex - 1).fill('')
+      )
+    )
+  );
+  const [dropDownText, setDropDownText] = useState(
+    new Array(budgetTypeIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(budgetType.length - budgetTypeIndex - 1).fill('')
+      )
+    )
+  );
+  const updateButtonCSS = (index) => {
+    const new_css = new Array(budgetType.length).fill('');
+    new_css[index] = 'bg-itemText';
+    setDropDownButtonCSS(new_css);
+  }
+  const updateTextCSS = (index) => {
+    const new_text = new Array(budgetType.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setDropDownText(new_text);
+  }
+  const updateDropDown = (index) => {
+    setBudgetTypeIndex(index);
+    updateButtonCSS(index);
+    updateTextCSS(index);
+    setBudgetDisplayValue(budgetValues[index]);
+    setShowDropDown(!showDropDown);
+  }
+
+  const budgetValuesMinMax = [
+    {
+      min: 0, max: 100000,
+    },
+    {
+      min: 0, max: 500000,
+    },
+    {
+      min: 0, max: 1000000,
+    },
+  ];
+  const [budgetValues, setBudgetValues] = useState([20000, 100000, 200000]);
+  const [budgetDisplayValue, setBudgetDisplayValue] = useState(budgetValues[budgetTypeIndex]);
+  const updateBudgetValue = (value) => {
+    const new_values = budgetValues;
+    new_values[budgetTypeIndex] = value;
+    setBudgetValues(new_values);
+  }
+
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView 
@@ -196,10 +256,47 @@ const SignUp2_2 = ({ navigation }) => {
               </View>
             </View>
 
+            {
+              showDropDown ? 
+              <Pressable className='absolute z-10 w-screen h-screen justify-center items-center' 
+              onPress={()=>setShowDropDown(false)}/>
+              : null
+            }
+            
             {/* Budget */}
-            <View className='flex-col w-full h-fit mt-10'>
-              <View className='flex-row w-full h-fit items-center'>    
-                  <MealplanDropdown options={options}></MealplanDropdown>
+            <View className='relative z-10 flex-col w-full h-fit mt-6'>
+              {
+                showDropDown ? 
+                <Pressable className='absolute z-20 w-full h-full justify-center items-center' 
+                onPress={()=>setShowDropDown(false)}/>
+                : null
+              }
+              <View className='flex-row w-full h-fit items-center'>
+                <View className='relative z-20 w-fit h-fit ml-4'>
+                  <TouchableOpacity className='w-24 h-8 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
+                  activeOpacity={1} onPress={()=>setShowDropDown(!showDropDown)}>
+                    <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText text-center h-8 mt-1'}>
+                      {budgetType[budgetTypeIndex]}
+                    </TitleTextComponent>
+                  </TouchableOpacity>
+                  {
+                    showDropDown 
+                    ? <View className='absolute z-30 left-0 -bottom-24 z-10 w-24 h-24 py-2'>
+                        <View className='flex-col w-24 h-fit py-1 items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
+                          {budgetType.map((item, index)=>(
+                            <TouchableOpacity className={`w-24 h-8 items-center justify-center rounded-xl ${dropDownButtonCSS[index]}`}
+                            activeOpacity={1} onPress={()=>updateDropDown(index)}>
+                              <TitleTextComponent translate={true} size={'text-lg'} css={dropDownText[index]}>
+                                {item}
+                              </TitleTextComponent>
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+                      </View>
+                    : null
+                  }
+                </View>
+                
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-3'}>
                   Budget
                 </TitleTextComponent>
@@ -207,14 +304,29 @@ const SignUp2_2 = ({ navigation }) => {
                   :
                 </TitleTextComponent>
                 <TitleTextComponent size={'text-xl'} css={'text-screenText'}>
-                  ₩50,000
+                  ₩{budgetDisplayValue}
                 </TitleTextComponent>
               </View>
-              {/*
-              <View className='w-full h-12 bg-itemBgLight rounded-lg mt-2'>
-
+              <View className='w-full h-fit mt-4'>
+                <Slider
+                value={budgetValues[budgetTypeIndex]}
+                onValueChange={(value)=>setBudgetDisplayValue(value)}
+                onSlidingComplete={(value)=>updateBudgetValue(value)}
+                minimumValue={budgetValuesMinMax[budgetTypeIndex].min}
+                maximumValue={budgetValuesMinMax[budgetTypeIndex].max}
+                step={1000}
+                minimumTrackTintColor={'#DFDFC8'}
+                maximumTrackTintColor={'#DFDFC8'}
+                style={{ width: "100%", height: 14, }}
+                trackStyle={{ height: 6, borderRadius: 20, }}
+                thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent', }}
+                thumbProps={{
+                  children: (
+                    <View className='w-full h-full rounded-full bg-itemBgLight border-2 border-itemText'/>
+                  )
+                }}
+                />
               </View>
-              */}
             </View>
 
             {/* Sign Up */}
