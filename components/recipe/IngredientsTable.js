@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, FlatList } from 'react-native';
 import IngredientsTableRow from './IngredientsTableRow';
 import TitleTextComponent from '../text/TitleTextComponent';
+
+const RowDiv = () => (
+  <View className='w-full h-[1px] bg-itemBgDark' />
+);
 
 const IngredientsTable = ({ingredients}) => (
   <View className='grow w-full h-48 items-center justify-center'>
@@ -21,11 +25,14 @@ const IngredientsTable = ({ingredients}) => (
     
     {/* Content */}
     <View className='grow w-full h-40 bg-itemBgLight overflow-hidden rounded-b-lg'>
-      <ScrollView nestedScrollEnabled={true} className='w-full h-fit rounded-b-lg'>
-        {ingredients.map((item, index) => (
-          <IngredientsTableRow item={item} index={index}/>
-        ))}
-      </ScrollView>
+      <FlatList 
+      nestedScrollEnabled={true}
+      className='w-full h-fit rounded-b-lg'
+      data={ingredients}
+      renderItem={({item, index}) => <IngredientsTableRow item={item} index={index}/>}
+      ItemSeparatorComponent={RowDiv}
+      ListFooterComponent={RowDiv}
+      />
     </View>
   </View>
 )
