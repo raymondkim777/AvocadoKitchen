@@ -7,7 +7,7 @@ import SideBarView from './SideBarView';
 const SideBarModal = ({ 
   pages, username, 
   updatePage, buttonCSS, textCSS,
-  showSideBar, setShowSideBar,setScreenIdx
+  showSideBar, setShowSideBar, setScreenIdx
  }) => (
   <Modal 
   className='w-full h-full m-0'
