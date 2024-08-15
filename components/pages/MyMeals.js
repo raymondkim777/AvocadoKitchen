@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SafeAreaView, Text, SectionList, View, Image, Pressable } from 'react-native';
+import { SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
@@ -78,15 +78,18 @@ const MealCardThin = ({item, dropDownOpen, showDropDown, openDropDown, closeDrop
       onPress={closeDropDowns}/>
       : null
     }
-    <Image className='shrink w-1/2 h-full rounded-md' source={item.image} />
-    <View className='flex-col grow w-1/2 ml-1 pl-2 h-full items-center justify-center'>
-      <TitleTextComponent translate={true} size={'text-2xl'} css={'h-8 text-itemText text-center'}>
-        {item.title}
-      </TitleTextComponent>
-      <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'mt-1 text-itemText'}>
-        {item.cal} Cal
-      </ItemLargeTextComponent>
-    </View>
+    <TouchableOpacity className='flex-row shrink w-full h-full'
+    activeOpacity={0.7}>
+      <Image className='shrink w-1/2 h-full rounded-md' source={item.image} />
+      <View className='flex-col grow w-1/2 ml-1 pl-2 h-full items-center justify-center'>
+        <TitleTextComponent translate={true} size={'text-2xl'} css={'h-8 text-itemText text-center'}>
+          {item.title}
+        </TitleTextComponent>
+        <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'mt-1 text-itemText'}>
+          {item.cal} Cal
+        </ItemLargeTextComponent>
+      </View>
+    </TouchableOpacity>
     <View className='w-5 h-full items-center justify-center'>
       <EditButton showDropDown={showDropDown} openDropDown={openDropDown} />
     </View>
