@@ -82,7 +82,7 @@ const UserInfoPage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Information
             </TitleTextComponent>
-            <ExitButton navigation={navigation}/>
+            <ExitButton/>
           </View>
 
           {/* Diet Category */}

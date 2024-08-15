@@ -180,7 +180,7 @@ const AddMealPage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
             Add Your Meal
             </TitleTextComponent>
-            <ExitButton navigation={navigation}/>
+            <ExitButton exitCheck={true}/>
           </View>
 
           {

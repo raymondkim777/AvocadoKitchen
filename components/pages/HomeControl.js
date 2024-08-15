@@ -9,6 +9,7 @@ import MyMeals from './MyMeals';
 import Browse from './Browse';
 import RecipePage from './RecipePage';
 import AddMealPage from './AddMealPage';
+import AddMealPage2 from './AddMealPage2';
 import ProfilePage from './ProfilePage';
 import UserInfoPage from './UserInfoPage';
 import Tutorial from './Tutorial';
@@ -103,6 +104,7 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="MyMeals" component={MyMeals} />
           <PageStack.Screen name="Browse" component={Browse} />
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
+          <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />
           <PageStack.Screen name="UserInfoPage" component={UserInfoPage} />
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />

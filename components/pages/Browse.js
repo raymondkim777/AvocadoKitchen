@@ -261,7 +261,7 @@ const Browse = ({ navigation }) => {
               <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
                 Browse Recipes
               </TitleTextComponent>
-              <ExitButton navigation={navigation}/>
+              <ExitButton/>
             </View>
 
             {/* Search Bar */}

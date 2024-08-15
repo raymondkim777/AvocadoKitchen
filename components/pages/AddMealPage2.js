@@ -1,5 +1,6 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
 import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { SideBarContext } from './HomeControl';
 import ExitButton from '../general/ExitButton';
 import BackButton from '../general/BackButton';
 import Tag from '../addfunction/Tag';
@@ -12,8 +13,15 @@ import LargeButton from '../general/LargeButton';
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage2 = ({ navigation }) => {
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
   const handleBack = ()=>{
-    navigation.navigate('AddMealPage')
+    navigation.goBack();
+  }
+  
+  const handleSave = () => {
+    // "Adding Meal to Plan" message/alert
+    updatePage(0);
   }
 
   {/* References */}
@@ -116,7 +124,7 @@ const AddMealPage2 = ({ navigation }) => {
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
             <BackButton callback={handleBack}/>
-            <ExitButton/>
+            <ExitButton exitCheck={true} />
           </View>
 
           {/* Coupang/MarketCurly Error */}
@@ -237,7 +245,7 @@ const AddMealPage2 = ({ navigation }) => {
 
           {/* Finish */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton css={'px-4'} text={'Finish'} textSize={'text-2xl'}/>
+            <LargeButton css={'px-4'} text={'Finish'} textSize={'text-2xl'} callback={handleSave}/>
           </View>
           
         </View>
