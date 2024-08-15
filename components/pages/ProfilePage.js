@@ -176,7 +176,7 @@ const ProfilePage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               Profile
             </TitleTextComponent>
-            <ExitButton/>
+            <ExitButton exitCheck={true}/>
           </View>
 
           {/* Profile */}

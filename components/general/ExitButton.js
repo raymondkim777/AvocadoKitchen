@@ -1,36 +1,27 @@
-import React, { useContext, } from 'react';
+import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../pages/HomeControl';
-import { TouchableOpacity, Alert } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import LeaveAlert from './LeaveAlert';
 
 const ExitButton = ({ exitCheck = false }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const handleExit = (exitCheck) => {
     exitCheck 
-    ? Alert.alert(
-      'Do you want to leave?', 
-      'All unsaved changes will be lost.', 
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Leave', 
-          onPress: () => updatePage(0)
-        },
-      ],
-    {
-      cancelable: true,
-    })
-    : updatePage(0);
+    ? setShowAlert(true)
+    : updatePage(0)
   }
 
   return(
-    <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg'
-    activeOpacity={0.9} onPress={()=>(handleExit(exitCheck))}>
+    <View className='w-fit h-fit'>
+      <LeaveAlert showAlert={showAlert} setShowAlert={setShowAlert} />
+      <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg'
+      activeOpacity={0.9} onPress={()=>(handleExit(exitCheck))}>
 
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   )
 }
 

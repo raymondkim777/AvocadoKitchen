@@ -16,6 +16,12 @@ const resources = {
       "Privacy Policy": "Privacy Policy",
       "Terms of Service": "Terms of Service",
 
+      // LeaveAlert
+      "AlertTitle": "Do you want to leave?",
+      "AlertMessage": "All unsaved changes will be lost.",
+      "Cancel": "Cancel",
+      "Leave": "Leave",
+
       // Login / SignUp
       "Enter your email": "Enter your email",
       "Enter a username": "Enter a username",
@@ -230,6 +236,12 @@ const resources = {
       "Tutorial": "투토리얼",
       "Privacy Policy": "개인정보처리방침",
       "Terms of Service": "이용약관",
+
+      // LeaveAlert
+      "AlertTitle": "이 페이지 나가고 싶으세요?",
+      "AlertMessage": "나가기 선택하시면 모든 수정이 지워집니다.",
+      "Cancel": "취소",
+      "Leave": "나가기",
 
       // Login / SignUp
       "Enter your email": "이메일 입력",
