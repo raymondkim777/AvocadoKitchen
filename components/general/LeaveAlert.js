@@ -39,9 +39,9 @@ const LeaveAlert = ({ showAlert, setShowAlert}) => {
                   Cancel
                 </TitleTextComponent>
             </TouchableOpacity>
-            <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'
+            <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-itemText border-2 border-itemText rounded-xl'
               activeOpacity={0.7} onPress={handleLeave}>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemBgLight text-center'}>
                   Leave
                 </TitleTextComponent>
             </TouchableOpacity>
