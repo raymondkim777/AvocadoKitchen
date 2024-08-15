@@ -101,6 +101,8 @@ const resources = {
       "Thursday": "Thursday",
       "Friday": "Friday",
       "Saturday": "Saturday",
+      "Edit": "Edit", 
+      "Delete": "Delete",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -322,6 +324,8 @@ const resources = {
       "Thursday": "목요일",
       "Friday": "금요일",
       "Saturday": "토요일",
+      "Edit": "수정", 
+      "Delete": "삭제",
 
       // Browse
       "Browse Recipes": "레시피 찾기",
