@@ -280,7 +280,31 @@ const MyMeals = ({ navigation }) => {
       ],
     },
   ];
+  // Collapsible
+  const [showMeals, setShowMeals] = useState(new Array(7).fill(true));
+  const [displayedMeals, setDisplayedMeals] = useState(meals);
+  const updateDisplayedMeals = () => {
+    const new_arr = [];
+    for (let i = 0; i < 7; i++) {
+      if (showMeals[i]) {
+        new_arr.push(meals[i]);
+      } else {
+        new_arr.push({
+          day: meals[i].day,
+          data: [],
+        });
+      }
+    }
+    setDisplayedMeals(new_arr);
+  }
+  const updateShowMeals = (index) => {
+    const new_arr = showMeals;
+    new_arr[index] = !new_arr[index];
+    setShowMeals(new_arr);
+    updateDisplayedMeals();
+  }
 
+  // Edit Button DropDowns
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const dropDownStates = [];
   const dropDownOpenFunctions = [];
@@ -306,7 +330,7 @@ const MyMeals = ({ navigation }) => {
         <SectionList
         className='z-10 w-full h-fit px-4 bg-screenBg'
         contentContainerStyle={{flexGrow: 1}} 
-        sections={meals}
+        sections={displayedMeals}
         renderItem={({item, index, section: {day}}) => (
           <View className='z-30 flex-col w-full h-fit'>
             {/* Cards */}
@@ -314,18 +338,20 @@ const MyMeals = ({ navigation }) => {
               <MealCardThin 
               item={item} 
               dropDownOpen={dropDownOpen}
-              showDropDown={dropDownStates[days.findIndex((element) => element === day) * 3 + index]}
-              openDropDown={dropDownOpenFunctions[days.findIndex((element) => element === day) * 3 + index]}
+              showDropDown={dropDownStates[days.indexOf(day) * 3 + index]}
+              openDropDown={dropDownOpenFunctions[days.indexOf(day) * 3 + index]}
               closeDropDowns={closeDropDowns}
               />
             </View>
           </View>
         )}
         renderSectionHeader={({section: {day}}) => (
-          <View className='w-full h-fit pb-2 bg-screenBg'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 mt-4 text-screenText'}>
+          <View className='flex-row w-full h-fit items-center pb-2 pt-4 bg-screenBg'>
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
               {day}
             </TitleTextComponent>
+            <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg' 
+            activeOpacity={0.9} onPress={()=>updateShowMeals(days.indexOf(day))}/>
             {
               dropDownOpen ? 
               <Pressable className='absolute z-20 top-0 bottom-0 left-0 right-0'
@@ -341,7 +367,7 @@ const MyMeals = ({ navigation }) => {
           dropDownOpen={dropDownOpen} 
           closeDropDowns={closeDropDowns}
         />}
-        ListFooterComponent={<View className='w-full h-8' />}
+        ListFooterComponent={<View className='w-full h-4' />}
         ItemSeparatorComponent={ItemDiv}
         stickySectionHeadersEnabled={true}
         />

@@ -14,7 +14,7 @@ const EditButton = ({ showDropDown, openDropDown, closeDropDown }) => (
     </TouchableOpacity>
     {
       showDropDown
-      ? <View className='absolute z-30 top-0 -left-24 w-24 h-20'>
+      ? <View className='absolute z-30 -top-2 -left-24 w-24 h-20'>
           <View className='flex-col w-full h-full items-center justify-center border-2 border-itemText p-0 bg-buttonBg rounded-xl'>
             <TouchableOpacity className={`shrink w-full h-full items-center justify-center`}
             activeOpacity={0.7}>
