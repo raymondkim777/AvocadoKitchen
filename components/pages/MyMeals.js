@@ -1,12 +1,14 @@
 import React, { useState, useContext, } from 'react';
-import { SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity } from 'react-native';
+import { SideBarContext } from './HomeControl';
+import { BackHandler, SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import EditButton from '../general/EditButton';
-import { SideBarContext } from './HomeControl';
 
 const TitleSection = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
@@ -97,6 +99,23 @@ const MealCardThin = ({item, dropDownOpen, showDropDown, openDropDown, closeDrop
 )
 
 const MyMeals = ({ navigation }) => {
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   
   const nutrition = [
