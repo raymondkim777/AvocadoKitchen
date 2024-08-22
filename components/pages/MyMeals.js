@@ -1,11 +1,56 @@
-import React, { useState, } from 'react';
-import { SafeAreaView, ScrollView, View, Image } from 'react-native';
+import React, { useState, useContext, } from 'react';
+import { SafeAreaView, ScrollView, SectionList, View, Image } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import EditButton from '../general/EditButton';
+import { SideBarContext } from './HomeControl';
+
+const TitleSection = ({ navigation }) => {
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  return(
+    <View className='w-full h-fit mt-2'>
+      <View className='flex-row w-full h-10 justify-between'>
+        {
+          wideScreen ? null : <SideBarButton callback={setShowSideBar} />
+        }
+        <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+          My Meals
+        </TitleTextComponent>
+        <ExitButton />
+      </View>
+    </View>
+  )
+}
+
+const NutritionSection = ({ nutrition }) => (
+  <View className='grow min-h-fit mt-6'>
+    <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
+      Average Daily Stats
+    </TitleTextComponent>
+    {/* Three Cards */}
+    <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
+      {nutrition.map((item, index) => (
+        <View className='shrink w-full h-full'>
+          <NutritionCard item={item} index={index} />
+        </View>
+      ))}
+    </View>
+  </View>
+);
+
+const HeaderSection = ({navigation, nutrition}) => (
+  <View className='flex-col w-full h-fit'>
+    <TitleSection navigation={navigation} />
+    <NutritionSection nutrition={nutrition} />
+  </View>
+)
+
+const ItemDiv = () => (
+  <View className='w-full h-2' />
+)
 
 const NutritionCard = ({item, index}) => (
   <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
@@ -36,8 +81,7 @@ const MealCardThin = ({item}) => (
   </View>
 )
 
-const MyMeals = ({ wideScreen, setShowSideBar }) => {
-
+const MyMeals = ({ navigation }) => {
   const nutrition = [
     {
       id: 'calorie',
@@ -59,7 +103,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
   const meals = [
     {
       day: "Sunday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -82,7 +126,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Monday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -105,7 +149,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Tuesday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -128,7 +172,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Wednesday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -151,7 +195,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Thursday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -174,7 +218,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Friday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -197,7 +241,7 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
     },
     {
       day: "Saturday",
-      meal: [
+      data: [
         {
           type: 'Breakfast',
           title: 'Waffles', 
@@ -221,64 +265,32 @@ const MyMeals = ({ wideScreen, setShowSideBar }) => {
   ];
 
   return(
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <ScrollView 
-      className='w-full h-fit'
-      contentContainerStyle={{flexGrow: 1}} 
-      id='content' 
-      showsVerticalScrollIndicator={false}>
-        <View id='content' className='w-full h-fit p-4'>
-          {/* Frame 1 - Search Bar */}
-          <View className='w-full h-fit mt-2'>
-            {/* Title */}
-            <View className='flex-row w-full h-10 justify-between'>
-              {
-                wideScreen ? null : <SideBarButton callback={setShowSideBar} />
-              }
-              <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-                My Meals
-              </TitleTextComponent>
-              <ExitButton/>
+    <SafeAreaView id='screen' className='w-full h-full justify-center items-center'>
+      <View className='w-full h-full'>
+        <SectionList
+        className='w-full h-fit p-4 bg-screenBg'
+        contentContainerStyle={{flexGrow: 1}} 
+        sections={meals}
+        renderItem={({item}) => (
+          <View className='flex-col w-full h-fit'>
+            {/* Cards */}
+            <View className='w-full h-fit'>
+              <MealCardThin item={item} />
             </View>
           </View>
-
-          {/* Frame 2 - Daily Stats*/}
-          <View className='grow min-h-fit mt-6'>
-            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-              Average Daily Stats
+        )}
+        renderSectionHeader={({section: {day}}) => (
+          <View className='w-full h-fit mb-2'>
+            <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 mt-4 text-screenText'}>
+              {day}
             </TitleTextComponent>
-            {/* Three Cards */}
-            <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
-              {nutrition.map((item, index) => (
-                <View className='shrink w-full h-full'>
-                  <NutritionCard item={item} index={index} />
-                </View>
-              ))}
-            </View>
           </View>
-
-          {/* Day Meals */}
-          <View className='flex-col w-full h-fit mt-6'>
-            {meals.map((item, index)=>(
-              <View className='flex-col w-full h-fit mt-2'>
-                {/* Day */}
-                <View className='w-full h-fit mb-2'>
-                  <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-                    {item.day}
-                  </TitleTextComponent>
-                </View>
-
-                {/* Cards */}
-                {item.meal.map((item)=>(
-                  <View className='w-full h-fit mb-2'>
-                    <MealCardThin item={item} />
-                  </View>
-                ))}
-              </View>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
+        )}
+        ListHeaderComponent={<HeaderSection navigation={navigation} nutrition={nutrition} />}
+        ListFooterComponent={<View className='w-full h-8' />}
+        ItemSeparatorComponent={ItemDiv}
+        />
+      </View>
     </SafeAreaView>
   )
 }
