@@ -20,7 +20,7 @@ const TitleSection = ({ navigation }) => {
         <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
           My Meals
         </TitleTextComponent>
-        <ExitButton updatePage={updatePage}/>
+        <ExitButton />
       </View>
     </View>
   )
