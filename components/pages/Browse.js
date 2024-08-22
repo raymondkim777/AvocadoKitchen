@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from 'react';
 import { SideBarContext } from './HomeControl';
-import { Text, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, Text, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
@@ -34,6 +35,22 @@ const { width, height } = Dimensions.get('window');
 const Browse = ({ navigation }) => {
   const scrollRef = useRef();
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
   
   {/* Data */}
   const optionList = [
