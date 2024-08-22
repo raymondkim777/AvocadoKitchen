@@ -6,7 +6,8 @@ import SideBarView from './SideBarView';
 export const SideBarVar = createContext();
 const SideBar = ({ 
   navigation, 
-  wideScreen, username, setShowSideBar,
+  wideScreen, username, 
+  showSideBar, setShowSideBar,
   
  }) => {
 
@@ -59,30 +60,29 @@ const SideBar = ({
   }
 
   const SideBarContextValue = {setShowSideBar, updatePage};
-    return(
-      <SideBarVar.Provider value={SideBarContextValue}>
-        {
-          wideScreen
-          ? <SideBarView
-            pages={pages}
-            username={username}
-            updatePage={updatePage}
-            buttonCSS={buttonCSS}
-            textCSS={textCSS} 
-            />
-          : <SideBarModal 
-            pages={pages}
-            username={username}
-            showSideBar={showSideBar}
-            setShowSideBar={setShowSideBar}
-            updatePage={updatePage}
-            buttonCSS={buttonCSS}
-            textCSS={textCSS}
-            />
-        }
-      </SideBarVar.Provider>
-      
-    )
+  return(
+    <SideBarVar.Provider value={SideBarContextValue}>
+      {
+        wideScreen
+        ? <SideBarView
+          pages={pages}
+          username={username}
+          updatePage={updatePage}
+          buttonCSS={buttonCSS}
+          textCSS={textCSS} 
+          />
+        : <SideBarModal 
+          pages={pages}
+          username={username}
+          showSideBar={showSideBar}
+          setShowSideBar={setShowSideBar}
+          updatePage={updatePage}
+          buttonCSS={buttonCSS}
+          textCSS={textCSS}
+          />
+      }
+    </SideBarVar.Provider>
+  )
  }
 
 export default SideBar

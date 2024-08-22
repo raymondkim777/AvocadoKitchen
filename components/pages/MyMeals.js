@@ -9,7 +9,7 @@ import EditButton from '../general/EditButton';
 import { SideBarContext } from './HomeControl';
 
 const TitleSection = ({ navigation }) => {
-  const {wideScreen} = useContext(SideBarContext);
+  const {wideScreen, setShowSideBar} = useContext(SideBarContext);
 
   return(
     <View className='w-full h-fit mt-2'>

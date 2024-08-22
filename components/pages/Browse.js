@@ -33,7 +33,7 @@ const { width, height } = Dimensions.get('window');
 
 const Browse = ({ navigation }) => {
   const scrollRef = useRef();
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const {wideScreen, setShowSideBar } = useContext(SideBarContext);
   
   {/* Data */}
   const optionList = [

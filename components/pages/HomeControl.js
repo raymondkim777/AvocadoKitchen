@@ -30,7 +30,7 @@ const HomeControl = ({ navigation }) => {
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   const Container = wideScreen ?  View : SafeAreaView;
-  const SideBarContextValue = {wideScreen,setShowSideBar};
+  const SideBarContextValue = {wideScreen, setShowSideBar};
   return (
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
     
@@ -40,6 +40,7 @@ const HomeControl = ({ navigation }) => {
       PageStack={PageStack}
       wideScreen={wideScreen}
       username={username}
+      showSideBar={showSideBar}
       setShowSideBar={setShowSideBar}
      />
       <SideBarContext.Provider value={SideBarContextValue}>
