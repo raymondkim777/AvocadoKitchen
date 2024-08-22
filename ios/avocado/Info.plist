@@ -32,7 +32,24 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>Supported Platforms</key>
+	<array>
+		<string>iPhoneOS</string>
+		<string>iPadOS</string>
+		<string>macOS</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fonts/Inconsolata-VariableFont.ttf</string>
+		<string>fonts/Inconsolata-Light.ttf</string>
+		<string>fonts/Inconsolata-Regular.ttf</string>
+		<string>fonts/LeeSeoyun.otf</string>
+		<string>fonts/BaeEun.ttf</string>
+		<string>fonts/NPS-Regular.ttf</string>
+		<string>fonts/NPS-Bold.ttf</string>
+		<string>fonts/NPS-ExtraBold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -47,27 +64,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Inconsolata-Bold.ttf</string>
-		<string>Inconsolata-SemiBold.ttf</string>
-		<string>Inconsolata-VariableFont.ttf</string>
-		<string>SpaceMono-Regular.ttf</string>
-		<string>Fredoka-Bold.ttf</string>
-		<string>Fredoka-SemiBold.ttf</string>
-		<string>Inconsolata-Light.ttf</string>
-		<string>Inconsolata-Regular.ttf</string>
-		<string>LeeSeoyun.otf</string>
-		<string>BaeEun.ttf</string>
-		<string>NPS-Regular.ttf</string>
-		<string>NPS-Bold.ttf</string>
-		<string>NPS-ExtraBold.ttf</string>
-	</array>
-	<key>Supported Platforms</key>
-	<array>
-		<string>iPhoneOS</string>
-		<string>iPadOS</string>
-		<string>macOS</string>
-	</array>
 </dict>
 </plist>

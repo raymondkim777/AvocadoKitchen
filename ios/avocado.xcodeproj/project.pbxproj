@@ -34,12 +34,6 @@
 		CA3AF8432C592295001B09D3 /* NPS-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8352C592294001B09D3 /* NPS-ExtraBold.ttf */; };
 		CA3AF8442C592295001B09D3 /* NPS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8362C592294001B09D3 /* NPS-Regular.ttf */; };
 		CA3AF8452C592295001B09D3 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8372C592294001B09D3 /* SpaceMono-Regular.ttf */; };
-		CAC1E0EC2C4F80B700470033 /* Inconsolata-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0E52C4F80B700470033 /* Inconsolata-VariableFont.ttf */; };
-		CAC1E0ED2C4F80B700470033 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0E62C4F80B700470033 /* SpaceMono-Regular.ttf */; };
-		CAC1E0EE2C4F80B700470033 /* Fredoka-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0E72C4F80B700470033 /* Fredoka-SemiBold.ttf */; };
-		CAC1E0EF2C4F80B700470033 /* Fredoka-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0E82C4F80B700470033 /* Fredoka-Bold.ttf */; };
-		CAC1E0F02C4F80B700470033 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0E92C4F80B700470033 /* Inconsolata-Bold.ttf */; };
-		CAC1E0F22C4F80B700470033 /* Inconsolata-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAC1E0EB2C4F80B700470033 /* Inconsolata-SemiBold.ttf */; };
 		D551593706BDA881499FA278 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 957F680773FA7528BB4D917C /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -91,13 +85,6 @@
 		CA3AF8352C592294001B09D3 /* NPS-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPS-ExtraBold.ttf"; sourceTree = "<group>"; };
 		CA3AF8362C592294001B09D3 /* NPS-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPS-Regular.ttf"; sourceTree = "<group>"; };
 		CA3AF8372C592294001B09D3 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
-		CA7B28742C571D7D00E6918B /* 배은혜체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "배은혜체.ttf"; path = "../assets/fonts/배은혜체.ttf"; sourceTree = "<group>"; };
-		CAC1E0E52C4F80B700470033 /* Inconsolata-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-VariableFont.ttf"; path = "../assets/fonts/Inconsolata-VariableFont.ttf"; sourceTree = "<group>"; };
-		CAC1E0E62C4F80B700470033 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SpaceMono-Regular.ttf"; path = "../assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
-		CAC1E0E72C4F80B700470033 /* Fredoka-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Fredoka-SemiBold.ttf"; path = "../assets/fonts/Fredoka-SemiBold.ttf"; sourceTree = "<group>"; };
-		CAC1E0E82C4F80B700470033 /* Fredoka-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Fredoka-Bold.ttf"; path = "../assets/fonts/Fredoka-Bold.ttf"; sourceTree = "<group>"; };
-		CAC1E0E92C4F80B700470033 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Bold.ttf"; path = "../assets/fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
-		CAC1E0EB2C4F80B700470033 /* Inconsolata-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-SemiBold.ttf"; path = "../assets/fonts/Inconsolata-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F4A0951AA6EC4AE69CEF76FB /* Inconsolata-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inconsolata-Light.ttf"; path = "../assets/fonts/Inconsolata-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,13 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				CA3AF8382C592294001B09D3 /* fonts */,
-				CA7B28742C571D7D00E6918B /* 배은혜체.ttf */,
-				CAC1E0E82C4F80B700470033 /* Fredoka-Bold.ttf */,
-				CAC1E0E72C4F80B700470033 /* Fredoka-SemiBold.ttf */,
-				CAC1E0E92C4F80B700470033 /* Inconsolata-Bold.ttf */,
-				CAC1E0EB2C4F80B700470033 /* Inconsolata-SemiBold.ttf */,
-				CAC1E0E52C4F80B700470033 /* Inconsolata-VariableFont.ttf */,
-				CAC1E0E62C4F80B700470033 /* SpaceMono-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* avocado */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* avocadoTests */,
@@ -344,14 +324,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA3AF83A2C592295001B09D3 /* Fredoka-Bold.ttf in Resources */,
-				CAC1E0EC2C4F80B700470033 /* Inconsolata-VariableFont.ttf in Resources */,
-				CAC1E0ED2C4F80B700470033 /* SpaceMono-Regular.ttf in Resources */,
-				CAC1E0EE2C4F80B700470033 /* Fredoka-SemiBold.ttf in Resources */,
 				CA3AF83D2C592295001B09D3 /* Inconsolata-Light.ttf in Resources */,
-				CAC1E0EF2C4F80B700470033 /* Fredoka-Bold.ttf in Resources */,
-				CAC1E0F02C4F80B700470033 /* Inconsolata-Bold.ttf in Resources */,
 				CA3AF83B2C592295001B09D3 /* Fredoka-SemiBold.ttf in Resources */,
-				CAC1E0F22C4F80B700470033 /* Inconsolata-SemiBold.ttf in Resources */,
 				CA3AF8432C592295001B09D3 /* NPS-ExtraBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				CA3AF83C2C592295001B09D3 /* Inconsolata-Bold.ttf in Resources */,
