@@ -58,9 +58,6 @@ const HomeControl = ({ navigation }) => {
   );
   const updatePage = (index) => {
     setPageIndex(index);
-    navigation.navigate(pageID[index])
-    
-   
     setShowSideBar(false);
 
     const new_button = new Array(pages.length).fill('');
@@ -76,6 +73,7 @@ const HomeControl = ({ navigation }) => {
   
   {/* HomeControl */}
   const [username, setUsername] = useState('Username');
+  
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   const Container = wideScreen ?  View : SafeAreaView;
@@ -96,6 +94,7 @@ const HomeControl = ({ navigation }) => {
       textCSS={textCSS} 
       updatePage={updatePage}
       />
+       {/*
       <SideBarContext.Provider value={SideBarContextValue}>
         <PageStack.Navigator 
           initialRouteName="HomePage"
@@ -112,15 +111,16 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="Tutorial" component={Tutorial} />
         </PageStack.Navigator>        
       </SideBarContext.Provider>
+       */}
 
-
-      {/*
-      <PagePopup 
-      navigation={navigation}
-      wideScreen={wideScreen}
-      index={showScreenIdx} 
-      setShowSideBar={setShowSideBar}/>
-      */}
+      <SideBarContext.Provider value={SideBarContextValue}>
+        <PagePopup 
+        navigation={navigation}
+        wideScreen={wideScreen}
+        index={pageIndex} 
+        setShowSideBar={setPageIndex}/>
+       </SideBarContext.Provider>
+     
         
     </Container>
   );
