@@ -1,4 +1,4 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, useTransition, createContext} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CommonActions } from '@react-navigation/native';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
@@ -22,18 +22,67 @@ export const SideBarContext = createContext();
 
 const HomeControl = ({ navigation }) => {
   {/* SideBar Context */}
-  
+  const [showSideBar, setShowSideBar] = useState(false);
+  const pageID = [
+    'HomePage', 
+    'MyMeals',
+    'Browse',
+    'AddMealPage',
+    'UserInfoPage',
+    'ProfilePage',
+    'Tutorial',
+  ];
+  const pages = [
+    'Home', 
+    'My Meals',
+    'Recipe Search', 
+    'Add a Meal', 
+    'Info', 
+    'Profile', 
+    'Tutorial',
+  ];
+  const [pageIndex, setPageIndex] = useState(0);
+  const [buttonCSS, setButtonCSS] = useState(
+    new Array(pageIndex).fill('').concat(
+      ['bg-itemText'].concat(
+        new Array(pages.length - pageIndex - 1).fill('')
+      )
+    )
+  );
+  const [textCSS, setTextCSS] = useState(
+    new Array(pageIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(pages.length - pageIndex - 1).fill('text-itemText')
+      )
+    )
+  );
+  const updatePage = (index) => {
+    setPageIndex(index);
+    navigation.navigate(pageID[index])
+    
+   
+    setShowSideBar(false);
+
+    const new_button = new Array(pages.length).fill('');
+    new_button[index] = 'bg-itemText';
+    setButtonCSS(new_button);
+
+    const new_text = new Array(pages.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setTextCSS(new_text);
+
+
+  }
   
   {/* HomeControl */}
   const [username, setUsername] = useState('Username');
-  const [showSideBar, setShowSideBar] = useState(false);
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
   const Container = wideScreen ?  View : SafeAreaView;
-  const SideBarContextValue = {wideScreen, setShowSideBar};
+
+  const SideBarContextValue = {wideScreen, setShowSideBar, updatePage};
   return (
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
-    
       {/* SideBar */}
       <SideBar 
       navigation={navigation}
@@ -42,11 +91,16 @@ const HomeControl = ({ navigation }) => {
       username={username}
       showSideBar={showSideBar}
       setShowSideBar={setShowSideBar}
-     />
+      pages={pages}
+      buttonCSS={buttonCSS}
+      textCSS={textCSS} 
+      updatePage={updatePage}
+      />
       <SideBarContext.Provider value={SideBarContextValue}>
         <PageStack.Navigator 
           initialRouteName="HomePage"
-          screenOptions={{ headerShown: false }}
+          screenOptions={{ headerShown: false, animationEnabled: false }}
+         
         >
           <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
