@@ -9,7 +9,8 @@ import EditButton from '../general/EditButton';
 import { SideBarContext } from './HomeControl';
 
 const TitleSection = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const {wideScreen} = useContext(SideBarContext);
+
   return(
     <View className='w-full h-fit mt-2'>
       <View className='flex-row w-full h-10 justify-between'>
@@ -19,7 +20,7 @@ const TitleSection = ({ navigation }) => {
         <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
           My Meals
         </TitleTextComponent>
-        <ExitButton/>
+        <ExitButton updatePage={updatePage}/>
       </View>
     </View>
   )

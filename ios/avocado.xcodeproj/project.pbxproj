@@ -8,32 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* avocadoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* avocadoTests.m */; };
-		0ADBFC2A5F7E487C8109B72B /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D6EBF9CFF19488CBA7F527C /* Inconsolata-Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-avocado.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-avocado.a */; };
-		1169A9A7DB0D4C1492823D9D /* BaeEun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9F8C8148C3F493C88E42012 /* BaeEun.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		34F30B5B7F004CB08EA894F4 /* LeeSeoyun.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB515E7626ED4DD787413758 /* LeeSeoyun.otf */; };
 		7699B88040F8A987B510C191 /* libPods-avocado-avocadoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-avocado-avocadoTests.a */; };
-		7934734794E14B7EBE0BE63C /* NPS-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 286A9A5992D14BCDB06AE685 /* NPS-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		83291F40A6CA4F91895D8DFE /* NPS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B158F0EA0EE465A8369CD83 /* NPS-Bold.ttf */; };
-		83773173804C4906A90054A8 /* Inconsolata-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A0951AA6EC4AE69CEF76FB /* Inconsolata-Light.ttf */; };
-		C912A9F120DF46FBBB426C6D /* NPS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36D5E450463A43428BACC6B7 /* NPS-Regular.ttf */; };
-		CA3AF8392C592295001B09D3 /* BaeEun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF82B2C592294001B09D3 /* BaeEun.ttf */; };
-		CA3AF83A2C592295001B09D3 /* Fredoka-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF82C2C592294001B09D3 /* Fredoka-Bold.ttf */; };
-		CA3AF83B2C592295001B09D3 /* Fredoka-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF82D2C592294001B09D3 /* Fredoka-SemiBold.ttf */; };
-		CA3AF83C2C592295001B09D3 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF82E2C592294001B09D3 /* Inconsolata-Bold.ttf */; };
-		CA3AF83D2C592295001B09D3 /* Inconsolata-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF82F2C592294001B09D3 /* Inconsolata-Light.ttf */; };
-		CA3AF83E2C592295001B09D3 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8302C592294001B09D3 /* Inconsolata-Regular.ttf */; };
-		CA3AF83F2C592295001B09D3 /* Inconsolata-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8312C592294001B09D3 /* Inconsolata-SemiBold.ttf */; };
-		CA3AF8402C592295001B09D3 /* Inconsolata-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8322C592294001B09D3 /* Inconsolata-VariableFont.ttf */; };
-		CA3AF8412C592295001B09D3 /* LeeSeoyun.otf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8332C592294001B09D3 /* LeeSeoyun.otf */; };
-		CA3AF8422C592295001B09D3 /* NPS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8342C592294001B09D3 /* NPS-Bold.ttf */; };
-		CA3AF8432C592295001B09D3 /* NPS-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8352C592294001B09D3 /* NPS-ExtraBold.ttf */; };
-		CA3AF8442C592295001B09D3 /* NPS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8362C592294001B09D3 /* NPS-Regular.ttf */; };
-		CA3AF8452C592295001B09D3 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA3AF8372C592294001B09D3 /* SpaceMono-Regular.ttf */; };
 		D551593706BDA881499FA278 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 957F680773FA7528BB4D917C /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -72,19 +52,6 @@
 		957F680773FA7528BB4D917C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = avocado/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A9F8C8148C3F493C88E42012 /* BaeEun.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BaeEun.ttf; path = ../assets/fonts/BaeEun.ttf; sourceTree = "<group>"; };
 		BB515E7626ED4DD787413758 /* LeeSeoyun.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LeeSeoyun.otf; path = ../assets/fonts/LeeSeoyun.otf; sourceTree = "<group>"; };
-		CA3AF82B2C592294001B09D3 /* BaeEun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BaeEun.ttf; sourceTree = "<group>"; };
-		CA3AF82C2C592294001B09D3 /* Fredoka-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Bold.ttf"; sourceTree = "<group>"; };
-		CA3AF82D2C592294001B09D3 /* Fredoka-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-SemiBold.ttf"; sourceTree = "<group>"; };
-		CA3AF82E2C592294001B09D3 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
-		CA3AF82F2C592294001B09D3 /* Inconsolata-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-Light.ttf"; sourceTree = "<group>"; };
-		CA3AF8302C592294001B09D3 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
-		CA3AF8312C592294001B09D3 /* Inconsolata-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-SemiBold.ttf"; sourceTree = "<group>"; };
-		CA3AF8322C592294001B09D3 /* Inconsolata-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-VariableFont.ttf"; sourceTree = "<group>"; };
-		CA3AF8332C592294001B09D3 /* LeeSeoyun.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeeSeoyun.otf; sourceTree = "<group>"; };
-		CA3AF8342C592294001B09D3 /* NPS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPS-Bold.ttf"; sourceTree = "<group>"; };
-		CA3AF8352C592294001B09D3 /* NPS-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPS-ExtraBold.ttf"; sourceTree = "<group>"; };
-		CA3AF8362C592294001B09D3 /* NPS-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPS-Regular.ttf"; sourceTree = "<group>"; };
-		CA3AF8372C592294001B09D3 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F4A0951AA6EC4AE69CEF76FB /* Inconsolata-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inconsolata-Light.ttf"; path = "../assets/fonts/Inconsolata-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,7 +142,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				CA3AF8382C592294001B09D3 /* fonts */,
 				13B07FAE1A68108700A75B9A /* avocado */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* avocadoTests */,
@@ -207,27 +173,6 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-avocado-avocadoTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		CA3AF8382C592294001B09D3 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CA3AF82B2C592294001B09D3 /* BaeEun.ttf */,
-				CA3AF82C2C592294001B09D3 /* Fredoka-Bold.ttf */,
-				CA3AF82D2C592294001B09D3 /* Fredoka-SemiBold.ttf */,
-				CA3AF82E2C592294001B09D3 /* Inconsolata-Bold.ttf */,
-				CA3AF82F2C592294001B09D3 /* Inconsolata-Light.ttf */,
-				CA3AF8302C592294001B09D3 /* Inconsolata-Regular.ttf */,
-				CA3AF8312C592294001B09D3 /* Inconsolata-SemiBold.ttf */,
-				CA3AF8322C592294001B09D3 /* Inconsolata-VariableFont.ttf */,
-				CA3AF8332C592294001B09D3 /* LeeSeoyun.otf */,
-				CA3AF8342C592294001B09D3 /* NPS-Bold.ttf */,
-				CA3AF8352C592294001B09D3 /* NPS-ExtraBold.ttf */,
-				CA3AF8362C592294001B09D3 /* NPS-Regular.ttf */,
-				CA3AF8372C592294001B09D3 /* SpaceMono-Regular.ttf */,
-			);
-			name = fonts;
-			path = ../assets/fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,29 +268,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3AF83A2C592295001B09D3 /* Fredoka-Bold.ttf in Resources */,
-				CA3AF83D2C592295001B09D3 /* Inconsolata-Light.ttf in Resources */,
-				CA3AF83B2C592295001B09D3 /* Fredoka-SemiBold.ttf in Resources */,
-				CA3AF8432C592295001B09D3 /* NPS-ExtraBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				CA3AF83C2C592295001B09D3 /* Inconsolata-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D551593706BDA881499FA278 /* PrivacyInfo.xcprivacy in Resources */,
-				83773173804C4906A90054A8 /* Inconsolata-Light.ttf in Resources */,
-				0ADBFC2A5F7E487C8109B72B /* Inconsolata-Regular.ttf in Resources */,
-				34F30B5B7F004CB08EA894F4 /* LeeSeoyun.otf in Resources */,
-				CA3AF8392C592295001B09D3 /* BaeEun.ttf in Resources */,
-				CA3AF8422C592295001B09D3 /* NPS-Bold.ttf in Resources */,
-				CA3AF8442C592295001B09D3 /* NPS-Regular.ttf in Resources */,
-				CA3AF8412C592295001B09D3 /* LeeSeoyun.otf in Resources */,
-				1169A9A7DB0D4C1492823D9D /* BaeEun.ttf in Resources */,
-				CA3AF8452C592295001B09D3 /* SpaceMono-Regular.ttf in Resources */,
-				C912A9F120DF46FBBB426C6D /* NPS-Regular.ttf in Resources */,
-				83291F40A6CA4F91895D8DFE /* NPS-Bold.ttf in Resources */,
-				7934734794E14B7EBE0BE63C /* NPS-ExtraBold.ttf in Resources */,
-				CA3AF8402C592295001B09D3 /* Inconsolata-VariableFont.ttf in Resources */,
-				CA3AF83F2C592295001B09D3 /* Inconsolata-SemiBold.ttf in Resources */,
-				CA3AF83E2C592295001B09D3 /* Inconsolata-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,10 +618,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -768,10 +690,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
