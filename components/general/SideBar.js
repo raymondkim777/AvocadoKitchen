@@ -6,10 +6,10 @@ import SideBarView from './SideBarView';
 export const SideBarVar = createContext();
 const SideBar = ({ 
   navigation, 
-  wideScreen, username, 
+  wideScreen, username, setShowSideBar,
   
  }) => {
-  const [showSideBar, setShowSideBar] = useState(false);
+
   const pageID = [
     'HomePage', 
     'MyMeals',
