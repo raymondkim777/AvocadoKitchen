@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, Text, View, Dimensions, SafeAreaView, TouchableWithoutFeedback, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
+import { BackHandler, View, Dimensions, SafeAreaView, Image,ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
@@ -59,6 +59,8 @@ const { width, height } = Dimensions.get('window');
 const HomePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
+
+  // Android BackButton exits app instead of going to Login
   // https://reactnavigation.org/docs/custom-android-back-button-handling/
   useFocusEffect(
     React.useCallback(() => {
