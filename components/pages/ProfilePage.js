@@ -123,7 +123,7 @@ const ProfilePage = ({ navigation }) => {
   const [dropDownText, setDropDownText] = useState(
     new Array(budgetTypeIndex).fill('text-itemText').concat(
       ['text-itemBgLight'].concat(
-        new Array(budgetType.length - budgetTypeIndex - 1).fill('')
+        new Array(budgetType.length - budgetTypeIndex - 1).fill('text-itemText')
       )
     )
   );

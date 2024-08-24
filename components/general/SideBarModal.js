@@ -17,11 +17,12 @@ const SideBarModal = ({
     animationIn={'slideInLeft'}
     animationInTiming={300}
     animationOut={'slideOutLeft'}
-    animationOutTiming={600}
+    animationOutTiming={300}
     onModalHide={()=>updateStack(pageIndex)}
     onSwipeComplete={() => setShowSideBar(false)}
     swipeDirection='left'
     onBackdropPress={() => setShowSideBar(false)}
+    onBackButtonPress={() => setShowSideBar(false)}
     >
       <SideBarView
       pages={pages}
