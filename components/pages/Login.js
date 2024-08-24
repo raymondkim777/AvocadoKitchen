@@ -1,69 +1,82 @@
 import React, { useState } from 'react';
-import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modal';
-import SignUp from './SignUp';
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import TitleTextComponent from '../text/TitleTextComponent';
+import LargeButton from '../general/LargeButton';
 
 const Login = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [isSignup, setSignup] = useState(false);
-  const [password, setPassword] = useState('');
-  /*
-  const handleLogin = () => {
-      console.log('Username:', username);
-      console.log('Password:', password);
-    };
-  */
 
-  const handleSignup = () => {
-    setSignup(!isSignup);
-  };
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const handleLogin = ({}) => {
+    navigation.navigate('HomeControl')
+  }
+
+  const handleSignUp = ({}) => {
+    navigation.navigate('SignUp')
+  }
+ 
+
   return (
-    <View className='w-full h-full bg-screenBg ' >
-      {/* Logo */}
-      <View className='w-full h-1/3 flex items-center justify-end'>
-          <Image className='w-[150px] h-[150px]' source={require('../../assets/images/Logo.png')} />
-      </View>
-
-      {/* Email/Password */}
-      <View className='w-full h-1/3 flex-col justify-center items-center'>
-        <TextInput className='font-inconsolataLight w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1 mb-3'
-          placeholder="Enter your email" 
-          value={username} 
-          onChangeText={setUsername} 
-        />
-        <TextInput className='placeholder:[#90BCAF] font-inconsolataLight w-3/4 h-12 bg-itemBgLight rounded-md text-itemText text-xl pl-3 pb-1'
-          placeholder="Enter your password" 
-          value={password} 
-          onChangeText={setPassword} 
-          secureTextEntry 
-        />
-      </View>
-
-      {/* Buttons */}
-      <View className='w-full h-1/3 flex-col items-center'>
-        {/* Continue w/ Google */}
-        <TouchableOpacity className='w-3/4 h-12 bg-itemBgDark flex-row items-center justify-center rounded-md py-2'>
-          <Image className='w-[30px] h-[30px] mr-5' source={require('../../assets/images/google.png')} />
-  
-          <Text className='font-inconsolata text-xl text-itemText'>Continue with Google</Text>
-        </TouchableOpacity>
-        <Modal isVisible={isSignup} onRequestClose={handleSignup} animationType="slide">
-
-          <SignUp onClose={handleSignup}></SignUp>
-        </Modal>
-        {/* Login/SignUp */}
-        <View className='w-3/4 h-1/2 flex-row mt-5 items-start justify-center '>
-          <TouchableOpacity  onPress={() => navigation.navigate('Homepage')} className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-            <Text className='font-inconsolata text-xl text-itemText'>LOGIN</Text>
-          </TouchableOpacity>
-          <View className='w-2/12'></View>
-          <TouchableOpacity onPress={handleSignup} className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-            <Text className='font-inconsolata text-xl text-itemText'>SIGN UP</Text>
-          </TouchableOpacity>
+    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+      <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>
+        {/* Logo */}
+        <View className='w-full h-fit flex items-center justify-end -mt-12'>
+          <Image className='w-[160px] h-[160px]' source={require('../../assets/images/Logo.png')} />
         </View>
+
+        {/* Email/Password Input */}
+        <View className='w-full h-fit mt-6'>
+          {/* Email Input */}
+          <ItemTextInputComponent
+          translate={true}
+          size={'text-xl'}
+          css={'shrink w-full h-10 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
+          placeholder={'Enter your email'}
+          placeholderTextColor={'#85855B'}
+          value={emailInput}
+          onChangeText={setEmailInput}
+          underlineColorAndroid={'transparent'}
+          inputMode={'email'}
+          />
+
+          {/* Password Input */}
+          <ItemTextInputComponent
+          translate={true}
+          size={'text-xl'}
+          css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+          placeholder={'Enter your password'}
+          placeholderTextColor={'#85855B'}
+          value={passwordInput}
+          onChangeText={setPasswordInput}
+          underlineColorAndroid={'transparent'}
+          secureTextEntry={true}
+          />
+        </View>
+
+        {/* Buttons */}
+        <View className='flex-col w-full h-fit mt-16'>
+          {/* Continue with Google */}
+          <View className='w-full h-fit items-center justify-center'>
+            <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl'
+              activeOpacity={0.9}>
+                <Image className='w-[40px] h-[40px] mr-2' source={require('../../assets/images/google.png')} />
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
+                  Continue with Google
+                </TitleTextComponent>
+            </TouchableOpacity>
+          </View>
+
+          {/* Login/SignUp */}
+          <View className='flex-row w-full h-fit items-center justify-center mt-2'>
+            <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={handleLogin} />
+            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUp} />
+          </View>
+        </View>
+
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
-export default Login;
+export default Login

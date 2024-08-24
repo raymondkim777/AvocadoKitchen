@@ -20,7 +20,7 @@ const ProfilePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const handleLogOut = ({}) => {
-    navigation.navigate('Login2')
+    navigation.navigate('Login')
   }
 
   {/* References */}

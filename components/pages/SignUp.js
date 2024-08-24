@@ -1,78 +1,121 @@
 import React, { useState } from 'react';
-import { Text, View, Image,  TextInput, TouchableOpacity } from 'react-native';
-import UserInfoInput from './UserInfoInput'
-import Modal from 'react-native-modal';
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
+import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import TitleTextComponent from '../text/TitleTextComponent';
+import LargeButton from '../general/LargeButton';
 
-const SignUp = ({ navigation, onClose}) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [checkpassword, setCheckPassword] = useState('');
-    const [isNext, setNext] = useState(false);
-    const handleNext = () => {
-        setNext(!isNext);
-      };
-    return (
-        <View>
-            <View className='w-full flex flex-col justify-end items-end h-[8%]'>
-                <TouchableOpacity onPress={onClose} className='w-5 h-5 bg-itemBgDark flex items-center justify-center rounded-full mb-2'>
-                    <Text style={{ fontFamily: 'inconsolata' }} className='text-sm text-itemText'>X</Text>
-                </TouchableOpacity>
-            </View>
-            <View className='w-full  h-[92%] bg-screenBg'>
-                <View className='w-full h-1/3 flex items-center justify-end'>
-                    <Image className='w-[150px] h-[150px]' source={require('../../assets/images/Logo.png')} />
-                </View>
+const SignUp = ({ navigation }) => {
 
-                {/* Email/Password */}
-                <View className='w-full h-1/3 flex-col justify-center items-center'>
-                    <TextInput style={{ fontFamily: 'inconsolata' }} className='w-3/4 h-8 bg-itemBgLight rounded-md text-itemText text-base pl-3 pb-1 mb-3'
-                    placeholder="Enter your email" 
-                    value={username} 
-                    onChangeText={setUsername} 
-                    />
-                    <TextInput style={{ fontFamily: 'inconsolata' }} className='w-3/4 h-8 bg-itemBgLight rounded-md text-itemText text-base pl-3 pb-1 mb-3'
-                    placeholder="Password" 
-                    value={password} 
-                    onChangeText={setPassword} 
-                    secureTextEntry 
-                    />
-                    <TextInput style={{ fontFamily: 'inconsolata' }} className='w-3/4 h-8 bg-itemBgLight rounded-md text-itemText text-base pl-3 pb-1'
-                    placeholder="Password Check" 
-                    value={checkpassword} 
-                    onChangeText={setCheckPassword} 
-                    secureTextEntry 
-                    />
-                </View>
+  const [emailInput, setEmailInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const handleNext = ({}) => {
+    navigation.navigate('SignUp2')
+  }
 
-                {/* Buttons */}
-                <View className='w-full h-1/3 flex-col items-center'>
-                    {/*cupang */}
-                    <TouchableOpacity className='w-3/4 h-10 bg-itemBgDark flex-row items-center justify-center rounded-md py-2 mb-3'>
-                        <Image className='w-[20px] h-[20px] mr-5'/>
-                        <Text style={{ fontFamily: 'inconsolata' }} className='text-base text-itemText'>Cupang Account</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity className='w-3/4 h-10 bg-itemBgDark flex-row items-center justify-center rounded-md py-2'>
-                        <Image className='w-[20px] h-[20px] mr-5'/>
-                        <Text style={{ fontFamily: 'inconsolata' }} className='text-base text-itemText'>Market Kurly Account</Text>
-                    </TouchableOpacity>
-                    
-                    <View className='w-3/4 h-1/2 flex-row mt-5 items-start justify-center '>
-                    <TouchableOpacity className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-                        <Text style={{ fontFamily: 'inconsolata' }} onPress={onClose} className='text-base text-itemText font-inconsolata'>Back</Text>
-                    </TouchableOpacity>
-                    <View className='w-2/12'></View>
-                    <TouchableOpacity className='w-5/12 bg-itemBgDark flex items-center justify-center rounded-md py-1'>
-                        <Text style={{ fontFamily: 'inconsolata' }} onPress={handleNext} className='text-base text-itemText'>Next</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                <Modal isVisible={isNext} onRequestClose={handleNext} animationType="slide">
-                    <UserInfoInput onNext={handleNext}></UserInfoInput>
-                </Modal>
-               
-            </View>
+  const handleBack = ({}) => {
+    navigation.navigate('Login')
+  }
+ 
+
+  return (
+    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+      <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>
+
+        {/* Logo */}
+        <View className='grow w-full h-36 max-h-64 flex items-center justify-end'>
+          <Image className='w-[160px] h-[160px]' source={require('../../assets/images/Logo.png')} />
         </View>
-    )
+
+        <View className='grow w-full h-fit flex-col items-center justify-center'>
+          {/* Email/Password Input */}
+          <View className='w-full h-fit'>
+            {/* Email Input */}
+            <ItemTextInputComponent
+            translate={true}
+            size={'text-xl'}
+            css={'shrink w-full h-10 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
+            placeholder={'Enter your email'}
+            placeholderTextColor={'#85855B'}
+            value={emailInput}
+            onChangeText={setEmailInput}
+            underlineColorAndroid={'transparent'}
+            inputMode={'email'}
+            />
+
+            {/* Username Input */}
+            <ItemTextInputComponent
+            translate={true}
+            size={'text-xl'}
+            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+            placeholder={'Enter a username'}
+            placeholderTextColor={'#85855B'}
+            value={usernameInput}
+            onChangeText={setUsernameInput}
+            underlineColorAndroid={'transparent'}
+            />
+
+            {/* Password Input */}
+            <ItemTextInputComponent
+            translate={true}
+            size={'text-xl'}
+            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-6 bg-itemBgLight rounded-xl'}
+            placeholder={'Enter your password'}
+            placeholderTextColor={'#85855B'}
+            value={passwordInput}
+            onChangeText={setPasswordInput}
+            underlineColorAndroid={'transparent'}
+            secureTextEntry={true}
+            />
+
+            {/* Password Check */}
+            <ItemTextInputComponent
+            translate={true}
+            size={'text-xl'}
+            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+            placeholder={'Enter your password again'}
+            placeholderTextColor={'#85855B'}
+            value={passwordCheck}
+            onChangeText={setPasswordCheck}
+            underlineColorAndroid={'transparent'}
+            secureTextEntry={true}
+            />
+          </View>
+
+          
+          {/* Buttons */}
+          <View className='flex-col w-full h-fit mt-10'>
+            {/* Account Link
+            <View className='flex-col w-full h-fit items-center justify-center'>
+              <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl'
+              activeOpacity={0.9}>
+                <Image className='w-[40px] h-[40px] mr-2' source={require('../../assets/images/google.png')} />
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
+                  Coupang Account
+                </TitleTextComponent>
+              </TouchableOpacity>
+              <TouchableOpacity className='flex-row shrink w-full h-12 mt-2 items-center justify-center bg-buttonBg rounded-xl'
+              activeOpacity={0.9}>
+                <Image className='w-[40px] h-[40px] mr-2' source={require('../../assets/images/google.png')} />
+                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
+                  Market Kurly Account
+                </TitleTextComponent>
+              </TouchableOpacity>
+            </View>
+            */}
+
+            {/* Back/Next */}
+            <View className='flex-row w-full h-fit items-center justify-center mt-10'>
+              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
+              <LargeButton css={'shrink w-full'} text={'Next'} callback={handleNext}/>
+            </View>
+          </View>
+        </View>
+
+      </View>
+    </SafeAreaView>
+  )
 }
 
-export default SignUp;
+export default SignUp
