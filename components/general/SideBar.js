@@ -4,10 +4,10 @@ import SideBarModal from './SideBarModal';
 import SideBarView from './SideBarView';
 
 const SideBar = ({ 
-  navigation, 
   wideScreen, username, 
   showSideBar, setShowSideBar,
-  pages, buttonCSS, textCSS, updatePage,
+  pages, buttonCSS, textCSS, 
+  updatePage, updateStack, pageIndex,
  }) => (
   wideScreen
   ? <SideBarView
@@ -25,6 +25,8 @@ const SideBar = ({
     updatePage={updatePage}
     buttonCSS={buttonCSS}
     textCSS={textCSS}
+    updateStack={updateStack}
+    pageIndex={pageIndex}
     />
 )
 

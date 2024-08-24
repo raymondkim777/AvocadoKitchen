@@ -21,8 +21,9 @@ const PageStack = createStackNavigator();
 export const SideBarContext = createContext();
 
 const HomeControl = ({ navigation }) => {
-  {/* SideBar Context */}
+  /* SideBar Context */
   const [showSideBar, setShowSideBar] = useState(false);
+  const [sideBarHidden, setSideBarHidden] = useState(false);
   const pageID = [
     'HomePage', 
     'MyMeals',
@@ -56,7 +57,7 @@ const HomeControl = ({ navigation }) => {
       )
     )
   );
-  const updatePage = (index) => {
+  const updateSideBar = (index) => {
     setPageIndex(index);
     setShowSideBar(false);
 
@@ -67,13 +68,21 @@ const HomeControl = ({ navigation }) => {
     const new_text = new Array(pages.length).fill('text-itemText');
     new_text[index] = 'text-itemBgLight';
     setTextCSS(new_text);
-
+  }
+  const updateStack = (index) => {
     navigation.dispatch(
       CommonActions.navigate(pageID[index])
     );
   }
+  const updatePage = (index) => {
+    updateSideBar(index);
+    if (wideScreen) {
+      updateStack(index);
+    } 
+  }
   
-  {/* HomeControl */}
+  
+  /* HomeControl */
   const [username, setUsername] = useState('Username');
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
@@ -84,7 +93,6 @@ const HomeControl = ({ navigation }) => {
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
       {/* SideBar */}
       <SideBar 
-      navigation={navigation}
       PageStack={PageStack}
       wideScreen={wideScreen}
       username={username}
@@ -94,6 +102,8 @@ const HomeControl = ({ navigation }) => {
       buttonCSS={buttonCSS}
       textCSS={textCSS} 
       updatePage={updatePage}
+      updateStack={updateStack}
+      pageIndex={pageIndex}
       />
       <SideBarContext.Provider value={SideBarContextValue}>
         <PageStack.Navigator 
@@ -110,7 +120,6 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="Tutorial" component={Tutorial} />
         </PageStack.Navigator>        
       </SideBarContext.Provider>
-
 
       {/*
       <PagePopup 

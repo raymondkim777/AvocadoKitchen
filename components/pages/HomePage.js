@@ -58,7 +58,7 @@ const { width, height } = Dimensions.get('window');
 
 const HomePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
-
+  
   // https://reactnavigation.org/docs/custom-android-back-button-handling/
   useFocusEffect(
     React.useCallback(() => {
