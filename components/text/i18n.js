@@ -224,6 +224,10 @@ const resources = {
       "This will insert a new step after Step 2.": "(Inserted after Step 2)",
       "Description": "Description", 
       "Insert procedure step here": "Insert procedure step here",
+
+      // Tutorial
+      "Tutorial": "Tutorial",
+      "Edit Diet Settings": "Edit Diet Settings",
     }
   },
   ko: {
@@ -235,9 +239,9 @@ const resources = {
       "Add a Meal": "음식 추가",
       "Info": "정보",
       "Profile": "설정",
-      "Tutorial": "투토리얼",
+      "Tutorial": "튜토리얼",
       "Privacy Policy": "개인정보처리방침",
-      "Terms of Service": "이용약관",
+      "Terms of Service": "어플이용약관",
 
       // LeaveAlert
       "AlertTitle": "이 페이지 나가고 싶으세요?",
@@ -448,6 +452,10 @@ const resources = {
       "This will insert a new step after Step 2.": "(Step 2 뒤에 추가됨)",
       "Description": "설명", 
       "Insert procedure step here": "조리법 단계 설명을 적으세요.",
+
+      // Tutorial
+      "Tutorial": "튜토리얼",
+      "Edit Diet Settings": "다이어트 설정 수정하기",
     }
   },
 };
