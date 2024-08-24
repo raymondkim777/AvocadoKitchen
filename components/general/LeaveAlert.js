@@ -13,7 +13,7 @@ const LeaveAlert = ({ showAlert, setShowAlert}) => {
   }
   const handleLeave = () => {
     setShowAlert(false);
-    updatePage(0);
+    updatePage(0, true);
   }
 
   return(

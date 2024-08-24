@@ -11,7 +11,7 @@ const ExitButton = ({ exitCheck = false }) => {
   const handleExit = (exitCheck) => {
     exitCheck 
     ? setShowAlert(true)
-    : updatePage(0)
+    : updatePage(0, true)
   }
 
   return(

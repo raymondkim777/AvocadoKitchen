@@ -74,9 +74,9 @@ const HomeControl = ({ navigation }) => {
       CommonActions.navigate(pageID[index])
     );
   }
-  const updatePage = (index) => {
+  const updatePage = (index, forceUpdateStack = false) => {
     updateSideBar(index);
-    if (wideScreen) {
+    if (wideScreen || forceUpdateStack) {
       updateStack(index);
     } 
   }
