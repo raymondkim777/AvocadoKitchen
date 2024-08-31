@@ -8,7 +8,6 @@ import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../text/i18n'
-import SideBar from '../general/SideBar';
 import SideBarButton from '../general/SideBarButton';
 
 const MealSum = ({callback, title, image, cal}) => (
@@ -58,7 +57,6 @@ const { width, height } = Dimensions.get('window');
 
 const HomePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
-  
 
   // Android BackButton exits app instead of going to Login
   // https://reactnavigation.org/docs/custom-android-back-button-handling/

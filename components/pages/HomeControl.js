@@ -6,6 +6,7 @@ import 'intl-pluralrules';
 import '../text/i18n'
 import HomePage from './HomePage';
 import MyMeals from './MyMeals';
+import MyCart from './MyCart';
 import Browse from './Browse';
 import RecipePage from './RecipePage';
 import AddMealPage from './AddMealPage';
@@ -27,6 +28,7 @@ const HomeControl = ({ navigation }) => {
   const pageID = [
     'HomePage', 
     'MyMeals',
+    'MyCart',
     'Browse',
     'AddMealPage',
     'UserInfoPage',
@@ -36,6 +38,7 @@ const HomeControl = ({ navigation }) => {
   const pages = [
     'Home', 
     'My Meals',
+    'My Cart',
     'Recipe Search', 
     'Add a Meal', 
     'Info', 
@@ -112,6 +115,7 @@ const HomeControl = ({ navigation }) => {
         >
           <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
+          <PageStack.Screen name="MyCart" component={MyCart} />
           <PageStack.Screen name="Browse" component={Browse} />
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
           <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />

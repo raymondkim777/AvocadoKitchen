@@ -16,7 +16,7 @@ const QuickSearchResultsUnit = ({item}) => {
       : <View className='flex-1 h-60 items-center justify-center p-1'>
           <Image className='w-full h-40 rounded-lg' source={item.image} />
           <View className='flex-col w-full h-fit items-center justify-center mt-1'>
-            <Text className={`
+            <Text numberOfLines={2} className={`
               ${(currentLanguage  === 'ko-KR') ? "font-koreanFont1 my-1" : 'font-inconsolata'} 
               text-base text-wrap text-center leading-4 text-itemText
             `}>

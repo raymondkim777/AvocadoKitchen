@@ -8,6 +8,7 @@ const resources = {
       // SideBar
       "Home": "Home",
       "My Meals": "My Meals",
+      "My Cart": "My Cart",
       "Recipe Search": "Recipe Search",
       "Add a Meal": "Add a Meal",
       "Info": "Info",
@@ -103,6 +104,15 @@ const resources = {
       "Saturday": "Saturday",
       "Edit": "Edit", 
       "Delete": "Delete",
+
+      // My Cart
+      "My Cart": "My Cart",
+      "My Fridge": "My Fridge", 
+      "Coupang": "Coupang", 
+      "Market Curly": "Market Curly",
+      "Regular": "Regular",
+      "Rocket": "Rocket", 
+      "Dawn": "Dawn",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -235,6 +245,7 @@ const resources = {
       // SideBar
       "Home": "홈",
       "My Meals": "내 식단",
+      "My Cart": "내 장바구니",
       "Recipe Search": "레시피 검색",
       "Add a Meal": "음식 추가",
       "Info": "정보",
@@ -330,6 +341,15 @@ const resources = {
       "Saturday": "토요일",
       "Edit": "수정", 
       "Delete": "삭제",
+
+      // My Cart
+      "My Cart": "내 장바구니",
+      "My Fridge": "내 냉장고", 
+      "Coupang": "쿠팡", 
+      "Market Curly": "마켓컬리",
+      "Regular": "일반배송",
+      "Rocket": "로켓배송", 
+      "Dawn": "샛별배송",
 
       // Browse
       "Browse Recipes": "레시피 찾기",
