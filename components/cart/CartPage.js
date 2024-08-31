@@ -141,9 +141,9 @@ const CartPage = ({}) => {
       </View>
 
       {/* */}
-      <View className='shrink w-full h-full mt-6'>
+      <View className='shrink w-full h-full mt-6 rounded-xl overflow-hidden'>
         <SectionList
-        className='w-full h-full px-2 pr-1 bg-itemBgLight rounded-xl'
+        className='w-full h-full px-2 pr-1 bg-itemBgLight'
         scrollEnabled={true}
         contentContainerStyle={{flexGrow: 1}} 
         sections={items}
@@ -156,7 +156,7 @@ const CartPage = ({}) => {
           </View>
         )}
         renderSectionHeader={({section: {site}}) => (
-          <View className='w-full h-fit pb-2 bg-itemBgLight rounded-xl'>
+          <View className='w-full h-fit pb-2 bg-itemBgLight'>
             <TitleTextComponent translate={true} size={'text-xl'} css={'mx-2 mt-2 text-itemText'}>
               {site}
             </TitleTextComponent>

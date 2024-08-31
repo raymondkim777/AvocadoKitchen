@@ -28,32 +28,29 @@ const MyCart = ({ navigation }) => {
   return(
     <SafeAreaView id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
-      <View className='flex-col shrink w-full h-full'>
-        <View className='shrink w-full h-full p-4 bg-screenBg'>
-          {
-            curPageIndex == 0 ? <CartPage /> : <FridgePage />
-          }
+      <View className='shrink w-full h-full p-4 bg-screenBg'>
+        {
+          curPageIndex == 0 ? <CartPage /> : <FridgePage />
+        }
 
-          {/* Tab Navigate */}
-          <View className='flex-row w-full h-16 mt-4 bg-itemBgLight rounded-xl'>
-            <TouchableHighlight className={`shrink w-full h-full rounded-xl`}
-            activeOpacity={0.9} onPress={()=>updateTab(0)}>
-              <View className={`w-full h-full items-center justify-center ${tabButtonCSS[0]} rounded-xl`}>
-                <TitleTextComponent translate={true} size={'text-xl'} css={tabTextCSS[0]}>
-                  My Cart
-                </TitleTextComponent>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight className={`shrink w-full h-full rounded-xl`}
-            activeOpacity={0.9} onPress={()=>updateTab(1)}>
-              <View className={`w-full h-full items-center justify-center ${tabButtonCSS[1]} rounded-xl`}>
-                <TitleTextComponent translate={true} size={'text-xl'} css={tabTextCSS[1]}>
-                  My Fridge
-                </TitleTextComponent>
-              </View>
-            </TouchableHighlight>
-          </View>
-          
+        {/* Tab Navigate */}
+        <View className='flex-row w-full h-16 mt-4 bg-itemBgLight rounded-xl'>
+          <TouchableHighlight className={`shrink w-full h-full rounded-xl`}
+          activeOpacity={0.9} onPress={()=>updateTab(0)}>
+            <View className={`w-full h-full items-center justify-center ${tabButtonCSS[0]} rounded-xl`}>
+              <TitleTextComponent translate={true} size={'text-xl'} css={tabTextCSS[0]}>
+                My Cart
+              </TitleTextComponent>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight className={`shrink w-full h-full rounded-xl`}
+          activeOpacity={0.9} onPress={()=>updateTab(1)}>
+            <View className={`w-full h-full items-center justify-center ${tabButtonCSS[1]} rounded-xl`}>
+              <TitleTextComponent translate={true} size={'text-xl'} css={tabTextCSS[1]}>
+                My Fridge
+              </TitleTextComponent>
+            </View>
+          </TouchableHighlight>
         </View>
       </View>
     </SafeAreaView>
