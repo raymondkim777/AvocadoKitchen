@@ -1,7 +1,5 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import Menu from "../../assets/icons/menu.svg";
-import Filter from "../../assets/icons/slider.svg";
 import List from "../../assets/icons/list.svg";
 
 const OptionsButton = ({callback, showOptions}) => (

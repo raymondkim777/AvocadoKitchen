@@ -1,13 +1,16 @@
 import React, { useState, } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
+import Exit from "../../assets/icons/exit.svg";
 
 const TagSuggestRemoveButton = ({callback}) => (
-  <TouchableOpacity className='w-6 h-6 bg-itemBgLight rounded-md'
-    activeOpacity={0.7} onPress={()=>callback()}>
-
-  </TouchableOpacity>
+  <TouchableHighlight className='w-6 h-6 items-center justify-center rounded-md'
+    activeOpacity={0.9} onPress={callback}>
+      <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-md'>
+        <Exit width={20} height={20} stroke={'#85855B'} strokeWidth={3} />
+      </View>
+  </TouchableHighlight>
 )
 
 const TagSuggest = ({tagQuery, addTag}) => {

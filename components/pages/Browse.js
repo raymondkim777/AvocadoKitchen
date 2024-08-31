@@ -1,9 +1,8 @@
 import React, { useState, useRef, useContext } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, Text, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable } from 'react-native';
+import { BackHandler, Text, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
-import ItemTextComponent from '../text/ItemTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import OptionsButton from '../browse/OptionsButton';
@@ -13,6 +12,7 @@ import PageButton from '../browse/PageButton';
 import PageMenu from '../browse/PageMenu';
 import RecipeCard from '../browse/RecipeCard';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
+import Search from "../../assets/icons/search.svg";
 
 const RecipeDisplayCard = ({item}) => (
   <TouchableOpacity key={`${item.id}`} className='w-full h-fit'
@@ -91,9 +91,9 @@ const Browse = ({ navigation }) => {
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
       data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
+        likes: 800,
+        comments: 40, 
+        downloads: 7000,
       },
       image: require('../../assets/images/recipe-1.webp'),
     },
@@ -204,6 +204,10 @@ const Browse = ({ navigation }) => {
     setFilterDirIdx((filterDirIdx + 1) % filterDirShort.length);
   }
 
+  const handleSearch = () => {
+    null;
+  }
+
   // Pages
 
   const [pageIndex, setPageIndex] = useState(0);
@@ -294,7 +298,12 @@ const Browse = ({ navigation }) => {
                 onChangeText={setSearchQuery} 
                 underlineColorAndroid={'transparent'}
                 />
-                <TouchableOpacity activeOpacity={0.7} className='w-8 h-8 bg-itemBgDark rounded-lg'></TouchableOpacity>
+                <TouchableHighlight className='w-8 h-8 items-center justify-center rounded-lg'
+                activeOpacity={0.9} onPress={handleSearch}>
+                  <View className='w-full h-full items-center justify-center bg-itemBgLight'>
+                    <Search width={25} height={25} stroke={'#85855B'} strokeWidth={3} />
+                  </View>
+                </TouchableHighlight>
               </View>
               <OptionsButton callback={setShowOptions1} showOptions={showOptions1}/>
             </View>

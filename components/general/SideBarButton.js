@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import RightArrow from '../../assets/icons/rightarrow.svg';
+import RightArrow from '../../assets/icons/arrowright.svg';
 
 const SideBarButton = ({ callback }) => (
   <TouchableOpacity className='w-8 h-8 bg-buttonBg rounded-lg items-center justify-center'

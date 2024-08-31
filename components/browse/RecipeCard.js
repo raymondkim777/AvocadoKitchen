@@ -5,6 +5,9 @@ import 'intl-pluralrules';
 import '../text/i18n'
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
+import Heart from "../../assets/icons/heart.svg";
+import Comment from "../../assets/icons/comment.svg";
+import Download from "../../assets/icons/download.svg";
 
 const RecipeCard = ({title, nutrition, tags, data, image}) => {
   const {t, i18n} = useTranslation();
@@ -16,17 +19,23 @@ const RecipeCard = ({title, nutrition, tags, data, image}) => {
       <View className='flex-col w-full h-fit mt-1'>
         {/* Data */}
         <View className='flex-row w-full h-6 justify-start'>
-          <View className='flex-row w-10 h-6 items-center justify-center'>
-            <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-            <Text className='font-inconsolata text-base'>{data.likes}</Text>
+          <View className='flex-row w-fit h-6 items-center justify-center px-1'>
+            <View className='w-5 h-5 mr-1'>
+              <Heart width={20} height={20} stroke={'#85855B'} strokeWidth={2} />
+            </View>
+            <Text className='font-inconsolata text-itemText text-lg -mt-0.5'>{data.likes}</Text>
           </View>
-          <View className='flex-row w-10 h-6 items-center justify-center'>
-            <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-            <Text className='font-inconsolata text-base'>{data.likes}</Text>
+          <View className='flex-row w-fit h-6 items-center justify-center px-1'>
+            <View className='w-5 h-5 mr-1'>
+              <Comment width={20} height={20} stroke={'#85855B'} strokeWidth={2} />
+            </View>
+            <Text className='font-inconsolata text-itemText text-lg -mt-0.5'>{data.comments}</Text>
           </View>
-          <View className='flex-row w-10 h-6 items-center justify-center'>
-            <View className='w-5 h-5 bg-itemBgDark rounded-md mr-1'></View>
-            <Text className='font-inconsolata text-base'>{data.likes}</Text>
+          <View className='flex-row w-fit h-6 items-center justify-center px-1'>
+            <View className='w-5 h-5 mr-1'>
+              <Download width={20} height={20} stroke={'#85855B'} strokeWidth={2} />
+            </View>
+            <Text className='font-inconsolata text-itemText text-lg -mt-0.5'>{data.downloads}</Text>
           </View>
         </View>
 

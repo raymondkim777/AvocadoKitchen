@@ -1,12 +1,15 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableHighlight } from 'react-native';
 import ItemTextComponent from '../text/ItemTextComponent';
+import Exit from "../../assets/icons/exit.svg";
 
 const RemoveButton = ({id, callback}) => (
-  <TouchableOpacity className='w-6 h-6 bg-itemBgDark rounded-md'
-    activeOpacity={0.7} onPress={()=>callback(id)}>
-
-  </TouchableOpacity>
+  <TouchableHighlight className='w-6 h-6 items-center justify-center rounded-md'
+    activeOpacity={0.9} onPress={()=>callback(id)}>
+      <View className='w-full h-full items-center justify-center bg-buttonBg rounded-md'>
+        <Exit width={20} height={20} stroke={'#85855B'} strokeWidth={3} />
+      </View>
+  </TouchableHighlight>
 )
 
 const Tag = ({tagID, tagName, removeTag}) => (
