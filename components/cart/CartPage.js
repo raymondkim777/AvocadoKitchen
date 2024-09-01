@@ -25,8 +25,7 @@ const ItemCard = ({item, site}) => {
   }
 
   return(
-    <TouchableOpacity className='flex-row w-full h-24'
-    activeOpacity={0.9}>
+    <View className='flex-row w-full h-24'>
       <Image className='w-20 h-full rounded-md' source={item.image} />
       <View className='shrink w-full h-full ml-2'>
         <View className='w-full h-8 justify-center'>
@@ -51,7 +50,7 @@ const ItemCard = ({item, site}) => {
       <View className='w-5 h-full items-center justify-center'>
         <EditButton />
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 
@@ -140,7 +139,7 @@ const CartPage = ({}) => {
         <ExitButton />
       </View>
 
-      {/* */}
+      {/* SectionList */}
       <View className='shrink w-full h-full mt-6 rounded-xl overflow-hidden'>
         <SectionList
         className='w-full h-full px-2 pr-1 bg-itemBgLight'
