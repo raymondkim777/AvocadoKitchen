@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from 'react';
-import { Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import { SideBarContext } from './HomeControl';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from '../general/ExitButton';
 import BackButton from '../general/BackButton';
 import Tag from '../addfunction/Tag';
@@ -14,6 +15,22 @@ const { width, height } = Dimensions.get('window');
 
 const AddMealPage2 = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.goBack();
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
 
   const handleBack = ()=>{
     navigation.goBack();
@@ -245,7 +262,7 @@ const AddMealPage2 = ({ navigation }) => {
 
           {/* Finish */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton css={'px-4'} text={'Finish'} textSize={'text-2xl'} callback={handleSave}/>
+            <LargeButton cssIn={'px-4'} text={'Finish'} textSize={'text-2xl'} callback={handleSave}/>
           </View>
           
         </View>

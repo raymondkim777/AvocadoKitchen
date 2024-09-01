@@ -37,7 +37,7 @@ const resources = {
       "Next": "Next",
 
       // SignUp2_2
-      "Dietary Restrictions": "Dietary Restrictions",
+      "Diet Restrictions": "Diet Restrictions",
       "Select your diet": "Select your diet",
       "Specific (Optional)": "Specific (Optional)",
       "Allergies (Optional)": "Allergies (Optional)",
@@ -274,7 +274,7 @@ const resources = {
       "Next": "넘어가기",
 
       // SignUp2_2
-      "Dietary Restrictions": "식사 제한 사항",
+      "Diet Restrictions": "식사 제한 사항",
       "Select your diet": "식단 추천 유형 선택",
       "Specific (Optional)": "추가 추천 옵션 (선택)",
       "Allergies (Optional)": "알러지 (선택)",

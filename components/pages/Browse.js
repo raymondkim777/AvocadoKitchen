@@ -145,6 +145,102 @@ const Browse = ({ navigation }) => {
       },
       image: require('../../assets/images/recipe-1.webp'),
     },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
   ]
   const recipesShown = [];
   const recipeMaxCnt = 6;
@@ -178,14 +274,14 @@ const Browse = ({ navigation }) => {
 
   // Pages
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('')));
+  const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('bg-buttonBg')));
   const [pageButtonText, setPageButtonText] = useState(['text-itemBgLight'].concat(new Array(pageCount).fill('text-itemText')));
   const updatePageIndex = (index) => {
     if (index == pageIndex) return;
     setPageIndex(index);  // STARTS AT 0
 
     {/* Page Button CSS */}
-    const new_color = new Array(pageCount).fill('');
+    const new_color = new Array(pageCount).fill('bg-buttonBg');
     new_color[index] = 'bg-itemText';
     setPageButtonColor(new_color);
 

@@ -2,7 +2,6 @@ import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
 import { BackHandler, SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';

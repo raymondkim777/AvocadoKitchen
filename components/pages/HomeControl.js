@@ -77,13 +77,17 @@ const HomeControl = ({ navigation }) => {
       CommonActions.navigate(pageID[index])
     );
   }
-  const updatePage = (index, forceUpdateStack = false) => {
+  {/*
+    forceUpdateStack is for Modal Sidebar delay; 
+    SideBarPage callback only runs updateSideBar, 
+    Modal onModalHide runs updateStack.
+  */}
+  const updatePage = (index, forceUpdateStack = true) => { 
     updateSideBar(index);
     if (wideScreen || forceUpdateStack) {
       updateStack(index);
     } 
   }
-  
   
   /* HomeControl */
   const [username, setUsername] = useState('Username');

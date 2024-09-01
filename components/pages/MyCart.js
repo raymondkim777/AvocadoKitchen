@@ -1,6 +1,7 @@
-import React, { useState, useContext, } from 'react';
-import { SafeAreaView, View, Text, ScrollView, TouchableHighlight, } from 'react-native';
+import React, { useState, useContext,  } from 'react';
 import { SideBarContext } from './HomeControl';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, SafeAreaView, View, Text, ScrollView, TouchableHighlight, } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
@@ -9,6 +10,22 @@ import FridgePage from '../cart/FridgePage';
 
 const MyCart = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
   
   const [curPageIndex, setCurPageIndex] = useState(0);
   const [tabButtonCSS, setTabButtonCSS] = useState(['bg-itemText', 'bg-itemBgLight']);

@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import IngredientsTable from '../recipe/IngredientsTable';
@@ -15,9 +16,34 @@ import Modal from 'react-native-modal';
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext)
   
-  const handleContinue = ()=>{
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+  
+  const handleChooseRecipe = () => {
+    null;
+  }
+  const handleAddIngredient = () => {
+    null;
+  }
+  const handleAddProcedure = () => {
+    null;
+  }
+  const handleContinue = () =>{
     navigation.navigate('AddMealPage2')
   }
   
@@ -145,7 +171,7 @@ const AddMealPage = ({ navigation }) => {
   const [dropDown2Text, setDropDown2Text] = useState(
     new Array(mealTimeIndex).fill('text-itemText').concat(
       ['text-itemBgLight'].concat(
-        new Array(mealTime.length - mealTimeIndex - 1).fill('text-itemTExt')
+        new Array(mealTime.length - mealTimeIndex - 1).fill('text-itemText')
       )
     )
   );
@@ -265,7 +291,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit justify-start mt-2'>
-                <SmallButton text='Choose a Recipe' callback={null}/>
+                <SmallButton text='Choose a Recipe' callback={handleChooseRecipe}/>
             </View>
           </View>
 
@@ -279,7 +305,7 @@ const AddMealPage = ({ navigation }) => {
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
               <ItemTextInputComponent translate={true} 
               size={'text-xl'}
-              css={'shrink w-full h-10 pb-1 pl-3'}
+              css={'shrink w-full h-10 pb-1 pl-3 text-itemText'}
               placeholder={"ex. Chicken Sandwich"}
               placeholderTextColor={'#85855B'}
               value={mealName} 
@@ -297,7 +323,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Ingredient' callback={null}/>
+              <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
@@ -313,7 +339,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Step' callback={null}/>
+              <SmallButton text='Add Step' callback={handleAddProcedure}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
@@ -323,7 +349,7 @@ const AddMealPage = ({ navigation }) => {
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
+            <LargeButton cssIn={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>
       </ScrollView>
