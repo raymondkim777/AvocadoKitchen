@@ -47,9 +47,9 @@ const HomeControl = ({ navigation }) => {
   ];
   const [pageIndex, setPageIndex] = useState(0);
   const [buttonCSS, setButtonCSS] = useState(
-    new Array(pageIndex).fill('').concat(
+    new Array(pageIndex).fill('bg-itemBgLight').concat(
       ['bg-itemText'].concat(
-        new Array(pages.length - pageIndex - 1).fill('')
+        new Array(pages.length - pageIndex - 1).fill('bg-itemBgLight')
       )
     )
   );
@@ -64,7 +64,7 @@ const HomeControl = ({ navigation }) => {
     setPageIndex(index);
     setShowSideBar(false);
 
-    const new_button = new Array(pages.length).fill('');
+    const new_button = new Array(pages.length).fill('bg-itemBgLight');
     new_button[index] = 'bg-itemText';
     setButtonCSS(new_button);
 

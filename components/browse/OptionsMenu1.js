@@ -1,17 +1,61 @@
 import React, { useState, } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Slider } from '@rneui/themed';
 import DietButton from './DietButton';
 import TitleTextComponent from '../text/TitleTextComponent';
 
 const OptionsMenu1 = ({
-optionList, updateDiet, dietCSS,
-calorieValue, setCalorieValue, calorieMinValue, calorieMaxValue,
-budgetValue, setBudgetValue, budgetMinValue, budgetMaxValue,
-categories, setCatFocus, catColor, catText,
+optionList, dietIndex, setDietIndex, 
+calorieValue, setCalorieValue,
+budgetValue, setBudgetValue,
+categories, searchCat, setSearchCat,
 }) => {
-  const [displayCalorie, setDisplayCalorie] = useState(calorieValue)
-  const [displayBudget, setDisplayBudget] = useState(budgetValue)
+
+  const [dietButtonCSS, setDietButtonCSS] = useState(new Array(optionList.length).fill(''));
+  const updateDiet = (index) => {
+    if (index == dietIndex) {
+      setDietIndex(-1);
+      const new_css = new Array(optionList.length).fill('');
+      setDietButtonCSS(new_css);
+    } else {
+      setDietIndex(index);
+      const new_css = new Array(optionList.length).fill('');
+      new_css[index] = 'bg-itemText'
+      setDietButtonCSS(new_css);
+    }
+  }
+
+  const [displayCalorie, setDisplayCalorie] = useState(calorieValue);
+  const calorieMinValue = 0;
+  const calorieMaxValue = 5000;
+  const [displayBudget, setDisplayBudget] = useState(budgetValue);
+  const budgetMinValue = 0;
+  const budgetMaxValue = 100000;
+
+  const [catColor, setCatColor] = useState(
+    new Array(searchCat).fill('bg-buttonBg').concat(
+      ['bg-itemText'].concat(
+        new Array(categories.length - searchCat - 1).fill('bg-buttonBg')
+      )
+    )
+  );
+  const [catText, setCatText] = useState(
+    new Array(searchCat).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(categories.length - searchCat - 1).fill('text-itemText')
+      )
+    )
+  );
+  const setCatFocus = (index) => {
+    setSearchCat(index);
+    const new_color = new Array(categories.length).fill('bg-buttonBg');
+    new_color[index] = 'bg-itemText';
+    setCatColor(new_color);
+
+    const new_text = new Array(categories.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setCatText(new_text);
+  }
 
   return (
     <View className={`w-full h-fit mt-6`}>
@@ -19,7 +63,7 @@ categories, setCatFocus, catColor, catText,
       <View className='w-full min-h-16 h-fit items-center justify-center px-2 bg-buttonBg rounded-lg'>
         <View className='flex-row flex-wrap w-full h-fit'>
           {optionList.map((option_name, index) => (
-            <DietButton key={`diet-bt-${index}`} callback={updateDiet} css={dietCSS} title={option_name} index={index}/>
+            <DietButton key={`diet-bt-${index}`} callback={updateDiet} css={dietButtonCSS} title={option_name} index={index}/>
           ))}
         </View>
       </View>
@@ -97,12 +141,14 @@ categories, setCatFocus, catColor, catText,
         </TitleTextComponent>
         <View className='flex-row grow w-fit h-fit items-center justify-center'>
           {categories.map((cat, index) => (
-            <TouchableOpacity key={`search-opt-${index}`} className={`w-12 h-6 items-center justify-center rounded-full ${catColor[index]}`}
-            activeOpacity={1} onPress={()=>setCatFocus(index)}>
-              <TitleTextComponent translate={true} size={'text-base'} css={catText[index]}>
-                {cat}
-              </TitleTextComponent> 
-            </TouchableOpacity>
+            <TouchableHighlight key={`search-opt-${index}`} className={`w-12 h-6 items-center justify-center rounded-full`}
+            activeOpacity={0.9} onPress={()=>setCatFocus(index)}>
+              <View className={`w-full h-full items-center justify-center  ${catColor[index]} rounded-full `}>
+                <TitleTextComponent translate={true} size={'text-base'} css={catText[index]}>
+                  {cat}
+                </TitleTextComponent> 
+              </View>
+            </TouchableHighlight>
           ))}
           <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>
         </View>
