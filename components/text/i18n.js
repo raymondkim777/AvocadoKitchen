@@ -113,6 +113,9 @@ const resources = {
       "Regular": "Regular",
       "Rocket": "Rocket", 
       "Dawn": "Dawn",
+      "Change Item": "Change", 
+      "Auto": "Auto",
+      "Delete": "Delete",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -350,6 +353,9 @@ const resources = {
       "Regular": "일반배송",
       "Rocket": "로켓배송", 
       "Dawn": "샛별배송",
+      "Change Item": "링크 수정", 
+      "Auto": "추천",
+      "Delete": "재료 삭제",
 
       // Browse
       "Browse Recipes": "레시피 찾기",

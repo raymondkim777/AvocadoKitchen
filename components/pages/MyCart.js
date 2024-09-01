@@ -1,7 +1,7 @@
 import React, { useState, useContext,  } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, SafeAreaView, View, Text, ScrollView, TouchableHighlight, } from 'react-native';
+import { BackHandler, SafeAreaView, View, TouchableHighlight, Dimensions } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
@@ -26,6 +26,12 @@ const MyCart = ({ navigation }) => {
       return () => subscription.remove();
     })
   ); 
+
+  const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
+  const onLayout = (event) => {
+    const { width } = event.nativeEvent.layout;
+    setViewWidth(width);
+  };
   
   const [curPageIndex, setCurPageIndex] = useState(0);
   const [tabButtonCSS, setTabButtonCSS] = useState(['bg-itemText', 'bg-itemBgLight']);
@@ -43,11 +49,11 @@ const MyCart = ({ navigation }) => {
   }
 
   return(
-    <SafeAreaView id='screen' className='w-full h-full flex-row justify-center items-center'>
+    <SafeAreaView onLayout={onLayout} id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
       <View className='shrink w-full h-full p-4 bg-screenBg'>
         {
-          curPageIndex == 0 ? <CartPage /> : <FridgePage />
+          curPageIndex == 0 ? <CartPage viewWidth={viewWidth} /> : <FridgePage />
         }
 
         {/* Tab Navigate */}

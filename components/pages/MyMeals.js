@@ -7,7 +7,7 @@ import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
-import EditButton from '../general/EditButton';
+import EditButtonDropDown from '../general/EditButtonDropDown';
 
 const TitleSection = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
@@ -97,7 +97,7 @@ const MealCardThin = ({
       </View>
     </TouchableOpacity>
     <View className='w-5 h-full items-center justify-center'>
-      <EditButton 
+      <EditButtonDropDown 
       showDropDown={showDropDown} 
       openDropDown={openDropDown} 
       EditDropDown={<EditDropDown handleEdit={handleEdit} handleDelete={handleDelete} />}

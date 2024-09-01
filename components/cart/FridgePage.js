@@ -96,6 +96,8 @@ const FridgePage = ({}) => {
       <View className='shrink w-full h-full mt-4 rounded-xl overflow-hidden'>
         <FlatList
         className='w-full h-full p-2 bg-itemBgLight'
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
         data={items}
         renderItem={({item}) => <ItemCard item={item} />}
         ItemSeparatorComponent={<View className='h-2'/>}

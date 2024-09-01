@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SafeAreaView, View, ScrollView, Image, TouchableOpacity, SectionList, } from 'react-native';
+import { View, Image, SectionList, } from 'react-native';
 import { SideBarContext } from '../pages/HomeControl';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
@@ -7,12 +7,25 @@ import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import EditButton from '../general/EditButton';
+import CartEditModal from './CartEditModal';
 
 const ItemDiv = () => (
   <View className='w-full h-2' />
 )
 
-const ItemCard = ({item, site}) => {
+const ItemCard = ({
+  item, index, 
+  site, siteIdx, 
+  setItemIndex, setSiteIndex,
+  setShowEditModal
+}) => {
+  
+  const openEditModal = () => {
+    setItemIndex(index);
+    setSiteIndex(siteIdx);
+    setShowEditModal(true);
+  }
+
   let delivery = 'Regular';
   let textColor = 'text-grayText';
   if (item.fastDelivery) {
@@ -40,7 +53,7 @@ const ItemCard = ({item, site}) => {
         </View>
         <View className='flex-row w-full h-8 items-center'>
           <TitleTextComponent size={'text-lg'} css={'w-fit text-itemText'}>
-            {item.price}원
+            {item.price * item.quantity}원
           </TitleTextComponent>
           <TitleTextComponent size={'text-lg'} css={'ml-4 w-fit text-grayText'}>
             {item.quantity}개
@@ -48,20 +61,37 @@ const ItemCard = ({item, site}) => {
         </View>
       </View>
       <View className='w-5 h-full items-center justify-center'>
-        <EditButton />
+        <EditButton callback={openEditModal}/>
       </View>
     </View>
   )
 }
 
-const CartPage = ({}) => {
+const CartPage = ({ viewWidth }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [siteIndex, setSiteIndex] = useState(0);
+  const [itemIndex, setItemIndex] = useState(0);
+  const handleUpdateEdit = () => {
+    null;
+  }
 
   const items = [
     {
       site: "Coupang",
+      siteIdx: 0, 
       data: [
         {
+          id: 1, 
+          title: '복숭아',
+          fastDelivery: true,
+          price: '31800',
+          quantity: 2,
+          image: require('../../assets/images/info-example/tofu.jpg'),
+        },
+        {
+          id: 2, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
           price: '31800',
@@ -69,13 +99,7 @@ const CartPage = ({}) => {
           image: require('../../assets/images/info-example/tofu.jpg'),
         },
         {
-          title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
-          fastDelivery: true,
-          price: '31800',
-          quantity: 2,
-          image: require('../../assets/images/info-example/tofu.jpg'),
-        },
-        {
+          id: 3, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
           price: '31800',
@@ -83,6 +107,7 @@ const CartPage = ({}) => {
           image: require('../../assets/images/info-example/tofu.jpg'),
         },
         {
+          id: 4, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
           price: '31800',
@@ -93,8 +118,10 @@ const CartPage = ({}) => {
     }, 
     {
       site: "Market Curly",
+      siteIdx: 1, 
       data: [
         {
+          id: 5, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
           price: '31800',
@@ -102,6 +129,7 @@ const CartPage = ({}) => {
           image: require('../../assets/images/info-example/tofu.jpg'),
         },
         {
+          id: 6, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
           price: '31800',
@@ -109,6 +137,7 @@ const CartPage = ({}) => {
           image: require('../../assets/images/info-example/tofu.jpg'),
         },
         {
+          id: 7, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
           price: '31800',
@@ -116,6 +145,7 @@ const CartPage = ({}) => {
           image: require('../../assets/images/info-example/tofu.jpg'),
         },
         {
+          id: 8, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
           price: '31800',
@@ -144,13 +174,21 @@ const CartPage = ({}) => {
         <SectionList
         className='w-full h-full px-2 pr-1 bg-itemBgLight'
         scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{flexGrow: 1}} 
         sections={items}
-        renderItem={({item, index, section: {site}}) => (
+        renderItem={({item, index, section: {site, siteIdx}}) => (
           <View className='flex-col w-full h-fit'>
             {/* Cards */}
             <View className='w-full h-fit'>
-              <ItemCard item={item} site={site} />
+              <ItemCard 
+              item={item} 
+              index={index} 
+              site={site} 
+              siteIdx={siteIdx} 
+              setItemIndex={setItemIndex} 
+              setSiteIndex={setSiteIndex}
+              setShowEditModal={setShowEditModal}/>
             </View>
           </View>
         )}
@@ -161,6 +199,15 @@ const CartPage = ({}) => {
             </TitleTextComponent>
           </View>
         )}
+        ListHeaderComponent={
+        <CartEditModal 
+        item={items[siteIndex].data[itemIndex]}
+        siteIndex={siteIndex}
+        viewWidth={viewWidth}
+        showEditModal={showEditModal} 
+        setShowEditModal={setShowEditModal} 
+        handleUpdateEdit={handleUpdateEdit} />
+      }
         ListFooterComponent={<View className='w-full h-2' />}
         ItemSeparatorComponent={ItemDiv}
         />
