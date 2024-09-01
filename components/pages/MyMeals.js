@@ -1,6 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { BackHandler, SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity } from 'react-native';
+import { BackHandler, SafeAreaView, Text, SectionList, View, Image, Pressable, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import TitleTextComponent from '../text/TitleTextComponent';
@@ -72,7 +72,12 @@ const NutritionCard = ({item, index}) => (
   </View>
 )
 
-const MealCardThin = ({item, dropDownOpen, showDropDown, openDropDown, closeDropDowns}) => (
+const MealCardThin = ({
+  item, 
+  dropDownOpen, showDropDown, 
+  openDropDown, closeDropDowns,
+  handleEdit, handleDelete,
+}) => (
   <View className='z-10 flex-row w-full h-28 p-1 pr-0 rounded-lg bg-itemBgLight'>
     {
       dropDownOpen ? 
@@ -93,7 +98,34 @@ const MealCardThin = ({item, dropDownOpen, showDropDown, openDropDown, closeDrop
       </View>
     </TouchableOpacity>
     <View className='w-5 h-full items-center justify-center'>
-      <EditButton showDropDown={showDropDown} openDropDown={openDropDown} />
+      <EditButton 
+      showDropDown={showDropDown} 
+      openDropDown={openDropDown} 
+      EditDropDown={<EditDropDown handleEdit={handleEdit} handleDelete={handleDelete} />}
+      />
+    </View>
+  </View>
+)
+
+const EditDropDown = ({handleEdit, handleDelete}) => (
+  <View className='absolute z-30 -top-5 -bottom-5 right-4 w-24'>
+    <View className='flex-col w-full h-full items-center justify-center border-2 border-itemText p-0 bg-buttonBg rounded-xl overflow-hidden'>
+      <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px]`}
+      activeOpacity={0.9} onPress={handleEdit}>
+        <View className='w-full h-full items-center justify-center bg-buttonBg'>
+          <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText'}>
+            Edit
+          </TitleTextComponent>
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px]`}
+      activeOpacity={0.9} onPress={handleDelete}>
+        <View className='w-full h-full items-center justify-center bg-buttonBg'>
+          <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText'}>
+            Delete
+          </TitleTextComponent>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 )
@@ -319,6 +351,13 @@ const MyMeals = ({ navigation }) => {
     setDropDownOpen(false);
   }
 
+  const handleEdit = () => {
+    null;
+  }
+  const handleDelete = () => {
+    null;
+  }
+
   return(
     <SafeAreaView id='screen' className='relative z-0 w-full h-full justify-center items-center'>
       <View className='w-full h-full'>
@@ -336,6 +375,8 @@ const MyMeals = ({ navigation }) => {
               showDropDown={dropDownStates[days.findIndex((element) => element === day) * 3 + index]}
               openDropDown={dropDownOpenFunctions[days.findIndex((element) => element === day) * 3 + index]}
               closeDropDowns={closeDropDowns}
+              handleEdit={handleEdit} 
+              handleDelete={handleDelete}
               />
             </View>
           </View>
