@@ -77,7 +77,9 @@ const CartEditModal = ({
             </TouchableHighlight>
           </View>
 
-          <ExitButtonLocal callback={handleCloseModal} background={'bg-itemBgLight'} />
+          <View className='w-fit h-fit -mr-1'>
+            <ExitButtonLocal callback={handleCloseModal} background={'bg-itemBgLight'} />
+          </View>
         </View>
 
         {/* Content */}
