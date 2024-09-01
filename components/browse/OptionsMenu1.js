@@ -85,14 +85,15 @@ categories, searchCat, setSearchCat,
           step={100}
           minimumTrackTintColor={'#85855B'}
           maximumTrackTintColor={'#85855B'}
-          style={{ width: "100%", height: 14, }}
-          trackStyle={{ height: 4, borderRadius: 20, }}
-          thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent', }}
+          style={{ width: "100%", height: 14, zIndex: 5 }}
+          trackStyle={{ height: 4, borderRadius: 20 }}
+          thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent' }}
           thumbProps={{
             children: (
               <View className='w-full h-full rounded-full bg-itemBgLight border-2 border-itemText'/>
             )
           }}
+          thumbTouchSize={{ width: 60, height: 60 }}
           />
 
           <View className='w-full h-fit items-center justify-center'>
@@ -116,14 +117,15 @@ categories, searchCat, setSearchCat,
           step={1000}
           minimumTrackTintColor={'#85855B'}
           maximumTrackTintColor={'#85855B'}
-          style={{ width: "100%", height: 12, }}
-          trackStyle={{ height: 4, borderRadius: 20, }}
-          thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent', }}
+          style={{ width: "100%", height: 12, zIndex: 5 }}
+          trackStyle={{ height: 4, borderRadius: 20 }}
+          thumbStyle={{ height: 18, width: 18, backgroundColor: 'transparent' }}
           thumbProps={{
             children: (
               <View className='w-full h-full rounded-full bg-itemBgLight border-2 border-itemText'/>
             )
           }}
+          thumbTouchSize={{ width: 60, height: 60 }}
           />
 
           <View className='w-full h-fit items-center justify-center'>
@@ -150,7 +152,6 @@ categories, searchCat, setSearchCat,
               </View>
             </TouchableHighlight>
           ))}
-          <View id='div' className="{{height > 800 ? 'w-4': ''}}"/>
         </View>
       </View>
     </View>
