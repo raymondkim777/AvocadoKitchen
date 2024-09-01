@@ -107,8 +107,8 @@ const SignUp = ({ navigation }) => {
 
             {/* Back/Next */}
             <View className='flex-row w-full h-fit items-center justify-center mt-10'>
-              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
-              <LargeButton css={'shrink w-full'} text={'Next'} callback={handleNext}/>
+              <LargeButton cssOut={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
+              <LargeButton cssOut={'shrink w-full'} text={'Next'} callback={handleNext}/>
             </View>
           </View>
         </View>

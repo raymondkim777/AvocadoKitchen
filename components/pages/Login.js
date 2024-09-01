@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
+import { SafeAreaView, View, Image, TouchableHighlight } from 'react-native';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
@@ -8,6 +8,10 @@ const Login = ({ navigation }) => {
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const handleGoogleLogin = ({}) => {
+    navigation.navigate('HomeControl')
+  }
+  
   const handleLogin = ({}) => {
     navigation.navigate('HomeControl')
   }
@@ -58,19 +62,21 @@ const Login = ({ navigation }) => {
         <View className='flex-col w-full h-fit mt-16'>
           {/* Continue with Google */}
           <View className='w-full h-fit items-center justify-center'>
-            <TouchableOpacity className='flex-row shrink w-full h-12 items-center justify-center bg-buttonBg rounded-xl'
-              activeOpacity={0.9}>
+            <TouchableHighlight className='shrink w-full h-12 rounded-xl'
+            activeOpacity={0.9} onPress={handleGoogleLogin}>
+              <View className='flex-row w-full h-full items-center justify-center bg-buttonBg rounded-xl'>
                 <Image className='w-[40px] h-[40px] mr-2' source={require('../../assets/images/google.png')} />
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
                   Continue with Google
                 </TitleTextComponent>
-            </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
           </View>
 
           {/* Login/SignUp */}
           <View className='flex-row w-full h-fit items-center justify-center mt-2'>
-            <LargeButton css={'shrink w-full mr-2'} text={'Login'} callback={handleLogin} />
-            <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUp} />
+            <LargeButton cssOut={'shrink w-full mr-2'} text={'Login'} callback={handleLogin} />
+            <LargeButton cssOut={'shrink w-full'} text={'Sign Up'} callback={handleSignUp} />
           </View>
         </View>
 

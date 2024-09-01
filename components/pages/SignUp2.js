@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
@@ -105,21 +105,21 @@ const SignUp2 = ({ navigation }) => {
 
   const [showDropDown, setShowDropDown] = useState(false);
   const [dropDownButtonCSS, setDropDownButtonCSS] = useState(
-    new Array(budgetTypeIndex).fill('').concat(
+    new Array(budgetTypeIndex).fill('bg-buttonBg').concat(
       ['bg-itemText'].concat(
-        new Array(budgetType.length - budgetTypeIndex - 1).fill('')
+        new Array(budgetType.length - budgetTypeIndex - 1).fill('bg-buttonBg')
       )
     )
   );
   const [dropDownText, setDropDownText] = useState(
     new Array(budgetTypeIndex).fill('text-itemText').concat(
       ['text-itemBgLight'].concat(
-        new Array(budgetType.length - budgetTypeIndex - 1).fill('')
+        new Array(budgetType.length - budgetTypeIndex - 1).fill('text-itemText')
       )
     )
   );
   const updateButtonCSS = (index) => {
-    const new_css = new Array(budgetType.length).fill('');
+    const new_css = new Array(budgetType.length).fill('bg-buttonBg');
     new_css[index] = 'bg-itemText';
     setDropDownButtonCSS(new_css);
   }
@@ -165,7 +165,7 @@ const SignUp2 = ({ navigation }) => {
             {/* Title */}
             <View className='flex-row w-full h-10 items-center justify-between'>
               <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
-                Dietary Restrictions
+                Diet Restrictions
               </TitleTextComponent>
             </View>
 
@@ -274,23 +274,27 @@ const SignUp2 = ({ navigation }) => {
               }
               <View className='flex-row w-full h-fit items-center'>
                 <View className='relative z-20 w-fit h-fit ml-4'>
-                  <TouchableOpacity className='w-24 h-8 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
-                  activeOpacity={1} onPress={()=>setShowDropDown(!showDropDown)}>
-                    <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText text-center h-8 mt-1'}>
-                      {budgetType[budgetTypeIndex]}
-                    </TitleTextComponent>
-                  </TouchableOpacity>
+                  <TouchableHighlight className='w-24 h-8 rounded-xl'
+                  activeOpacity={0.9} onPress={()=>setShowDropDown(!showDropDown)}>
+                    <View className='w-full h-full items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'>
+                      <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText text-center h-8 mt-1'}>
+                        {budgetType[budgetTypeIndex]}
+                      </TitleTextComponent>
+                    </View>
+                  </TouchableHighlight>
                   {
                     showDropDown 
                     ? <View className='absolute z-30 left-0 -bottom-24 z-10 w-24 h-24 py-2'>
-                        <View className='flex-col w-24 h-fit py-1 items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
+                        <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
                           {budgetType.map((item, index)=>(
-                            <TouchableOpacity className={`w-24 h-8 items-center justify-center rounded-xl ${dropDownButtonCSS[index]}`}
-                            activeOpacity={1} onPress={()=>updateDropDown(index)}>
-                              <TitleTextComponent translate={true} size={'text-lg'} css={dropDownText[index]}>
-                                {item}
-                              </TitleTextComponent>
-                            </TouchableOpacity>
+                            <TouchableHighlight className={`shrink w-full h-full rounded-[10px] overflow-hidden`}
+                            activeOpacity={0.9} onPress={()=>updateDropDown(index)}>
+                              <View className={`w-full h-full items-center justify-center ${dropDownButtonCSS[index]}`}>
+                                <TitleTextComponent translate={true} size={'text-lg'} css={dropDownText[index]}>
+                                  {item}
+                                </TitleTextComponent>
+                              </View>
+                            </TouchableHighlight>
                           ))}
                         </View>
                       </View>
@@ -332,8 +336,8 @@ const SignUp2 = ({ navigation }) => {
 
             {/* Sign Up */}
             <View className='flex-row w-full h-fit items-center justify-center mt-8 mb-4'>
-              <LargeButton css={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
-              <LargeButton css={'shrink w-full'} text={'Sign Up'} callback={handleSignUpComplete}/>
+              <LargeButton cssOut={'shrink w-full mr-2'} text={'Back'} callback={handleBack}/>
+              <LargeButton cssOut={'shrink w-full'} text={'Sign Up'} callback={handleSignUpComplete}/>
             </View>
           </View>
         </View>
