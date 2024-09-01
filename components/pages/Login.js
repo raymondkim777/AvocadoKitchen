@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Image, TouchableHighlight } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, SafeAreaView, View, Image, TouchableHighlight } from 'react-native';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 
 const Login = ({ navigation }) => {
 
-  const [emailInput, setEmailInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        BackHandler.exitApp();
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+
   const handleGoogleLogin = ({}) => {
     navigation.navigate('HomeControl')
   }
@@ -19,8 +34,10 @@ const Login = ({ navigation }) => {
   const handleSignUp = ({}) => {
     navigation.navigate('SignUp')
   }
- 
 
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+ 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>

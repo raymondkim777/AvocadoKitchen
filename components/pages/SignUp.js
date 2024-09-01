@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 
 const SignUp = ({ navigation }) => {
 
-  const [emailInput, setEmailInput] = useState('');
-  const [usernameInput, setUsernameInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('Login');
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+
   const handleNext = ({}) => {
     navigation.navigate('SignUp2')
   }
@@ -17,8 +30,12 @@ const SignUp = ({ navigation }) => {
   const handleBack = ({}) => {
     navigation.navigate('Login')
   }
- 
 
+  const [emailInput, setEmailInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+ 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>

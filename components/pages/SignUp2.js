@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
@@ -9,6 +10,23 @@ import LargeButton from '../general/LargeButton';
 const { width, height } = Dimensions.get('window');
 
 const SignUp2 = ({ navigation }) => {
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('SignUp');
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+
   const handleBack = ({}) => {
     navigation.navigate('SignUp')
   }
@@ -323,13 +341,14 @@ const SignUp2 = ({ navigation }) => {
                 minimumTrackTintColor={'#DFDFC8'}
                 maximumTrackTintColor={'#DFDFC8'}
                 style={{ width: "100%", height: 14, }}
-                trackStyle={{ height: 6, borderRadius: 20, }}
+                trackStyle={{ height: 6, borderRadius: 20 }}
                 thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent', }}
                 thumbProps={{
                   children: (
                     <View className='w-full h-full rounded-full bg-itemBgLight border-2 border-itemText'/>
                   )
                 }}
+                thumbTouchSize={{ width: 60, height: 50 }}
                 />
               </View>
             </View>
