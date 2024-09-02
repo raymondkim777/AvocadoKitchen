@@ -9,6 +9,11 @@ import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../text/i18n'
 import SideBarButton from '../general/SideBarButton';
+import Check from '../../assets/icons/check.svg';
+import ArrowDown from '../../assets/icons/arrowdown.svg';
+import ArrowUp from '../../assets/icons/arrowup.svg';
+import DoubleArrowDown from '../../assets/icons/doublearrowdown.svg';
+import DoubleArrowUp from '../../assets/icons/doublearrowup.svg';
 
 const MealSum = ({callback, title, image, cal}) => (
   <TouchableOpacity className='flex flex-row w-full h-full space-x-2'
@@ -41,17 +46,29 @@ const MealCardDiv = () => (
   <View className='w-4 h-full'/>
 )
 
-const NutritionCard = ({item, index}) => (
-  <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
-    <View className='w-6 h-6 -mt-4 bg-itemBgDark rounded-lg'/>
-    <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'text-itemText mt-3'}>
-      {item.value}{ index == 0? '' : 'g' }
-    </ItemLargeTextComponent>
-    <ItemLargeTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-itemText'}>
-      {item.unit}
-    </ItemLargeTextComponent>
-  </View>
-)
+const NutritionCard = ({item, index, nutritionStandard, nutritionStandardRange}) => {
+  let IconName = null;
+  if (item.value < nutritionStandard[index] - nutritionStandardRange[index]) {
+    IconName = ArrowUp;
+  } else if (item.value > nutritionStandard[index] + nutritionStandardRange[index]) {
+    IconName = ArrowDown;
+  } else {
+    IconName = Check;
+  }
+  return(
+    <View className={`w-full h-full min-h-40 items-center justify-center bg-itemBgLight rounded-lg`}>
+      <View className='w-6 h-6 -mt-4 items-center justify-center'>
+        <IconName width={30} height={30} stroke={'#85855B'} strokeWidth={3} />
+      </View>
+      <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'text-itemText mt-4'}>
+        {item.value}{ index == 0? '' : 'g' }
+      </ItemLargeTextComponent>
+      <ItemLargeTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-itemText'}>
+        {item.unit}
+      </ItemLargeTextComponent>
+    </View>
+  )
+}
 
 const { width, height } = Dimensions.get('window');
 
@@ -100,6 +117,9 @@ const HomePage = ({ navigation }) => {
     setMealText(new_text);
   }
 
+  const [nutritionStandard, setNutritionStandard] = useState([2000, 500, 1000]);
+  const [nutritionStandardRange, setNutritionStandardRange] = useState([600, 100, 200]);
+
   {/* Data */}
   const views = new Array(7).fill(null);
   const days = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
@@ -140,23 +160,21 @@ const HomePage = ({ navigation }) => {
   const nutrition = [
     {
       id: 'calorie',
-      value: '1261',
+      value: 1261,
       unit: 'Cal',
     },
     {
       id: 'protein',
-      value: '487',
+      value: 487,
       unit: 'Protein',
     },
     {
       id: 'carb',
-      value: '524',
+      value: 1452,
       unit: 'Carbs',
     },
   ];
-  
-  {/* View */}
-  
+ 
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
@@ -286,7 +304,11 @@ const HomePage = ({ navigation }) => {
               <View className={`grow flex-row w-full h-40 mt-2 space-x-4`}>
                 {nutrition.map((item, index) => (
                   <View className='shrink w-full h-full'>
-                    <NutritionCard item={item} index={index} />
+                    <NutritionCard 
+                    item={item} 
+                    index={index} 
+                    nutritionStandard={nutritionStandard}
+                    nutritionStandardRange={nutritionStandardRange}/>
                   </View>
                 ))}
               </View>
