@@ -16,24 +16,19 @@ import Search from "../../assets/icons/search.svg";
 const CartEditModal = ({ 
   item, siteIndex, viewWidth, 
   showEditModal, setShowEditModal, 
-  handleUpdateEdit, 
 }) => {
   const { wideScreen, } = useContext(SideBarContext);
 
-  const sites = ['Coupang', 'Market Curly'];
-  const site = sites[siteIndex];
-  let delivery = 'Regular';
-  let textColor = 'text-grayText';
-  if (item.fastDelivery) {
-    textColor = 'text-hyperLink';
-    if (site === 'Coupang') {
-      delivery = "Rocket";
-    } else {
-      delivery = "Dawn";
-    }
+  const resetCount = () => {
+    setCount(item.quantity);
+  }
+
+  const handleUpdateEdit = () => {
+    // set item.quantity to count
   }
   
   const handleCloseModal = () => {
+    handleUpdateEdit();
     setShowEditModal(false);
     handleCloseBottomCard(false);
   }
@@ -51,18 +46,32 @@ const CartEditModal = ({
   }
 
   const [autoCount, setAutoCount] = useState(3);
-  const [count, setCount] = useState(item.quantity);
+  const [count, setCount] = useState(0);
 
   const [showBottomCard, setShowBottomCard] = useState(false);
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
 
+  const sites = ['Coupang', 'Market Curly'];
+  const site = sites[siteIndex];
+  let delivery = 'Regular';
+  let textColor = 'text-grayText';
+  if (item.fastDelivery) {
+    textColor = 'text-hyperLink';
+    if (site === 'Coupang') {
+      delivery = "Rocket";
+    } else {
+      delivery = "Dawn";
+    }
+  }
+
   return(
     <Modal 
     style={{width: viewWidth}}
     className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} items-center justify-center`}
     isVisible={showEditModal}
+    onModalWillShow={resetCount}
     onModalHide={handleUpdateEdit}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
