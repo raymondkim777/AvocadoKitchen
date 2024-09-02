@@ -15,7 +15,6 @@ import ProfilePage from './ProfilePage';
 import UserInfoPage from './UserInfoPage';
 import Tutorial from './Tutorial';
 import SideBar from '../general/SideBar';
-import PagePopup from '../general/PagePopup';
 
 const { width, height } = Dimensions.get('window');
 const PageStack = createStackNavigator();
