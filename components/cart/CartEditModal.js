@@ -110,15 +110,18 @@ const CartEditModal = ({
 
             {/* Right Side */}
             <View className='shrink w-full h-full'>
-              <View className='w-full h-12 mt-5 items-center justify-center'>
+              <View className='w-full h-12 mt-4 items-center justify-center'>
                 <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
                   {item.price * count}원
                 </TitleTextComponent>
               </View>
 
-              <View className='flex-row w-full h-10 mt-1 items-center justify-center'>
+              <View className='shrink w-full h-full mb-3 items-center justify-center'>
                 <Counter count={count} setCount={setCount} />
-                <View className='flex-row w-fit h-full ml-2 items-center'>
+              </View>
+
+              <View className='flex-row w-full h-fit items-center justify-between'>
+                <View className='flex-row shrink w-full h-full ml-2 items-center justify-center'>
                   <TitleTextComponent translate={true} size={'text-lg'} css={'w-fit text-greenHighlight'}>
                     Auto
                   </TitleTextComponent>
@@ -129,19 +132,16 @@ const CartEditModal = ({
                     {autoCount}개
                   </TitleTextComponent>
                 </View>
-              </View>
-
-              <View className='shrink w-full h-full'/>
-
-              <View className='flex-row w-full h-6 items-center justify-end'>
-                <TouchableHighlight className='w-fit h-6 rounded-full'
-                activeOpacity={0.9} onPress={handleDeleteItem}>
-                  <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
-                    <TitleTextComponent translate={true} size={'text-base'} css={'text-redHighlight'}>
-                      Delete
-                    </TitleTextComponent>
-                  </View>
-                </TouchableHighlight>
+                <View className='w-fit h-6 items-center justify-end'>
+                  <TouchableHighlight className='w-fit h-6 rounded-full '
+                  activeOpacity={0.9} onPress={handleDeleteItem}>
+                    <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                      <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
+                        Delete
+                      </TitleTextComponent>
+                    </View>
+                  </TouchableHighlight>
+                </View>
               </View>
 
 
@@ -153,7 +153,7 @@ const CartEditModal = ({
         {
           showBottomCard ? 
           <View className='shrink w-[340px] h-fit p-2 bg-itemBgLight rounded-xl'>
-            <View className='flex-col w-full h-fit'>
+            <View className='flex-col w-full h-fit mb-2'>
               {/* Quick Search */}
               <View className='flex-row w-full h-6 items-center justify-between'>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mx-4'}>
@@ -175,7 +175,7 @@ const CartEditModal = ({
                 underlineColorAndroid={'transparent'}
                 />
                 <TouchableHighlight className='w-8 h-8 rounded-lg'
-                  activeOpacity={0.9} onPress={()=>setShowResults(!showResults)}>
+                  activeOpacity={0.9} onPress={()=>setShowResults(true)}>
                     <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
                       <Search width={25} height={25} stroke={'#85855B'} strokeWidth={3} />
                     </View>
