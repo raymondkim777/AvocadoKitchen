@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, Children, useContext } from 'react';
 import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from '../general/LargeButton';
 import { signIn } from "../../lib/auth";
 import { Alert } from "react-native";
+import { use } from 'i18next';
 
 const Login = ({ navigation }) => {
-
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const handleLogin = async ({}) => {
     try {
-      const info = {emailInput, passwordInput};
-      const {user} = await signIn(info);
-      navigation.navigate('HomeControl')
+      const {user} = await signIn({email:emailInput, password:passwordInput});
+      navigation.navigate('HomeControl');
     } catch (e) {
       Alert.alert("로그인에 실패하였습니다.");
     }
-    
   }
 
   const handleSignUp = ({}) => {

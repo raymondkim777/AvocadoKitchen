@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, createContext} from 'react';
 import { NativeWindStyleSheet } from "nativewind";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,6 +11,7 @@ import HomeControl from './components/pages/HomeControl';
 const Stack = createStackNavigator();
 
 export default function HomeScreen() {
+
   NativeWindStyleSheet.setOutput({
     default: "native",
   });

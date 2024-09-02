@@ -1,6 +1,7 @@
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { View, SafeAreaView, Pressable, Dimensions, TouchableOpacity, ScrollView, } from 'react-native';
+import auth from "@react-native-firebase/auth";
+import { View, SafeAreaView, Pressable, Dimensions, TouchableOpacity, ScrollView, Alert, } from 'react-native';
 import { Slider } from '@rneui/themed';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
@@ -13,6 +14,7 @@ import AccountButton from '../profile/AccountButton';
 import AccountImage from '../profile/AccountImage';
 import SmallButton from '../general/SmallButton';
 import LargeButton from '../general/LargeButton';
+import firestore from '@react-native-firebase/firestore';
 
 const { width, height } = Dimensions.get('window');
 
@@ -156,13 +158,34 @@ const ProfilePage = ({ navigation }) => {
       min: 0, max: 1000000,
     },
   ];
-  const [budgetValues, setBudgetValues] = useState([20000, 100000, 200000]);
-  const [budgetDisplayValue, setBudgetDisplayValue] = useState(budgetValues[budgetTypeIndex]);
+  
+  const [budgetValues, setBudgetValues] = useState([]);
+  const [budgetDisplayValue, setBudgetDisplayValue] = useState(0);
+  
   const updateBudgetValue = (value) => {
     const new_values = budgetValues;
     new_values[budgetTypeIndex] = value;
     setBudgetValues(new_values);
   }
+
+  const getBudget = async() => {
+      const userDetails = auth().currentUser;
+      try{
+        const data = await firestore().collection('UserInfo').doc(userDetails.uid).get();
+        if (data.exists){
+          const userData = data.data().budget;
+          await setBudgetValues(userData);
+          Alert.alert("test", budgetTypeIndex);
+          setBudgetDisplayValue(budgetValues[budgetTypeIndex]);
+        }
+    } catch(error){
+      Alert.alert("error",error.message);
+    }
+  }
+
+  useEffect(()=>{
+    getBudget();
+  },[]);
   
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
