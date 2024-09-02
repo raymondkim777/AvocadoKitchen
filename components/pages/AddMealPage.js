@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import IngredientsTable from '../recipe/IngredientsTable';
@@ -15,9 +16,34 @@ import Modal from 'react-native-modal';
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext)
   
-  const handleContinue = ()=>{
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
+  
+  const handleChooseRecipe = () => {
+    null;
+  }
+  const handleAddIngredient = () => {
+    null;
+  }
+  const handleAddProcedure = () => {
+    null;
+  }
+  const handleContinue = () =>{
     navigation.navigate('AddMealPage2')
   }
   
@@ -106,21 +132,21 @@ const AddMealPage = ({ navigation }) => {
   }
 
   const [dropDown1ButtonCSS, setDropDown1ButtonCSS] = useState(
-    new Array(dayIndex).fill('').concat(
+    new Array(dayIndex).fill('bg-buttonBg').concat(
       ['bg-itemText'].concat(
-        new Array(days.length - dayIndex - 1).fill('')
+        new Array(days.length - dayIndex - 1).fill('bg-buttonBg')
       )
     )
   );
   const [dropDown1Text, setDropDown1Text] = useState(
     new Array(dayIndex).fill('text-itemText').concat(
       ['text-itemBgLight'].concat(
-        new Array(days.length - dayIndex - 1).fill('')
+        new Array(days.length - dayIndex - 1).fill('text-itemText')
       )
     )
   );
   const update1ButtonCSS = (index) => {
-    const new_css = new Array(days.length).fill('');
+    const new_css = new Array(days.length).fill('bg-buttonBg');
     new_css[index] = 'bg-itemText';
     setDropDown1ButtonCSS(new_css);
   }
@@ -136,21 +162,21 @@ const AddMealPage = ({ navigation }) => {
     setShowDropDown1(!showDropDown1);
   }
   const [dropDown2ButtonCSS, setDropDown2ButtonCSS] = useState(
-    new Array(mealTimeIndex).fill('').concat(
+    new Array(mealTimeIndex).fill('bg-buttonBg').concat(
       ['bg-itemText'].concat(
-        new Array(mealTime.length - mealTimeIndex - 1).fill('')
+        new Array(mealTime.length - mealTimeIndex - 1).fill('bg-buttonBg')
       )
     )
   );
   const [dropDown2Text, setDropDown2Text] = useState(
     new Array(mealTimeIndex).fill('text-itemText').concat(
       ['text-itemBgLight'].concat(
-        new Array(mealTime.length - mealTimeIndex - 1).fill('')
+        new Array(mealTime.length - mealTimeIndex - 1).fill('text-itemText')
       )
     )
   );
   const update2ButtonCSS = (index) => {
-    const new_css = new Array(mealTime.length).fill('');
+    const new_css = new Array(mealTime.length).fill('bg-buttonBg');
     new_css[index] = 'bg-itemText';
     setDropDown2ButtonCSS(new_css);
   }
@@ -199,23 +225,27 @@ const AddMealPage = ({ navigation }) => {
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit mt-2'>
               <View onLayout={onLayout} className='relative z-10 shrink w-full h-fit items-center mr-4'>
-                <TouchableOpacity className='w-full h-9 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
-                activeOpacity={1} onPress={()=>setShowDropDown1(!showDropDown1)}>
-                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-                    {days[dayIndex]}
-                  </TitleTextComponent>
-                </TouchableOpacity>
+                <TouchableHighlight className='w-full h-9 items-center justify-center rounded-xl'
+                activeOpacity={0.9} onPress={()=>setShowDropDown1(!showDropDown1)}>
+                  <View className='w-full h-full items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'>
+                    <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                      {days[dayIndex]}
+                    </TitleTextComponent>
+                  </View>
+                </TouchableHighlight>
                 {
                   showDropDown1 
                   ? <View style={{width: viewWidth}} className='absolute left-0 -bottom-60 z-10 h-60 py-2'>
                       <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
                         {days.map((item, index)=>(
-                          <TouchableOpacity style={{width: viewWidth}} className={`shrink h-full items-center justify-center rounded-xl ${dropDown1ButtonCSS[index]}`}
-                          activeOpacity={1} onPress={()=>updateDropDown1(index)}>
-                            <TitleTextComponent translate={true} size={'text-lg'} css={dropDown1Text[index]}>
-                              {item}
-                            </TitleTextComponent>
-                          </TouchableOpacity>
+                          <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px] overflow-hidden`}
+                          activeOpacity={0.9} onPress={()=>updateDropDown1(index)}>
+                            <View className={`w-full h-full items-center justify-center ${dropDown1ButtonCSS[index]}`}>
+                              <TitleTextComponent translate={true} size={'text-lg'} css={dropDown1Text[index]}>
+                                {item}
+                              </TitleTextComponent>
+                            </View>
+                          </TouchableHighlight>
                         ))}
                       </View>
                     </View>
@@ -223,23 +253,27 @@ const AddMealPage = ({ navigation }) => {
                 }
               </View>
               <View className='relative z-10 shrink w-full h-fit items-center'>
-                <TouchableOpacity className='w-full h-9 items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'
-                activeOpacity={1} onPress={()=>setShowDropDown2(!showDropDown2)}>
-                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-                    {mealTime[mealTimeIndex]}
-                  </TitleTextComponent>
-                </TouchableOpacity>
+                <TouchableHighlight className='w-full h-9 items-center justify-center rounded-xl'
+                activeOpacity={0.9} onPress={()=>setShowDropDown2(!showDropDown2)}>
+                  <View className='w-full h-full items-center justify-center border-2 border-itemText bg-buttonBg rounded-xl'>
+                    <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                      {mealTime[mealTimeIndex]}
+                    </TitleTextComponent>
+                  </View>
+                </TouchableHighlight>
                 {
                   showDropDown2
                   ? <View style={{width: viewWidth}} className='absolute left-0 -bottom-28 z-10 h-28 py-2'>
                       <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
                         {mealTime.map((item, index)=>(
-                          <TouchableOpacity style={{width: viewWidth}} className={`shrink h-full items-center justify-center rounded-xl ${dropDown2ButtonCSS[index]}`}
-                          activeOpacity={1} onPress={()=>updateDropDown2(index)}>
-                            <TitleTextComponent translate={true} size={'text-lg'} css={dropDown2Text[index]}>
-                              {item}
-                            </TitleTextComponent>
-                          </TouchableOpacity>
+                          <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px] overflow-hidden`}
+                          activeOpacity={0.9} onPress={()=>updateDropDown2(index)}>
+                            <View className={`w-full h-full items-center justify-center ${dropDown2ButtonCSS[index]}`}>
+                              <TitleTextComponent translate={true} size={'text-lg'} css={dropDown2Text[index]}>
+                                {item}
+                              </TitleTextComponent>
+                            </View>
+                          </TouchableHighlight>
                         ))}
                       </View>
                     </View>
@@ -257,7 +291,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit justify-start mt-2'>
-                <SmallButton text='Choose a Recipe' callback={null}/>
+                <SmallButton text='Choose a Recipe' callback={handleChooseRecipe}/>
             </View>
           </View>
 
@@ -271,7 +305,7 @@ const AddMealPage = ({ navigation }) => {
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
               <ItemTextInputComponent translate={true} 
               size={'text-xl'}
-              css={'shrink w-full h-10 pb-1 pl-3'}
+              css={'shrink w-full h-10 pb-1 pl-3 text-itemText'}
               placeholder={"ex. Chicken Sandwich"}
               placeholderTextColor={'#85855B'}
               value={mealName} 
@@ -289,7 +323,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Ingredient' callback={null}/>
+              <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
@@ -305,7 +339,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Step' callback={null}/>
+              <SmallButton text='Add Step' callback={handleAddProcedure}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
@@ -315,7 +349,7 @@ const AddMealPage = ({ navigation }) => {
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton css={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
+            <LargeButton cssIn={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>
       </ScrollView>

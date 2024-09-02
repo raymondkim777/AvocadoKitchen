@@ -1,14 +1,13 @@
 import React, {useState, useContext, useEffect } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, View, Dimensions, SafeAreaView, Image,ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { BackHandler, View, Dimensions, SafeAreaView, Image,ScrollView, TouchableOpacity, FlatList, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemLargeTextComponent from '../text/ItemLargeTextComponent';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../text/i18n'
-import SideBar from '../general/SideBar';
 import SideBarButton from '../general/SideBarButton';
 
 const MealSum = ({callback, title, image, cal}) => (
@@ -58,14 +57,14 @@ const { width, height } = Dimensions.get('window');
 
 const HomePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
-  
 
   // Android BackButton exits app instead of going to Login
   // https://reactnavigation.org/docs/custom-android-back-button-handling/
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
-        BackHandler.exitApp()
+        BackHandler.exitApp();
+        return true;
       };
 
       const subscription = BackHandler.addEventListener(
@@ -78,9 +77,9 @@ const HomePage = ({ navigation }) => {
   ); 
 
   {/* State/Functions */}
-  const [isFocused, setIsFocused] = useState(new Array(7).fill(''));
+  const [isFocused, setIsFocused] = useState(new Array(7).fill('bg-itemBgDark'));
   const setFocus = (index) => {
-    const new_focus = new Array(7).fill('');
+    const new_focus = new Array(7).fill('bg-itemBgDark');
     new_focus[index] = 'bg-itemBgLight';
     // const new_text = new Array(7).fill('text-itemText')
     // new_text[index] = 'text-itemBgLight' 
@@ -188,30 +187,36 @@ const HomePage = ({ navigation }) => {
                 <View className='flex flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
                   {days.map((day,index) => (
                     index == 0? 
-                      <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
-                      <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                        onPress={()=>setFocus(index)}>
-                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
-                            {day}
-                          </TitleTextComponent>
-                        </TouchableOpacity>
+                      <View key={`day-${index}`} className='shrink w-full h-8'>
+                        <TouchableHighlight className={`w-full h-full items-center justify-center rounded-t-lg`}
+                        activeOpacity={0.96} onPress={()=>setFocus(index)}>
+                          <View className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}>
+                            <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                              {day}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
                       </View> 
                     : index == 6? 
-                      <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
-                        <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                        onPress={()=>setFocus(index)}>
-                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
-                            {day}
-                          </TitleTextComponent>
-                        </TouchableOpacity>
+                      <View key={`day-${index}`} className='shrink w-full h-8'>
+                        <TouchableHighlight className={`w-full h-full items-center justify-center rounded-t-lg`}
+                        activeOpacity={0.96} onPress={()=>setFocus(index)}>
+                          <View className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}>
+                            <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                              {day}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
                       </View>
-                    : <View key={`day-${index}`} className='flex-1 items-center justify-center h-8'>
-                      <TouchableOpacity activeOpacity={1} className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}
-                        onPress={()=>setFocus(index)}>
-                          <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
-                            {day}
-                          </TitleTextComponent>
-                        </TouchableOpacity>
+                    : <View key={`day-${index}`} className='shrink w-full h-8'>
+                        <TouchableHighlight className={`w-full h-full items-center justify-center rounded-t-lg`}
+                        activeOpacity={0.96} onPress={()=>setFocus(index)}>
+                          <View className={`w-full h-full items-center justify-center rounded-t-lg ${isFocused[index]}`}>
+                            <TitleTextComponent translate={true} size={'text-2xl'} sizeDiff={-1} css={'text-itemText'}>
+                              {day}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
                       </View>
                   ))}
                 </View>
@@ -220,24 +225,30 @@ const HomePage = ({ navigation }) => {
                   <View className='flex flex-col w-full h-full'>
                     {/* Buttons */}
                     <View className='flex flex-row w-full h-7'>
-                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-l-lg ${mealColor[0]}`}
-                      activeOpacity={1} onPress={()=>setMealFocus(0)}>
-                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
-                          Breakfast
-                        </TitleTextComponent>
-                      </TouchableOpacity>
-                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center ${mealColor[1]}`}
-                        activeOpacity={1} onPress={()=>setMealFocus(1)}>
-                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
-                          Lunch
-                        </TitleTextComponent>
-                      </TouchableOpacity>
-                      <TouchableOpacity className={`flex flex-1 h-7 items-center justify-center rounded-r-lg ${mealColor[2]}`}
-                        activeOpacity={1} onPress={()=>setMealFocus(2)}>
-                        <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
-                          Dinner
-                        </TitleTextComponent>
-                      </TouchableOpacity>
+                      <TouchableHighlight className={`shrink w-full h-7 rounded-l-lg`}
+                      activeOpacity={0.9} onPress={()=>setMealFocus(0)}>
+                        <View className={`w-full h-full items-center justify-center rounded-l-lg ${mealColor[0]}`}>
+                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
+                            Breakfast
+                          </TitleTextComponent>
+                        </View>
+                      </TouchableHighlight>
+                      <TouchableHighlight className={`shrink w-full h-7 ${mealColor[1]}`}
+                      activeOpacity={0.9} onPress={()=>setMealFocus(1)}>
+                        <View className={`w-full h-full items-center justify-center ${mealColor[1]}`}>
+                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
+                            Lunch
+                          </TitleTextComponent>
+                        </View>
+                      </TouchableHighlight>
+                      <TouchableHighlight className={`shrink w-full h-7 rounded-r-lg`}
+                      activeOpacity={0.9} onPress={()=>setMealFocus(2)}>
+                        <View className={`w-full h-full items-center justify-center  rounded-r-lg ${mealColor[2]}`}>
+                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
+                            Dinner
+                          </TitleTextComponent>
+                        </View>
+                      </TouchableHighlight>
                     </View>
                     {/* Meal Content */}
                     <View className='flex flex-1 h-full mt-2'>

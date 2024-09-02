@@ -145,6 +145,102 @@ const Browse = ({ navigation }) => {
       },
       image: require('../../assets/images/recipe-1.webp'),
     },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
+    {
+      id: 'recipe-4',
+      title: 'Tuna Sandwich', 
+      nutrition: {
+        cal: 1261,
+        protein: 148, 
+        carb: 429,
+      },
+      tags: ['Sandwich', 'Protein', 'Healthy'],
+      data: {
+        likes: 8,
+        comments: 4, 
+        downloads: 7,
+      },
+      image: require('../../assets/images/recipe-1.webp'),
+    },
   ]
   const recipesShown = [];
   const recipeMaxCnt = 6;
@@ -156,43 +252,11 @@ const Browse = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const [showOptions1, setShowOptions1] = useState(false);
-
   const [dietIndex, setDietIndex] = useState(-1);
-  const [dietButtonCSS, setDietButtonCSS] = useState(new Array(optionList.length).fill(''));
-  const updateDiet = (index) => {
-    if (index == dietIndex) {
-      setDietIndex(-1);
-      const new_css = new Array(optionList.length).fill('');
-      setDietButtonCSS(new_css);
-    } else {
-      setDietIndex(index);
-      const new_css = new Array(optionList.length).fill('');
-      new_css[index] = 'bg-itemText'
-      setDietButtonCSS(new_css);
-    }
-  }
+  const [searchCat, setSearchCat] = useState(0);
 
   const [calorieValue, setCalorieValue] = useState(2000);
-  const calorieMinValue = 0;
-  const calorieMaxValue = 5000;
-
   const [budgetValue, setBudgetValue] = useState(20000);
-  const budgetMinValue = 0;
-  const budgetMaxValue = 100000;
-
-  const [searchCat, setSearchCat] = useState(0);
-  const [catColor, setCatColor] = useState(['bg-itemText', '', '', '']);
-  const [catText, setCatText] = useState(['text-itemBgLight', 'text-itemText', 'text-itemText', 'text-itemText']);
-  const setCatFocus = (index) => {
-    setSearchCat(index);
-    const new_color = new Array(categories.length).fill('');
-    new_color[index] = 'bg-itemText';
-    setCatColor(new_color);
-
-    const new_text = new Array(categories.length).fill('text-itemText');
-    new_text[index] = 'text-itemBgLight';
-    setCatText(new_text);
-  }
 
   // Options Menu 2
   const [showOptions2, setShowOptions2] = useState(false);
@@ -209,16 +273,15 @@ const Browse = ({ navigation }) => {
   }
 
   // Pages
-
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('')));
+  const [pageButtonColor, setPageButtonColor] = useState(['bg-itemText'].concat(new Array(pageCount).fill('bg-buttonBg')));
   const [pageButtonText, setPageButtonText] = useState(['text-itemBgLight'].concat(new Array(pageCount).fill('text-itemText')));
   const updatePageIndex = (index) => {
     if (index == pageIndex) return;
     setPageIndex(index);  // STARTS AT 0
 
     {/* Page Button CSS */}
-    const new_color = new Array(pageCount).fill('');
+    const new_color = new Array(pageCount).fill('bg-buttonBg');
     new_color[index] = 'bg-itemText';
     setPageButtonColor(new_color);
 
@@ -314,23 +377,18 @@ const Browse = ({ navigation }) => {
             showOptions1
             ? <OptionsMenu1 
                 optionList={optionList} 
-                updateDiet={updateDiet}
-                dietCSS = {dietButtonCSS}
+                dietIndex={dietIndex} 
+                setDietIndex={setDietIndex}
 
                 calorieValue={calorieValue} 
                 setCalorieValue={setCalorieValue}
-                calorieMinValue={calorieMinValue} 
-                calorieMaxValue={calorieMaxValue} 
 
                 budgetValue={budgetValue}
                 setBudgetValue={setBudgetValue}
-                budgetMinValue={budgetMinValue} 
-                budgetMaxValue={budgetMaxValue}
 
                 categories={categories}
-                setCatFocus={setCatFocus}
-                catColor={catColor} 
-                catText={catText}/> 
+                searchCat={searchCat}
+                setSearchCat={setSearchCat}/> 
             : null
           }
           
@@ -390,15 +448,15 @@ const Browse = ({ navigation }) => {
             renderItem={({item}) => <RecipeDisplayCard item={item} />}
             ItemSeparatorComponent={CardDiv}
             />
-            </View>
-
-            {/* Page Numbers */}
-            {
-              recipes.length != 0 
-              ? <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
-              : null
-            }
           </View>
+
+          {/* Page Numbers */}
+          {
+            recipes.length != 0 
+            ? <PageMenu key={'menu-2'} pageButtons={pageButtons} shiftPageIndex={shiftPageIndex}/>
+            : null
+          }
+        </View>
       </ScrollView>
     </SafeAreaView>
   )

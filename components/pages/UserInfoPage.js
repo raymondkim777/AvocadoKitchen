@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
-import { SafeAreaView, ScrollView, View, Text, FlatList, } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { BackHandler, SafeAreaView, ScrollView, View, Text, FlatList, } from 'react-native';
 import TitleTextComponent from '../text/TitleTextComponent';
 import ItemTextComponent from '../text/ItemTextComponent';
 import ItemTextInputComponent from '../text/ItemTextInputComponent';
@@ -14,6 +15,22 @@ const FoodCardDiv = () => (
 
 const UserInfoPage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        updatePage(0);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
   
   const avoidFood = [
     {

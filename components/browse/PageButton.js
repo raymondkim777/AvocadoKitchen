@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 
 const PageButton = ({callback, index, buttonColor, buttonText}) => (
-  <TouchableOpacity className={`w-8 h-8 items-center justify-center rounded-xl ${buttonColor}`}
-    activeOpacity={1} onPress={()=>callback(index)}>
-    <Text className={`font-inconsolataBold text-xl ${buttonText}`}>{index + 1}</Text>
-  </TouchableOpacity>
+  <TouchableHighlight className={`w-8 h-8 rounded-xl`}
+  activeOpacity={0.9} onPress={()=>callback(index)}>
+    <View className={`w-full h-full items-center justify-center rounded-xl ${buttonColor}`}>
+      <Text className={`font-inconsolataBold text-xl ${buttonText}`}>{index + 1}</Text>
+    </View>
+  </TouchableHighlight>
 )
 
 export default PageButton

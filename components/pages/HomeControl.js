@@ -6,6 +6,7 @@ import 'intl-pluralrules';
 import '../text/i18n'
 import HomePage from './HomePage';
 import MyMeals from './MyMeals';
+import MyCart from './MyCart';
 import Browse from './Browse';
 import RecipePage from './RecipePage';
 import AddMealPage from './AddMealPage';
@@ -27,6 +28,7 @@ const HomeControl = ({ navigation }) => {
   const pageID = [
     'HomePage', 
     'MyMeals',
+    'MyCart',
     'Browse',
     'AddMealPage',
     'UserInfoPage',
@@ -36,6 +38,7 @@ const HomeControl = ({ navigation }) => {
   const pages = [
     'Home', 
     'My Meals',
+    'My Cart',
     'Recipe Search', 
     'Add a Meal', 
     'Info', 
@@ -44,9 +47,9 @@ const HomeControl = ({ navigation }) => {
   ];
   const [pageIndex, setPageIndex] = useState(0);
   const [buttonCSS, setButtonCSS] = useState(
-    new Array(pageIndex).fill('').concat(
+    new Array(pageIndex).fill('bg-itemBgLight').concat(
       ['bg-itemText'].concat(
-        new Array(pages.length - pageIndex - 1).fill('')
+        new Array(pages.length - pageIndex - 1).fill('bg-itemBgLight')
       )
     )
   );
@@ -61,7 +64,7 @@ const HomeControl = ({ navigation }) => {
     setPageIndex(index);
     setShowSideBar(false);
 
-    const new_button = new Array(pages.length).fill('');
+    const new_button = new Array(pages.length).fill('bg-itemBgLight');
     new_button[index] = 'bg-itemText';
     setButtonCSS(new_button);
 
@@ -74,13 +77,17 @@ const HomeControl = ({ navigation }) => {
       CommonActions.navigate(pageID[index])
     );
   }
-  const updatePage = (index, forceUpdateStack = false) => {
+  {/*
+    forceUpdateStack is for Modal Sidebar delay; 
+    SideBarPage callback only runs updateSideBar, 
+    Modal onModalHide runs updateStack.
+  */}
+  const updatePage = (index, forceUpdateStack = true) => { 
     updateSideBar(index);
     if (wideScreen || forceUpdateStack) {
       updateStack(index);
     } 
   }
-  
   
   /* HomeControl */
   const [username, setUsername] = useState('Username');
@@ -112,6 +119,7 @@ const HomeControl = ({ navigation }) => {
         >
           <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
+          <PageStack.Screen name="MyCart" component={MyCart} />
           <PageStack.Screen name="Browse" component={Browse} />
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
           <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />

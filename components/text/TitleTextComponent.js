@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next';
 import 'intl-pluralrules';
 import './i18n'
 
-const TitleTextComponent = ({ translate = false, children, size, sizeDiff = 0, bold = false, css }) => {
+const TitleTextComponent = ({ 
+translate = false, 
+children, 
+size, sizeDiff = 0, bold = false, css,
+numberOfLines=0, }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
@@ -32,7 +36,9 @@ const TitleTextComponent = ({ translate = false, children, size, sizeDiff = 0, b
   const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
 
   return(
-    <Text className={`
+    <Text 
+    numberOfLines={numberOfLines}
+    className={`
       ${(currentLanguage  === 'ko-KR') ? fontKRCSS + " -mt-0.5" : fontENCSS} 
       ${sizes[sizeIdx]} 
       ${css}
