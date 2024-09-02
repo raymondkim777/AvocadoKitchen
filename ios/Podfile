@@ -1,3 +1,4 @@
+
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
@@ -17,6 +18,14 @@ end
 target 'avocado' do
   config = use_native_modules!
 
+  pod 'FirebaseCoreInternal', :modular_headers => true
+  pod 'GoogleUtilities', :modular_headers => true
+
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+  pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
+  pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
@@ -25,6 +34,7 @@ target 'avocado' do
 
   target 'avocadoTests' do
     inherit! :complete
+    inherit! :search_paths
     # Pods for testing
   end
 
@@ -36,6 +46,7 @@ target 'avocado' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+    
   end
 end
 
