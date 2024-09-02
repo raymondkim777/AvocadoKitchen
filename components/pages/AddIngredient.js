@@ -110,7 +110,7 @@ const AddIngredient = ({
             showResults
             ? (
               foundResults 
-              ? <QuickSearchResults />
+              ? <QuickSearchResults background={'bg-itemBgLight'} />
               : <QuickSearchResultsEmpty />
               )
             : null
