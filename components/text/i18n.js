@@ -108,14 +108,19 @@ const resources = {
       // My Cart
       "My Cart": "My Cart",
       "My Fridge": "My Fridge", 
+      "Reset Cart": "Reset Cart",
       "Coupang": "Coupang", 
       "Market Curly": "Market Curly",
       "Regular": "Regular",
       "Rocket": "Rocket", 
       "Dawn": "Dawn",
+      "Total": "Total",
       "Change Item": "Change", 
       "Auto": "Auto",
       "Delete": "Delete",
+      "Both Sites": "Both",
+      "Coupang": "Coupang", 
+      "Curly": "Curly",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -348,14 +353,19 @@ const resources = {
       // My Cart
       "My Cart": "내 장바구니",
       "My Fridge": "내 냉장고", 
+      "Reset Cart": "원상태 복귀",
       "Coupang": "쿠팡", 
       "Market Curly": "마켓컬리",
       "Regular": "일반배송",
       "Rocket": "로켓배송", 
       "Dawn": "샛별배송",
+      "Total": "총가격",
       "Change Item": "링크 수정", 
       "Auto": "추천",
       "Delete": "재료 삭제",
+      "Both Sites": "전체",
+      "Coupang": "쿠팡", 
+      "Curly": "컬리",
 
       // Browse
       "Browse Recipes": "레시피 찾기",

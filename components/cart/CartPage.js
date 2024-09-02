@@ -8,6 +8,7 @@ import SideBarButton from '../general/SideBarButton';
 import ExitButton from '../general/ExitButton';
 import SmallButton from '../general/SmallButton';
 import EditButton from '../general/EditButton';
+import CartAddModal from './CartAddModal';
 import CartEditModal from './CartEditModal';
 
 const ItemDiv = () => (
@@ -96,6 +97,7 @@ const SiteSummary = ({siteIdx, data}) => {
 const CartPage = ({ viewWidth }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
 
+  const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [siteIndex, setSiteIndex] = useState(0);
   const [itemIndex, setItemIndex] = useState(0);
@@ -105,7 +107,7 @@ const CartPage = ({ viewWidth }) => {
   }
 
   const handleAddIngredient = () => {
-    null;
+    setShowAddModal(true);
   }
 
   const items = [
@@ -243,13 +245,21 @@ const CartPage = ({ viewWidth }) => {
           <SiteSummary siteIdx={siteIdx} data={data} />
         )}
         ListHeaderComponent={
-        <CartEditModal 
-        item={items[siteIndex].data[itemIndex]}
-        siteIndex={siteIndex}
-        viewWidth={viewWidth}
-        showEditModal={showEditModal} 
-        setShowEditModal={setShowEditModal} />
-      }
+        <View className=''>
+          <CartAddModal
+          viewWidth={viewWidth}
+          showAddModal={showAddModal}
+          setShowAddModal={setShowAddModal}
+          />
+          <CartEditModal 
+          item={items[siteIndex].data[itemIndex]}
+          siteIndex={siteIndex}
+          viewWidth={viewWidth}
+          showEditModal={showEditModal} 
+          setShowEditModal={setShowEditModal} 
+          />
+        </View>
+        }
         ListFooterComponent={<View className='w-full h-2' />}
         ItemSeparatorComponent={ItemDiv}
         />
