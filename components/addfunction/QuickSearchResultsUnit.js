@@ -12,10 +12,10 @@ const QuickSearchResultsUnit = ({item}) => {
   return (
     (
       item.empty
-      ? <View className='flex-1 h-60 bg-transparent'/>
-      : <View className='flex-1 h-60 items-center justify-center p-1'>
+      ? <View className='flex-1 h-48 bg-transparent'/>
+      : <View className='flex-1 h-fit items-center px-0.5 justify-start'>
           <Image className='w-full h-40 rounded-lg' source={item.image} />
-          <View className='flex-col w-full h-fit items-center justify-center mt-1'>
+          <View className='flex-col w-full h-fit items-center justify-center'>
             <Text numberOfLines={2} className={`
               ${(currentLanguage  === 'ko-KR') ? "font-koreanFont1 my-1" : 'font-inconsolata'} 
               text-base text-wrap text-center leading-4 text-itemText

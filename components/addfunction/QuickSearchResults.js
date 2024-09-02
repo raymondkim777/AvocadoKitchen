@@ -4,7 +4,9 @@ import QuickSearchResultsUnit from './QuickSearchResultsUnit';
 
 const { width, height } = Dimensions.get('window');
 
-const QuickSearchResults = ({}) => {
+const QuickSearchResults = ({
+  background,
+}) => {
   const formatData = (data, numColumns) => {
     const numFullRows = Math.floor(data.length / numColumns);
     let numElementsLastRow = data.length - (numFullRows * numColumns);
@@ -46,14 +48,15 @@ const QuickSearchResults = ({}) => {
   return (
     <View className='w-full h-72 items-center justify-center mt-4 rounded-xl overflow-hidden'>
       {/* https://www.reactnativeschool.com/react-native-flatlist-grid */}
-      <FlatList className='w-full h-full bg-itemBgLight' 
+      <FlatList className={`w-full h-full ${background} py-1 px-0.5`} 
         horizontal={false}
         nestedScrollEnabled={true}
         showsVerticalScrollIndicators={true}
         data={formatData(ingredients, 2)}
         renderItem={({item}) => <QuickSearchResultsUnit item={item} />}
         numColumns={2}
-        ItemSeparatorComponent={<View className='w-2 h-2'/>}
+        ItemSeparatorComponent={<View className='h-2'/>}
+        ListFooterComponent={<View className='h-2' />}
       />
     </View>
   )
