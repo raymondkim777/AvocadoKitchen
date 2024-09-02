@@ -23,12 +23,12 @@ const CartEditModal = ({
     setCount(item.quantity);
   }
 
-  const handleUpdateEdit = () => {
+  const handleEditUpdate = () => {
     // set item.quantity to count
   }
   
   const handleCloseModal = () => {
-    handleUpdateEdit();
+    handleEditUpdate();
     setShowEditModal(false);
     handleCloseBottomCard(false);
   }
@@ -49,6 +49,13 @@ const CartEditModal = ({
   const [count, setCount] = useState(0);
 
   const [showBottomCard, setShowBottomCard] = useState(false);
+  const [searchSiteIndex, setSearchSiteIndex] = useState(0);
+  const searchSiteList = ['Both Sites', 'Coupang', 'Curly'];
+
+  const shiftSearchSite = () => {
+    setSearchSiteIndex((searchSiteIndex + 1) % searchSiteList.length);
+  }
+
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
@@ -69,10 +76,10 @@ const CartEditModal = ({
   return(
     <Modal 
     style={{width: viewWidth}}
-    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} items-center justify-center`}
+    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-2 items-center justify-center`}
     isVisible={showEditModal}
     onModalWillShow={resetCount}
-    onModalHide={handleUpdateEdit}
+    onModalHide={handleEditUpdate}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full' onPress={handleCloseModal}>
@@ -165,9 +172,19 @@ const CartEditModal = ({
             <View className='flex-col w-full h-fit mb-2'>
               {/* Quick Search */}
               <View className='flex-row w-full h-6 items-center justify-between'>
-                <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mx-4'}>
-                  Quick Search
-                </TitleTextComponent>
+                <View className='flex-row w-fit h-fit items-center'>
+                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mx-4'}>
+                    Quick Search
+                  </TitleTextComponent>
+                  <TouchableHighlight className='w-20 h-7 rounded-full '
+                  activeOpacity={0.9} onPress={shiftSearchSite}>
+                    <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full border-2 border-itemText'>
+                      <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-itemText'}>
+                        {searchSiteList[searchSiteIndex]}
+                      </TitleTextComponent>
+                    </View>
+                  </TouchableHighlight>
+                </View>
                 <View className='w-fit h-fit -mr-1'>
                   <ExitButtonLocal callback={handleCloseBottomCard} background={'bg-itemBgLight'} />
                 </View>
@@ -210,6 +227,4 @@ const CartEditModal = ({
   )
 }
 
-
 export default CartEditModal
-
