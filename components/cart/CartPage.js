@@ -107,6 +107,7 @@ const CartPage = ({ viewWidth }) => {
 
   const [weeklyBudget, setWeeklyBudget] = useState(150000);
 
+  const [resetEnabled, setResetEnabled] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [siteIndex, setSiteIndex] = useState(0);
@@ -206,14 +207,15 @@ const CartPage = ({ viewWidth }) => {
 
       <View className='flex-row w-full h-fit items-center mt-6'>
         <View className='w-fit h-fit'>
-          <SmallButton text='Reset Cart' callback={handleResetCart}/>
+          <SmallButton text='Reset Cart' callback={handleResetCart} disabled={!resetEnabled}/>
         </View>
         <View className='w-fit h-fit ml-2'>
           <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
         </View>
       </View>
 
-      {/* SectionList */}
+      {/* SectionList  
+      --> Might have to add key to force re-render when item gets deleted*/}
       <View className='shrink w-full h-full mt-4 rounded-xl overflow-hidden'>
         <SectionList
         className='w-full h-full px-2 pr-1 bg-itemBgLight'
