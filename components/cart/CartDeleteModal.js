@@ -7,17 +7,18 @@ import TitleTextComponent from '../text/TitleTextComponent';
 const CartDeleteModal = ({ 
   viewWidth,
   showDeleteCheck, setShowDeleteCheck, 
-  handleDeleteItem, handleCloseModal,
+  handleDeleteItem, handleCloseModal = null,
 }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
 
-  const handleCancel = () => {
+  const handleCancelPress = () => {
     setShowDeleteCheck(false);
   }
-  const handleLeave = () => {
+  const handleDeletePress = () => {
     setShowDeleteCheck(false);
     handleDeleteItem();
-    handleCloseModal(false);
+    if (handleCloseModal != null) 
+      handleCloseModal(false);
   }
 
   return(
@@ -43,13 +44,13 @@ const CartDeleteModal = ({
           </TitleTextComponent>
           <View className='flex-row w-full h-fit mt-4 items-center justify-center'>
             <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'
-              activeOpacity={0.7} onPress={handleCancel}>
+              activeOpacity={0.7} onPress={handleCancelPress}>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
                   Cancel
                 </TitleTextComponent>
             </TouchableOpacity>
             <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-itemText border-2 border-itemText rounded-xl'
-              activeOpacity={0.7} onPress={handleLeave}>
+              activeOpacity={0.7} onPress={handleDeletePress}>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemBgLight text-center'}>
                   Delete
                 </TitleTextComponent>
