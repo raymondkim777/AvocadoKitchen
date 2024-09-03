@@ -1,12 +1,18 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
+import { SideBarContext } from '../pages/HomeControl';
 import { SafeAreaView, View, Text, FlatList, Dimensions } from 'react-native';
 import QuickSearchResultsUnit from './QuickSearchResultsUnit';
 
 const { width, height } = Dimensions.get('window');
 
 const QuickSearchResults = ({
-  background,
+  numberOfColumns = 2, 
+  background, 
+  resultsList,
+  smallImage = false,
 }) => {
+  const { wideScreen, } = useContext(SideBarContext);
+
   const formatData = (data, numColumns) => {
     const numFullRows = Math.floor(data.length / numColumns);
     let numElementsLastRow = data.length - (numFullRows * numColumns);
@@ -16,46 +22,19 @@ const QuickSearchResults = ({
     }
     return data;
   }
-  
-  const ingredients = [
-    {
-      site: 'Coupang', 
-      name: "(Quick Result 1)", 
-      price: '19140', 
-      deliver: '7/28',
-      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
-      empty: false,
-    }, 
-    {
-      site: 'Coupang', 
-      name: "(Quick Result 2)", 
-      price: '19140', 
-      deliver: '7/28',
-      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
-      empty: false,
-    },
-    {
-      site: 'Coupang', 
-      name: "(Quick Result 2)", 
-      price: '19140', 
-      deliver: '7/28',
-      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
-      empty: false,
-    },
-    
-  ];
 
   return (
-    <View className='shrink w-full h-72 items-center justify-center rounded-xl overflow-hidden'>
+    <View className='w-full h-72 items-center justify-center rounded-xl overflow-hidden'>
       {/* https://www.reactnativeschool.com/react-native-flatlist-grid */}
       <FlatList className={`w-full h-full ${background} py-1 px-0.5`} 
+        key={`flatList${numberOfColumns}`}
         horizontal={false}
         nestedScrollEnabled={true}
         showsVerticalScrollIndicators={true}
-        data={formatData(ingredients, 2)}
-        renderItem={({item}) => <QuickSearchResultsUnit item={item} />}
-        numColumns={2}
-        ItemSeparatorComponent={<View className='h-2'/>}
+        data={formatData(resultsList, numberOfColumns)}
+        renderItem={({item}) => <QuickSearchResultsUnit item={item} smallImage={smallImage}/>}
+        numColumns={numberOfColumns}
+        ItemSeparatorComponent={<View className='h-1'/>}
         ListFooterComponent={<View className='h-2' />}
       />
     </View>
