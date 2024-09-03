@@ -29,7 +29,6 @@ const CartEditModal = ({
   }
   
   const handleCloseModal = () => {
-    handleEditUpdate();
     setShowEditModal(false);
     handleCloseBottomCard(false);
   }
@@ -40,6 +39,11 @@ const CartEditModal = ({
 
   const handleChangeLink = () => {
     setShowBottomCard(true);
+  }
+
+  const handleSavePress = () => {
+    handleEditUpdate();
+    handleCloseModal();
   }
 
   const handleDeleteItem = () => {
@@ -145,7 +149,7 @@ const CartEditModal = ({
               </TitleTextComponent>
             </View>
             <View className='w-fit h-full mx-2 items-center justify-center'>
-              <TouchableHighlight className='w-fit h-6 rounded-full'
+              <TouchableHighlight className='w-fit h-7 rounded-full'
               activeOpacity={0.9} onPress={handleChangeLink}>
                 <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
                   <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
@@ -172,18 +176,18 @@ const CartEditModal = ({
             </View>
 
             {/* Right Side */}
-            <View className='shrink w-full h-full'>
-              <View className='w-full h-12 mt-4 items-center justify-center'>
+            <View className='shrink w-full h-full ml-2'>
+              <View className='w-full h-12 mt-3 items-center justify-center'>
                 <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
                   {item.price * count}원
                 </TitleTextComponent>
               </View>
 
-              <View className='shrink w-full h-full mb-3 items-center justify-center'>
+              <View className='shrink w-full h-full items-center justify-center'>
                 <Counter count={count} setCount={setCount} />
               </View>
 
-              <View className='flex-row w-full h-fit items-center justify-between'>
+              <View className='shrink w-full h-fit mt-2 items-center justify-center'>
                 <View className='flex-row shrink w-full h-full ml-2 items-center justify-center'>
                   <TitleTextComponent translate={true} size={'text-lg'} css={'w-fit text-greenHighlight'}>
                     Auto
@@ -195,16 +199,25 @@ const CartEditModal = ({
                     {autoCount}개
                   </TitleTextComponent>
                 </View>
-                <View className='w-fit h-6 items-center justify-end'>
-                  <TouchableHighlight className='w-fit h-6 rounded-full '
-                  activeOpacity={0.9} onPress={()=>setShowDeleteCheck(true)}>
-                    <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
-                      <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
-                        Delete
-                      </TitleTextComponent>
-                    </View>
-                  </TouchableHighlight>
-                </View>
+              </View>
+
+              <View className='flex-row w-full h-7 items-center justify-between'>
+                <TouchableHighlight className='w-16 h-full rounded-full '
+                activeOpacity={0.9} onPress={()=>setShowDeleteCheck(true)}>
+                  <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                    <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
+                      Delete
+                    </TitleTextComponent>
+                  </View>
+                </TouchableHighlight>
+                <TouchableHighlight className='w-16 h-full rounded-full '
+                activeOpacity={0.9} onPress={handleSavePress}>
+                  <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                    <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-greenHighlight'}>
+                      Save
+                    </TitleTextComponent>
+                  </View>
+                </TouchableHighlight>
               </View>
 
 
