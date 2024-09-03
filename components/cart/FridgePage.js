@@ -9,6 +9,7 @@ import ExitButton from '../general/ExitButton';
 import SmallButton from '../general/SmallButton';
 import Counter from '../general/Counter';
 import ExitButtonLocal from '../general/ExitButtonLocal';
+import FridgeAddModal from './FridgeAddModal';
 
 const ItemCard = ({ item }) => {
   const [count, setCount] = useState(item.quantity);
@@ -34,12 +35,14 @@ const ItemCard = ({ item }) => {
   )
 }
 
-const FridgePage = ({}) => {
+const FridgePage = ({ viewWidth }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
   
   const handleAddIngredient = () => {
-    null;
+    setShowAddModal(true);
   }
+
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const items = [
     {
@@ -104,6 +107,13 @@ const FridgePage = ({}) => {
         ListFooterComponent={<View className='w-full h-4'/>}
         />
       </View>
+
+      {/* Modals */}
+      <FridgeAddModal
+      viewWidth={viewWidth}
+      showAddModal={showAddModal}
+      setShowAddModal={setShowAddModal}
+      />
       
     </View>
   )
