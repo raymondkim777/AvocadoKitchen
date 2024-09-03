@@ -3,10 +3,10 @@ import { NativeWindStyleSheet } from "nativewind";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Login from './components/pages/Login';
-import SignUp from './components/pages/SignUp';
-import SignUp2 from './components/pages/SignUp2';
-import HomeControl from './components/pages/HomeControl';
+import Login from './components/pages/authentication/Login';
+import SignUp from './components/pages/authentication/SignUp';
+import SignUp2 from './components/pages/authentication/SignUp2';
+import HomeControl from './components/pages/main/HomeControl';
 
 const Stack = createStackNavigator();
 
