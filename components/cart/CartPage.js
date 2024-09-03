@@ -69,38 +69,33 @@ const ItemCard = ({
   )
 }
 
-const SiteSummary = ({siteIdx, data}) => {
+const SiteSummary = ({weeklyBudget, siteIdx, data}) => {
   let totalPrice = 0;
   for (let i = 0; i < data.length; i++) {
     totalPrice += data[i].price * data[i].quantity;
   }
+  const textColor = totalPrice <= weeklyBudget ? 'text-greenHighlight' : 'text-redHighlight';
+
   return(
-    <View className='flex-row w-full h-fit mt-4 justify-end'>
-      <View className='flex-row w-fit h-full mr-4'>
-        <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-          Total
-        </TitleTextComponent>
-        <TitleTextComponent size={'text-xl'} css={'text-itemText'}>
-          :
-        </TitleTextComponent>
-        <TitleTextComponent size={'text-xl'} css={'ml-2 text-itemText'}>
-          {totalPrice}
-        </TitleTextComponent>
-        <TitleTextComponent size={'text-xl'} css={'text-itemText'}>
-          원
-        </TitleTextComponent>
-      </View>
+    <View className='flex-row w-fit h-fit items-center justify-center'>
+      <TitleTextComponent translate={true} size={'text-xl'} css={textColor}>
+        Total
+      </TitleTextComponent>
+      <TitleTextComponent size={'text-xl'} css={textColor}>
+        :
+      </TitleTextComponent>
+      <TitleTextComponent size={'text-xl'} css={`ml-2 ${textColor}`}>
+        {totalPrice}
+      </TitleTextComponent>
+      <TitleTextComponent size={'text-xl'} css={textColor}>
+        원
+      </TitleTextComponent>
     </View>
   )
 }
 
 const CartPage = ({ viewWidth }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
-
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [siteIndex, setSiteIndex] = useState(0);
-  const [itemIndex, setItemIndex] = useState(0);
 
   const handleResetCart = () => {
     null;
@@ -109,6 +104,13 @@ const CartPage = ({ viewWidth }) => {
   const handleAddIngredient = () => {
     setShowAddModal(true);
   }
+
+  const [weeklyBudget, setWeeklyBudget] = useState(150000);
+
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [siteIndex, setSiteIndex] = useState(0);
+  const [itemIndex, setItemIndex] = useState(0);
 
   const items = [
     {
@@ -234,23 +236,18 @@ const CartPage = ({ viewWidth }) => {
             </View>
           </View>
         )}
-        renderSectionHeader={({section: {site}}) => (
-          <View className='w-full h-fit pb-2 bg-itemBgLight'>
-            <TitleTextComponent translate={true} size={'text-xl'} css={'mx-2 mt-2 text-itemText'}>
+        renderSectionHeader={({section: {site, siteIdx, data}}) => (
+          <View className='flex-row w-full h-fit pb-2 mt-2 items-center justify-between bg-itemBgLight'>
+            <TitleTextComponent translate={true} size={'text-xl'} css={'mx-2 text-itemText'}>
               {site}
             </TitleTextComponent>
+            <View className='w-fit h-fit mx-2'>
+              <SiteSummary weeklyBudget={weeklyBudget} siteIdx={siteIdx} data={data} />
+            </View>
           </View>
-        )}
-        renderSectionFooter={({section: {siteIdx, data}}) => (
-          <SiteSummary siteIdx={siteIdx} data={data} />
         )}
         ListHeaderComponent={
         <View className=''>
-          <CartAddModal
-          viewWidth={viewWidth}
-          showAddModal={showAddModal}
-          setShowAddModal={setShowAddModal}
-          />
           <CartEditModal 
           item={items[siteIndex].data[itemIndex]}
           siteIndex={siteIndex}
@@ -265,6 +262,12 @@ const CartPage = ({ viewWidth }) => {
         />
       </View>
 
+      {/* Modals */}
+      <CartAddModal
+      viewWidth={viewWidth}
+      showAddModal={showAddModal}
+      setShowAddModal={setShowAddModal}
+      />
     </View>
   )
 }

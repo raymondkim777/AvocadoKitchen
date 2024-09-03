@@ -38,11 +38,55 @@ const CartAddModal = ({
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
+  const resultColumnNum = wideScreen ? 3 : 2;
+
+  const resultsList = [
+    {
+      site: 'Coupang', 
+      name: "(Quick Result 2)", 
+      price: '19140', 
+      deliver: '7/28',
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
+      empty: false,
+    }, 
+    {
+      site: 'Coupang', 
+      name: "(Quick Result 2)", 
+      price: '19140', 
+      deliver: '7/28',
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
+      empty: false,
+    },
+    {
+      site: 'Coupang', 
+      name: "(Quick Result 1)", 
+      price: '19140', 
+      deliver: '7/28',
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
+      empty: false,
+    },
+    {
+      site: 'Coupang', 
+      name: "(Quick Result 2)", 
+      price: '19140', 
+      deliver: '7/28',
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
+      empty: false,
+    },
+    {
+      site: 'Coupang', 
+      name: "(Quick Result 2)", 
+      price: '19140', 
+      deliver: '7/28',
+      image: require('../../assets/images/ingredient-example/ingredient-1.jpg'),
+      empty: false,
+    },
+  ];
 
   return(
     <Modal 
     style={{width: viewWidth}}
-    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} items-center justify-center`}
+    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 items-center justify-center`}
     isVisible={showAddModal}
     onModalHide={handleAddUpdate}
     onBackButtonPress={handleCloseModal}
@@ -52,8 +96,8 @@ const CartAddModal = ({
       </TouchableWithoutFeedback>
     }
     >
-      <View className='shrink w-[340px] h-fit p-2 bg-itemBgLight rounded-xl'>
-        <View className='flex-col w-full h-fit mb-2'>
+      <View className='w-full h-fit p-2 bg-itemBgLight rounded-xl'>
+        <View className='flex-col w-full h-fit'>
           {/* Quick Search */}
           <View className='flex-row w-full h-6 items-center justify-between'>
             <View className='flex-row w-fit h-fit items-center'>
@@ -98,8 +142,15 @@ const CartAddModal = ({
           showResults
           ? (
             foundResults 
-            ? <QuickSearchResults background={'bg-itemBgDark'} />
-            : <QuickSearchResultsEmpty />
+            ? <View className='w-full h-fit mt-2'>
+                <QuickSearchResults 
+                background={'bg-itemBgDark'} 
+                numberOfColumns={resultColumnNum}
+                resultsList={resultsList}/>
+              </View>
+            : <View className='w-full h-fit mt-2'>
+                <QuickSearchResultsEmpty background={'bg-itemBgDark'} textColor={'text-itemText'} />
+              </View>
             )
           : null
         }
