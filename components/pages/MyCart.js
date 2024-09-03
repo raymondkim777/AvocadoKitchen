@@ -53,7 +53,9 @@ const MyCart = ({ navigation }) => {
       {/* Content */}
       <View className='shrink w-full h-full p-4 bg-screenBg'>
         {
-          curPageIndex == 0 ? <CartPage viewWidth={viewWidth} /> : <FridgePage />
+          curPageIndex == 0 
+          ? <CartPage viewWidth={viewWidth} /> 
+          : <FridgePage viewWidth={viewWidth} />
         }
 
         {/* Tab Navigate */}

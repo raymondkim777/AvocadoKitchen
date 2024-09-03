@@ -121,6 +121,7 @@ const resources = {
       "Both Sites": "Both",
       "Coupang": "Coupang", 
       "Curly": "Curly",
+      "Ingredient Search": "Ingredient Search",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -366,6 +367,7 @@ const resources = {
       "Both Sites": "전체",
       "Coupang": "쿠팡", 
       "Curly": "컬리",
+      "Ingredient Search": "재료 검색",
 
       // Browse
       "Browse Recipes": "레시피 찾기",
