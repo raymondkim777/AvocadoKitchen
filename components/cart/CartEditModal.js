@@ -12,6 +12,7 @@ import ExitButtonLocal from '../general/ExitButtonLocal';
 import QuickSearchResults from '../addfunction/QuickSearchResults';
 import QuickSearchResultsEmpty from '../addfunction/QuickSearchResultsEmpty';
 import Search from "../../assets/icons/search.svg";
+import CartDeleteModal from './CartDeleteModal';
 
 const CartEditModal = ({ 
   item, siteIndex, viewWidth, 
@@ -60,6 +61,8 @@ const CartEditModal = ({
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
   const resultColumnNum = wideScreen ? 3 : 2;
+
+  const [showDeleteCheck, setShowDeleteCheck] = useState(false);
 
   const resultsList = [
     {
@@ -126,7 +129,7 @@ const CartEditModal = ({
     onModalHide={handleEditUpdate}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
-      <TouchableWithoutFeedback className='h-full' onPress={handleCloseModal}>
+      <TouchableWithoutFeedback className='h-full'>
         <View style={{ width: viewWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
       </TouchableWithoutFeedback>
     }
@@ -194,7 +197,7 @@ const CartEditModal = ({
                 </View>
                 <View className='w-fit h-6 items-center justify-end'>
                   <TouchableHighlight className='w-fit h-6 rounded-full '
-                  activeOpacity={0.9} onPress={handleDeleteItem}>
+                  activeOpacity={0.9} onPress={()=>setShowDeleteCheck(true)}>
                     <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
                       <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
                         Delete
@@ -230,7 +233,7 @@ const CartEditModal = ({
                   </TouchableHighlight>
                 </View>
                 <View className='w-fit h-fit -mr-1'>
-                  <ExitButtonLocal callback={handleCloseModal} background={'bg-itemBgLight'} />
+                  <ExitButtonLocal callback={()=>setShowBottomCard(false)} background={'bg-itemBgLight'} />
                 </View>
               </View>
               <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgDark rounded-lg'>
@@ -273,6 +276,14 @@ const CartEditModal = ({
           </View>
           : null
         }
+
+        {/* Delete Check Modal */}
+        <CartDeleteModal 
+        showDeleteCheck={showDeleteCheck}
+        setShowDeleteCheck={setShowDeleteCheck}
+        handleDeleteItem={handleDeleteItem} 
+        handleCloseModal={handleCloseModal}
+        />
       </View>
     </Modal>
   )

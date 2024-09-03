@@ -107,7 +107,6 @@ const resources = {
 
       // My Cart
       "My Cart": "My Cart",
-      "My Fridge": "My Fridge", 
       "Reset Cart": "Reset Cart",
       "Coupang": "Coupang", 
       "Market Curly": "Market Curly",
@@ -121,7 +120,13 @@ const resources = {
       "Both Sites": "Both",
       "Coupang": "Coupang", 
       "Curly": "Curly",
+
+      // Fridge
+      "My Fridge": "My Fridge", 
       "Ingredient Search": "Ingredient Search",
+      "EditDeleteCheckTitle": "Do you want to delete this item?",
+      "EditDeleteCheckMessage": "This action cannot be reversed.",
+      "Delete": "Delete",
 
       // Browse
       "Browse Recipes": "Browse Recipes", 
@@ -353,7 +358,6 @@ const resources = {
 
       // My Cart
       "My Cart": "내 장바구니",
-      "My Fridge": "내 냉장고", 
       "Reset Cart": "원상태 복귀",
       "Coupang": "쿠팡", 
       "Market Curly": "마켓컬리",
@@ -367,7 +371,13 @@ const resources = {
       "Both Sites": "전체",
       "Coupang": "쿠팡", 
       "Curly": "컬리",
+
+      // Fridge
+      "My Fridge": "내 냉장고", 
       "Ingredient Search": "재료 검색",
+      "EditDeleteCheckTitle": "이 재료 지우고 싶으세요?",
+      "EditDeleteCheckMessage": "한번 지우면 다시 직접 추가해야합니다.",
+      "Delete": "지우기",
 
       // Browse
       "Browse Recipes": "레시피 찾기",
