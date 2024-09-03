@@ -1,6 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../pages/HomeControl';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableHighlight } from 'react-native';
 import Modal from 'react-native-modal';
 import TitleTextComponent from '../text/TitleTextComponent';
 import LargeButton from './LargeButton';
@@ -33,18 +33,22 @@ const LeaveAlert = ({ showAlert, setShowAlert}) => {
             AlertMessage
           </TitleTextComponent>
           <View className='flex-row w-full h-fit mt-4 items-center justify-center'>
-            <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'
-              activeOpacity={0.7} onPress={handleCancel}>
+            <TouchableHighlight className='shrink w-full h-12 mr-2 rounded-xl'
+            activeOpacity={0.9} onPress={handleCancel}>
+              <View className='w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText text-center'}>
                   Cancel
                 </TitleTextComponent>
-            </TouchableOpacity>
-            <TouchableOpacity className='shrink w-full h-12 mr-2 items-center justify-center bg-itemText border-2 border-itemText rounded-xl'
-              activeOpacity={0.7} onPress={handleLeave}>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight className='shrink w-full h-12 mr-2 rounded-xl'
+            activeOpacity={0.7} onPress={handleLeave}>
+              <View className='w-full h-full items-center justify-center bg-itemText border-2 border-itemText rounded-xl'>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemBgLight text-center'}>
                   Leave
                 </TitleTextComponent>
-            </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
