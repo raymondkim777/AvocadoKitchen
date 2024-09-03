@@ -76,7 +76,7 @@ const FridgeAddModal = ({
     onModalHide={handleAddUpdate}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
-      <TouchableWithoutFeedback className='h-full' onPress={handleCloseModal}>
+      <TouchableWithoutFeedback className='h-full'>
         <View style={{ width: viewWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
       </TouchableWithoutFeedback>
     }
