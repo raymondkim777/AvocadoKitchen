@@ -14,10 +14,9 @@ import QuickSearchResultsEmpty from '../addfunction/QuickSearchResultsEmpty';
 import Search from "../../assets/icons/search.svg";
 
 const CartAddModal = ({ 
-  viewWidth, 
   showAddModal, setShowAddModal, 
 }) => {
-  const { wideScreen, } = useContext(SideBarContext);
+  const { wideScreen, contentWidth } = useContext(SideBarContext);
 
   const handleAddUpdate = () => {
     null;
@@ -85,14 +84,14 @@ const CartAddModal = ({
 
   return(
     <Modal 
-    style={{width: viewWidth}}
+    style={{width: contentWidth}}
     className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 items-center justify-center`}
     isVisible={showAddModal}
     onModalHide={handleAddUpdate}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full'>
-        <View style={{ width: viewWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
+        <View style={{ width: contentWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
       </TouchableWithoutFeedback>
     }
     >

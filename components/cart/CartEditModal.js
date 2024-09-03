@@ -15,10 +15,10 @@ import Search from "../../assets/icons/search.svg";
 import CartDeleteModal from './CartDeleteModal';
 
 const CartEditModal = ({ 
-  item, siteIndex, viewWidth, 
+  item, siteIndex, 
   showEditModal, setShowEditModal, 
 }) => {
-  const { wideScreen, } = useContext(SideBarContext);
+  const { wideScreen, contentWidth } = useContext(SideBarContext);
 
   const resetCount = () => {
     setCount(item.quantity);
@@ -126,7 +126,7 @@ const CartEditModal = ({
 
   return(
     <Modal 
-    style={{width: viewWidth}}
+    style={{width: contentWidth}}
     className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 items-center justify-center`}
     isVisible={showEditModal}
     onModalWillShow={resetCount}
@@ -134,7 +134,7 @@ const CartEditModal = ({
     onBackButtonPress={handleCloseModal}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full'>
-        <View style={{ width: viewWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
+        <View style={{ width: contentWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
       </TouchableWithoutFeedback>
     }
     >

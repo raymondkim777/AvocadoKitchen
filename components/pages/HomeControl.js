@@ -92,9 +92,15 @@ const HomeControl = ({ navigation }) => {
   const [username, setUsername] = useState('Username');
   
   const wideScreen = Platform.OS === 'ios' ? (height / width) < 1.6: (height / width) < 1.4;
-  const Container = wideScreen ?  View : SafeAreaView;
+  const Container = wideScreen ? View : SafeAreaView;
 
-  const SideBarContextValue = {wideScreen, setShowSideBar, updatePage};
+  const [contentWidth, setContentwWidth] = useState(Dimensions.get('window').width);
+  const onLayoutContent = (event) => {
+    const { width } = event.nativeEvent.layout;
+    setContentwWidth(width);
+  };
+
+  const SideBarContextValue = { wideScreen, setShowSideBar, updatePage, contentWidth, onLayoutContent };
   return (
     <Container className='flex flex-row w-full h-full justify-center items-center bg-screenBg'>
       {/* SideBar */}

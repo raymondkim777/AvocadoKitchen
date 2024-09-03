@@ -73,8 +73,8 @@ const NutritionCard = ({item, index, nutritionStandard, nutritionStandardRange})
 const { width, height } = Dimensions.get('window');
 
 const HomePage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
-
+  const { wideScreen, setShowSideBar, onLayoutContent } = useContext(SideBarContext);
+onLayoutContent
   // Android BackButton exits app instead of going to Login
   // https://reactnavigation.org/docs/custom-android-back-button-handling/
   useFocusEffect(
@@ -179,7 +179,7 @@ const HomePage = ({ navigation }) => {
   const currentLanguage = i18n.language;
 
   return (
-    <SafeAreaView id='screen' className='w-full h-full flex-row justify-center items-center'>
+    <SafeAreaView onLayout={onLayoutContent} id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
       <View className='flex-col shrink w-full h-full'>
         <ScrollView 

@@ -9,7 +9,7 @@ import CartPage from '../cart/CartPage';
 import FridgePage from '../cart/FridgePage';
 
 const MyCart = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const { updatePage } = useContext(SideBarContext);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -27,12 +27,6 @@ const MyCart = ({ navigation }) => {
     })
   ); 
 
-  const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
-  const onLayout = (event) => {
-    const { width } = event.nativeEvent.layout;
-    setViewWidth(width);
-  };
-  
   const [curPageIndex, setCurPageIndex] = useState(0);
   const [tabButtonCSS, setTabButtonCSS] = useState(['bg-itemText', 'bg-itemBgLight']);
   const [tabTextCSS, setTabTextCSS] = useState(['text-itemBgLight', 'text-itemText']);
@@ -49,13 +43,13 @@ const MyCart = ({ navigation }) => {
   }
 
   return(
-    <SafeAreaView onLayout={onLayout} id='screen' className='w-full h-full flex-row justify-center items-center'>
+    <SafeAreaView id='screen' className='w-full h-full flex-row justify-center items-center'>
       {/* Content */}
       <View className='shrink w-full h-full p-4 bg-screenBg'>
         {
           curPageIndex == 0 
-          ? <CartPage viewWidth={viewWidth} /> 
-          : <FridgePage viewWidth={viewWidth} />
+          ? <CartPage /> 
+          : <FridgePage />
         }
 
         {/* Tab Navigate */}

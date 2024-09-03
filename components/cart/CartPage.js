@@ -94,8 +94,8 @@ const SiteSummary = ({weeklyBudget, siteIdx, data}) => {
   )
 }
 
-const CartPage = ({ viewWidth }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+const CartPage = () => {
+  const { wideScreen, setShowSideBar, contentWidth } = useContext(SideBarContext);
 
   const handleResetCart = () => {
     null;
@@ -253,7 +253,6 @@ const CartPage = ({ viewWidth }) => {
           <CartEditModal 
           item={items[siteIndex].data[itemIndex]}
           siteIndex={siteIndex}
-          viewWidth={viewWidth}
           showEditModal={showEditModal} 
           setShowEditModal={setShowEditModal} 
           />
@@ -266,7 +265,6 @@ const CartPage = ({ viewWidth }) => {
 
       {/* Modals */}
       <CartAddModal
-      viewWidth={viewWidth}
       showAddModal={showAddModal}
       setShowAddModal={setShowAddModal}
       />

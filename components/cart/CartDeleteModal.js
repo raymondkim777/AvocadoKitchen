@@ -5,11 +5,10 @@ import Modal from 'react-native-modal';
 import TitleTextComponent from '../text/TitleTextComponent';
 
 const CartDeleteModal = ({ 
-  viewWidth,
   showDeleteCheck, setShowDeleteCheck, 
   handleDeleteItem, handleCloseModal = null,
 }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const {wideScreen, contentWidth } = useContext(SideBarContext);
 
   const handleCancelPress = () => {
     setShowDeleteCheck(false);
@@ -23,14 +22,14 @@ const CartDeleteModal = ({
 
   return(
     <Modal
-    style={{width: viewWidth}}
+    style={{width: contentWidth}}
     className={`w-full h-full ${wideScreen ? 'ml-64' : 'm-0'} items-center justify-center`}
     isVisible={showDeleteCheck}
     animationInTiming={300}
     animationOutTiming={600}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full' onPress={() => setShowDeleteCheck(false)}>
-        <View style={{ width: viewWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
+        <View style={{ width: contentWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} bg-black`} />
       </TouchableWithoutFeedback>
     }
     >

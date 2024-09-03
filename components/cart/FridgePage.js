@@ -12,7 +12,7 @@ import ExitButtonLocal from '../general/ExitButtonLocal';
 import FridgeAddModal from './FridgeAddModal';
 import CartDeleteModal from './CartDeleteModal';
 
-const ItemCard = ({ item, viewWidth }) => {
+const ItemCard = ({ item }) => {
   const handleDelete = () => {
     null;
   }  
@@ -41,7 +41,6 @@ const ItemCard = ({ item, viewWidth }) => {
 
       {/* Delete Check */}
       <CartDeleteModal 
-      viewWidth={viewWidth}
       showDeleteCheck={showDeleteCheck}
       setShowDeleteCheck={setShowDeleteCheck}
       handleDeleteItem={handleDelete}
@@ -50,8 +49,8 @@ const ItemCard = ({ item, viewWidth }) => {
   )
 }
 
-const FridgePage = ({ viewWidth }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+const FridgePage = () => {
+  const {wideScreen, setShowSideBar } = useContext(SideBarContext);
   
   const handleAddIngredient = () => {
     setShowAddModal(true);
@@ -117,7 +116,7 @@ const FridgePage = ({ viewWidth }) => {
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
         data={items}
-        renderItem={({item}) => <ItemCard item={item} viewWidth={viewWidth} />}
+        renderItem={({item}) => <ItemCard item={item} />}
         ItemSeparatorComponent={<View className='h-2'/>}
         ListFooterComponent={<View className='w-full h-4'/>}
         />
@@ -125,7 +124,6 @@ const FridgePage = ({ viewWidth }) => {
 
       {/* Modals */}
       <FridgeAddModal
-      viewWidth={viewWidth}
       showAddModal={showAddModal}
       setShowAddModal={setShowAddModal}
       />
