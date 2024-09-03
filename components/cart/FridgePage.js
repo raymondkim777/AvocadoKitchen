@@ -10,12 +10,19 @@ import SmallButton from '../general/SmallButton';
 import Counter from '../general/Counter';
 import ExitButtonLocal from '../general/ExitButtonLocal';
 import FridgeAddModal from './FridgeAddModal';
+import CartDeleteModal from './CartDeleteModal';
 
-const ItemCard = ({ item }) => {
-  const [count, setCount] = useState(item.quantity);
+const ItemCard = ({ item, viewWidth }) => {
   const handleDelete = () => {
     null;
+  }  
+
+  const handleDeletePress = () => {
+    setShowDeleteCheck(true);
   }
+
+  const [count, setCount] = useState(item.quantity);
+  const [showDeleteCheck, setShowDeleteCheck] = useState(false);
 
   return(
     <View className='flex-row w-full h-28 bg-itemBgLight'>
@@ -25,12 +32,20 @@ const ItemCard = ({ item }) => {
           <TitleTextComponent translate={true} size={'text-lg'} css={'shrink w-full text-itemText'} numberOfLines={1}>
             {item.title}
           </TitleTextComponent>
-          <ExitButtonLocal callback={handleDelete} background={'bg-itemBgLight'} />
+          <ExitButtonLocal callback={handleDeletePress} background={'bg-itemBgLight'} />
         </View>
         <View className='flex-row w-full h-10 mt-3 items-center'>
           <Counter count={count} setCount={setCount} />
         </View>
       </View>
+
+      {/* Delete Check */}
+      <CartDeleteModal 
+      viewWidth={viewWidth}
+      showDeleteCheck={showDeleteCheck}
+      setShowDeleteCheck={setShowDeleteCheck}
+      handleDeleteItem={handleDelete}
+      />
     </View>
   )
 }
@@ -102,7 +117,7 @@ const FridgePage = ({ viewWidth }) => {
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
         data={items}
-        renderItem={({item}) => <ItemCard item={item} />}
+        renderItem={({item}) => <ItemCard item={item} viewWidth={viewWidth} />}
         ItemSeparatorComponent={<View className='h-2'/>}
         ListFooterComponent={<View className='w-full h-4'/>}
         />
