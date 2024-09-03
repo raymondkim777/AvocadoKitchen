@@ -12,7 +12,7 @@ import ExitButtonLocal from '../general/ExitButtonLocal';
 import QuickSearchResults from '../addfunction/QuickSearchResults';
 import QuickSearchResultsEmpty from '../addfunction/QuickSearchResultsEmpty';
 import Search from "../../assets/icons/search.svg";
-import CartDeleteModal from './CartDeleteModal';
+import AlertCheck from '../general/AlertCheck';
 
 const CartEditModal = ({ 
   item, siteIndex, 
@@ -291,11 +291,14 @@ const CartEditModal = ({
         }
 
         {/* Delete Check Modal */}
-        <CartDeleteModal 
-        showDeleteCheck={showDeleteCheck}
-        setShowDeleteCheck={setShowDeleteCheck}
-        handleDeleteItem={handleDeleteItem} 
-        handleCloseModal={handleCloseModal}
+        <AlertCheck
+        titleText={'EditDeleteCheckTitle'}
+        messageText={'EditDeleteCheckMessage'}
+        mainText={'Delete'}
+        showModal={showDeleteCheck}
+        setShowModal={setShowDeleteCheck}
+        handleMainFunction={handleDeleteItem}
+        handleCloseParentModal={handleCloseModal}
         />
       </View>
     </Modal>

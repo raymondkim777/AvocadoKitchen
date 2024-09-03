@@ -10,10 +10,10 @@ import SmallButton from '../general/SmallButton';
 import Counter from '../general/Counter';
 import ExitButtonLocal from '../general/ExitButtonLocal';
 import FridgeAddModal from './FridgeAddModal';
-import CartDeleteModal from './CartDeleteModal';
+import AlertCheck from '../general/AlertCheck';
 
 const ItemCard = ({ item }) => {
-  const handleDelete = () => {
+  const handleDeleteItem = () => {
     null;
   }  
 
@@ -40,10 +40,13 @@ const ItemCard = ({ item }) => {
       </View>
 
       {/* Delete Check */}
-      <CartDeleteModal 
-      showDeleteCheck={showDeleteCheck}
-      setShowDeleteCheck={setShowDeleteCheck}
-      handleDeleteItem={handleDelete}
+      <AlertCheck
+      titleText={'EditDeleteCheckTitle'}
+      messageText={'EditDeleteCheckMessage'}
+      mainText={'Delete'}
+      showModal={showDeleteCheck}
+      setShowModal={setShowDeleteCheck}
+      handleMainFunction={handleDeleteItem}
       />
     </View>
   )
