@@ -7,10 +7,6 @@ import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
 import FoodCard from '../../profile/FoodCard';
 
-const FoodCardDiv = () => (
-  <View className='w-4'/>
-)
-
 const UserInfoPage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
 
@@ -132,7 +128,7 @@ const UserInfoPage = ({ navigation }) => {
                 showsHorizontalScrollIndicator={false}
                 data={avoidFood}
                 renderItem={({item}) => <FoodCard text={item.text} image={item.image} />}
-                ItemSeparatorComponent={<FoodCardDiv/>}
+                ItemSeparatorComponent={<View className='w-3'/>}
                 keyExtractor={item => item.id}
                 />
             </View>
@@ -150,7 +146,7 @@ const UserInfoPage = ({ navigation }) => {
             </View>
             {/* Stepped Cards */}
             <View className='flex-row w-full h-fit mt-2'>
-              <View className='shrink w-full h-fit mr-4'>
+              <View className='shrink w-full h-fit mr-3'>
                 {suggestedFood.map((item, index)=>(
                   (
                     index % 2 == 0

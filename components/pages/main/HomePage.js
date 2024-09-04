@@ -33,7 +33,7 @@ const MealSum = ({callback, title, image, cal}) => (
 )
 
 const MealCard = ({callback, title, image}) => (
-  <TouchableOpacity className='w-56 h-full justify-center items-center p-2 bg-itemBgLight rounded-lg'
+  <TouchableOpacity className='w-56 h-full justify-center items-center p-1.5 bg-itemBgLight rounded-lg'
   activeOpacity={0.9} onPress={()=>callback()}>
     <ItemTextComponent translate={true} size={'text-xl'} sizeDiff={-2} css={'text-center text-itemText text-center'}>
       {title}
@@ -239,10 +239,10 @@ onLayoutContent
                   ))}
                 </View>
                 {/* Calendar Content */}
-                <View className='grow w-full h-40 bg-itemBgLight rounded-b-lg p-2'>
+                <View className='grow w-full h-40 bg-itemBgLight rounded-b-lg p-1.5'>
                   <View className='flex flex-col w-full h-full'>
                     {/* Buttons */}
-                    <View className='flex flex-row w-full h-7'>
+                    <View className='flex-row shrink w-full h-7'>
                       <TouchableHighlight className={`shrink w-full h-7 rounded-l-lg`}
                       activeOpacity={0.9} onPress={()=>setMealFocus(0)}>
                         <View className={`w-full h-full items-center justify-center rounded-l-lg ${mealColor[0]}`}>
@@ -269,7 +269,7 @@ onLayoutContent
                       </TouchableHighlight>
                     </View>
                     {/* Meal Content */}
-                    <View className='flex flex-1 h-full mt-2'>
+                    <View className='flex flex-1 h-full mt-1.5'>
                       <MealSum callback={null} title={meals[mealIndex].title} image={meals[mealIndex].image} cal={meals[mealIndex].cal} />
                     </View>
                   </View>

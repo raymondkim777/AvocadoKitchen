@@ -8,7 +8,7 @@ const FoodCard = ({text, image, css = '', variable = null}) => {
   let dimensionsCSS = 'w-56 h-40';
 
   if (variable != null) {
-    css = 'mb-4';
+    css = 'mb-3';
     dimensionsCSS = 'w-full h-36';
     if (variable.index == 1) {
       dimensionsCSS = 'w-full h-56';
@@ -21,7 +21,7 @@ const FoodCard = ({text, image, css = '', variable = null}) => {
   }
 
   return(
-    <View className={`flex-row ${dimensionsCSS} p-2 bg-itemBgLight rounded-lg ${css}`}>
+    <View className={`flex-row ${dimensionsCSS} p-1.5 bg-itemBgLight rounded-lg ${css}`}>
       <View className='w-full h-fit items-center justify-center -mt-1'>
         <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText'}>
           {text}
