@@ -5,7 +5,7 @@ import 'intl-pluralrules';
 import '../../text/i18n'
 import TitleTextComponent from '../../text/TitleTextComponent';
 
-const QuickSearchResultsUnit = ({ item, smallImage }) => {
+const QuickSearchResultsUnit = ({ item, smallImage, background }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
@@ -23,7 +23,7 @@ const QuickSearchResultsUnit = ({ item, smallImage }) => {
       : <View className='flex-1 h-fit px-0.5'>
           <TouchableHighlight className='w-full h-fit rounded-lg'
           activeOpacity={0.9} onPress={handlePress}>
-            <View className='flex-1 h-fit items-center justify-start bg-itemBgDark rounded-lg'>
+            <View className={`flex-1 h-fit items-center justify-start ${background} rounded-lg`}>
               <Image className={`shrink w-full ${imageHeight} rounded-lg`} source={item.image} />
               <View className='flex-col w-full h-fit items-center justify-center'>
                 <Text numberOfLines={2} className={`

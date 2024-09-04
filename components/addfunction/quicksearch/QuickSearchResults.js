@@ -1,9 +1,7 @@
 import React, { useContext, } from 'react';
 import { SideBarContext } from '../../pages/main/HomeControl';
-import { View, FlatList, Dimensions } from 'react-native';
+import { View, FlatList } from 'react-native';
 import QuickSearchResultsUnit from './QuickSearchResultsUnit';
-
-const { width, height } = Dimensions.get('window');
 
 const QuickSearchResults = ({
   numberOfColumns = 2, 
@@ -11,7 +9,6 @@ const QuickSearchResults = ({
   resultsList,
   smallImage = false,
 }) => {
-  const { wideScreen, } = useContext(SideBarContext);
 
   const formatData = (data, numColumns) => {
     const numFullRows = Math.floor(data.length / numColumns);
@@ -32,7 +29,13 @@ const QuickSearchResults = ({
         nestedScrollEnabled={true}
         showsVerticalScrollIndicators={true}
         data={formatData(resultsList, numberOfColumns)}
-        renderItem={({item}) => <QuickSearchResultsUnit item={item} smallImage={smallImage}/>}
+        renderItem={
+          ({item}) => 
+          <QuickSearchResultsUnit 
+          item={item} 
+          smallImage={smallImage} 
+          background={background}/>
+        }
         numColumns={numberOfColumns}
         ItemSeparatorComponent={<View className='h-1'/>}
         ListFooterComponent={<View className='h-2' />}
