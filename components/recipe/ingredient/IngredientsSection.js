@@ -3,14 +3,14 @@ import { View, Text, ScrollView } from 'react-native';
 import IngredientsTable from './IngredientsTable';
 import TitleTextComponent from '../../text/TitleTextComponent';
 
-const IngredientsSection = ({ ingredients }) => (
+const IngredientsSection = ({ ingredients, handlePress }) => (
   <View className='grow flex-col w-full h-fit items-center justify-center'>
     <View className='flex-row w-full h-8 items-center'>
       <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
         Ingredients
       </TitleTextComponent>
     </View>
-    <IngredientsTable ingredients={ingredients} />
+    <IngredientsTable ingredients={ingredients} handlePress={handlePress} />
   </View>
 )
 

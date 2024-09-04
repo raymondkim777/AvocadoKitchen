@@ -1,83 +1,35 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, } from 'react';
 import { View, SafeAreaView, Dimensions, ScrollView, } from 'react-native';
-import ExitButton from '../../general/buttons/ExitButton';
+import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import IngredientsSection from '../../recipe/ingredient/IngredientsSection';
 import ProcedureSection from '../../recipe/procedure/ProcedureSection';
 import IngredientsSectionEmpty from '../../recipe/ingredient/IngredientsSectionEmpty';
 import BottomButtons from '../../recipe/BottomButtons';
 import ProcedureSectionEmpty from '../../recipe/procedure/ProcedureSectionEmpty';
 import TitleTextComponent from '../../text/TitleTextComponent';
+import IngredientCardModal from '../../recipe/ingredient/IngredientCardModal';
+import ProcedureCardModal from '../../recipe/procedure/ProcedureCardModal';
 
 const { width, height } = Dimensions.get('window');
 
 const RecipePage = ({
-  // name, // string
-  // ingredients, // list
-  // procedure, // list
+  route, navigation,
 }) => {
-  {/* References */}
-  
-  {/* Data */}
-  const name = "Tuna Sandwich";
-  const ingredients = [
-    {
-      id: 'canned-tuna',
-      name: 'Canned Tuna',
-      amount: '20 oz',
-    },
-    {
-      id: 'celery',
-      name: 'Celery',
-      amount: '1/3 cup',
-    },
-    {
-      id: 'red-onion',
-      name: 'Red Onion',
-      amount: '2 tbsp',
-    },
-    {
-      id: 'pickle-relish',
-      name: 'Sweet Pickle Relish',
-      amount: '2 tbsp',
-    },
-    {
-      id: 'lemon',
-      name: 'Lemon',
-      amount: 'x1',
-    },
-    {
-      id: 'garlic-clove',
-      name: 'Garlic Clove',
-      amount: 'x1',
-    },
-    {
-      id: 'salt',
-      name: 'Salt',
-      amount: 'N/A',
-    },
-    {
-      id: 'black-pepper',
-      name: 'Black Pepper',
-      amount: 'N/A',
-    },
-    {
-      id: 'mayo',
-      name: 'Mayonnaise',
-      amount: '1 cup',
-    },
-  ];
-  const procedure = [
-    {
-      step: 1, 
-      description: '(Recipe Step 1)',
-      image: require('../../../assets/images/procedure-example/step-1.webp'),
-    },
-    {
-      step: 2, 
-      description: '(Recipe Step 2)',
-      image: require('../../../assets/images/procedure-example/step-2.jpg'),
-    },
-  ];
+  const { recipeItem } = route.params;
+
+  const handleExitPress = () => {
+    navigation.goBack();
+  }
+
+  const handleExpandIngredient = (item) => {
+    setIngredientItem(item);
+    setShowIngredientModal(true);
+  }
+
+  const handleExpandProcedure = (item) => {
+    setProcedureItem(item);
+    setShowProcedureModal(true);
+  }
    
   { /* State/Functions */}
   const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
@@ -86,6 +38,12 @@ const RecipePage = ({
     const { width } = event.nativeEvent.layout;
     setViewWidth(width);
   };
+
+  const [showIngredientModal, setShowIngredientModal] = useState(false);
+  const [showProcedureModal, setShowProcedureModal] = useState(false);
+
+  const [ingredientItem, setIngredientItem] = useState(null);
+  const [procedureItem, setProcedureItem] = useState(null);
 
   {/* View */}
   const Container = height > 800 ?  View : ScrollView;
@@ -98,11 +56,11 @@ const RecipePage = ({
             <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
               Recipe Info
             </TitleTextComponent>
-            <ExitButton/>
+            <ExitButtonGeneral handleMainFunction={handleExitPress} />
           </View>
 
           {/* Name / Ingredients */}
-          <View className={`${(procedure.length == 0 || ingredients.length == 0) ? '' : 'grow'} flex-col w-full h-fit items-center justify-center mt-4`}>
+          <View className={`${(recipeItem.procedure.length == 0 || recipeItem.ingredients.length == 0) ? '' : 'grow'} flex-col w-full h-fit items-center justify-center mt-4`}>
             {/* Name */}
             <View className='flex-row w-full h-12 items-center'>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4'}>
@@ -112,28 +70,31 @@ const RecipePage = ({
                 :
               </TitleTextComponent>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText'}>
-                {name}
+                {recipeItem.title}
               </TitleTextComponent>
             </View>
 
             {/* Ingredients */}
             {
-              ingredients.length == 0
+              recipeItem.ingredients.length == 0
               ? <IngredientsSectionEmpty />
-              : <IngredientsSection ingredients={ingredients} />
+              : <IngredientsSection 
+                ingredients={recipeItem.ingredients} 
+                handlePress={handleExpandIngredient} />
             }
           </View>
           
           {/* Procedure */}
-          <View className={`${(procedure.length == 0 || ingredients.length == 0) ? '' : 'grow'} w-full h-fit items-center justify-center`}>
+          <View className={`${(recipeItem.procedure.length == 0 || recipeItem.ingredients.length == 0) ? '' : 'grow'} w-full h-fit items-center justify-center`}>
             {
-              procedure.length == 0
+              recipeItem.procedure.length == 0
               ? <ProcedureSectionEmpty />
               : <ProcedureSection 
                   onLayout={onLayout}
                   viewWidth={viewWidth}
-                  procedure={procedure}
+                  procedure={recipeItem.procedure}
                   divWidth={4}
+                  handlePress={handleExpandProcedure}
                   />
             }
           </View>
@@ -144,6 +105,20 @@ const RecipePage = ({
       <View id='recipe-final-buttons' className='w-full h-20'>
         <BottomButtons/>
       </View>
+
+      {/* Modals */}
+      <IngredientCardModal 
+      ingredientItem={ingredientItem}
+      showIngredientModal={showIngredientModal} 
+      setShowIngredientModal={setShowIngredientModal} 
+      />
+
+      <ProcedureCardModal 
+      procedureItem={procedureItem} 
+      showProcedureModal={showProcedureModal}
+      setShowProcedureModal={setShowProcedureModal}
+      />
+
     </SafeAreaView>
   )
 }

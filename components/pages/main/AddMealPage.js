@@ -369,7 +369,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <IngredientsTable ingredients={ingredients} handleEdit={handleEditIngredient} />
+              <IngredientsTable ingredients={ingredients} handlePress={handleEditIngredient} />
             </View>
           </View>
 
@@ -385,7 +385,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <ProcedureTable procedure={procedure} handleEdit={handleEditProcedure} />
+              <ProcedureTable procedure={procedure} handlePress={handleEditProcedure} />
             </View>
           </View>
 

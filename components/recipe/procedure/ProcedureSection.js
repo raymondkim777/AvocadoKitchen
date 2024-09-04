@@ -4,7 +4,7 @@ import ProcedureCard from './ProcedureCard';
 import ProcedureDiv from './ProcedureDiv';
 import TitleTextComponent from '../../text/TitleTextComponent';
 
-const ProcedureSection = ({onLayout, viewWidth, procedure, divWidth}) => (
+const ProcedureSection = ({onLayout, viewWidth, procedure, divWidth, handlePress}) => (
   <View className='grow flex-col w-full h-fit items-center justify-center mt-2'>
     <View className='flex-row w-full h-10 items-center'>
       <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
@@ -22,7 +22,7 @@ const ProcedureSection = ({onLayout, viewWidth, procedure, divWidth}) => (
         snapToAlignment='start'
         decelerationRate='fast'
         data={procedure}
-        renderItem={({item}) => <ProcedureCard item={item} width={viewWidth}/>}
+        renderItem={({item}) => <ProcedureCard item={item} width={viewWidth} handlePress={handlePress}/>}
         ItemSeparatorComponent={<ProcedureDiv width={divWidth}/>}
         keyExtractor={item => item.id}
         />

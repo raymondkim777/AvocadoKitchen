@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, View, SafeAreaView, Dimensions, TouchableOpacity, ScrollView, FlatList, Pressable, TouchableHighlight } from 'react-native';
+import { BackHandler, View, SafeAreaView, ScrollView, FlatList, Pressable, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
@@ -13,24 +13,6 @@ import PageMenu from '../../browse/page/PageMenu';
 import RecipeBrowseCard from '../../browse/RecipeBrowseCard';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import Search from "../../../assets/icons/search.svg";
-
-const RecipeDisplayCard = ({item}) => (
-  <TouchableOpacity key={`${item.id}`} className='w-full h-fit'
-  activeOpacity={0.9}>
-    <RecipeBrowseCard 
-      title={item.title}
-      nutrition={item.nutrition}
-      tags={item.tags}
-      data={item.data}
-      image={item.image}/>
-  </TouchableOpacity>
-)
-
-const CardDiv = () => (
-  <View className='w-full h-2' />
-)
-
-const { width, height } = Dimensions.get('window');
 
 const Browse = ({ navigation }) => {
   const scrollRef = useRef();
@@ -96,9 +78,95 @@ const Browse = ({ navigation }) => {
         downloads: 7000,
       },
       image: require('../../../assets/images/recipe-1.webp'),
+      ingredients: [
+        {
+          id: 'canned-tuna',
+          name: 'Canned Tuna',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'celery',
+          name: 'Celery',
+          amount: '1/3', 
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'red-onion',
+          name: 'Red Onion',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'pickle-relish',
+          name: 'Sweet Pickle Relish',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'lemon',
+          name: 'Lemon',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'garlic-clove',
+          name: 'Garlic Clove',
+          amount: 1, 
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'salt',
+          name: 'Salt',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'black-pepper',
+          name: 'Black Pepper',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'mayo',
+          name: 'Mayonnaise',
+          amount: 1,
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+      ],
+      procedure: [
+        {
+          step: 1, 
+          description: '(Recipe Step 1)',
+          image: require('../../../assets/images/procedure-example/step-1.webp'),
+        },
+        {
+          step: 2, 
+          description: '(Recipe Step 2)',
+          image: require('../../../assets/images/procedure-example/step-2.jpg'),
+        },
+      ],
     },
     {
-      id: 'recipe-2',
+      id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
         cal: 1261,
@@ -107,14 +175,100 @@ const Browse = ({ navigation }) => {
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
       data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
+        likes: 800,
+        comments: 40, 
+        downloads: 7000,
       },
       image: require('../../../assets/images/recipe-1.webp'),
+      ingredients: [
+        {
+          id: 'canned-tuna',
+          name: 'Canned Tuna',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'celery',
+          name: 'Celery',
+          amount: '1/3', 
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'red-onion',
+          name: 'Red Onion',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'pickle-relish',
+          name: 'Sweet Pickle Relish',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'lemon',
+          name: 'Lemon',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'garlic-clove',
+          name: 'Garlic Clove',
+          amount: 1, 
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'salt',
+          name: 'Salt',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'black-pepper',
+          name: 'Black Pepper',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'mayo',
+          name: 'Mayonnaise',
+          amount: 1,
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+      ],
+      procedure: [
+        {
+          step: 1, 
+          description: '(Recipe Step 1)',
+          image: require('../../../assets/images/procedure-example/step-1.webp'),
+        },
+        {
+          step: 2, 
+          description: '(Recipe Step 2)',
+          image: require('../../../assets/images/procedure-example/step-2.jpg'),
+        },
+      ],
     },
     {
-      id: 'recipe-3',
+      id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
         cal: 1261,
@@ -123,14 +277,100 @@ const Browse = ({ navigation }) => {
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
       data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
+        likes: 800,
+        comments: 40, 
+        downloads: 7000,
       },
       image: require('../../../assets/images/recipe-1.webp'),
+      ingredients: [
+        {
+          id: 'canned-tuna',
+          name: 'Canned Tuna',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'celery',
+          name: 'Celery',
+          amount: '1/3', 
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'red-onion',
+          name: 'Red Onion',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'pickle-relish',
+          name: 'Sweet Pickle Relish',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'lemon',
+          name: 'Lemon',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'garlic-clove',
+          name: 'Garlic Clove',
+          amount: 1, 
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'salt',
+          name: 'Salt',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'black-pepper',
+          name: 'Black Pepper',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'mayo',
+          name: 'Mayonnaise',
+          amount: 1,
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+      ],
+      procedure: [
+        {
+          step: 1, 
+          description: '(Recipe Step 1)',
+          image: require('../../../assets/images/procedure-example/step-1.webp'),
+        },
+        {
+          step: 2, 
+          description: '(Recipe Step 2)',
+          image: require('../../../assets/images/procedure-example/step-2.jpg'),
+        },
+      ],
     },
     {
-      id: 'recipe-4',
+      id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
         cal: 1261,
@@ -139,107 +379,97 @@ const Browse = ({ navigation }) => {
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
       data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
+        likes: 800,
+        comments: 40, 
+        downloads: 7000,
       },
       image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
-    },
-    {
-      id: 'recipe-4',
-      title: 'Tuna Sandwich', 
-      nutrition: {
-        cal: 1261,
-        protein: 148, 
-        carb: 429,
-      },
-      tags: ['Sandwich', 'Protein', 'Healthy'],
-      data: {
-        likes: 8,
-        comments: 4, 
-        downloads: 7,
-      },
-      image: require('../../../assets/images/recipe-1.webp'),
+      ingredients: [
+        {
+          id: 'canned-tuna',
+          name: 'Canned Tuna',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'celery',
+          name: 'Celery',
+          amount: '1/3', 
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'red-onion',
+          name: 'Red Onion',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'pickle-relish',
+          name: 'Sweet Pickle Relish',
+          amount: 2, 
+          unit: 'Ts',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'lemon',
+          name: 'Lemon',
+          amount: 1,
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'garlic-clove',
+          name: 'Garlic Clove',
+          amount: 1, 
+          unit: '개',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'salt',
+          name: 'Salt',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'black-pepper',
+          name: 'Black Pepper',
+          amount: 0, 
+          unit: '적당량',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+        {
+          id: 'mayo',
+          name: 'Mayonnaise',
+          amount: 1,
+          unit: '컵',
+          image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+          link: 'https://coupang.com/example_link',
+        },
+      ],
+      procedure: [
+        {
+          step: 1, 
+          description: '(Recipe Step 1)',
+          image: require('../../../assets/images/procedure-example/step-1.webp'),
+        },
+        {
+          step: 2, 
+          description: '(Recipe Step 2)',
+          image: require('../../../assets/images/procedure-example/step-2.jpg'),
+        },
+      ],
     },
   ]
   const recipesShown = [];
@@ -270,6 +500,12 @@ const Browse = ({ navigation }) => {
 
   const handleSearch = () => {
     null;
+  }
+
+  const handleRecipePress = (item) => {
+    navigation.navigate('RecipePage', {
+      recipeItem: item,
+    });
   }
 
   // Pages
@@ -361,7 +597,7 @@ const Browse = ({ navigation }) => {
                 onChangeText={setSearchQuery} 
                 underlineColorAndroid={'transparent'}
                 />
-                <TouchableHighlight className='w-8 h-8 items-center justify-center rounded-lg'
+                <TouchableHighlight className='w-8 h-8 rounded-lg'
                 activeOpacity={0.9} onPress={handleSearch}>
                   <View className='w-full h-full items-center justify-center bg-itemBgLight'>
                     <Search width={25} height={25} stroke={'#85855B'} strokeWidth={3} />
@@ -445,8 +681,8 @@ const Browse = ({ navigation }) => {
             scrollEnabled={false}
             className='w-full h-fit'
             data={recipesShown}
-            renderItem={({item}) => <RecipeDisplayCard item={item} />}
-            ItemSeparatorComponent={CardDiv}
+            renderItem={({item}) => <RecipeBrowseCard item={item} handleRecipePress={handleRecipePress}/>}
+            ItemSeparatorComponent={<View className='w-full h-2' />}
             />
           </View>
 
