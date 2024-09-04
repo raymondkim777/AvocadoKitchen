@@ -8,7 +8,7 @@ const TitleTextComponent = ({
 translate = false, 
 children, 
 size, sizeDiff = 0, bold = false, css,
-numberOfLines=0, }) => {
+numberOfLines = 0, }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
