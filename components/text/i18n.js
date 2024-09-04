@@ -251,7 +251,7 @@ const resources = {
       "Step": "Step",
       "Step Number": "Step Number",
       "Description": "Description", 
-      "Insert procedure step here": "Insert procedure step here",
+      "Insert procedure step here": "(Insert procedure step here)",
 
       // Tutorial
       "Tutorial": "Tutorial",
@@ -507,7 +507,7 @@ const resources = {
       "Step": "Step",
       "Step Number": "레시피 순서",
       "Description": "설명", 
-      "Insert procedure step here": "조리법 단계 설명을 적으세요.",
+      "Insert procedure step here": "(조리법 단계 설명을 적으세요.)",
 
       // Tutorial
       "Tutorial": "튜토리얼",
