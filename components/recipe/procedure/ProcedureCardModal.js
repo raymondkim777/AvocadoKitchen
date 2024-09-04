@@ -16,7 +16,7 @@ const ProcedureCardModal = ({
   return(
     <Modal 
     style={{width: contentWidth}}
-    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 items-center justify-center`}
+    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 py-12 items-center justify-center`}
     isVisible={showProcedureModal}
     onBackButtonPress={handleCloseModal}
     customBackdrop={

@@ -4,14 +4,14 @@ import TitleTextComponent from '../../text/TitleTextComponent';
 
 const IngredientCardLarge = ({ item }) => {
   return (
-    <View className={`shrink flex-col w-full h-144 justify-center items-center p-4 bg-itemBgLight rounded-xl`}>
+    <View className={`shrink flex-col w-full h-144 justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
       <TitleTextComponent translate={true} bold={true} size={'text-2xl'} css={'text-itemText'}>
         Ingredient Info
       </TitleTextComponent>
       <Image className='shrink h-72 w-full mt-2 rounded-lg' source={item.image}/>
-      <View className='shrink w-full h-28 items-center justify-center mt-4'>
+      <View className='shrink w-full h-28 items-center justify-center mt-2'>
         <ScrollView nestedScrollEnabled={true} className='w-full'>
-          <View className='flex-col w-full h-fit items-center justify-center'>
+          <View className='flex-col w-full h-fit px-2 items-center justify-center'>
             <View className='flex-row w-full h-8 items-center'>
               <TitleTextComponent translate={true} size={'text-lg'} css={'h-full text-itemText text-center'}>
                 Ingredient Name

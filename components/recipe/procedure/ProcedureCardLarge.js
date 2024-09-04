@@ -10,7 +10,7 @@ const ProcedureCardLarge = ({item}) => {
   const currentLanguage = i18n.language;
   
   return (
-    <View className={`flex-col w-full min-h-96 max-h-144 justify-center items-center p-4 bg-itemBgLight rounded-xl`}>
+    <View className={`flex-col shrink w-full h-fit justify-center items-center p-2 bg-itemBgLight rounded-xl`}>
       <View className='flex-row w-full h-fit items-center justify-center'>
         <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mr-2'}>
           Step
