@@ -205,10 +205,10 @@ const CartPage = () => {
 
       <View className='flex-row w-full h-fit items-center mt-6'>
         <View className='w-fit h-fit'>
-          <SmallButton text='Reset Cart' callback={handleResetCart} disabled={!resetEnabled}/>
+          <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
         </View>
         <View className='w-fit h-fit ml-2'>
-          <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
+          <SmallButton text='Reset Cart' callback={handleResetCart} disabled={!resetEnabled}/>
         </View>
       </View>
 
