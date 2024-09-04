@@ -250,7 +250,6 @@ const resources = {
       "Add Procedure Step": "Add Procedure Step",
       "Step": "Step",
       "Step Number": "Step Number",
-      "This will insert a new step after Step 2.": "(Inserted after Step 2)",
       "Description": "Description", 
       "Insert procedure step here": "Insert procedure step here",
 
@@ -495,7 +494,7 @@ const resources = {
       "Image": "사진",
       "Add Image": "사진 올리기",
       "Change Image": "사진 변경",
-      "Delete Image": "사진 지우기",
+      "Delete Image": "사진 삭제",
       "Link Invalid Message": "유효한 주소를 입력해주세요",
       "Save": "저장",
       ////////
@@ -507,7 +506,6 @@ const resources = {
       "Add Procedure Step": "조리과정 추가",
       "Step": "Step",
       "Step Number": "레시피 순서",
-      "This will insert a new step after Step 2.": "(Step 2 뒤에 추가됨)",
       "Description": "설명", 
       "Insert procedure step here": "조리법 단계 설명을 적으세요.",
 
@@ -527,7 +525,7 @@ const languageDetector = {
     if (locales && locales.length > 0) {
       callback(locales[0].languageTag);
     } else {
-      callback('en'); // 디폴트 언어 설정
+      callback('ko'); // 디폴트 언어 설정
     }
   },
   init: () => {},
@@ -539,7 +537,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
+    fallbackLng: 'ko',
     interpolation: {
       escapeValue: false 
     }

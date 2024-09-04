@@ -10,6 +10,7 @@ const ItemTextInputComponent = ({
   css,
   placeholder,
   placeholderTextColor, 
+  defaultValue,
   value, 
   onChangeText, 
   onSubmitEditing,
@@ -54,6 +55,7 @@ const ItemTextInputComponent = ({
       translate ? t(placeholder) : placeholder
     }
     placeholderTextColor={placeholderTextColor}
+    defaultValue={defaultValue}
     value={value} 
     onChangeText={onChangeText} 
     onSubmitEditing={onSubmitEditing}
