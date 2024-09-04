@@ -3,34 +3,34 @@ import { View, Text, TouchableHighlight, } from 'react-native';
 import Minus from '../../../assets/icons/minus.svg';
 import Plus from '../../../assets/icons/plus.svg';
 
-const Counter = ({ count, setCount }) => {
-  const [buttonColor, setButtonColor] = useState('#85855B');
+const Counter = ({ count, setCount, background='bg-itemBgDark', minCount = 1, maxCount = 99 }) => {
+  const [countDownDisable, setCountDownDisable] = useState(count <= minCount);
+  const [countUpDisable, setCountUpDisable] = useState(count >= maxCount);
 
-  const [countDownDisable, setCountDownDisable] = useState(false);
   const countUp = () => {
-    if (countDownDisable) {
+    if (countDownDisable)
       setCountDownDisable(false);
-      setButtonColor('#85855B');
-    }
-    setCount((value) => (value + 1));
+    if (count < maxCount)
+      setCount((value) => (value + 1));
+    if (count >= maxCount - 1 && !countUpDisable)
+      setCountUpDisable(true);
   }
   const countDown = () => {
-    if (count > 1) {
+    if (countUpDisable)
+      setCountUpDisable(false);
+    if (count > minCount) 
       setCount((value) => (value - 1));
-    } 
-    if (count <= 2 && !countDownDisable) {
+    if (count <= minCount + 1 && !countDownDisable)
       setCountDownDisable(true);
-      setButtonColor('#ACACAC');
-    }
   }
 
   return(
-    <View className='flex-row w-28 h-10 px-1 items-center justify-between bg-itemBgDark rounded-full'>
+    <View className={`flex-row w-28 h-10 px-1 items-center justify-between ${background} rounded-full`}>
       {/* Minus */}
       <TouchableHighlight className='w-8 h-8 rounded-full'
       activeOpacity={0.9} onPress={countDown} disabled={countDownDisable}>
-        <View className='w-full h-full items-center justify-center rounded-full bg-itemBgDark'>
-          <Minus width={20} height={20} stroke={buttonColor} strokeWidth={3} />
+        <View className={`w-full h-full items-center justify-center rounded-full ${background}`}>
+          <Minus width={20} height={20} stroke={countDownDisable ? '#ACACAC' : '#85855B'} strokeWidth={3} />
         </View>
       </TouchableHighlight>
 
@@ -41,9 +41,9 @@ const Counter = ({ count, setCount }) => {
 
       {/* Plus */}
       <TouchableHighlight className='w-8 h-8 rounded-full'
-      activeOpacity={0.9} onPress={countUp}>
-        <View className='w-full h-full items-center justify-center rounded-full bg-itemBgDark'>
-          <Plus width={20} height={20} stroke={'#85855B'} strokeWidth={3} />
+      activeOpacity={0.9} onPress={countUp} disabled={countUpDisable}>
+        <View className={`w-full h-full items-center justify-center rounded-full ${background}`}>
+          <Plus width={20} height={20} stroke={countUpDisable ? '#ACACAC' : '#85855B'} strokeWidth={3} />
         </View>
       </TouchableHighlight>
     </View>
