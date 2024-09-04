@@ -20,6 +20,15 @@ const AddIngredient = ({
     navigation.goBack();
   }
 
+  const handleSavePress = () => {
+    handleSave();
+    navigation.goBack();
+  }
+
+  const handleSave = () => {
+    null;
+  }
+
   const [ingSearchQuery, setIngSearchQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [foundResults, setFoundResults] = useState(true);
@@ -135,7 +144,7 @@ const AddIngredient = ({
             <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
               Add/Edit Ingredient
             </TitleTextComponent>
-            <ExitButtonGeneral handleMainFunction={handleExitPress}/>
+            <ExitButtonGeneral handleMainFunction={handleExitPress} exitCheck={true} />
           </View>
 
           {/* Quick Search */}
@@ -365,7 +374,7 @@ const AddIngredient = ({
 
           {/* Save */}
           <View className='w-full h-fit items-center justify-center mt-10 mb-6'>
-            <LargeButton cssIn={'px-8'} text={'Save'} textSize={'text-2xl'} callback={null} />
+            <LargeButton cssIn={'px-8'} text={'Save'} textSize={'text-2xl'} callback={handleSavePress} />
           </View>
 
         </View>
