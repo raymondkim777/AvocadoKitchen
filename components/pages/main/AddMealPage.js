@@ -4,9 +4,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
-import IngredientsTable from '../../recipe/ingredient/IngredientsTable';
 import SmallButton from '../../general/buttons/SmallButton';
 import LargeButton from '../../general/buttons/LargeButton';
+import IngredientsTable from '../../recipe/ingredient/IngredientsTable';
 import ProcedureTable from '../../recipe/procedure/ProcedureTable';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
@@ -34,7 +34,7 @@ const AddMealPage = ({ navigation }) => {
     null;
   }
   const handleAddIngredient = () => {
-    null;
+    navigation.navigate('AddIngredient');
   }
   const handleAddProcedure = () => {
     null;
