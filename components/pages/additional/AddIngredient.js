@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SideBarContext } from '../main/HomeControl';
-import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableHighlight, FlatList } from 'react-native';
+import { SafeAreaView, View, ScrollView, TextInput, TouchableHighlight, FlatList } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
@@ -42,14 +42,14 @@ const AddIngredient = ({
   const [mealName, setMealName] = useState('');
 
   const unitList = [
-    'g', 'kg', 'ml', 'L', 'T', 't',  '컵', '종이컵', 
+    'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
     '개', '마리', '포기', '톨', '꼬집', '줌', '주먹', '근', '적당량',
   ];
   const unitListSection = [
     {
       type: 'Specific', 
       data: [
-        'g', 'kg', 'ml', 'L', 'T', 't',  '컵', '종이컵', 
+        'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
       ],
     }, 
     {
@@ -231,7 +231,7 @@ const AddIngredient = ({
                 Amount
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2'>
+            <View className='flex-row items-center justify-center shrink w-full h-fit mt-2'>
               <ItemTextInputComponent
               translate={true}
               size={'text-xl'}
@@ -253,7 +253,7 @@ const AddIngredient = ({
             </View>
             {
               showUnitMenu
-              ? <View className='flex-col w-full h-fit mt-2.5 p-1 pb-1.5 bg-itemBgDark rounded-xl'>
+              ? <View className='flex-col w-full h-fit mt-2.5 p-1 pb-1.5 bg-itemBgDark rounded-xl border-2 border-itemText'>
                   {/* Specific */}
                   <View className='flex-col w-full h-fit items-center justify-center'>
                     <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
@@ -262,6 +262,7 @@ const AddIngredient = ({
                     <FlatList
                     key='flatList4'
                     className='w-full h-fit mt-1'
+                    scrollEnabled={false}
                     numColumns={4}
                     data={unitListSection[0].data}
                     renderItem={
@@ -289,6 +290,7 @@ const AddIngredient = ({
                     <FlatList
                     key='flatList4'
                     className='w-full h-fit mt-1'
+                    scrollEnabled={false}
                     numColumns={4}
                     data={unitListSection[1].data}
                     renderItem={
