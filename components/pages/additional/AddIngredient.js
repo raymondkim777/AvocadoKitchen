@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SideBarContext } from '../main/HomeControl';
-import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableHighlight, FlatList } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
@@ -31,16 +31,47 @@ const AddIngredient = ({
   }
 
   const [mealName, setMealName] = useState('');
+
+  const unitList = [
+    'g', 'kg', 'ml', 'L', 'T', 't',  '컵', '종이컵', 
+    '개', '마리', '포기', '톨', '꼬집', '줌', '주먹', '근', '적당량',
+  ];
+  const unitListSection = [
+    {
+      type: 'Specific', 
+      data: [
+        'g', 'kg', 'ml', 'L', 'T', 't',  '컵', '종이컵', 
+      ],
+    }, 
+    {
+      type: 'General', 
+      data: [
+        '개', '마리', '포기', '톨', '꼬집', '줌', '주먹', '근', '적당량',
+      ],
+    }, 
+  ];
   
   const [amount, setAmount] = useState('');
-  const [unit, setUnit] = useState('');
+  const [unitIndex, setUnitIndex] = useState(0);
+  const [showUnitMenu, setShowUnitMenu] = useState(false);
+
+  const handleUnitPress = () => {
+    setShowUnitMenu(!showUnitMenu);
+  }
+
+  const updateUnit = (item) => {
+    setUnitIndex(unitList.indexOf(item));
+    setShowUnitMenu(false);
+  }
   
   const [imageFound, setImageFound] = useState(false);
   const [imageUploaded, setImageUploaded] = useState('');
   const updateImage = () => {
-    setImageFound(!imageFound);
+    setImageFound(true);
   }
-  
+  const deleteImage = () => {
+    setImageFound(false);
+  }
   const [itemLink, setItemLink] = useState('');
   const [linkValid, setLinkValid] = useState(true);
   const updateLink = (link) => {
@@ -202,10 +233,74 @@ const AddIngredient = ({
               onChangeText={setAmount} 
               underlineColorAndroid={'transparent'}
               />
-              <View className='w-16 h-10 items-center justify-center bg-itemBgLight ml-2 rounded-lg'>
-                <TitleTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText'}>oz.</TitleTextComponent>
-              </View>
+              <TouchableHighlight className='w-16 h-10 ml-2 rounded-lg'
+              activeOpacity={0.9} onPress={handleUnitPress}>
+                <View className='w-full h-full items-center justify-center bg-buttonBg rounded-lg border-2 border-itemText'>
+                  <TitleTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText'}>
+                    {unitList[unitIndex]}
+                  </TitleTextComponent>
+                </View>
+              </TouchableHighlight>
             </View>
+            {
+              showUnitMenu
+              ? <View className='flex-col w-full h-fit mt-2.5 p-1 pb-1.5 bg-itemBgDark rounded-xl'>
+                  {/* Specific */}
+                  <View className='flex-col w-full h-fit items-center justify-center'>
+                    <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                      {unitListSection[0].type}
+                    </TitleTextComponent>
+                    <FlatList
+                    key='flatList4'
+                    className='w-full h-fit mt-1'
+                    numColumns={4}
+                    data={unitListSection[0].data}
+                    renderItem={
+                      ({item}) => 
+                      <View className='flex-1 h-fit px-0.5'>
+                        <TouchableHighlight className='w-full h-8 rounded-lg'
+                        activeOpacity={0.9} onPress={()=>updateUnit(item)}>
+                          <View className='w-full h-full items-center justify-center bg-buttonBg rounded-lg'>
+                            <TitleTextComponent size={'text-lg'} css={'text-itemText'}>
+                              {item}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
+                      </View>
+                    }
+                    ItemSeparatorComponent={<View className='h-1'/>}
+                    />
+                  </View>
+
+                  {/* General */}
+                  <View className='flex-col w-full h-fit mt-2 items-center justify-center'>
+                    <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
+                      {unitListSection[1].type}
+                    </TitleTextComponent>
+                    <FlatList
+                    key='flatList4'
+                    className='w-full h-fit mt-1'
+                    numColumns={4}
+                    data={unitListSection[1].data}
+                    renderItem={
+                      ({item}) => 
+                      <View className='flex-1 h-fit px-0.5'>
+                        <TouchableHighlight className='w-full h-8 rounded-lg'
+                        activeOpacity={0.9} onPress={()=>updateUnit(item)}>
+                          <View className='w-full h-full items-center justify-center bg-buttonBg rounded-lg'>
+                            <TitleTextComponent size={'text-lg'} css={'text-itemText'}>
+                              {item}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
+                      </View>
+                    }
+                    ItemSeparatorComponent={<View className='h-1'/>}
+                    />
+                  </View>
+                </View>
+              : null
+            }
           </View>
 
           {/* Image */}
@@ -228,6 +323,13 @@ const AddIngredient = ({
               {/* Add/Change Image */}
               <View className='flex-row w-full h-fit items-center'>
                 <SmallButton text={imageFound ? 'Change Image' : 'Add Image'} callback={updateImage}/>
+                {
+                  imageFound 
+                  ? <View className='w-fit h-fit ml-2'>
+                      <SmallButton text={'Delete Image'} callback={deleteImage} /> 
+                    </View>
+                  : null
+                }
               </View>
             </View>
           </View>
