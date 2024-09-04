@@ -124,10 +124,10 @@ const CartAddModal = ({
             underlineColorAndroid={'transparent'}
             />
             <TouchableHighlight className='w-8 h-8 rounded-lg'
-              activeOpacity={0.9} onPress={()=>setShowResults(true)}>
-                <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
-                  <Search width={25} height={25} stroke={'#85855B'} strokeWidth={3} />
-                </View>
+            activeOpacity={0.9} onPress={()=>setShowResults(true)}>
+              <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
+                <Search width={25} height={25} stroke={'#85855B'} strokeWidth={3} />
+              </View>
             </TouchableHighlight>
           </View>
         </View>
