@@ -12,6 +12,7 @@ const ItemTextInputComponent = ({
   placeholderTextColor, 
   value, 
   onChangeText, 
+  onSubmitEditing,
   underlineColorAndroid,
   multiline=false,
   maxLength,
@@ -55,6 +56,7 @@ const ItemTextInputComponent = ({
     placeholderTextColor={placeholderTextColor}
     value={value} 
     onChangeText={onChangeText} 
+    onSubmitEditing={onSubmitEditing}
     underlineColorAndroid={underlineColorAndroid}
     multiline={multiline}
     maxLength={maxLength}
