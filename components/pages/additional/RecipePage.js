@@ -30,6 +30,19 @@ const RecipePage = ({
     setProcedureItem(item);
     setShowProcedureModal(true);
   }
+
+  const handleLikePress = () => {
+    null;
+  }
+
+  const handleRecipeAddPress = () => {
+    navigation.goBack();
+    // probably need an alert check 
+  }
+
+  const handleCommentPress = () => {
+    null;
+  }
    
   { /* State/Functions */}
   const [viewWidth, setViewWidth] = useState(Dimensions.get('window').width);
@@ -103,7 +116,11 @@ const RecipePage = ({
 
       {/* Buttons */}
       <View id='recipe-final-buttons' className='w-full h-20'>
-        <BottomButtons/>
+        <BottomButtons
+        handleLikePress={handleLikePress}
+        handleRecipeAddPress={handleRecipeAddPress}
+        handleCommentPress={handleCommentPress}
+        />
       </View>
 
       {/* Modals */}
