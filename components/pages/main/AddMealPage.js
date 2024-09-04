@@ -47,7 +47,15 @@ const AddMealPage = ({ navigation }) => {
   const handleAddProcedure = () => {
     navigation.navigate('AddProcedure', {
       procedureList: procedure,
+      index: null,
     });
+  }
+
+  const handleEditProcedure = (index) => {
+    navigation.navigate('AddProcedure', {
+      procedureList: procedure, 
+      index: index,
+    })
   }
 
   const handleContinue = () =>{
@@ -377,7 +385,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <ProcedureTable procedure={procedure} />
+              <ProcedureTable procedure={procedure} handleEdit={handleEditProcedure} />
             </View>
           </View>
 

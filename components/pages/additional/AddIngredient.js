@@ -80,7 +80,7 @@ const AddIngredient = ({
     setShowUnitMenu(false);
   }
   
-  const [imageFound, setImageFound] = useState(item != null);
+  const [imageFound, setImageFound] = useState(item != null && item.image != null);
   const [imageUploaded, setImageUploaded] = useState(item == null ? '' : item.image);
   const updateImage = () => {
     setImageFound(true);
