@@ -130,6 +130,7 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
           <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />
           <PageStack.Screen name="AddIngredient" component={AddIngredient} />
+          <PageStack.Screen name="AddProcedure" component={AddProcedure} />
           <PageStack.Screen name="UserInfoPage" component={UserInfoPage} />
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />

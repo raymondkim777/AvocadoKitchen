@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { SideBarContext } from '../main/HomeControl';
-import { SafeAreaView, View, ScrollView, TextInput, TouchableHighlight, FlatList } from 'react-native';
+import { SafeAreaView, View, ScrollView, TextInput, TouchableHighlight, FlatList, Image } from 'react-native';
+import {useTranslation} from 'react-i18next';
+import 'intl-pluralrules';
+import '../../text/i18n'
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
@@ -11,10 +14,14 @@ import LargeButton from '../../general/buttons/LargeButton';
 import Search from "../../../assets/icons/search.svg";
 
 const AddIngredient = ({
-  navigation,
+  route, navigation,
   // item, index
 }) => {
+  const {t, i18n} = useTranslation();
+  const currentLanguage = i18n.language;
+
   const { wideScreen } = useContext(SideBarContext);
+  const { item } = route.params;
 
   const handleExitPress = () => {
     navigation.goBack();
@@ -39,7 +46,7 @@ const AddIngredient = ({
     setShowResults(true);
   }
 
-  const [mealName, setMealName] = useState('');
+  const [mealName, setMealName] = useState(item == null ? '' : t(item.name));
 
   const unitList = [
     'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
@@ -60,8 +67,8 @@ const AddIngredient = ({
     }, 
   ];
   
-  const [amount, setAmount] = useState('');
-  const [unitIndex, setUnitIndex] = useState(0);
+  const [amount, setAmount] = useState(item == null ? '' : item.amount.toString());
+  const [unitIndex, setUnitIndex] = useState(item == null ? 0 : unitList.indexOf(item.unit));
   const [showUnitMenu, setShowUnitMenu] = useState(false);
 
   const handleUnitPress = () => {
@@ -73,15 +80,15 @@ const AddIngredient = ({
     setShowUnitMenu(false);
   }
   
-  const [imageFound, setImageFound] = useState(false);
-  const [imageUploaded, setImageUploaded] = useState('');
+  const [imageFound, setImageFound] = useState(item != null);
+  const [imageUploaded, setImageUploaded] = useState(item == null ? '' : item.image);
   const updateImage = () => {
     setImageFound(true);
   }
   const deleteImage = () => {
     setImageFound(false);
   }
-  const [itemLink, setItemLink] = useState('');
+  const [itemLink, setItemLink] = useState(item == null ? '' : item.link);
   const [linkValid, setLinkValid] = useState(true);
   const updateLink = (link) => {
     setItemLink(link);
@@ -325,7 +332,8 @@ const AddIngredient = ({
               {
                 imageFound
                 ? (
-                  <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2'>
+                  <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
+                    <Image className='w-full h-full' source={imageUploaded} /> 
                   </View>
                 )
                 : null
@@ -353,7 +361,7 @@ const AddIngredient = ({
               </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <TextInput className='font-inconsolataLight shrink w-full h-10 text-xl pb-1.5 pl-3'
+              <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
                 placeholder="ex. https://coupang.com/insert_link" 
                 placeholderTextColor={'#85855B'}
                 value={itemLink} 

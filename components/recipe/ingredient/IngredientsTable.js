@@ -7,7 +7,7 @@ const RowDiv = () => (
   <View className='w-full h-[1px] bg-itemBgDark' />
 );
 
-const IngredientsTable = ({ingredients}) => (
+const IngredientsTable = ({ ingredients, handleEdit }) => (
   <View className='grow w-full h-48 items-center justify-center'>
     {/* Header */}
     <View className='flex-row w-full h-8 bg-itemBgDark rounded-t-lg'>
@@ -29,7 +29,7 @@ const IngredientsTable = ({ingredients}) => (
       nestedScrollEnabled={true}
       className='w-full h-fit rounded-b-lg'
       data={ingredients}
-      renderItem={({item, index}) => <IngredientsTableRow item={item} index={index}/>}
+      renderItem={({item, index}) => <IngredientsTableRow item={item} index={index} handleEdit={handleEdit}/>}
       ItemSeparatorComponent={RowDiv}
       ListFooterComponent={RowDiv}
       />

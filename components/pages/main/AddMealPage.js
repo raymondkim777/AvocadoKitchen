@@ -34,13 +34,24 @@ const AddMealPage = ({ navigation }) => {
     null;
   }
   const handleAddIngredient = () => {
-    navigation.navigate('AddIngredient');
+    navigation.navigate('AddIngredient', {
+      item: null,
+    });
   }
+  const handleEditIngredient = (item) => {
+    navigation.navigate('AddIngredient', {
+      item: item,
+    });
+  }
+
   const handleAddProcedure = () => {
-    null;
+    navigation.navigate('AddProcedure', {
+      procedureList: procedure,
+    });
   }
+
   const handleContinue = () =>{
-    navigation.navigate('AddMealPage2')
+    navigation.navigate('AddMealPage2');
   }
   
   {/* References */}
@@ -50,47 +61,74 @@ const AddMealPage = ({ navigation }) => {
     {
       id: 'canned-tuna',
       name: 'Canned Tuna',
-      amount: '20 oz',
+      amount: 1,
+      unit: '개',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'celery',
       name: 'Celery',
-      amount: '1/3 cup',
+      amount: '1/3', 
+      unit: '컵',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'red-onion',
       name: 'Red Onion',
-      amount: '2 tbsp',
+      amount: 2, 
+      unit: 'Ts',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'pickle-relish',
       name: 'Sweet Pickle Relish',
-      amount: '2 tbsp',
+      amount: 2, 
+      unit: 'Ts',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'lemon',
       name: 'Lemon',
-      amount: 'x1',
+      amount: 1,
+      unit: '개',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'garlic-clove',
       name: 'Garlic Clove',
-      amount: 'x1',
+      amount: 1, 
+      unit: '개',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'salt',
       name: 'Salt',
-      amount: 'N/A',
+      amount: 0, 
+      unit: '적당량',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'black-pepper',
       name: 'Black Pepper',
-      amount: 'N/A',
+      amount: 0, 
+      unit: '적당량',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
     {
       id: 'mayo',
       name: 'Mayonnaise',
-      amount: '1 cup',
+      amount: 1,
+      unit: '컵',
+      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
+      link: 'https://coupang.com/example_link',
     },
   ];
   const procedure = [
@@ -323,7 +361,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <IngredientsTable ingredients={ingredients} />
+              <IngredientsTable ingredients={ingredients} handleEdit={handleEditIngredient} />
             </View>
           </View>
 
