@@ -10,6 +10,8 @@ import MyCart from './MyCart';
 import Browse from './Browse';
 import AddMealPage from './AddMealPage';
 import AddMealPage2 from '../additional/AddMealPage2';
+import AddIngredient from '../additional/AddIngredient';
+import AddProcedure from '../additional/AddProcedure';
 import ProfilePage from './ProfilePage';
 import UserInfoPage from './UserInfoPage';
 import Tutorial from './Tutorial';
@@ -127,6 +129,7 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="Browse" component={Browse} />
           <PageStack.Screen name="AddMealPage" component={AddMealPage} />
           <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />
+          <PageStack.Screen name="AddIngredient" component={AddIngredient} />
           <PageStack.Screen name="UserInfoPage" component={UserInfoPage} />
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />
