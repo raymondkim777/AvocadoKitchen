@@ -6,9 +6,7 @@ import '../../text/i18n'
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import ExitButton from '../../general/buttons/ExitButton';
-import QuickSearchResults from '../../addfunction/quicksearch/QuickSearchResults';
-import QuickSearchResultsEmpty from '../../addfunction/quicksearch/QuickSearchResultsEmpty';
-import SmallButton from '../../general/SmallButton';
+import SmallButton from '../../general/buttons/SmallButton';
 import LargeButton from '../../general/buttons/LargeButton';
 
 const AddProcedure = ({
