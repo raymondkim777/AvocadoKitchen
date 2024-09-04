@@ -11,7 +11,7 @@ const Counter = ({ count, setCount, background='bg-itemBgDark', minCount = 1, ma
     if (countDownDisable)
       setCountDownDisable(false);
     if (count < maxCount)
-      setCount((value) => (value + 1));
+      setCount(count + 1);
     if (count >= maxCount - 1 && !countUpDisable)
       setCountUpDisable(true);
   }
@@ -19,7 +19,7 @@ const Counter = ({ count, setCount, background='bg-itemBgDark', minCount = 1, ma
     if (countUpDisable)
       setCountUpDisable(false);
     if (count > minCount) 
-      setCount((value) => (value - 1));
+      setCount(count - 1);
     if (count <= minCount + 1 && !countDownDisable)
       setCountDownDisable(true);
   }
