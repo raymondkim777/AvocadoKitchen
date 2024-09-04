@@ -336,7 +336,7 @@ const ProfilePage = ({ navigation }) => {
                 </TouchableHighlight>
                 {
                   showDropDown 
-                  ? <View className='absolute z-30 left-0 -bottom-24 z-10 w-24 h-24 py-2'>
+                  ? <View className='absolute z-10 left-0 -bottom-24 w-24 h-24 py-2'>
                       <View className='flex-col w-full h-full items-center justify-center bg-buttonBg border-2 border-itemText rounded-xl'>
                         {budgetType.map((item, index)=>(
                           <TouchableHighlight className={`shrink w-full h-full rounded-[10px] overflow-hidden`}

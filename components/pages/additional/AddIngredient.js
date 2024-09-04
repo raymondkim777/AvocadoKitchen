@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SideBarContext } from '../main/HomeControl';
-import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, ScrollView, TextInput, TouchableHighlight, SectionList, FlatList } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
@@ -32,13 +32,74 @@ const AddIngredient = ({
 
   const [mealName, setMealName] = useState('');
   
+  const unitList = [
+    'g', 'kg', 'ml', 'L', '개', '마리', '포기', '톨', '적당량', 
+    'T', 't', '컵', '종이컵', '꼬집', '줌', 
+    '근', '주먹', 
+  ];
+  const unitListSection = [
+    {
+      type: 'General', 
+      data: [
+        'g', 'kg', 'ml', 'L', '개', '마리', '포기', '톨', '적당량', 
+      ],
+    }, 
+    {
+      type: 'Volume', 
+      data: [
+        'T', 't', '컵', '종이컵', '꼬집', '줌', 
+      ],
+    }, 
+    {
+      type: 'Weight', 
+      data: [
+        '근', '주먹', 
+      ],
+    }, 
+  ];
+
   const [amount, setAmount] = useState('');
-  const [unit, setUnit] = useState('');
+  const [unitIndex, setUnitIndex] = useState(0);
+  
+  const [showUnitDropDown, setShowUnitDropDown] = useState(false);
+  const [unitDropDownCSS, setUnitDropDownCSS] = useState(
+    new Array(unitIndex).fill('bg-buttonBg').concat(
+      ['bg-itemText'].concat(
+        new Array(unitList.length - unitIndex - 1).fill('bg-buttonBg')
+      )
+    )
+  );
+  const [unitDropDownText, setUnitDropDownText] = useState(
+    new Array(unitIndex).fill('text-itemText').concat(
+      ['text-itemBgLight'].concat(
+        new Array(unitList.length - unitIndex - 1).fill('text-itemText')
+      )
+    )
+  );
+  const updateButtonCSS = (index) => {
+    const new_css = new Array(unitList.length).fill('bg-buttonBg');
+    new_css[index] = 'bg-itemText';
+    setUnitDropDownCSS(new_css);
+  }
+  const updateTextCSS = (index) => {
+    const new_text = new Array(unitList.length).fill('text-itemText');
+    new_text[index] = 'text-itemBgLight';
+    setUnitDropDownText(new_text);
+  }
+  const updateUnitDropDown = (index) => {
+    setUnitIndex(index);
+    updateButtonCSS(index);
+    updateTextCSS(index);
+    setShowUnitDropDown(!showUnitDropDown);
+  }
   
   const [imageFound, setImageFound] = useState(false);
   const [imageUploaded, setImageUploaded] = useState('');
   const updateImage = () => {
-    setImageFound(!imageFound);
+    setImageFound(true);
+  }
+  const deleteImage = () => {
+    setImageFound(false);
   }
   
   const [itemLink, setItemLink] = useState('');
@@ -96,7 +157,7 @@ const AddIngredient = ({
   ];
 
   return (
-    <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
+    <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView className='grow w-full h-fit'>
         <View id='content' className='grow w-full h-fit p-4'>
           {/* Title */}
@@ -202,8 +263,35 @@ const AddIngredient = ({
               onChangeText={setAmount} 
               underlineColorAndroid={'transparent'}
               />
-              <View className='w-16 h-10 items-center justify-center bg-itemBgLight ml-2 rounded-lg'>
-                <TitleTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText'}>oz.</TitleTextComponent>
+              <View className='relative z-30 w-fit h-fit items-center justify-center ml-2'>
+                <TouchableHighlight className='w-16 h-10 rounded-lg '
+                activeOpacity={0.9} onPress={()=>setShowUnitDropDown(!showUnitDropDown)}>
+                  <View className='w-full h-full items-center justify-center border-2 border-itemText bg-buttonBg rounded-lg'>
+                    <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText text-center h-8 mt-1'}>
+                      {unitList[unitIndex]}
+                    </TitleTextComponent>
+                  </View>
+                </TouchableHighlight>
+                {
+                  showUnitDropDown 
+                  ? <View className='flex absolute z-20 right-0 -bottom-36 w-28 h-36 pt-2'>
+                      <FlatList
+                      className='w-full h-36 bg-buttonBg rounded-lg border-2 border-itemText'
+                      nestedScrollEnabled={true}
+                      data={unitList}
+                      renderItem={({item}) => (
+                        <TouchableHighlight className='w-full h-fit rounded-lg'>
+                          <View className='w-full h-fit p-1 items-center justify-center rounded-lg bg-red-100'>
+                            <TitleTextComponent size={'text-base'} css={'text-itemText'}>
+                              {item}
+                            </TitleTextComponent>
+                          </View>
+                        </TouchableHighlight>
+                      )}
+                      />
+                    </View>
+                  : null
+                }
               </View>
             </View>
           </View>
@@ -226,8 +314,15 @@ const AddIngredient = ({
               }
               
               {/* Add/Change Image */}
-              <View className='flex-row w-full h-fit items-center'>
-                <SmallButton text={imageFound ? 'Change Image' : 'Add Image'} callback={updateImage}/>
+              <View className='flex-row w-full h-fit items-center justify-start'>
+                <SmallButton text={imageFound ? 'Change Image' : 'Add Image'} callback={updateImage} />
+                {
+                  imageFound 
+                  ? <View className='w-fit h-fit ml-2'>
+                      <SmallButton text={'Delete Image'} callback={deleteImage} /> 
+                    </View>
+                  : null
+                }
               </View>
             </View>
           </View>
