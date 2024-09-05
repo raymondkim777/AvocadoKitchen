@@ -223,16 +223,18 @@ const resources = {
       "SomeOtherTag": "SomeOtherTag",
 
       // AddIngredient
-      "Add/Edit Ingredient": "Add/Edit Ingredient",
+      "Add Ingredient": "Add Ingredient",
+      "Edit Ingredient": "Edit Ingredient",
       "Order Ingredient": "Order Ingredient",
       "Order Yes": "Order Yes",
       "Order No": "Order No",
       "Quick Search": "Quick Search",
+      "Quick Search Long": "Quick Search - Coupang/Curly",
       "Coupang": "Coupang", 
       "Curly": "Curly",
       "(Quick Search Error)": "We're having trouble finding this ingredient.",
       "Close Search": "Close",
-      "Manual Add/Edit": "Manual Add/Edit",
+      "Manual Add/Edit": "Manual Input",
       "Specific": "Specific", 
       "General": "General",
       "Image": "Image",
@@ -247,7 +249,8 @@ const resources = {
       "(Quick Result 2)": "Result 2",
 
       // AddProcedure
-      "Add Procedure Step": "Add Procedure Step",
+      "Add Procedure": "Add Procedure",
+      "Edit Procedure": "Edit Procedure",
       "Step": "Step",
       "Step Number": "Step Number",
       "Description": "Description", 
@@ -379,9 +382,9 @@ const resources = {
       // Fridge
       "My Fridge": "내 냉장고", 
       "Ingredient Search": "재료 검색",
-      "EditDeleteCheckTitle": "이 재료 지우고 싶으세요?",
-      "EditDeleteCheckMessage": "한번 지우면 다시 직접 추가해야합니다.",
-      "Delete": "지우기",
+      "EditDeleteCheckTitle": "이 재료 삭제하고 싶으세요?",
+      "EditDeleteCheckMessage": "한번 삭제하면 다시 직접 추가해야합니다.",
+      "Delete": "삭제",
 
       // Browse
       "Browse Recipes": "레시피 찾기",
@@ -479,16 +482,18 @@ const resources = {
       "SomeOtherTag": "어쩌고저쩌고",
       
       // AddIngredient
-      "Add/Edit Ingredient": "재료 추가/수정",
+      "Add Ingredient": "재료 추가",
+      "Edit Ingredient": "재료 수정",
       "Order Ingredient": "재료 주문하기",
       "Order Yes": "주문하기",
       "Order No": "주문안하기",
       "Quick Search": "간편 검색", 
+      "Quick Search Long": "간편 검색 - 쿠팡/컬리", 
       "Coupang": "쿠팡", 
       "Curly": "컬리",
       "(Quick Search Error)": "검색한 재료가 없습니다.",
       "Close Search": "검색 닫기",
-      "Manual Add/Edit": "직접 추가하기",
+      "Manual Add/Edit": "직접 입력하기",
       "Specific": "특정 단위", 
       "General": "일반 단위",
       "Image": "사진",
@@ -503,7 +508,8 @@ const resources = {
       "(Quick Result 2)": "참치 통조림",
 
       // Add Procedure
-      "Add Procedure Step": "조리과정 추가",
+      "Add Procedure": "조리과정 추가",
+      "Edit Procedure": "조리과정 수정",
       "Step": "Step",
       "Step Number": "레시피 순서",
       "Description": "설명", 

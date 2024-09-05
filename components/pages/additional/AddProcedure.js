@@ -74,6 +74,7 @@ const AddProcedure = ({
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
             <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
+              {/* Edit this for existingItem == undefined */}
               Add Procedure Step
             </TitleTextComponent>
             <ExitButtonGeneral handleMainFunction={handleExitPress} exitCheck={true} />

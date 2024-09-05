@@ -80,6 +80,7 @@ const Browse = ({ navigation }) => {
       image: require('../../../assets/images/recipe-1.webp'),
       ingredients: [
         {
+          index: 0,
           id: 'canned-tuna',
           name: 'Canned Tuna',
           amount: 1,
@@ -88,6 +89,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 1,
           id: 'celery',
           name: 'Celery',
           amount: '1/3', 
@@ -96,6 +98,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 2,
           id: 'red-onion',
           name: 'Red Onion',
           amount: 2, 
@@ -104,6 +107,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 3,
           id: 'pickle-relish',
           name: 'Sweet Pickle Relish',
           amount: 2, 
@@ -112,6 +116,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 4,
           id: 'lemon',
           name: 'Lemon',
           amount: 1,
@@ -120,6 +125,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 5,
           id: 'garlic-clove',
           name: 'Garlic Clove',
           amount: 1, 
@@ -128,6 +134,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 6,
           id: 'salt',
           name: 'Salt',
           amount: 0, 
@@ -136,6 +143,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 7,
           id: 'black-pepper',
           name: 'Black Pepper',
           amount: 0, 
@@ -144,6 +152,7 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          index: 8,
           id: 'mayo',
           name: 'Mayonnaise',
           amount: 1,

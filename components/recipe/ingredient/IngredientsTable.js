@@ -29,6 +29,7 @@ const IngredientsTable = ({ ingredients, handlePress }) => (
       nestedScrollEnabled={true}
       className='w-full h-fit rounded-b-lg'
       data={ingredients}
+      extraData={ingredients}
       renderItem={({item, index}) => <IngredientsTableRow item={item} index={index} handlePress={handlePress}/>}
       ItemSeparatorComponent={RowDiv}
       ListFooterComponent={RowDiv}

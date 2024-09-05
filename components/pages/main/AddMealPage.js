@@ -1,7 +1,7 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from './HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight } from 'react-native';
+import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight, Alert } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
 import SmallButton from '../../general/buttons/SmallButton';
@@ -11,146 +11,100 @@ import ProcedureTable from '../../recipe/procedure/ProcedureTable';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 
-const AddMealPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext)
+const AddMealPage = ({ route, navigation }) => {
+  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const [newRecipeItem, setNewRecipeItem] = useState({
+    id: '',
+    title: '', 
+    nutrition: {
+      cal: -1,
+      protein: -1, 
+      carb: -1,
+    },
+    tags: [],
+    data: {
+      likes: -1,
+      comments: -1, 
+      downloads: -1,
+    },
+    image: null,
+    ingredients: [],
+    procedure: [],
+  });
+
+  const updateIngredient = (newList) => {
+    const updatedRecipe = newRecipeItem;
+    updatedRecipe.ingredients = [...newList];
+    setNewRecipeItem(updatedRecipe);
+  }
   
   useFocusEffect(
     React.useCallback(() => {
+      // Back Button Press
       const onBackPress = () => {
         updatePage(0);
         return true;
       };
-
       const subscription = BackHandler.addEventListener(
         'hardwareBackPress',
         onBackPress
       );
 
-      return () => subscription.remove();
-    })
+      // Update Ingredient
+      if (route.params?.newIngredientList) {
+        updateIngredient(route.params?.newIngredientList);
+      }
+      if (route.params?.recipeItem) {
+        setNewRecipeItem(recipeItem);
+      }
+
+      return () => {
+        subscription.remove();
+      }
+    }, [
+      route.params?.newIngredientList, updateIngredient,
+      route.params?.recipeItem, setNewRecipeItem,
+    ])
   ); 
   
-  const handleChooseRecipe = () => {
-    null;
+  const handleChooseRecipePress = () => {
+    Alert.alert(`${newRecipeItem.ingredients.length}`)
   }
-  const handleAddIngredient = () => {
+  
+  const handleAddIngredientPress = () => {
     navigation.navigate('AddIngredient', {
-      item: null,
-    });
-  }
-  const handleEditIngredient = (item) => {
-    navigation.navigate('AddIngredient', {
-      item: item,
+      currentList: newRecipeItem.ingredients,
     });
   }
 
-  const handleAddProcedure = () => {
+  const handleEditIngredientPress = (item) => {
+    navigation.navigate('AddIngredient', {
+      currentList: newRecipeItem.ingredients,
+      existingItem: item,
+    });
+  }
+
+  const handleAddProcedurePress = () => {
     navigation.navigate('AddProcedure', {
-      procedureList: procedure,
+      procedureList: newRecipeItem.procedure,
       index: null,
     });
   }
 
-  const handleEditProcedure = (index) => {
+  const handleEditProcedurePress = (index) => {
     navigation.navigate('AddProcedure', {
-      procedureList: procedure, 
+      procedureList: newRecipeItem.procedure, 
       index: index,
     })
   }
 
-  const handleContinue = () =>{
-    navigation.navigate('AddMealPage2');
+  const handleContinuePress = () =>{
+    navigation.navigate('AddMealPage2', {
+      recipeItem: newRecipeItem,
+    });
   }
   
-  {/* References */}
-  
   {/* Data */}
-  const ingredients = [
-    {
-      id: 'canned-tuna',
-      name: 'Canned Tuna',
-      amount: 1,
-      unit: '개',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'celery',
-      name: 'Celery',
-      amount: '1/3', 
-      unit: '컵',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'red-onion',
-      name: 'Red Onion',
-      amount: 2, 
-      unit: 'Ts',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'pickle-relish',
-      name: 'Sweet Pickle Relish',
-      amount: 2, 
-      unit: 'Ts',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'lemon',
-      name: 'Lemon',
-      amount: 1,
-      unit: '개',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'garlic-clove',
-      name: 'Garlic Clove',
-      amount: 1, 
-      unit: '개',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'salt',
-      name: 'Salt',
-      amount: 0, 
-      unit: '적당량',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'black-pepper',
-      name: 'Black Pepper',
-      amount: 0, 
-      unit: '적당량',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-    {
-      id: 'mayo',
-      name: 'Mayonnaise',
-      amount: 1,
-      unit: '컵',
-      image: require('../../../assets/images/ingredient-example/canned-tuna.jpg'),
-      link: 'https://coupang.com/example_link',
-    },
-  ];
-  const procedure = [
-    {
-      step: 1, 
-      description: '(Recipe Step 1)',
-      image: require('../../../assets/images/procedure-example/step-1.webp'),
-    },
-    {
-      step: 2, 
-      description: '(Recipe Step 2)',
-      image: require('../../../assets/images/procedure-example/step-2.jpg'),
-    },
-  ];
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const mealTime = ['Breakfast', 'Lunch', 'Dinner'];
 
@@ -261,7 +215,7 @@ const AddMealPage = ({ navigation }) => {
           {/* Choose Day */}
           <View className='flex-col w-full h-fit mt-6'>
             <View className='w-full h-6'>
-              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+              <TitleTextComponent translate={false} size={'text-xl'} css={'text-screenText mx-4'}>
                 Meal Time
               </TitleTextComponent>
             </View>
@@ -333,7 +287,7 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit justify-start mt-2'>
-                <SmallButton text='Choose a Recipe' callback={handleChooseRecipe}/>
+                <SmallButton text='Choose a Recipe' callback={handleChooseRecipePress}/>
             </View>
           </View>
 
@@ -365,11 +319,13 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Ingredient' callback={handleAddIngredient}/>
+              <SmallButton text='Add Ingredient' callback={handleAddIngredientPress}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <IngredientsTable ingredients={ingredients} handlePress={handleEditIngredient} />
+              <IngredientsTable 
+              ingredients={newRecipeItem.ingredients} 
+              handlePress={handleEditIngredientPress} />
             </View>
           </View>
 
@@ -381,17 +337,19 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row w-full h-fit items-center mt-2'>
-              <SmallButton text='Add Step' callback={handleAddProcedure}/>
+              <SmallButton text='Add Step' callback={handleAddProcedurePress}/>
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <ProcedureTable procedure={procedure} handlePress={handleEditProcedure} />
+              <ProcedureTable 
+              procedure={newRecipeItem.procedure} 
+              handlePress={handleEditProcedurePress} />
             </View>
           </View>
 
           {/* Continue */}
           <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
-            <LargeButton cssIn={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
+            <LargeButton cssIn={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinuePress} />
           </View>
         </View>
       </ScrollView>
