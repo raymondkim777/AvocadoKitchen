@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
-import '../text/i18n'
-import TitleTextComponent from '../text/TitleTextComponent';
-import ItemTextComponent from '../text/ItemTextComponent';
-import Heart from "../../assets/icons/heart.svg";
-import Comment from "../../assets/icons/comment.svg";
-import Download from "../../assets/icons/download.svg";
+import '../../text/i18n'
+import TitleTextComponent from '../../text/TitleTextComponent';
+import ItemTextComponent from '../../text/ItemTextComponent';
+import Heart from "../../../assets/icons/heart.svg";
+import Comment from "../../../assets/icons/comment.svg";
+import Download from "../../../assets/icons/download.svg";
 
 const RecipeBrowseCard = ({ item, handleRecipePress }) => {
   const {t, i18n} = useTranslation();

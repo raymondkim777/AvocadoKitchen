@@ -170,6 +170,15 @@ const resources = {
       "Step": "Step",
       "Add Meal": "Add Meal",
 
+      // Comment Modal
+      "Comments": "Comments",
+      "Load More": "Load More",
+      "Add a comment...": "Add a comment...",
+      //////
+      "Example Comment 1": "This is an example comment used for testing the comment page. Hiroshima should have been nuked twice, instead of wasting one nuke on Nagasaki. Two mushroom clouds would be cooler than one.",
+      "Example Comment 2": "This is an example comment used for testing the comment page. ",
+
+
       // IngredientCardLarge
       "Ingredient Info": "Ingredient Info",
       "Coupang/MarketCurly Link": "Coupang/MarketCurly Link",
@@ -429,6 +438,13 @@ const resources = {
       "Step": "Step",
       "Add Meal": "레시피 추가",
 
+      // Comment Modal
+      "Comments": "댓글",
+      "Load More": "댓글 더 보기",
+      "Add a comment...": "댓글 추가...",
+      //////
+      "Example Comment 1": "아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!! 다만 저희 식구에겐 너무 달았습니다ㅠㅠ 진짜 요리고잔데 레시피대로 했더니 너무 맛있어요 ㅎㅎ",
+      "Example Comment 2": "아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!",
       // IngredientCardLarge
       "Ingredient Info": "재료 정보",
       "Coupang/MarketCurly Link": "쿠팡/마켓컬리 주소",

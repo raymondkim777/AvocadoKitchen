@@ -3,7 +3,7 @@ import { View, TouchableHighlight } from 'react-native';
 import AlertCheck from '../misc/AlertCheck';
 import Exit from "../../../assets/icons/exit.svg";
 
-const ExitButtonGeneral = ({ handleMainFunction, exitCheck = false }) => {
+const ExitButtonGeneral = ({ handleMainFunction, background = 'bg-buttonBg', exitCheck = false }) => {
   const [showAlert, setShowAlert] = useState(false);
 
   const handleExitPress = (exitCheck) => {
@@ -26,7 +26,7 @@ const ExitButtonGeneral = ({ handleMainFunction, exitCheck = false }) => {
       />
       <TouchableHighlight className='w-8 h-8 rounded-lg'
       activeOpacity={0.9} onPress={()=>(handleExitPress(exitCheck))}>
-        <View className='w-full h-full bg-buttonBg rounded-lg items-center justify-center'>
+        <View className={`w-full h-full ${background} rounded-lg items-center justify-center`}>
           <Exit width={30} height={30} stroke={'#85855B'} strokeWidth={3} />
         </View>
       </TouchableHighlight>
