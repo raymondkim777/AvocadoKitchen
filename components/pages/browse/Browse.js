@@ -11,7 +11,7 @@ import OptionsMenu1 from '../../browse/options/OptionsMenu1';
 import OptionsMenu2 from '../../browse/options/OptionsMenu2';
 import PageButton from '../../browse/page/PageButton';
 import PageMenu from '../../browse/page/PageMenu';
-import RecipeBrowseCard from '../../browse/RecipeBrowseCard';
+import RecipeBrowseCard from '../../browse/misc/RecipeBrowseCard';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import Search from "../../../assets/icons/search.svg";
 
@@ -84,6 +84,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
+      public: false,
       data: {
         likes: 800,
         comments: 40, 
@@ -207,6 +208,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
+      public: false,
       data: {
         likes: 800,
         comments: 40, 
@@ -330,6 +332,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
+      public: false,
       data: {
         likes: 800,
         comments: 40, 
@@ -453,6 +456,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['Sandwich', 'Protein', 'Healthy'],
+      public: false,
       data: {
         likes: 800,
         comments: 40, 

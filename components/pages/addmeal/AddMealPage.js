@@ -43,9 +43,11 @@ const AddMealPage = ({ navigation }) => {
   const handleChooseRecipe = () => {
     null;
   }
+  
   const handleAddIngredient = () => {
     navigation.navigate('AddIngredient');
   }
+
   const handleEditIngredient = (item) => {
     setIngredientItem(item);
     navigation.navigate('AddIngredient');

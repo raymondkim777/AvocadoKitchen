@@ -25,6 +25,7 @@ const AddMealControl = ({ route, navigation }) => {
       carb: 0,
     },
     tags: [],
+    public: false,
     data: {
       likes: 0,
       comments: 0, 

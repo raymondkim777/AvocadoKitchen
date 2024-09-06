@@ -6,18 +6,17 @@ import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import IngredientsSection from '../../recipe/ingredient/IngredientsSection';
 import ProcedureSection from '../../recipe/procedure/ProcedureSection';
 import IngredientsSectionEmpty from '../../recipe/ingredient/IngredientsSectionEmpty';
-import BottomButtons from '../../recipe/BottomButtons';
+import BottomButtons from '../../browse/misc/BottomButtons';
 import ProcedureSectionEmpty from '../../recipe/procedure/ProcedureSectionEmpty';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import IngredientCardModal from '../../recipe/ingredient/IngredientCardModal';
 import ProcedureCardModal from '../../recipe/procedure/ProcedureCardModal';
-
-const { width, height } = Dimensions.get('window');
+import CommentModal from '../../browse/misc/CommentModal';
 
 const RecipePage = ({ navigation }) => {
   
   const { updatePage } = useContext(SideBarContext);
-  const { selectedRecipeItem } = useContext(BrowseContext);
+  const { recipeItem, selectedRecipeItem } = useContext(BrowseContext);
 
   const handleExitPress = () => {
     navigation.goBack();
@@ -34,7 +33,7 @@ const RecipePage = ({ navigation }) => {
   }
 
   const handleLikePress = () => {
-    null;
+    setUserLike(!userLike);
   }
 
   const handleRecipeAddPress = () => {
@@ -45,7 +44,7 @@ const RecipePage = ({ navigation }) => {
   }
 
   const handleCommentPress = () => {
-    null;
+    setShowCommentModal(true);
   }
    
   { /* State/Functions */}
@@ -62,11 +61,17 @@ const RecipePage = ({ navigation }) => {
   const [ingredientItem, setIngredientItem] = useState(null);
   const [procedureItem, setProcedureItem] = useState(null);
 
+  // set with database, querying with recipeItem.id
+  const [userLike, setUserLike] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+
   {/* View */}
-  const Container = height > 800 ?  View : ScrollView;
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
-      <Container className='grow w-full h-fit'>
+      <ScrollView 
+      contentContainerStyle={{flexGrow: 1}} 
+      className='grow w-full h-fit'
+      showsVerticalScrollIndicator={false}>
         <View id='content' className='grow w-full h-fit p-4 pb-0'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
@@ -116,11 +121,12 @@ const RecipePage = ({ navigation }) => {
             }
           </View>
         </View>
-      </Container>
+      </ScrollView>
 
       {/* Buttons */}
-      <View id='recipe-final-buttons' className='w-full h-20'>
+      <View id='recipe-final-buttons' className='w-full h-20 mb-1'>
         <BottomButtons
+        userLike={userLike}
         handleLikePress={handleLikePress}
         handleRecipeAddPress={handleRecipeAddPress}
         handleCommentPress={handleCommentPress}
@@ -138,6 +144,11 @@ const RecipePage = ({ navigation }) => {
       procedureItem={procedureItem} 
       showProcedureModal={showProcedureModal}
       setShowProcedureModal={setShowProcedureModal}
+      />
+      
+      <CommentModal
+      showCommentModal={showCommentModal}
+      setShowCommentModal={setShowCommentModal}
       />
 
     </SafeAreaView>
