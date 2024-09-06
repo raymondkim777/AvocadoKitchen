@@ -22,7 +22,7 @@ const CommentCard = ({item}) => {
         <View className='w-16 h-16 items-center justify-center border-2 border-itemBgMid rounded-full overflow-hidden bg-buttonBg'>
           <Image className='w-full h-11' source={require('../../../assets/images/logo-transparent.png')} />
         </View>
-        <View className='flex-col shrink w-full h-fit ml-2'>
+        <View className='flex-col shrink w-full h-fit ml-3'>
           {/* Top Row */}
           <View className='flex-row shrink w-full h-8 items-center justify-start'>
             <TitleTextComponent size={'text-lg'} css={'text-itemText'}>
@@ -173,15 +173,13 @@ const CommentModal = ({
               multiline={true}
               textAlignVertical={'top'}
               />
-              {
-                commentInput == '' ? null : 
-                <TouchableHighlight className='w-10 h-10 mr-1 mb-1 rounded-lg' 
-                activeOpacity={0.9} onPress={handleCommentPostPress}>
-                  <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
-                    <SendLetter width={30} height={30} stroke={'#85855B'} strokeWidth={2} />
-                  </View>
-                </TouchableHighlight>
-              }
+
+              <TouchableHighlight className='w-10 h-10 mr-1 mb-1 rounded-lg' 
+              activeOpacity={0.9} onPress={handleCommentPostPress} disabled={commentInput == ''}>
+                <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
+                  <SendLetter width={30} height={30} stroke={commentInput == '' ? '#ACACAC' : '#85855B'} strokeWidth={2} />
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
 
