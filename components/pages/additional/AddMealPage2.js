@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SideBarContext } from '../main/HomeControl';
+import { SideBarContext } from '../control/HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
 import ExitButton from '../../general/buttons/ExitButton';

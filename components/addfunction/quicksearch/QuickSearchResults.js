@@ -1,5 +1,5 @@
 import React, { useContext, } from 'react';
-import { SideBarContext } from '../../pages/main/HomeControl';
+import { SideBarContext } from '../../pages/control/HomeControl';
 import { View, FlatList } from 'react-native';
 import QuickSearchResultsUnit from './QuickSearchResultsUnit';
 

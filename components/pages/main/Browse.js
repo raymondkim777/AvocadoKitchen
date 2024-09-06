@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { SideBarContext } from './HomeControl';
+import { SideBarContext } from '../control/HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, ScrollView, FlatList, Pressable, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';

@@ -1,6 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { View, Image, SectionList, } from 'react-native';
-import { SideBarContext } from '../../pages/main/HomeControl';
+import { SideBarContext } from '../../pages/control/HomeControl';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';

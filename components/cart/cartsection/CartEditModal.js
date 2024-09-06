@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SideBarContext } from '../../pages/main/HomeControl';
+import { SideBarContext } from '../../pages/control/HomeControl';
 import { View, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, Image, } from 'react-native';
 import Modal from 'react-native-modal';
 import TitleTextComponent from '../../text/TitleTextComponent';

@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SideBarContext } from './HomeControl';
+import { SideBarContext } from '../control/HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, Pressable, TouchableOpacity, ScrollView, TouchableHighlight, } from 'react-native';
 import { Slider } from '@rneui/themed';

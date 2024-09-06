@@ -6,7 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './components/pages/authentication/Login';
 import SignUp from './components/pages/authentication/SignUp';
 import SignUp2 from './components/pages/authentication/SignUp2';
-import HomeControl from './components/pages/main/HomeControl';
+import HomeControl from './components/pages/control/HomeControl';
 
 const Stack = createStackNavigator();
 

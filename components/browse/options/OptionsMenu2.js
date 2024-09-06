@@ -1,5 +1,5 @@
 import React, { useState, useContext} from 'react';
-import { SideBarContext } from '../../pages/main/HomeControl';
+import { SideBarContext } from '../../pages/control/HomeControl';
 import { View, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 

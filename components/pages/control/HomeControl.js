@@ -4,18 +4,14 @@ import { CommonActions } from '@react-navigation/native';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import 'intl-pluralrules';
 import '../../text/i18n'
-import HomePage from './HomePage';
-import MyMeals from './MyMeals';
-import MyCart from './MyCart';
-import Browse from './Browse';
-import RecipePage from '../additional/RecipePage';
-import AddMealPage from './AddMealPage';
-import AddMealPage2 from '../additional/AddMealPage2';
-import AddIngredient from '../additional/AddIngredient';
-import AddProcedure from '../additional/AddProcedure';
-import ProfilePage from './ProfilePage';
-import UserInfoPage from './UserInfoPage';
-import Tutorial from './Tutorial';
+import HomePage from '../main/HomePage';
+import MyMeals from '../main/MyMeals';
+import MyCart from '../main/MyCart';
+import BrowseControl from './BrowseControl';
+import AddMealControl from './AddMealControl';
+import ProfilePage from '../main/ProfilePage';
+import UserInfoPage from '../main/UserInfoPage';
+import Tutorial from '../main/Tutorial';
 import SideBar from '../../general/sidebar/SideBar';
 
 const { width, height } = Dimensions.get('window');
@@ -30,8 +26,8 @@ const HomeControl = ({ navigation }) => {
     'HomePage', 
     'MyMeals',
     'MyCart',
-    'Browse',
-    'AddMealPage',
+    'BrowseControl',
+    'AddMealControl',
     'UserInfoPage',
     'ProfilePage',
     'Tutorial',
@@ -127,15 +123,12 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
           <PageStack.Screen name="MyCart" component={MyCart} />
-          <PageStack.Screen name="Browse" component={Browse} />
-          <PageStack.Screen name="RecipePage" component={RecipePage} />
-          <PageStack.Screen name="AddMealPage" component={AddMealPage} />
-          <PageStack.Screen name="AddMealPage2" component={AddMealPage2} />
-          <PageStack.Screen name="AddIngredient" component={AddIngredient} />
-          <PageStack.Screen name="AddProcedure" component={AddProcedure} />
+          <PageStack.Screen name="BrowseControl" component={BrowseControl} />
+          <PageStack.Screen name="AddMealControl" component={AddMealControl} />
           <PageStack.Screen name="UserInfoPage" component={UserInfoPage} />
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />
+          
         </PageStack.Navigator>        
       </SideBarContext.Provider>
 

@@ -1,5 +1,5 @@
 import React, { useContext, } from 'react';
-import { SideBarContext } from './HomeControl';
+import { SideBarContext } from '../control/HomeControl';
 import { View, SafeAreaView, TouchableHighlight, ScrollView } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
