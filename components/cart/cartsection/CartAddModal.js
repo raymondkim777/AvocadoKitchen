@@ -81,7 +81,7 @@ const CartAddModal = ({
   return(
     <Modal 
     style={{width: contentWidth}}
-    className={`h-full ${wideScreen ? 'ml-64' : 'm-0'} p-4 items-center justify-center`}
+    className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-4 items-center justify-center`}
     isVisible={showAddModal}
     onModalHide={handleAddUpdate}
     onBackButtonPress={handleCloseModal}
