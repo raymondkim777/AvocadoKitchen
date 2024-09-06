@@ -104,13 +104,41 @@ const CommentModal = ({
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
+    {
+      commentID: 'test-comment-id',
+      userID: 'test-user-1', 
+      userName: '어떤유저123',
+      userImage: require('../../../assets/images/logo-transparent.png'),
+      postDate: '2020-03-02 09:28',
+      beforeDate: '5일',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
+    },
+    {
+      commentID: 'test-comment-id',
+      userID: 'test-user-1', 
+      userName: '어떤유저123',
+      userImage: require('../../../assets/images/logo-transparent.png'),
+      postDate: '2020-03-02 09:28',
+      beforeDate: '5일',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
+    },
+    {
+      commentID: 'test-comment-id',
+      userID: 'test-user-1', 
+      userName: '어떤유저123',
+      userImage: require('../../../assets/images/logo-transparent.png'),
+      postDate: '2020-03-02 09:28',
+      beforeDate: '5일',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
+    },
   ];
 
   return(
     <Modal 
     style={{width: contentWidth}}
-    className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-2 pt-16 items-center justify-end`}
+    className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-2 pt-8 items-center justify-end`}
     isVisible={showCommentModal}
+    avoidKeyboard={true}
     onBackButtonPress={handleCloseModal}
     onModalWillShow={handleSetUp}
     customBackdrop={
@@ -119,7 +147,7 @@ const CommentModal = ({
       </TouchableWithoutFeedback>
     }
     >
-      <View className='w-full h-fit bg-itemBgLight border-2 border-itemText rounded-2xl'>
+      <View className='shrink w-full h-fit bg-itemBgLight border-2 border-itemText rounded-2xl'>
         <View className='flex-col shrink w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>

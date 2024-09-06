@@ -1,6 +1,6 @@
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect, } from 'react';
 import { SideBarContext } from '../../pages/control/HomeControl';
-import { View, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, Image, } from 'react-native';
+import { Keyboard, View, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, Image, } from 'react-native';
 import Modal from 'react-native-modal';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
@@ -16,6 +16,27 @@ const CartEditModal = ({
   showEditModal, setShowEditModal, 
 }) => {
   const { wideScreen, contentWidth } = useContext(SideBarContext);
+
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  useEffect(() => {
+     const keyboardDidShowListener = Keyboard.addListener(
+       'keyboardDidShow',
+       () => {
+         setKeyboardVisible(true); // or some other action
+       }
+     );
+     const keyboardDidHideListener = Keyboard.addListener(
+       'keyboardDidHide',
+       () => {
+         setKeyboardVisible(false); // or some other action
+       }
+     );
+ 
+     return () => {
+       keyboardDidHideListener.remove();
+       keyboardDidShowListener.remove();
+     };
+   }, []);
 
   const resetCount = () => {
     setCount(item.quantity);
@@ -135,92 +156,95 @@ const CartEditModal = ({
       </TouchableWithoutFeedback>
     }
     >
-      <View className='w-full h-fit items-center justify-center space-y-4'>
+      <View className='shrink w-full h-fit items-center justify-center space-y-4'>
         {/* Top Card */}
-        <View className={`shrink ${wideScreen ? 'w-96' : 'w-full'} h-52 p-2 pt-1 bg-itemBgLight rounded-xl`}>
-          {/* Title Row */}
-          <View className='flex-row w-full h-8 justify-center'>
-            <View className='shrink w-full h-full justify-center'>
-              <TitleTextComponent translate={true} size={'text-xl'} css={'shrink w-full text-itemText'} numberOfLines={1}>
-                {item.title}
-              </TitleTextComponent>
-            </View>
-            <View className='w-fit h-full mx-2 items-center justify-center'>
-              <TouchableHighlight className='w-fit h-7 rounded-full'
-              activeOpacity={0.9} onPress={handleChangeLink}>
-                <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
-                  <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
-                    Change Item
-                  </TitleTextComponent>
-                </View>
-              </TouchableHighlight>
-            </View>
-
-            <View className='w-fit h-fit -mr-1'>
-              <ExitButtonLocal callback={handleCloseModal} background={'bg-itemBgLight'} />
-            </View>
-          </View>
-
-          {/* Content */}
-          <View className='flex-row shrink w-full h-full'>
-            <View className='w-28 h-full items-center'>
-              <View className='w-fit px-2 h-6 items-center justify-center bg-itemBgDark rounded-full'>
-                <TitleTextComponent translate={true} size={'text-base'} css={textColor}>
-                  {delivery}
+        {
+          isKeyboardVisible && showBottomCard ? null : 
+          <View className={`shrink ${wideScreen ? 'w-96' : 'w-full'} h-52 p-2 pt-1 bg-itemBgLight rounded-xl`}>
+            {/* Title Row */}
+            <View className='flex-row w-full h-8 justify-center'>
+              <View className='shrink w-full h-full justify-center'>
+                <TitleTextComponent translate={true} size={'text-xl'} css={'shrink w-full text-itemText'} numberOfLines={1}>
+                  {item.title}
                 </TitleTextComponent>
               </View>
-              <Image className='shrink w-28 mt-1 h-full rounded-md' source={item.image} />
-            </View>
-
-            {/* Right Side */}
-            <View className='shrink w-full h-full ml-2'>
-              <View className='w-full h-12 mt-3 items-center justify-center'>
-                <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
-                  {item.price * count}원
-                </TitleTextComponent>
-              </View>
-
-              <View className='shrink w-full h-full items-center justify-center'>
-                <Counter count={count} setCount={setCount} />
-              </View>
-
-              <View className='shrink w-full h-fit mt-2 items-center justify-center'>
-                <View className='flex-row shrink w-full h-full ml-2 items-center justify-center'>
-                  <TitleTextComponent translate={true} size={'text-lg'} css={'w-fit text-greenHighlight'}>
-                    Auto
-                  </TitleTextComponent>
-                  <TitleTextComponent size={'text-lg'} css={'w-fit mr-2 text-greenHighlight'}>
-                    : 
-                  </TitleTextComponent>
-                  <TitleTextComponent size={'text-lg'} css={'w-fit text-greenHighlight'}>
-                    {autoCount}개
-                  </TitleTextComponent>
-                </View>
-              </View>
-
-              <View className='flex-row w-full h-7 items-center justify-between'>
-                <TouchableHighlight className='w-16 h-full rounded-full '
-                activeOpacity={0.9} onPress={()=>setShowDeleteCheck(true)}>
-                  <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
-                    <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
-                      Delete
-                    </TitleTextComponent>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight className='w-16 h-full rounded-full '
-                activeOpacity={0.9} onPress={handleSavePress}>
-                  <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
-                    <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-greenHighlight'}>
-                      Save
+              <View className='w-fit h-full mx-2 items-center justify-center'>
+                <TouchableHighlight className='w-fit h-7 rounded-full'
+                activeOpacity={0.9} onPress={handleChangeLink}>
+                  <View className='w-fit h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                    <TitleTextComponent translate={true} size={'text-base'} css={'text-itemText'}>
+                      Change Item
                     </TitleTextComponent>
                   </View>
                 </TouchableHighlight>
               </View>
 
+              <View className='w-fit h-fit -mr-1'>
+                <ExitButtonLocal callback={handleCloseModal} background={'bg-itemBgLight'} />
+              </View>
+            </View>
 
+            {/* Content */}
+            <View className='flex-row shrink w-full h-full'>
+              <View className='w-28 h-full items-center'>
+                <View className='w-fit px-2 h-6 items-center justify-center bg-itemBgDark rounded-full'>
+                  <TitleTextComponent translate={true} size={'text-base'} css={textColor}>
+                    {delivery}
+                  </TitleTextComponent>
+                </View>
+                <Image className='shrink w-28 mt-1 h-full rounded-md' source={item.image} />
+              </View>
+
+              {/* Right Side */}
+              <View className='shrink w-full h-full ml-2'>
+                <View className='w-full h-12 mt-3 items-center justify-center'>
+                  <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
+                    {item.price * count}원
+                  </TitleTextComponent>
+                </View>
+
+                <View className='shrink w-full h-full items-center justify-center'>
+                  <Counter count={count} setCount={setCount} />
+                </View>
+
+                <View className='shrink w-full h-fit mt-2 items-center justify-center'>
+                  <View className='flex-row shrink w-full h-full ml-2 items-center justify-center'>
+                    <TitleTextComponent translate={true} size={'text-lg'} css={'w-fit text-greenHighlight'}>
+                      Auto
+                    </TitleTextComponent>
+                    <TitleTextComponent size={'text-lg'} css={'w-fit mr-2 text-greenHighlight'}>
+                      : 
+                    </TitleTextComponent>
+                    <TitleTextComponent size={'text-lg'} css={'w-fit text-greenHighlight'}>
+                      {autoCount}개
+                    </TitleTextComponent>
+                  </View>
+                </View>
+
+                <View className='flex-row w-full h-7 items-center justify-between'>
+                  <TouchableHighlight className='w-16 h-full rounded-full '
+                  activeOpacity={0.9} onPress={()=>setShowDeleteCheck(true)}>
+                    <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                      <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-redHighlight'}>
+                        Delete
+                      </TitleTextComponent>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight className='w-16 h-full rounded-full '
+                  activeOpacity={0.9} onPress={handleSavePress}>
+                    <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full'>
+                      <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-greenHighlight'}>
+                        Save
+                      </TitleTextComponent>
+                    </View>
+                  </TouchableHighlight>
+                </View>
+
+
+              </View>
             </View>
           </View>
-        </View>
+        }
 
         {/* Bottom Card */}
         {

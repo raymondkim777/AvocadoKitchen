@@ -21,9 +21,9 @@ const QuickSearchResults = ({
   }
 
   return (
-    <View className='w-full h-72 items-center justify-center rounded-xl overflow-hidden'>
+    <View className='shrink w-full h-72 items-center justify-center rounded-xl overflow-hidden'>
       {/* https://www.reactnativeschool.com/react-native-flatlist-grid */}
-      <FlatList className={`w-full h-full ${background} py-1 px-0.5`} 
+      <FlatList className={`shrink w-full h-full ${background} py-1 px-0.5`} 
         key={`flatList${numberOfColumns}`}
         horizontal={false}
         nestedScrollEnabled={true}
