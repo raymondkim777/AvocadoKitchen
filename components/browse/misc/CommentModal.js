@@ -1,6 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../../pages/control/HomeControl';
-import { View, TouchableWithoutFeedback, FlatList, Image, Text, TextInput, ScrollView, Alert } from 'react-native';
+import { View, TouchableWithoutFeedback, FlatList, Image, Text, TextInput, TouchableHighlight, ScrollView, Alert } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../../text/i18n'
@@ -8,10 +8,8 @@ import Modal from 'react-native-modal';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import SmallButton from '../../general/buttons/SmallButton';
 import TitleTextComponent from '../../text/TitleTextComponent';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import ArrowRightUp from "../../../assets/icons/arrowrightup.svg";
 import CircleArrowUp from "../../../assets/icons/circlearrowup.svg";
-import CirclePlus from "../../../assets/icons/circleplus.svg";
 import SendLetter from "../../../assets/icons/sendletter.svg";
 
 const CommentCard = ({item}) => {
@@ -75,7 +73,7 @@ const CommentModal = ({
   }
 
   const handleCommentPostPress = () => {
-   Alert.alert('test');
+    null;
   }
 
   const [commentInput, setCommentInput] = useState('');
@@ -175,12 +173,15 @@ const CommentModal = ({
               multiline={true}
               textAlignVertical={'top'}
               />
-              <TouchableHighlight className='w-10 h-10 mr-1 mb-1 rounded-lg' 
-              activeOpacity={0.9} onPress={handleCommentPostPress}>
-                <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
-                  <ArrowRightUp width={30} height={30} stroke={'#85855B'} strokeWidth={2} />
-                </View>
-              </TouchableHighlight>
+              {
+                commentInput == '' ? null : 
+                <TouchableHighlight className='w-10 h-10 mr-1 mb-1 rounded-lg' 
+                activeOpacity={0.9} onPress={handleCommentPostPress}>
+                  <View className='w-full h-full items-center justify-center bg-itemBgDark rounded-lg'>
+                    <SendLetter width={30} height={30} stroke={'#85855B'} strokeWidth={2} />
+                  </View>
+                </TouchableHighlight>
+              }
             </View>
           </View>
 
