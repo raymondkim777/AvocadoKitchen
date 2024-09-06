@@ -1,5 +1,6 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../control/HomeControl';
+import { MealContext } from '../control/AddMealControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
@@ -12,7 +13,12 @@ import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 
 const AddMealPage = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext)
+  const { wideScreen, setShowSideBar, updatePage } = useContext(SideBarContext);
+  const { 
+    recipeItem, setRecipeItem, 
+    ingredientItem, setIngredientItem,
+    procedureItem, setProcedureItem,
+  } = useContext(MealContext);
   
   useFocusEffect(
     React.useCallback(() => {
@@ -34,28 +40,20 @@ const AddMealPage = ({ navigation }) => {
     null;
   }
   const handleAddIngredient = () => {
-    navigation.navigate('AddIngredient', {
-      item: null,
-    });
+    navigation.navigate('AddIngredient');
   }
   const handleEditIngredient = (item) => {
-    navigation.navigate('AddIngredient', {
-      item: item,
-    });
+    setIngredientItem(item);
+    navigation.navigate('AddIngredient');
   }
 
   const handleAddProcedure = () => {
-    navigation.navigate('AddProcedure', {
-      procedureList: procedure,
-      index: null,
-    });
+    navigation.navigate('AddProcedure');
   }
 
-  const handleEditProcedure = (index) => {
-    navigation.navigate('AddProcedure', {
-      procedureList: procedure, 
-      index: index,
-    })
+  const handleEditProcedure = (item) => {
+    setProcedureItem(item);
+    navigation.navigate('AddProcedure');
   }
 
   const handleContinue = () =>{
@@ -234,7 +232,7 @@ const AddMealPage = ({ navigation }) => {
     setShowDropDown2(!showDropDown2);
   }
 
-  const [mealName, setMealName] = useState('');
+  const [mealName, setMealName] = useState(recipeItem.name);
  
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
@@ -369,7 +367,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <IngredientsTable ingredients={ingredients} handlePress={handleEditIngredient} />
+              <IngredientsTable ingredients={recipeItem.ingredients} handlePress={handleEditIngredient} />
             </View>
           </View>
 
@@ -385,7 +383,7 @@ const AddMealPage = ({ navigation }) => {
             </View>
             {/* Table */}
             <View className='w-full h-fit items-center justify-center mt-3'>
-              <ProcedureTable procedure={procedure} handlePress={handleEditProcedure} />
+              <ProcedureTable procedure={recipeItem.procedure} handlePress={handleEditProcedure} />
             </View>
           </View>
 

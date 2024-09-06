@@ -3,10 +3,6 @@ import { View, FlatList } from 'react-native';
 import IngredientsTableRow from './IngredientsTableRow';
 import TitleTextComponent from '../../text/TitleTextComponent';
 
-const RowDiv = () => (
-  <View className='w-full h-[1px] bg-itemBgDark' />
-);
-
 const IngredientsTable = ({ ingredients, handlePress }) => (
   <View className='grow w-full h-48 items-center justify-center'>
     {/* Header */}
@@ -29,9 +25,9 @@ const IngredientsTable = ({ ingredients, handlePress }) => (
       nestedScrollEnabled={true}
       className='w-full h-fit rounded-b-lg'
       data={ingredients}
-      renderItem={({item, index}) => <IngredientsTableRow item={item} index={index} handlePress={handlePress}/>}
-      ItemSeparatorComponent={RowDiv}
-      ListFooterComponent={RowDiv}
+      renderItem={({item}) => <IngredientsTableRow item={item} handlePress={handlePress}/>}
+      ItemSeparatorComponent={<View className='w-full h-[1px] bg-itemBgDark' />}
+      ListFooterComponent={<View className='w-full h-[1px] bg-itemBgDark' />}
       />
     </View>
   </View>

@@ -3,10 +3,6 @@ import { View, FlatList } from 'react-native';
 import ProcedureTableRow from './ProcedureTableRow';
 import TitleTextComponent from '../../text/TitleTextComponent';
 
-const RowDiv = () => (
-  <View className='w-full h-[1px] bg-itemBgDark' />
-);
-
 const ProcedureTable = ({ procedure, handlePress }) => (
   <View className='grow w-full h-48 items-center justify-center'>
     {/* Header */}
@@ -27,9 +23,9 @@ const ProcedureTable = ({ procedure, handlePress }) => (
       nestedScrollEnabled={true}
       className='w-full h-fit rounded-b-lg'
       data={procedure}
-      renderItem={({item, index}) => <ProcedureTableRow item={item} index={index} handlePress={handlePress}/>}
-      ItemSeparatorComponent={RowDiv}
-      ListFooterComponent={RowDiv}
+      renderItem={({item}) => <ProcedureTableRow item={item} handlePress={handlePress}/>}
+      ItemSeparatorComponent={<View className='w-full h-[1px] bg-itemBgDark' />}
+      ListFooterComponent={<View className='w-full h-[1px] bg-itemBgDark' />}
       />
     </View>
   </View>

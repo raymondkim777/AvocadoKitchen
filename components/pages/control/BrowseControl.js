@@ -4,8 +4,8 @@ import { CommonActions } from '@react-navigation/native';
 import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import 'intl-pluralrules';
 import '../../text/i18n'
-import Browse from '../main/Browse';
-import RecipePage from '../additional/RecipePage';
+import Browse from '../browse/Browse';
+import RecipePage from '../browse/RecipePage';
 
 const BrowsePageStack = createStackNavigator();
 

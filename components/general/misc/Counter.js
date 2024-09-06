@@ -3,9 +3,9 @@ import { View, Text, TouchableHighlight, } from 'react-native';
 import Minus from '../../../assets/icons/minus.svg';
 import Plus from '../../../assets/icons/plus.svg';
 
-const Counter = ({ count, setCount, background='bg-itemBgDark', minCount = 1, maxCount = 99 }) => {
-  const [countDownDisable, setCountDownDisable] = useState(count <= minCount);
-  const [countUpDisable, setCountUpDisable] = useState(count >= maxCount);
+const Counter = ({ count, setCount, disabled = false, background='bg-itemBgDark', minCount = 1, maxCount = 99 }) => {
+  const [countDownDisable, setCountDownDisable] = useState(disabled || count <= minCount);
+  const [countUpDisable, setCountUpDisable] = useState(disabled || count >= maxCount);
 
   const countUp = () => {
     if (countDownDisable)

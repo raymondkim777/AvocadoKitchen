@@ -154,12 +154,12 @@ const Browse = ({ navigation }) => {
       ],
       procedure: [
         {
-          step: 1, 
+          index: 1, 
           description: '(Recipe Step 1)',
           image: require('../../../assets/images/procedure-example/step-1.webp'),
         },
         {
-          step: 2, 
+          index: 2, 
           description: '(Recipe Step 2)',
           image: require('../../../assets/images/procedure-example/step-2.jpg'),
         },

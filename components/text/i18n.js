@@ -223,11 +223,13 @@ const resources = {
       "SomeOtherTag": "SomeOtherTag",
 
       // AddIngredient
-      "Add/Edit Ingredient": "Add/Edit Ingredient",
+      "Add Ingredient": "Add Ingredient",
+      "Edit Ingredient": "Edit Ingredient",
       "Order Ingredient": "Order Ingredient",
       "Order Yes": "Order Yes",
       "Order No": "Order No",
       "Quick Search": "Quick Search",
+      "Quich Search Long": "Quich Search: Coupang/Curly",
       "Coupang": "Coupang", 
       "Curly": "Curly",
       "(Quick Search Error)": "We're having trouble finding this ingredient.",
@@ -240,6 +242,7 @@ const resources = {
       "Change Image": "Change Image",
       "Delete Image": "Delete Image",
       "Link Invalid Message": "Please input a valid link",
+      "SaveCheck Error Message": "Please input all fields",
       "Save": "Save",
       ////////
       "ex. Canned Tuna": "ex. Canned Tuna", 
@@ -248,6 +251,7 @@ const resources = {
 
       // AddProcedure
       "Add Procedure Step": "Add Procedure Step",
+      "Edit Procedure Step": "Edit Procedure Step",
       "Step": "Step",
       "Step Number": "Step Number",
       "Description": "Description", 
@@ -479,11 +483,13 @@ const resources = {
       "SomeOtherTag": "어쩌고저쩌고",
       
       // AddIngredient
-      "Add/Edit Ingredient": "재료 추가/수정",
+      "Add Ingredient": "재료 추가",
+      "Edit Ingredient": "재료 수정",
       "Order Ingredient": "재료 주문하기",
       "Order Yes": "주문하기",
       "Order No": "주문안하기",
       "Quick Search": "간편 검색", 
+      "Quich Search Long": "간편 검색: 쿠팡/컬리",
       "Coupang": "쿠팡", 
       "Curly": "컬리",
       "(Quick Search Error)": "검색한 재료가 없습니다.",
@@ -496,6 +502,7 @@ const resources = {
       "Change Image": "사진 변경",
       "Delete Image": "사진 삭제",
       "Link Invalid Message": "유효한 주소를 입력해주세요",
+      "SaveCheck Error Message": "안채워진 정보가 있습니다",
       "Save": "저장",
       ////////
       "ex. Canned Tuna": "ex. 참치 통조림", 
@@ -504,6 +511,7 @@ const resources = {
 
       // Add Procedure
       "Add Procedure Step": "조리과정 추가",
+      "Edit Procedure Step": "조리과정 수정",
       "Step": "Step",
       "Step Number": "레시피 순서",
       "Description": "설명", 

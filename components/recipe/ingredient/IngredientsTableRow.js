@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableHighlight } from 'react-native';
 import ItemTextComponent from '../../text/ItemTextComponent';
 
-const IngredientsTableRow = ({ item, index, handlePress }) => {
+const IngredientsTableRow = ({ item, handlePress }) => {
 
   return(
     <TouchableHighlight className={`w-full h-8`}
