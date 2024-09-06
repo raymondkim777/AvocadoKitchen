@@ -37,7 +37,7 @@ const AddMealPage = ({ navigation }) => {
   ); 
   
   const handleExitPress = () => {
-    recipeItem.preset ? navigation.goBack() : updatePage(0);
+    recipeItem.preset ? updatePage(3, true, { screen: 'RecipePage' }) : updatePage(0);
   }
 
   const handleChooseRecipe = () => {
@@ -328,16 +328,20 @@ const AddMealPage = ({ navigation }) => {
           </View>
 
           {/* Choose Recipe Button */}
-          <View className='flex-col w-full h-fit items-center justify-center mt-6'>
-            <View className='w-full h-6'>
-              <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
-                Quick Meal Search
-              </TitleTextComponent>
-            </View>
-            <View className='flex-row w-full h-fit justify-start mt-2'>
-                <SmallButton text='Choose a Recipe' callback={handleChooseRecipe}/>
-            </View>
-          </View>
+          {
+            recipeItem.preset
+            ? null
+            : <View className='flex-col w-full h-fit items-center justify-center mt-6'>
+                <View className='w-full h-6'>
+                  <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
+                    Quick Meal Search
+                  </TitleTextComponent>
+                </View>
+                <View className='flex-row w-full h-fit justify-start mt-2'>
+                    <SmallButton text='Choose a Recipe' callback={handleChooseRecipe}/>
+                </View>
+              </View>
+          }
 
           {/* Name */}
           <View className='flex-col w-full h-fit mt-6'>
