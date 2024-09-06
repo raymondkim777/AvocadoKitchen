@@ -1,7 +1,5 @@
-import React, { useState, useTransition, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { CommonActions } from '@react-navigation/native';
-import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
 import 'intl-pluralrules';
 import '../../text/i18n'
 import AddMealPage from '../addmeal/AddMealPage';
@@ -12,11 +10,14 @@ import AddProcedure from '../addmeal/AddProcedure';
 const MealPageStack = createStackNavigator();
 export const MealContext = createContext();
 
+const AddMealControl = ({ route, navigation }) => {
 
-const AddMealControl = ({ navigation }) => {
+  const selectedRecipeItem = route.params?.selectedRecipeItem;
 
-  const [recipeItem, setRecipeItem] = useState({
-    preset: true,
+  const [recipeItem, setRecipeItem] = useState(
+    selectedRecipeItem != undefined ? selectedRecipeItem : {
+    preset: false,
+    id: '',
     title: '', 
     nutrition: {
       cal: 0,
@@ -36,6 +37,7 @@ const AddMealControl = ({ navigation }) => {
   const [ingredientItem, setIngredientItem] = useState({
     preset: false,
     index: 0,
+    id: '',
     name: '',
     amount: null,
     unit: 'g',
@@ -44,7 +46,7 @@ const AddMealControl = ({ navigation }) => {
   },)
   const [procedureItem, setProcedureItem] = useState({
     preset: false,
-    index: 1, 
+    index: 0, 
     description: '',
     image: null,
   });

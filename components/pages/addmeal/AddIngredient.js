@@ -14,9 +14,7 @@ import LargeButton from '../../general/buttons/LargeButton';
 import Search from "../../../assets/icons/search.svg";
 import { MealContext } from '../control/AddMealControl';
 
-const AddIngredient = ({
-  navigation,
-}) => {
+const AddIngredient = ({ navigation }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 
@@ -30,6 +28,7 @@ const AddIngredient = ({
     setIngredientItem({
       preset: false,
       index: 0,
+      id: '',
       name: '',
       amount: null,
       unit: 'g',
@@ -70,6 +69,7 @@ const AddIngredient = ({
       const newIngredientItem = {
         preset: true,
         index: recipeItem.ingredients.length ,
+        id: '',
         name: mealName,
         amount: parseFloat(amount),
         unit: unitList[unitIndex],

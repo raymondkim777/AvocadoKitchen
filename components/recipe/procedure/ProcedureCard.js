@@ -19,7 +19,7 @@ const ProcedureCard = ({ item, width, handlePress}) => {
             Step
           </TitleTextComponent> 
           <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-            {item.step}
+            {item.index + 1}
           </TitleTextComponent> 
         </View>
         <Image className='shrink w-full h-full mt-1 rounded-md' source={item.image}/>

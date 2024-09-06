@@ -16,7 +16,7 @@ const ProcedureCardLarge = ({item}) => {
           Step
         </TitleTextComponent> 
         <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
-          {item.step}
+          {item.index + 1}
         </TitleTextComponent> 
       </View>
       <Image className='shrink h-72 w-full mt-2 rounded-lg' source={item.image}/>

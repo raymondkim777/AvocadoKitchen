@@ -1,4 +1,6 @@
 import React, { useState, useContext, } from 'react';
+import { SideBarContext } from '../control/HomeControl';
+import { BrowseContext } from '../control/BrowseControl';
 import { View, SafeAreaView, Dimensions, ScrollView, } from 'react-native';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import IngredientsSection from '../../recipe/ingredient/IngredientsSection';
@@ -12,10 +14,10 @@ import ProcedureCardModal from '../../recipe/procedure/ProcedureCardModal';
 
 const { width, height } = Dimensions.get('window');
 
-const RecipePage = ({
-  route, navigation,
-}) => {
-  const { recipeItem } = route.params;
+const RecipePage = ({ navigation }) => {
+  
+  const { updatePage } = useContext(SideBarContext);
+  const { selectedRecipeItem } = useContext(BrowseContext);
 
   const handleExitPress = () => {
     navigation.goBack();
@@ -36,8 +38,10 @@ const RecipePage = ({
   }
 
   const handleRecipeAddPress = () => {
-    navigation.goBack();
-    // probably need an alert check 
+    updatePage(4, true, {
+      screen: 'AddMealPage',
+      params: { selectedRecipeItem: selectedRecipeItem },
+    });
   }
 
   const handleCommentPress = () => {
@@ -73,7 +77,7 @@ const RecipePage = ({
           </View>
 
           {/* Name / Ingredients */}
-          <View className={`${(recipeItem.procedure.length == 0 || recipeItem.ingredients.length == 0) ? '' : 'grow'} flex-col w-full h-fit items-center justify-center mt-4`}>
+          <View className={`${(selectedRecipeItem.procedure.length == 0 || selectedRecipeItem.ingredients.length == 0) ? '' : 'grow'} flex-col w-full h-fit items-center justify-center mt-4`}>
             {/* Name */}
             <View className='flex-row w-full h-12 items-center'>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText ml-4'}>
@@ -83,29 +87,29 @@ const RecipePage = ({
                 :
               </TitleTextComponent>
               <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText'}>
-                {recipeItem.title}
+                {selectedRecipeItem.title}
               </TitleTextComponent>
             </View>
 
             {/* Ingredients */}
             {
-              recipeItem.ingredients.length == 0
+              selectedRecipeItem.ingredients.length == 0
               ? <IngredientsSectionEmpty />
               : <IngredientsSection 
-                ingredients={recipeItem.ingredients} 
+                ingredients={selectedRecipeItem.ingredients} 
                 handlePress={handleExpandIngredient} />
             }
           </View>
           
           {/* Procedure */}
-          <View className={`${(recipeItem.procedure.length == 0 || recipeItem.ingredients.length == 0) ? '' : 'grow'} w-full h-fit items-center justify-center`}>
+          <View className={`${(selectedRecipeItem.procedure.length == 0 || selectedRecipeItem.ingredients.length == 0) ? '' : 'grow'} w-full h-fit items-center justify-center`}>
             {
-              recipeItem.procedure.length == 0
+              selectedRecipeItem.procedure.length == 0
               ? <ProcedureSectionEmpty />
               : <ProcedureSection 
                   onLayout={onLayout}
                   viewWidth={viewWidth}
-                  procedure={recipeItem.procedure}
+                  procedure={selectedRecipeItem.procedure}
                   divWidth={4}
                   handlePress={handleExpandProcedure}
                   />

@@ -11,9 +11,7 @@ import LargeButton from '../../general/buttons/LargeButton';
 import Counter from '../../general/misc/Counter';
 import { MealContext } from '../control/AddMealControl';
 
-const AddProcedure = ({
-  navigation
-}) => {
+const AddProcedure = ({ navigation }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
 

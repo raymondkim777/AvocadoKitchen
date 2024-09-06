@@ -4,7 +4,7 @@ import { MealContext } from '../control/AddMealControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
-import ExitButton from '../../general/buttons/ExitButton';
+import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import SmallButton from '../../general/buttons/SmallButton';
 import LargeButton from '../../general/buttons/LargeButton';
 import IngredientsTable from '../../recipe/ingredient/IngredientsTable';
@@ -15,9 +15,9 @@ import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 const AddMealPage = ({ navigation }) => {
   const { wideScreen, setShowSideBar, updatePage } = useContext(SideBarContext);
   const { 
-    recipeItem, setRecipeItem, 
-    ingredientItem, setIngredientItem,
-    procedureItem, setProcedureItem,
+    recipeItem,  
+    setIngredientItem,
+    setProcedureItem,
   } = useContext(MealContext);
   
   useFocusEffect(
@@ -36,6 +36,10 @@ const AddMealPage = ({ navigation }) => {
     })
   ); 
   
+  const handleExitPress = () => {
+    recipeItem.preset ? navigation.goBack() : updatePage(0);
+  }
+
   const handleChooseRecipe = () => {
     null;
   }
@@ -246,7 +250,7 @@ const AddMealPage = ({ navigation }) => {
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
             Add Your Meal
             </TitleTextComponent>
-            <ExitButton exitCheck={true}/>
+            <ExitButtonGeneral handleMainFunction={handleExitPress} exitCheck={true}/>
           </View>
 
           {

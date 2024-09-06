@@ -1,5 +1,6 @@
 import React, { useState, useRef, useContext } from 'react';
 import { SideBarContext } from '../control/HomeControl';
+import { BrowseContext } from '../control/BrowseControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, ScrollView, FlatList, Pressable, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
@@ -16,7 +17,17 @@ import Search from "../../../assets/icons/search.svg";
 
 const Browse = ({ navigation }) => {
   const scrollRef = useRef();
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const { wideScreen, setShowSideBar, updatePage } = useContext(SideBarContext);
+  const { setSelectedRecipeItem } = useContext(BrowseContext);
+
+  const handleSearch = () => {
+    null;
+  }
+
+  const handleRecipePress = (item) => {
+    setSelectedRecipeItem(item);
+    navigation.navigate('RecipePage');
+  }
 
   useFocusEffect(
     React.useCallback(() => {
@@ -64,6 +75,7 @@ const Browse = ({ navigation }) => {
   ]
   const recipes = [
     {
+      preset: true,
       id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
@@ -80,6 +92,8 @@ const Browse = ({ navigation }) => {
       image: require('../../../assets/images/recipe-1.webp'),
       ingredients: [
         {
+          preset: true,
+          index: 0,
           id: 'canned-tuna',
           name: 'Canned Tuna',
           amount: 1,
@@ -88,6 +102,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 1,
           id: 'celery',
           name: 'Celery',
           amount: '1/3', 
@@ -96,6 +112,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 2,
           id: 'red-onion',
           name: 'Red Onion',
           amount: 2, 
@@ -104,6 +122,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 3,
           id: 'pickle-relish',
           name: 'Sweet Pickle Relish',
           amount: 2, 
@@ -112,6 +132,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 4,
           id: 'lemon',
           name: 'Lemon',
           amount: 1,
@@ -120,6 +142,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 5,
           id: 'garlic-clove',
           name: 'Garlic Clove',
           amount: 1, 
@@ -128,6 +152,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 6,
           id: 'salt',
           name: 'Salt',
           amount: 0, 
@@ -136,6 +162,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 7,
           id: 'black-pepper',
           name: 'Black Pepper',
           amount: 0, 
@@ -144,6 +172,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 8,
           id: 'mayo',
           name: 'Mayonnaise',
           amount: 1,
@@ -154,18 +184,21 @@ const Browse = ({ navigation }) => {
       ],
       procedure: [
         {
+          preset: true,
+          index: 0, 
+          description: '(Recipe Step 1)',
+          image: require('../../../assets/images/procedure-example/step-1.webp'),
+        },
+        {
+          preset: true,
           index: 1, 
-          description: '(Recipe Step 1)',
-          image: require('../../../assets/images/procedure-example/step-1.webp'),
-        },
-        {
-          index: 2, 
           description: '(Recipe Step 2)',
           image: require('../../../assets/images/procedure-example/step-2.jpg'),
         },
       ],
     },
     {
+      preset: true,
       id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
@@ -182,6 +215,8 @@ const Browse = ({ navigation }) => {
       image: require('../../../assets/images/recipe-1.webp'),
       ingredients: [
         {
+          preset: true,
+          index: 0,
           id: 'canned-tuna',
           name: 'Canned Tuna',
           amount: 1,
@@ -190,6 +225,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 1,
           id: 'celery',
           name: 'Celery',
           amount: '1/3', 
@@ -198,6 +235,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 2,
           id: 'red-onion',
           name: 'Red Onion',
           amount: 2, 
@@ -206,6 +245,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 3,
           id: 'pickle-relish',
           name: 'Sweet Pickle Relish',
           amount: 2, 
@@ -214,6 +255,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 4,
           id: 'lemon',
           name: 'Lemon',
           amount: 1,
@@ -222,6 +265,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 5,
           id: 'garlic-clove',
           name: 'Garlic Clove',
           amount: 1, 
@@ -230,6 +275,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 6,
           id: 'salt',
           name: 'Salt',
           amount: 0, 
@@ -238,6 +285,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 7,
           id: 'black-pepper',
           name: 'Black Pepper',
           amount: 0, 
@@ -246,6 +295,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 8,
           id: 'mayo',
           name: 'Mayonnaise',
           amount: 1,
@@ -256,18 +307,21 @@ const Browse = ({ navigation }) => {
       ],
       procedure: [
         {
-          step: 1, 
+          preset: true,
+          index: 0, 
           description: '(Recipe Step 1)',
           image: require('../../../assets/images/procedure-example/step-1.webp'),
         },
         {
-          step: 2, 
+          preset: true,
+          index: 1, 
           description: '(Recipe Step 2)',
           image: require('../../../assets/images/procedure-example/step-2.jpg'),
         },
       ],
     },
     {
+      preset: true,
       id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
@@ -284,6 +338,8 @@ const Browse = ({ navigation }) => {
       image: require('../../../assets/images/recipe-1.webp'),
       ingredients: [
         {
+          preset: true,
+          index: 0,
           id: 'canned-tuna',
           name: 'Canned Tuna',
           amount: 1,
@@ -292,6 +348,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 1,
           id: 'celery',
           name: 'Celery',
           amount: '1/3', 
@@ -300,6 +358,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 2,
           id: 'red-onion',
           name: 'Red Onion',
           amount: 2, 
@@ -308,6 +368,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 3,
           id: 'pickle-relish',
           name: 'Sweet Pickle Relish',
           amount: 2, 
@@ -316,6 +378,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 4,
           id: 'lemon',
           name: 'Lemon',
           amount: 1,
@@ -324,6 +388,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 5,
           id: 'garlic-clove',
           name: 'Garlic Clove',
           amount: 1, 
@@ -332,6 +398,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 6,
           id: 'salt',
           name: 'Salt',
           amount: 0, 
@@ -340,6 +408,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 7,
           id: 'black-pepper',
           name: 'Black Pepper',
           amount: 0, 
@@ -348,6 +418,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 8,
           id: 'mayo',
           name: 'Mayonnaise',
           amount: 1,
@@ -358,18 +430,21 @@ const Browse = ({ navigation }) => {
       ],
       procedure: [
         {
-          step: 1, 
+          preset: true,
+          index: 0, 
           description: '(Recipe Step 1)',
           image: require('../../../assets/images/procedure-example/step-1.webp'),
         },
         {
-          step: 2, 
+          preset: true,
+          index: 1, 
           description: '(Recipe Step 2)',
           image: require('../../../assets/images/procedure-example/step-2.jpg'),
         },
       ],
     },
     {
+      preset: true,
       id: 'recipe-1',
       title: 'Tuna Sandwich', 
       nutrition: {
@@ -386,6 +461,8 @@ const Browse = ({ navigation }) => {
       image: require('../../../assets/images/recipe-1.webp'),
       ingredients: [
         {
+          preset: true,
+          index: 0,
           id: 'canned-tuna',
           name: 'Canned Tuna',
           amount: 1,
@@ -394,6 +471,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 1,
           id: 'celery',
           name: 'Celery',
           amount: '1/3', 
@@ -402,6 +481,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 2,
           id: 'red-onion',
           name: 'Red Onion',
           amount: 2, 
@@ -410,6 +491,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 3,
           id: 'pickle-relish',
           name: 'Sweet Pickle Relish',
           amount: 2, 
@@ -418,6 +501,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 4,
           id: 'lemon',
           name: 'Lemon',
           amount: 1,
@@ -426,6 +511,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 5,
           id: 'garlic-clove',
           name: 'Garlic Clove',
           amount: 1, 
@@ -434,6 +521,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 6,
           id: 'salt',
           name: 'Salt',
           amount: 0, 
@@ -442,6 +531,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 7,
           id: 'black-pepper',
           name: 'Black Pepper',
           amount: 0, 
@@ -450,6 +541,8 @@ const Browse = ({ navigation }) => {
           link: 'https://coupang.com/example_link',
         },
         {
+          preset: true,
+          index: 8,
           id: 'mayo',
           name: 'Mayonnaise',
           amount: 1,
@@ -460,12 +553,14 @@ const Browse = ({ navigation }) => {
       ],
       procedure: [
         {
-          step: 1, 
+          preset: true,
+          index: 0, 
           description: '(Recipe Step 1)',
           image: require('../../../assets/images/procedure-example/step-1.webp'),
         },
         {
-          step: 2, 
+          preset: true,
+          index: 1, 
           description: '(Recipe Step 2)',
           image: require('../../../assets/images/procedure-example/step-2.jpg'),
         },
@@ -496,16 +591,6 @@ const Browse = ({ navigation }) => {
   const [filterDirIdx, setFilterDirIdx] = useState(0);
   const shiftFilterDirIdx = () => {
     setFilterDirIdx((filterDirIdx + 1) % filterDirShort.length);
-  }
-
-  const handleSearch = () => {
-    null;
-  }
-
-  const handleRecipePress = (item) => {
-    navigation.navigate('RecipePage', {
-      recipeItem: item,
-    });
   }
 
   // Pages

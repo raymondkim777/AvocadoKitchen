@@ -1,7 +1,7 @@
 import React, {useState, useTransition, createContext} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CommonActions } from '@react-navigation/native';
-import { Text, View, Dimensions, SafeAreaView, Image,ScrollView,  TextInput, TouchableOpacity, StyleSheet, Platform, FlatList } from 'react-native';
+import { View, Dimensions, SafeAreaView, Platform, } from 'react-native';
 import 'intl-pluralrules';
 import '../../text/i18n'
 import HomePage from '../main/HomePage';
@@ -69,20 +69,35 @@ const HomeControl = ({ navigation }) => {
     new_text[index] = 'text-itemBgLight';
     setTextCSS(new_text);
   }
-  const updateStack = (index) => {
+  const updateStack = (index, options = {}) => {
+    let initialOptions = { screen: index == 3 ? 'Browse' : index == 4 ? 'AddMealPage' : undefined };
+    if ('screen' in options) {
+      initialOptions.screen = options.screen;
+    }
+    let navOptions = {...initialOptions, ...options.params};
+
     navigation.dispatch(
-      CommonActions.navigate(pageID[index])
+      CommonActions.navigate({
+        name: pageID[index], 
+        params: navOptions,
+      })
     );
   }
   {/*
     forceUpdateStack is for Modal Sidebar delay; 
     SideBarPage callback only runs updateSideBar, 
     Modal onModalHide runs updateStack.
+
+    updatePage format: 
+      updatePage(0, true, {
+        screen: 'InsertScreenHere',
+        params: { key: value },
+      });
   */}
-  const updatePage = (index, forceUpdateStack = true) => { 
+  const updatePage = (index, forceUpdateStack = true, options = {}) => { 
     updateSideBar(index);
     if (wideScreen || forceUpdateStack) {
-      updateStack(index);
+      updateStack(index, options);
     } 
   }
   
@@ -131,14 +146,6 @@ const HomeControl = ({ navigation }) => {
           
         </PageStack.Navigator>        
       </SideBarContext.Provider>
-
-      {/*
-      <PagePopup 
-      navigation={navigation}
-      wideScreen={wideScreen}
-      index={showScreenIdx} 
-      setShowSideBar={setShowSideBar}/>
-      */}
         
     </Container>
   );
