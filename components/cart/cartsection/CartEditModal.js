@@ -159,7 +159,7 @@ const CartEditModal = ({
       <View className='shrink w-full h-fit items-center justify-center space-y-4'>
         {/* Top Card */}
         {
-          isKeyboardVisible && showBottomCard ? null : 
+          isKeyboardVisible && showBottomCard && showResults? null : 
           <View className={`shrink ${wideScreen ? 'w-96' : 'w-full'} h-52 p-2 pt-1 bg-itemBgLight rounded-xl`}>
             {/* Title Row */}
             <View className='flex-row w-full h-8 justify-center'>
