@@ -33,19 +33,17 @@ const CommentCard = ({item}) => {
             </TitleTextComponent>
           </View>
           {/* Bottom Row */}
-          <View className='flex-row shrink w-full max-h-32 items-center justify-start'>
-            <ScrollView nestedScrollEnabled={true} className='w-full mt-2'>
-              <View className='w-full h-fit pb-1 items-center justify-center'>
-                {/* Custom ItemTextComponent due to complications */}
-                <Text className={`
-                  ${(currentLanguage  === 'ko-KR') 
-                    ? "w-full font-koreanFont2 text-itemText text-start text-2xl leading-5" 
-                    : 'w-full font-inconsolata text-itemText text-start text-base leading-4'}
-                `}>
-                  {t(item.text)}
-                </Text>
-              </View>
-            </ScrollView>
+          <View className='flex-row w-full h-fit items-center justify-start'>
+            <View className='w-full h-fit pb-1 items-center justify-center'>
+              {/* Custom ItemTextComponent due to complications */}
+              <Text className={`
+                ${(currentLanguage  === 'ko-KR') 
+                  ? "w-full font-koreanFont2 text-itemText text-start text-2xl leading-5" 
+                  : 'w-full font-inconsolata text-itemText text-start text-base leading-4'}
+              `}>
+                {item.text}
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -86,7 +84,7 @@ const CommentModal = ({
       userImage: require('../../../assets/images/logo-transparent.png'),
       postDate: '2020-03-02 09:28',
       beforeDate: '5일',
-      text: 'Example Comment 1',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!! 다만 저희 식구에겐 너무 달았습니다ㅠㅠ 진짜 요리고잔데 레시피대로 했더니 너무 맛있어요 ㅎㅎ아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!! 다만 저희 식구에겐 너무 달았습니다ㅠㅠ 진짜 요리고잔데 레시피대로 했더니 너무 맛있어요 ㅎㅎ',
     },
     {
       commentID: 'test-comment-id',
@@ -95,7 +93,7 @@ const CommentModal = ({
       userImage: require('../../../assets/images/logo-transparent.png'),
       postDate: '2020-03-02 09:28',
       beforeDate: '5일',
-      text: 'Example Comment 2',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
     {
       commentID: 'test-comment-id',
@@ -104,7 +102,7 @@ const CommentModal = ({
       userImage: require('../../../assets/images/logo-transparent.png'),
       postDate: '2020-03-02 09:28',
       beforeDate: '5일',
-      text: 'Example Comment 2',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
   ];
 
@@ -113,8 +111,6 @@ const CommentModal = ({
     style={{width: contentWidth}}
     className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-2 pt-16 items-center justify-end`}
     isVisible={showCommentModal}
-    onSwipeComplete={handleCloseModal}
-    swipeDirection='down'
     onBackButtonPress={handleCloseModal}
     onModalWillShow={handleSetUp}
     customBackdrop={
@@ -123,7 +119,7 @@ const CommentModal = ({
       </TouchableWithoutFeedback>
     }
     >
-      <View className='w-full h-fit bg-itemBgLight border-2 border-itemText rounded-xl'>
+      <View className='w-full h-fit bg-itemBgLight border-2 border-itemText rounded-2xl'>
         <View className='flex-col shrink w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
@@ -148,7 +144,6 @@ const CommentModal = ({
           data={commentList}
           renderItem={({item}) => <CommentCard item={item} />}
           ItemSeparatorComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
-          
           ListHeaderComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
           ListFooterComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
           />
