@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, TouchableHighlight } from 'react-native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextComponent from '../../text/ItemTextComponent';
@@ -13,35 +13,41 @@ const TagSuggestRemoveButton = ({callback}) => (
   </TouchableHighlight>
 )
 
-const TagSuggest = ({tagQuery, addTag}) => {
-  const suggestedTag = {
-    id: '0',
-    text: tagQuery,
+const TagSuggest = ({tagQuery, tagID, addTagPress, showSuggest}) => {
+  const [showTagSuggest, setShowTagSuggest] = useState(showSuggest);
+
+  useEffect(() => {
+    tagQuery == '' ? null : setShowTagSuggest(true);
+  }, [tagQuery])
+
+  const addSuggestion = () => {
+    addTagPress(tagQuery, tagID);
+    setShowTagSuggest(false);
   }
 
   const removeSuggestion = () => {
-    
+    setShowTagSuggest(false);
   }
 
   return (
     (
-      tagQuery == ''
-      ? null
-      : <View className='flex-row w-fit h-10 items-center justify-center'>
+      showSuggest && showTagSuggest
+      ? <View className='flex-row w-fit h-10 items-center justify-center'>
           <TitleTextComponent translate={true} bold={true} size={'text-xl'} css={'text-itemText'}>
             Found
           </TitleTextComponent>
           <TitleTextComponent size={'text-xl'} css={'text-itemText mr-2'}>
             :
           </TitleTextComponent>
-          <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center pl-2 pr-1 bg-itemBgDark rounded-lg'
-            activeOpacity={0.7} onPress={()=>addTag(suggestedTag.id)}>
+          <TouchableOpacity className='flex-row w-fit h-7 items-center justify-center pl-2 pr-0.5 bg-itemBgDark rounded-lg'
+            activeOpacity={0.7} onPress={addSuggestion}>
             <ItemTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText mr-2'}>
-              {suggestedTag.text}
+              {tagQuery}
             </ItemTextComponent>
             <TagSuggestRemoveButton callback={removeSuggestion} />
           </TouchableOpacity>
         </View>
+      : null
     )
   )
 }
