@@ -8,12 +8,15 @@ import RecipePage from '../browse/RecipePage';
 const BrowsePageStack = createStackNavigator();
 export const BrowseContext = createContext();
 
-const BrowseControl = ({ navigation }) => {
+const BrowseControl = ({ route, navigation }) => {
 
-  const [selectedRecipeItem, setSelectedRecipeItem] = useState(null);
+  const presetRecipeItem = route.params?.presetRecipeItem;
+  const originPage = route.params?.originPage;
+
+  const [selectedRecipeItem, setSelectedRecipeItem] = useState(presetRecipeItem != undefined ? presetRecipeItem : null);
 
   const BrowseContextValue = { 
-    selectedRecipeItem, setSelectedRecipeItem 
+    originPage, selectedRecipeItem, setSelectedRecipeItem 
   };
 
   return(

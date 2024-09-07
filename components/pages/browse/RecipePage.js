@@ -16,10 +16,12 @@ import CommentModal from '../../browse/misc/CommentModal';
 const RecipePage = ({ navigation }) => {
   
   const { updatePage } = useContext(SideBarContext);
-  const { recipeItem, selectedRecipeItem } = useContext(BrowseContext);
+  const { originPage, selectedRecipeItem } = useContext(BrowseContext);
 
   const handleExitPress = () => {
-    navigation.goBack();
+    originPage == 'HomePage' ? updatePage(0)
+    : originPage == 'MyMeals' ? updatePage(1)
+    : navigation.goBack();
   }
 
   const handleExpandIngredient = (item) => {
@@ -39,7 +41,10 @@ const RecipePage = ({ navigation }) => {
   const handleRecipeAddPress = () => {
     updatePage(4, true, {
       screen: 'AddMealPage',
-      params: { selectedRecipeItem: selectedRecipeItem },
+      params: { 
+        originPage: 'RecipePage',
+        selectedRecipeItem: selectedRecipeItem 
+      },
     });
   }
 

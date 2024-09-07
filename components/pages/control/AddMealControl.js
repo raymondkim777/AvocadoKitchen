@@ -13,6 +13,7 @@ export const MealContext = createContext();
 const AddMealControl = ({ route, navigation }) => {
 
   const selectedRecipeItem = route.params?.selectedRecipeItem;
+  const originPage = route.params?.originPage;
 
   const [recipeItem, setRecipeItem] = useState(
     selectedRecipeItem != undefined ? selectedRecipeItem : {
@@ -53,6 +54,7 @@ const AddMealControl = ({ route, navigation }) => {
   });
 
   const MealContextValue = { 
+    originPage,
     recipeItem, setRecipeItem, 
     ingredientItem, setIngredientItem,
     procedureItem, setProcedureItem
