@@ -174,7 +174,7 @@ const ProfilePage = ({ navigation }) => {
         const data = await firestore().collection('UserInfo').doc(userDetails.uid).get();
         if (data.exists){
           const userData = data.data().budget;
-          await setBudgetValues(userData);
+          setBudgetValues(userData);
           Alert.alert("test", budgetTypeIndex);
           setBudgetDisplayValue(budgetValues[budgetTypeIndex]);
         }
@@ -183,6 +183,21 @@ const ProfilePage = ({ navigation }) => {
     }
   }
 
+  const replaceBudget = async (newBudget) => {
+    const userDetails = auth().currentUser;
+    try {
+      await firestore().collection('UserInfo').doc(userDetails.uid).update({
+        budget: newBudget
+      });
+      Alert.alert("Success", "Budget updated successfully!");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
+  };
+
+  /*
+  replaceBudget([1,2,3]);
+  */
   useEffect(()=>{
     getBudget();
   },[]);
