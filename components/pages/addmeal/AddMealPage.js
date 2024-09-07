@@ -26,6 +26,7 @@ const AddMealPage = ({ navigation }) => {
       const onBackPress = () => {
         originPage == 'RecipePage' ? updatePage(3, true, { screen: 'RecipePage' })
         : originPage == 'HomePage' ? updatePage(0) 
+        : originPage == 'MyMeals' ? updatePage(1)
         : updatePage(0);
         return true;
       };
@@ -67,6 +68,7 @@ const AddMealPage = ({ navigation }) => {
     handleCleanUp();
     originPage == 'RecipePage' ? updatePage(3, true, { screen: 'RecipePage' })
     : originPage == 'HomePage' ? updatePage(0) 
+    : originPage == 'MyMeals' ? updatePage(1)
     : updatePage(0);
   }
 

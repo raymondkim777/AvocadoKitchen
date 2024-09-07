@@ -5,9 +5,6 @@ import { BackHandler, View, Dimensions, SafeAreaView, Image,ScrollView, Touchabl
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextComponent from '../../text/ItemTextComponent';
 import ItemLargeTextComponent from '../../text/ItemLargeTextComponent';
-import {useTranslation} from 'react-i18next';
-import 'intl-pluralrules';
-import '../../text/i18n'
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import Check from '../../../assets/icons/check.svg';
 import ArrowDown from '../../../assets/icons/arrowdown.svg';
@@ -942,9 +939,6 @@ const HomePage = ({ navigation }) => {
       unit: 'Carbs',
     },
   ];
- 
-  const {t, i18n} = useTranslation();
-  const currentLanguage = i18n.language;
 
   return (
     <SafeAreaView onLayout={onLayoutContent} id='screen' className='w-full h-full flex-row justify-center items-center'>

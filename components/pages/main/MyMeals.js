@@ -12,6 +12,7 @@ import ArrowDown from '../../../assets/icons/arrowdown.svg';
 import ArrowUp from '../../../assets/icons/arrowup.svg';
 import DoubleArrowDown from '../../../assets/icons/doublearrowdown.svg';
 import DoubleArrowUp from '../../../assets/icons/doublearrowup.svg';
+import AlertCheck from '../../general/misc/AlertCheck';
 
 const HeaderSection = ({
   navigation, nutrition, 
@@ -100,7 +101,7 @@ const MealCardThin = ({
   item, 
   dropDownOpen, showDropDown, 
   openDropDown, closeDropDowns,
-  handleEdit, handleDelete,
+  handlePress, handleEditPress, handleDeletePress,
 }) => (
   <View className='z-10 flex-row w-full h-28 p-1 pr-0 rounded-lg bg-itemBgLight'>
     {
@@ -110,14 +111,14 @@ const MealCardThin = ({
       : null
     }
     <TouchableOpacity className='flex-row shrink w-full h-full'
-    activeOpacity={0.7}>
+    activeOpacity={0.7} onPress={()=>handlePress(item)}>
       <Image className='shrink w-1/2 h-full rounded-md' source={item.image} />
       <View className='flex-col grow w-1/2 ml-1 pl-2 h-full items-center justify-center'>
         <TitleTextComponent translate={true} size={'text-2xl'} css={'h-8 text-itemText text-center'}>
           {item.title}
         </TitleTextComponent>
         <ItemLargeTextComponent bold={true} size={'text-3xl'} css={'mt-1 text-itemText'}>
-          {item.cal} Cal
+          {item.nutrition.cal} Cal
         </ItemLargeTextComponent>
       </View>
     </TouchableOpacity>
@@ -125,17 +126,17 @@ const MealCardThin = ({
       <EditButtonDropDown 
       showDropDown={showDropDown} 
       openDropDown={openDropDown} 
-      EditDropDown={<EditDropDown handleEdit={handleEdit} handleDelete={handleDelete} />}
+      EditDropDown={<EditDropDown item={item} handleEditPress={handleEditPress} handleDeletePress={handleDeletePress} />}
       />
     </View>
   </View>
 )
 
-const EditDropDown = ({handleEdit, handleDelete}) => (
+const EditDropDown = ({item, handleEditPress, handleDeletePress}) => (
   <View className='absolute z-30 -top-5 -bottom-5 right-4 w-24'>
     <View className='flex-col w-full h-full items-center justify-center border-2 border-itemText p-0 bg-buttonBg rounded-xl overflow-hidden'>
       <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px]`}
-      activeOpacity={0.9} onPress={handleEdit}>
+      activeOpacity={0.9} onPress={() => handleEditPress(item)}>
         <View className='w-full h-full items-center justify-center bg-buttonBg'>
           <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText'}>
             Edit
@@ -143,7 +144,7 @@ const EditDropDown = ({handleEdit, handleDelete}) => (
         </View>
       </TouchableHighlight>
       <TouchableHighlight className={`shrink w-full h-full items-center justify-center rounded-[10px]`}
-      activeOpacity={0.9} onPress={handleDelete}>
+      activeOpacity={0.9} onPress={handleDeletePress}>
         <View className='w-full h-full items-center justify-center bg-buttonBg'>
           <TitleTextComponent translate={true} size={'text-lg'} css={'text-itemText'}>
             Delete
@@ -160,6 +161,40 @@ const ItemDiv = () => (
 
 const MyMeals = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+
+  const handlePress = (item) => {
+    updatePage(3, true, {
+      screen: 'RecipePage',
+      params: { 
+        originPage: 'MyMeals',
+        presetRecipeItem: item 
+      },
+    });
+  }
+
+  const handleEditPress = (item) => {
+    closeDropDowns();
+    updatePage(4, true, {
+      screen: 'AddMealPage',
+      params: { 
+        originPage: 'MyMeals',
+        selectedRecipeItem: item 
+      },
+    });
+  }
+
+  const handleDeleteItem = () => {
+    null;
+  }  
+
+  const handleDeletePress = () => {
+    closeDropDowns();
+    handleDeleteItem();
+    setShowDeleteCheck(true);
+  }
+
+  const [showDeleteCheck, setShowDeleteCheck] = useState(false);
+
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
@@ -2879,13 +2914,6 @@ const MyMeals = ({ navigation }) => {
     setDropDownOpen(false);
   }
 
-  const handleEdit = () => {
-    null;
-  }
-  const handleDelete = () => {
-    null;
-  }
-
   return(
     <SafeAreaView id='screen' className='relative z-0 w-full h-full justify-center items-center'>
       <View className='w-full h-full'>
@@ -2903,8 +2931,9 @@ const MyMeals = ({ navigation }) => {
               showDropDown={dropDownStates[days.findIndex((element) => element === day) * 3 + index]}
               openDropDown={dropDownOpenFunctions[days.findIndex((element) => element === day) * 3 + index]}
               closeDropDowns={closeDropDowns}
-              handleEdit={handleEdit} 
-              handleDelete={handleDelete}
+              handlePress={handlePress}
+              handleEditPress={handleEditPress} 
+              handleDeletePress={handleDeletePress}
               />
             </View>
           </View>
@@ -2934,6 +2963,16 @@ const MyMeals = ({ navigation }) => {
         ListFooterComponent={<View className='w-full h-8' />}
         ItemSeparatorComponent={ItemDiv}
         stickySectionHeadersEnabled={true}
+        />
+
+        {/* Delete Check */}
+        <AlertCheck
+        titleText={'EditDeleteCheckTitle'}
+        messageText={'EditDeleteCheckMessage'}
+        mainText={'Delete'}
+        showModal={showDeleteCheck}
+        setShowModal={setShowDeleteCheck}
+        handleMainFunction={handleDeleteItem}
         />
       </View>
     </SafeAreaView>
