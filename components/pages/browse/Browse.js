@@ -84,7 +84,23 @@ const Browse = ({ navigation }) => {
         protein: 148, 
         carb: 429,
       },
-      tags: ['샌드위치', '프로틴', '건강'],
+      tags: [
+        {
+          index: 0,
+          id: 'tag-0',
+          text: '샌드위치'
+        },
+        {
+          index: 1,
+          id: 'tag-0',
+          text: '건강'
+        },
+        {
+          index: 2,
+          id: 'tag-0',
+          text: '프로틴'
+        },
+      ],
       public: true,
       data: {
         likes: 800,
@@ -209,7 +225,23 @@ const Browse = ({ navigation }) => {
         protein: 148, 
         carb: 429,
       },
-      tags: ['샌드위치', '프로틴', '건강'],
+      tags: [
+        {
+          index: 0,
+          id: 'tag-0',
+          text: '샌드위치'
+        },
+        {
+          index: 1,
+          id: 'tag-0',
+          text: '건강'
+        },
+        {
+          index: 2,
+          id: 'tag-0',
+          text: '프로틴'
+        },
+      ],
       public: true,
       data: {
         likes: 800,
@@ -334,7 +366,23 @@ const Browse = ({ navigation }) => {
         protein: 148, 
         carb: 429,
       },
-      tags: ['샌드위치', '프로틴', '건강'],
+      tags: [
+        {
+          index: 0,
+          id: 'tag-0',
+          text: '샌드위치'
+        },
+        {
+          index: 1,
+          id: 'tag-0',
+          text: '건강'
+        },
+        {
+          index: 2,
+          id: 'tag-0',
+          text: '프로틴'
+        },
+      ],
       public: true,
       data: {
         likes: 800,
@@ -459,7 +507,23 @@ const Browse = ({ navigation }) => {
         protein: 148, 
         carb: 429,
       },
-      tags: ['샌드위치', '프로틴', '건강'],
+      tags: [
+        {
+          index: 0,
+          id: 'tag-0',
+          text: '샌드위치'
+        },
+        {
+          index: 1,
+          id: 'tag-0',
+          text: '건강'
+        },
+        {
+          index: 2,
+          id: 'tag-0',
+          text: '프로틴'
+        },
+      ],
       public: true,
       data: {
         likes: 800,

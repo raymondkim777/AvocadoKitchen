@@ -144,33 +144,7 @@ const AddMealPage2 = ({ navigation }) => {
     setNutrientsData(new_data);
   }
 
-  const [tags, setTags] = useState([
-    {
-      index: 0,
-      id: 'tag-0',
-      text: '치킨'
-    },
-    {
-      index: 1,
-      id: 'tag-1',
-      text: '샌드위치'
-    },
-    {
-      index: 2,
-      id: 'tag-2',
-      text: '건강'
-    },
-    {
-      index: 3,
-      id: 'tag-3',
-      text: '프로틴'
-    },
-    {
-      index: 4,
-      id: 'tag-4',
-      text: '아주긴태그아주긴태그아주긴태그아주긴태그아주긴태그'
-    },
-  ]);
+  const [tags, setTags] = useState(recipeItem.tags);
   const [tagInput, setTagInput] = useState('');
   const [tagSuggest, setTagSuggest] = useState('');
   const [tagSuggestID, setTagSuggestID] = useState('');
