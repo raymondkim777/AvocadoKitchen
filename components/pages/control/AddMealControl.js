@@ -19,6 +19,7 @@ const AddMealControl = ({ route, navigation }) => {
     selectedRecipeItem != undefined ? selectedRecipeItem : {
     preset: false,
     id: '',
+    mealTime: {dayIndex: 0, mealIndex: 0},
     title: '', 
     nutrition: {
       cal: 0,
