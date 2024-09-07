@@ -102,7 +102,7 @@ const AddProcedure = ({ navigation }) => {
     }
   }
 
-  const [description, setDescription] = useState(t(procedureItem.description));
+  const [description, setDescription] = useState(procedureItem.description);
 
   const [imageFound, setImageFound] = useState(procedureItem.image != null);
   const [imageUploaded, setImageUploaded] = useState(procedureItem.image);

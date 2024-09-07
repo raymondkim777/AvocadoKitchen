@@ -34,7 +34,7 @@ const AddIngredient = ({ navigation }) => {
       unit: 'g',
       image: null,
       link: '',
-    })
+    });
   }
 
   const handleExitPress = () => {
@@ -55,7 +55,7 @@ const AddIngredient = ({ navigation }) => {
 
   const handleSaveCheck = () => {
     const result = (
-      mealName != '' && 
+      ingredientName != '' && 
       amount != null && amount != '' && 
       itemLink != '' && 
       linkValid
@@ -70,7 +70,7 @@ const AddIngredient = ({ navigation }) => {
         preset: true,
         index: recipeItem.ingredients.length ,
         id: '',
-        name: mealName,
+        name: ingredientName,
         amount: parseFloat(amount),
         unit: unitList[unitIndex],
         image: imageUploaded, 
@@ -99,7 +99,7 @@ const AddIngredient = ({ navigation }) => {
     setShowResults(true);
   }
 
-  const [mealName, setMealName] = useState(t(ingredientItem.name));
+  const [ingredientName, setIngredientName] = useState(ingredientItem.name);
 
   const unitList = [
     'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
@@ -283,8 +283,8 @@ const AddIngredient = ({ navigation }) => {
                 css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
                 placeholder={"ex. Canned Tuna"}
                 placeholderTextColor={'#85855B'}
-                value={mealName} 
-                onChangeText={setMealName} 
+                value={ingredientName} 
+                onChangeText={setIngredientName} 
                 underlineColorAndroid={'transparent'}
                 />
               </View>

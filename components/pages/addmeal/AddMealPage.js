@@ -2,7 +2,7 @@ import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../control/HomeControl';
 import { MealContext } from '../control/AddMealControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight } from 'react-native';
+import { BackHandler, View, SafeAreaView, Dimensions, ScrollView, Pressable, TouchableHighlight, Alert } from 'react-native';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import SmallButton from '../../general/buttons/SmallButton';
@@ -15,7 +15,8 @@ import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 const AddMealPage = ({ navigation }) => {
   const { wideScreen, setShowSideBar, updatePage } = useContext(SideBarContext);
   const { 
-    recipeItem,  
+    originPage,
+    recipeItem, setRecipeItem,
     setIngredientItem,
     setProcedureItem,
   } = useContext(MealContext);
@@ -23,7 +24,9 @@ const AddMealPage = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
-        updatePage(0);
+        originPage == 'RecipePage' ? updatePage(3, true, { screen: 'RecipePage' })
+        : originPage == 'HomePage' ? updatePage(0) 
+        : updatePage(0);
         return true;
       };
 
@@ -35,9 +38,36 @@ const AddMealPage = ({ navigation }) => {
       return () => subscription.remove();
     })
   ); 
+
+  const handleCleanUp = () => {
+    setRecipeItem({
+      preset: false,
+      id: '',
+      mealTime: {dayIndex: 0, mealIndex: 1},
+      title: '', 
+      nutrition: {
+        cal: 0,
+        protein: 0, 
+        carb: 0,
+      },
+      tags: [],
+      public: false,
+      data: {
+        likes: 0,
+        comments: 0, 
+        downloads: 0,
+      },
+      image: null,
+      ingredients: [],
+      procedure: [],
+    });
+  }
   
   const handleExitPress = () => {
-    recipeItem.preset ? updatePage(3, true, { screen: 'RecipePage' }) : updatePage(0);
+    handleCleanUp();
+    originPage == 'RecipePage' ? updatePage(3, true, { screen: 'RecipePage' })
+    : originPage == 'HomePage' ? updatePage(0) 
+    : updatePage(0);
   }
 
   const handleChooseRecipe = () => {
@@ -167,8 +197,8 @@ const AddMealPage = ({ navigation }) => {
   };
 
   {/* DropDowns */}
-  const [dayIndex, setDayIndex] = useState(0);
-  const [mealTimeIndex, setMealTimeIndex] = useState(0);
+  const [dayIndex, setDayIndex] = useState(recipeItem.mealTime.dayIndex);
+  const [mealTimeIndex, setMealTimeIndex] = useState(recipeItem.mealTime.mealIndex);
 
   const [showDropDown1, setShowDropDown1] = useState(false)
   const [showDropDown2, setShowDropDown2] = useState(false)
@@ -238,7 +268,7 @@ const AddMealPage = ({ navigation }) => {
     setShowDropDown2(!showDropDown2);
   }
 
-  const [mealName, setMealName] = useState(recipeItem.name);
+  const [mealName, setMealName] = useState(recipeItem.title);
  
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
@@ -250,7 +280,7 @@ const AddMealPage = ({ navigation }) => {
               wideScreen ? null : <SideBarButton callback={setShowSideBar} />
             }
             <TitleTextComponent translate={true} size={'text-3xl'} css={'mx-4 text-screenText'}>
-            Add Your Meal
+              Add Your Meal
             </TitleTextComponent>
             <ExitButtonGeneral handleMainFunction={handleExitPress} exitCheck={true}/>
           </View>
@@ -331,9 +361,10 @@ const AddMealPage = ({ navigation }) => {
 
           {/* Choose Recipe Button */}
           {
-            recipeItem.preset
+            /* recipeItem.preset
             ? null
-            : <View className='flex-col w-full h-fit items-center justify-center mt-6'>
+            : */
+            <View className='flex-col w-full h-fit items-center justify-center mt-6'>
                 <View className='w-full h-6'>
                   <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
                     Quick Meal Search
@@ -353,7 +384,8 @@ const AddMealPage = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <ItemTextInputComponent translate={true} 
+              <ItemTextInputComponent
+              translate={true}
               size={'text-xl'}
               css={'shrink w-full h-10 pb-1 pl-3 text-itemText'}
               placeholder={"ex. Chicken Sandwich"}
