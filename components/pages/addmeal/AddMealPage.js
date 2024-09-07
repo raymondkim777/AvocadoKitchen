@@ -94,8 +94,23 @@ const AddMealPage = ({ navigation }) => {
     navigation.navigate('AddProcedure');
   }
 
+  const handleSaveCheck = () => {
+    const result = (
+      mealName != '' && 
+      recipeItem.ingredients.length != 0 && 
+      recipeItem.procedure.length != 0
+    );
+    setSaveCheck(result);
+    return(result);
+  }
+
   const handleContinue = () =>{
-    navigation.navigate('AddMealPage2');
+    if (handleSaveCheck()) {
+      const newRecipeItem = recipeItem;
+      newRecipeItem.title = mealName;
+      setRecipeItem(newRecipeItem);
+      navigation.navigate('AddMealPage2');
+    }
   }
   
   {/* References */}
@@ -271,6 +286,7 @@ const AddMealPage = ({ navigation }) => {
   }
 
   const [mealName, setMealName] = useState(recipeItem.title);
+  const [saveCheck, setSaveCheck] = useState(true);
  
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
@@ -363,10 +379,9 @@ const AddMealPage = ({ navigation }) => {
 
           {/* Choose Recipe Button */}
           {
-            /* recipeItem.preset
+            recipeItem.preset
             ? null
-            : */
-            <View className='flex-col w-full h-fit items-center justify-center mt-6'>
+            : <View className='flex-col w-full h-fit items-center justify-center mt-6'>
                 <View className='w-full h-6'>
                   <TitleTextComponent translate={true} size={'text-xl'} css={'text-screenText mx-4'}>
                     Quick Meal Search
@@ -432,7 +447,13 @@ const AddMealPage = ({ navigation }) => {
           </View>
 
           {/* Continue */}
-          <View className='w-full h-fit items-center justify-center mt-7 mb-3'>
+          <View className='flex-col w-full h-fit items-center justify-center mt-7 mb-3'>
+            {
+              saveCheck ? null
+              : <TitleTextComponent translate={true} size={'text-lg'} css={'text-redHighlight mb-2'}>
+                  SaveCheck Error Message
+                </TitleTextComponent>
+            }
             <LargeButton cssIn={'w-fit px-4'} text={'Continue'} textSize={'text-2xl'} callback={handleContinue} />
           </View>
         </View>

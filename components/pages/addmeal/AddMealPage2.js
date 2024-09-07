@@ -1,7 +1,8 @@
 import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../control/HomeControl';
+import { MealContext } from '../control/AddMealControl';
 import { useFocusEffect } from '@react-navigation/native';
-import { BackHandler, Text, View, SafeAreaView, Image, Dimensions, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollView, FlatList } from 'react-native';
+import { BackHandler, View, SafeAreaView, Dimensions, TouchableOpacity, TouchableHighlight, ScrollView, Alert } from 'react-native';
 import ExitButton from '../../general/buttons/ExitButton';
 import BackButton from '../../general/buttons/BackButton';
 import Tag from '../../addfunction/tag/Tag';
@@ -10,11 +11,18 @@ import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemLargeTextComponent from '../../text/ItemLargeTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
 import LargeButton from '../../general/buttons/LargeButton';
+import CircleCheck from '../../../assets/icons/circlecheck.svg';
+import CirclePlus from '../../../assets/icons/circleplus.svg';
+import SquareCheck from '../../../assets/icons/squarecheck.svg';
 
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage2 = ({ navigation }) => {
-  const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
+  const { updatePage } = useContext(SideBarContext);
+  const { 
+    originPage,
+    recipeItem, setRecipeItem,
+  } = useContext(MealContext);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -32,13 +40,61 @@ const AddMealPage2 = ({ navigation }) => {
     })
   ); 
 
+  const handleCleanUp = () => {
+    setRecipeItem({
+      preset: false,
+      id: '',
+      mealTime: {dayIndex: 0, mealIndex: 1},
+      title: '', 
+      nutrition: {
+        cal: 0,
+        protein: 0, 
+        carb: 0,
+      },
+      tags: [],
+      public: false,
+      data: {
+        likes: 0,
+        comments: 0, 
+        downloads: 0,
+      },
+      image: null,
+      ingredients: [],
+      procedure: [],
+    });
+  }
+
   const handleBack = ()=>{
     navigation.goBack();
   }
+
+  const handleExitPress = () => {
+    handleCleanUp();
+    originPage == 'RecipePage' ? updatePage(3, true, { screen: 'RecipePage' })
+    : originPage == 'HomePage' ? updatePage(0) 
+    : originPage == 'MyMeals' ? updatePage(1)
+    : updatePage(0);
+  }
+
+  const handleSaveCheck = () => {
+    const result = (allIngredientsFound);
+    setSaveCheck(result);
+    return(result);
+  }
   
   const handleSave = () => {
-    // "Adding Meal to Plan" message/alert
-    updatePage(0);
+    if (handleSaveCheck()) {
+      const newRecipeItem = recipeItem;
+      newRecipeItem.nutrition = {
+        cal: nutrientsData[0].value,
+        protein: nutrientsData[1].value, 
+        carb: nutrientsData[2].value,
+      };
+      newRecipeItem.tags = tags;
+      setRecipeItem(newRecipeItem);
+      // send recipeItem to database
+      handleExitPress();
+    }
   }
 
   {/* References */}
@@ -47,7 +103,7 @@ const AddMealPage2 = ({ navigation }) => {
   const nutrientNames = ['Cal', 'Protein', 'Carbs'];
    
   { /* State/Functions */}
-  const allIngredientsFound = false;
+  const [allIngredientsFound, setAllIngredientsFound] = useState(true);
 
   const [minBudget, setMinBudget] = useState(16000);
   const [maxBudget, setMaxBudget] = useState(22000);
@@ -55,19 +111,19 @@ const AddMealPage2 = ({ navigation }) => {
   const [nutrientsData, setNutrientsData] = useState([
     {
       id: 'calorie',
-      value: '1261',
+      value: 1261,
       type: 'Cal',
       unit: '',
     },
     {
       id: 'protein',
-      value: '140',
+      value: 140,
       type: 'Protein',
       unit: 'g',
     },
     {
       id: 'carb',
-      value: '724',
+      value: 724,
       type: 'Carbs',
       unit: 'g',
     },
@@ -90,37 +146,56 @@ const AddMealPage2 = ({ navigation }) => {
 
   const [tags, setTags] = useState([
     {
-      id: '0',
-      text: 'Chicken'
+      index: 0,
+      id: 'tag-0',
+      text: '치킨'
     },
     {
-      id: '0',
-      text: 'Sandwich'
+      index: 1,
+      id: 'tag-1',
+      text: '샌드위치'
     },
     {
-      id: '0',
-      text: 'Healthy'
+      index: 2,
+      id: 'tag-2',
+      text: '건강'
     },
     {
-      id: '0',
-      text: 'Protein'
+      index: 3,
+      id: 'tag-3',
+      text: '프로틴'
     },
     {
-      id: '0',
-      text: 'SomeOtherTagasdfasdfasdfasdfasdfasdf'
+      index: 4,
+      id: 'tag-4',
+      text: '아주긴태그아주긴태그아주긴태그아주긴태그아주긴태그'
     },
   ]);
   const [tagInput, setTagInput] = useState('');
-  const addNewTag = () => {
-    const new_arr = tags;
-    new_arr.push({id: '0', text: ''})
+  const [tagSuggest, setTagSuggest] = useState('');
+  const [tagSuggestID, setTagSuggestID] = useState('');
+
+  const updateTagInput = (text) => {
+    setTagInput(text);
+    // search tag query for suggestions
+    setTagSuggest(text);
+    setTagSuggestID('example-suggested-tag');
+  }
+  
+  const addNewTag = (text, id = '', ) => {
+    setTagInput('');
+    const new_arr = tags.slice();
+    new_arr.push({index: tags.length, id: id == '' ? 'example-tag': id, text: text})
     setTags(new_arr);
   }
-  const addTagByID = (id) => {
-    // ADD LATER
-  }
-  const removeTag = (tagID) => {
 
+  const removeTag = (item) => {
+    const new_arr = tags.slice();
+    new_arr.splice(item.index, 1);
+    for (let i = item.index; i < new_arr.length; i++) {
+      new_arr[i].index--;
+    }
+    setTags(new_arr);
   }
 
   const [publishTrue, setPublishTrue] = useState(false);
@@ -132,7 +207,7 @@ const AddMealPage2 = ({ navigation }) => {
     setPublishButtonCSS(new_css);
   }
 
-  {/* View */}
+  const [saveCheck, setSaveCheck] = useState(true);
 
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
@@ -168,10 +243,22 @@ const AddMealPage2 = ({ navigation }) => {
               </TitleTextComponent>
             </View>
             <View className='flex-col w-full px-8 h-fit items-center justify-center mt-4'>
-              <View className='w-fit h-12 items-center justify-center px-3 py-2 bg-itemBgLight rounded-xl'>
-                <Text className='font-inconsolataBold text-3xl text-itemText'>
-                  ₩{minBudget} ~ ₩{maxBudget}
-                </Text>
+              <View className='flex-row w-fit h-12 items-center justify-center px-3 py-2 bg-itemBgLight rounded-xl'>
+                <TitleTextComponent money={true} size={'text-2xl'} css={'text-itemText'}>
+                  {minBudget}
+                </TitleTextComponent>
+                <TitleTextComponent size={'text-2xl'} css={'text-itemText'}>
+                  원
+                </TitleTextComponent>
+                <TitleTextComponent size={'text-2xl'} css={'ml-2 text-itemText'}>
+                  ~
+                </TitleTextComponent>
+                <TitleTextComponent money={true} size={'text-2xl'} css={'ml-2 text-itemText'}>
+                  {minBudget}
+                </TitleTextComponent>
+                <TitleTextComponent size={'text-2xl'} css={'text-itemText'}>
+                  원
+                </TitleTextComponent>
               </View>
               <View className='w-fit h-fit items-center justify-center mt-2'>
                 <TitleTextComponent translate={true} size={'text-base'} css={'text-center text-screenText leading-5'}>
@@ -209,28 +296,38 @@ const AddMealPage2 = ({ navigation }) => {
                 Tags (Optional)
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <ItemTextInputComponent
-              translate={true}
-              size={'text-xl'}
-              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
-              placeholder="Add Tag" 
-              placeholderTextColor={'#85855B'}
-              value={tagInput} 
-              onChangeText={setTagInput} 
-              underlineColorAndroid={'transparent'}
-              />
+            <View className='flex-row items-center justify-center shrink w-full h-10 mt-2 '>
+              <View className='flex-row items-center justify-center shrink w-full h-10 pr-1.5 bg-itemBgLight rounded-xl'>
+                <ItemTextInputComponent
+                translate={true}
+                size={'text-xl'}
+                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                placeholder="Add Tag" 
+                placeholderTextColor={'#85855B'}
+                value={tagInput} 
+                onChangeText={updateTagInput} 
+                underlineColorAndroid={'transparent'}
+                />
 
-              {/* Suggested Tag */}
-              <View className='flex-row w-fit h-10 items-center justify-center'>
-                <TagSuggest tagQuery={tagInput} addTag={addTagByID} />
+                {/* Suggested Tag */}
+                <View className='flex-row w-fit h-10 items-center justify-center'>
+                  <TagSuggest tagQuery={tagInput} tagID={tagSuggestID} addTagPress={addNewTag} showSuggest={tagSuggest != ''} />
+                </View>
               </View>
+
+              {/* Add Tag */}
+              <TouchableHighlight className='w-10 h-10 ml-2 rounded-xl'
+              activeOpacity={0.9} onPress={()=>addNewTag(tagInput)} disabled={tagInput == ''}>
+                <View className='w-full h-full items-center justify-center rounded-xl bg-itemBgLight'>
+                  <SquareCheck width={30} height={30} stroke={tagInput == '' ? '#ACACAC' : '#85855B'} strokeWidth={2} />
+                </View>
+              </TouchableHighlight>
             </View>
 
             {/* Display Tags */}
-            <View className='flex-row flex-wrap mt-2 -mr-2'>
+            <View key='display-tags' className='flex-row flex-wrap mt-2 -mr-2'>
               {tags.map((item, index) => (
-                <Tag tagID={item.id} tagName={item.text} removeTag={removeTag} />
+                <Tag item={item} removeTag={removeTag} />
               ))}
             </View>
           </View>
