@@ -52,8 +52,11 @@ const ItemCard = ({
           </TitleTextComponent>
         </View>
         <View className='flex-row w-full h-8 items-center'>
+          <TitleTextComponent money={true} size={'text-lg'} css={'w-fit text-itemText'}>
+            {item.price * item.quantity}
+          </TitleTextComponent>
           <TitleTextComponent size={'text-lg'} css={'w-fit text-itemText'}>
-            {item.price * item.quantity}원
+            원
           </TitleTextComponent>
           <TitleTextComponent size={'text-lg'} css={'ml-4 w-fit text-grayText'}>
             {item.quantity}개
@@ -72,20 +75,20 @@ const SiteSummary = ({weeklyBudget, siteIdx, data}) => {
   for (let i = 0; i < data.length; i++) {
     totalPrice += data[i].price * data[i].quantity;
   }
-  const textColor = totalPrice <= weeklyBudget ? 'text-greenHighlight' : 'text-redHighlight';
+  // const textColor = totalPrice <= weeklyBudget ? 'text-greenHighlight' : 'text-redHighlight';
 
   return(
     <View className='flex-row w-fit h-fit items-center justify-center'>
-      <TitleTextComponent translate={true} size={'text-xl'} css={textColor}>
+      <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText'}>
         Total
       </TitleTextComponent>
-      <TitleTextComponent size={'text-xl'} css={textColor}>
+      <TitleTextComponent size={'text-xl'} css={'text-itemText'}>
         :
       </TitleTextComponent>
-      <TitleTextComponent size={'text-xl'} css={`ml-2 ${textColor}`}>
+      <TitleTextComponent money={true} size={'text-xl'} css={`ml-2 text-itemText`}>
         {totalPrice}
       </TitleTextComponent>
-      <TitleTextComponent size={'text-xl'} css={textColor}>
+      <TitleTextComponent size={'text-xl'} css={'text-itemText'}>
         원
       </TitleTextComponent>
     </View>

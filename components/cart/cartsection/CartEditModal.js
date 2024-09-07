@@ -159,8 +159,8 @@ const CartEditModal = ({
       <View className='shrink w-full h-fit items-center justify-center space-y-4'>
         {/* Top Card */}
         {
-          isKeyboardVisible && showBottomCard && showResults? null : 
-          <View className={`shrink ${wideScreen ? 'w-96' : 'w-full'} h-52 p-2 pt-1 bg-itemBgLight rounded-xl`}>
+          showBottomCard ? null : 
+          <View className={`${wideScreen ? 'w-96' : 'w-full'} h-52 p-2 pt-1 bg-itemBgLight rounded-xl`}>
             {/* Title Row */}
             <View className='flex-row w-full h-8 justify-center'>
               <View className='shrink w-full h-full justify-center'>
@@ -197,9 +197,12 @@ const CartEditModal = ({
 
               {/* Right Side */}
               <View className='shrink w-full h-full ml-2'>
-                <View className='w-full h-12 mt-3 items-center justify-center'>
+                <View className='flex-row w-full h-12 mt-3 items-center justify-center'>
+                  <TitleTextComponent money={true} size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
+                    {item.price * count}
+                  </TitleTextComponent>
                   <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
-                    {item.price * count}원
+                    원
                   </TitleTextComponent>
                 </View>
 
