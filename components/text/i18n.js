@@ -174,6 +174,13 @@ const resources = {
       "Comments": "Comments",
       "Load More": "Load More",
       "Add a comment...": "Add a comment...",
+      "seconds ago": " seconds ago", 
+      "minutes ago": " minutes ago",
+      "hours ago": " hours ago",
+      "days ago": " days ago",
+      "weeks ago": " weeks ago",
+      "months ago": " months ago",
+      "years ago": " years ago",
      
       // IngredientCardLarge
       "Ingredient Info": "Ingredient Info",
@@ -438,6 +445,13 @@ const resources = {
       "Comments": "댓글",
       "Load More": "댓글 더 보기",
       "Add a comment...": "댓글 추가...",
+      "seconds ago": "초 전", 
+      "minutes ago": "분 전",
+      "hours ago": "시간 전",
+      "days ago": "일 전",
+      "weeks ago": "주 전",
+      "months ago": "달 전",
+      "years ago": "년 전",
 
       // IngredientCardLarge
       "Ingredient Info": "재료 정보",

@@ -6,6 +6,7 @@ import './i18n'
 
 const TitleTextComponent = ({ 
 translate = false, 
+money = false,
 children, 
 size, sizeDiff = 0, bold = false, css,
 numberOfLines = 0, }) => {
@@ -35,6 +36,10 @@ numberOfLines = 0, }) => {
   const fontKRCSS = (bold ? 'font-koreanFont1' : 'font-koreanFont1');
   const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
 
+  const moneyFormat = (value) => {
+    return new Intl.NumberFormat('ko-KR', {style:'decimal'}).format(value);
+  }
+
   return(
     <Text 
     numberOfLines={numberOfLines}
@@ -44,7 +49,7 @@ numberOfLines = 0, }) => {
       ${css}
     `}>
       {
-        translate ? t(children) : children
+        money ? moneyFormat(children) : translate ? t(children) : children
       }
     </Text>
   )
