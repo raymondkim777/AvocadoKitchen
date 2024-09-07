@@ -15,6 +15,32 @@ import SendLetter from "../../../assets/icons/sendletter.svg";
 const CommentCard = ({item}) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
+  const beforeDate = (date) => {
+    const now = new Date();
+    const diffSec = (now - date)/1000;
+
+    if (diffSec < 60) {
+      return {diff: Math.floor(diffSec), text: 'seconds ago'};
+    }
+    else if (diffSec < (60 * 60)) {
+      return {diff: Math.floor(diffSec/60), text: 'minutes ago'};
+    }
+    else if (diffSec < (60 * 60 * 24)) {
+      return {diff: Math.floor(diffSec/(60 * 60)), text: 'hours ago'};
+    }
+    else if (diffSec < (60 * 60 * 24 * 7)) {
+      return {diff: Math.floor(diffSec/(60 * 60 * 24)), text: 'days ago'};
+    }
+    else if (diffSec < (60 * 60 * 24 * 31)) {
+      return {diff: Math.floor(diffSec/(60 * 60 * 24 * 7)), text: 'weeks ago'};
+    }
+    else if (diffSec < (60 * 60 * 24 * 365)) {
+      return {diff: Math.floor(diffSec/(60 * 60 * 24 * 31)), text: 'months ago'};
+    }
+    else {
+      return {diff: Math.floor(diffSec/(60 * 60 * 24 * 365)), text: 'years ago'};
+    }
+  }
 
   return(
     <View>
@@ -24,13 +50,20 @@ const CommentCard = ({item}) => {
         </View>
         <View className='flex-col shrink w-full h-fit ml-3'>
           {/* Top Row */}
-          <View className='flex-row shrink w-full h-8 items-center justify-start'>
-            <TitleTextComponent size={'text-lg'} css={'text-itemText'}>
-              {item.userName}
-            </TitleTextComponent>
-            <TitleTextComponent size={'text-lg'} css={'text-grayText ml-4'}>
-              {item.beforeDate}
-            </TitleTextComponent>
+          <View className='flex-row shrink w-full h-8 items-center justify-start0'>
+            <View className='w-fit max-w-[128px] h-8 items-center justify-center'>
+              <TitleTextComponent size={'text-lg'} css={'text-itemText'} numberOfLines={1}>
+                {item.userName}
+              </TitleTextComponent>
+            </View>
+            <View className='flex-row w-fit h-8 items-center justify-center'>
+              <TitleTextComponent size={'text-base'} css={'text-grayText ml-4'}>
+                {beforeDate(new Date(item.postDate)).diff}
+              </TitleTextComponent>
+              <TitleTextComponent translate={true} size={'text-base'} css={'text-grayText'}>
+                {beforeDate(new Date(item.postDate)).text}
+              </TitleTextComponent>
+            </View>
           </View>
           {/* Bottom Row */}
           <View className='flex-row w-full h-fit items-center justify-start'>
@@ -38,8 +71,8 @@ const CommentCard = ({item}) => {
               {/* Custom ItemTextComponent due to complications */}
               <Text className={`
                 ${(currentLanguage  === 'ko-KR') 
-                  ? "w-full font-koreanFont2 text-itemText text-start text-2xl leading-5" 
-                  : 'w-full font-inconsolata text-itemText text-start text-base leading-4'}
+                  ? "w-full font-koreanFont2 text-itemText text-start text-2xl leading-5 pt-1" 
+                  : 'w-full font-inconsolata text-itemText text-start text-base leading-4 pt-1'}
               `}>
                 {item.text}
               </Text>
@@ -59,7 +92,7 @@ const CommentModal = ({
   const currentLanguage = i18n.language;
 
   const handleSetUp = () => {
-    setCommentCount(3);
+    setCommentCount(10);
   }
 
   const handleCloseModal = () => {
@@ -76,13 +109,14 @@ const CommentModal = ({
 
   const [commentInput, setCommentInput] = useState('');
   const [commentCount, setCommentCount] = useState(0);
+  const [commentLoadCount, setCommentLoadCount] = useState(6);
   const commentList = [
     {
       commentID: 'test-comment-id',
       userID: 'test-user-1', 
-      userName: '어떤유저123',
+      userName: '어떤유저123456789',
       userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
+      postDate: '2020-03-02T09:28:00+09:00',
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!! 다만 저희 식구에겐 너무 달았습니다ㅠㅠ 진짜 요리고잔데 레시피대로 했더니 너무 맛있어요 ㅎㅎ아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!! 다만 저희 식구에겐 너무 달았습니다ㅠㅠ 진짜 요리고잔데 레시피대로 했더니 너무 맛있어요 ㅎㅎ',
     },
@@ -91,7 +125,7 @@ const CommentModal = ({
       userID: 'test-user-1', 
       userName: '어떤유저123',
       userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
+      postDate: '2024-03-02T09:28:00+09:00',
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
@@ -100,7 +134,15 @@ const CommentModal = ({
       userID: 'test-user-1', 
       userName: '어떤유저123',
       userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
+      postDate: '2024-08-11T09:28:00+09:00',
+      beforeDate: '5일',
+      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
+    },{
+      commentID: 'test-comment-id',
+      userID: 'test-user-1', 
+      userName: '어떤유저123',
+      userImage: require('../../../assets/images/logo-transparent.png'),
+      postDate: '2024-08-29T09:28:00+09:00',
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
@@ -109,7 +151,7 @@ const CommentModal = ({
       userID: 'test-user-1', 
       userName: '어떤유저123',
       userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
+      postDate: '2024-09-02T09:28:00+09:00',
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
@@ -118,16 +160,7 @@ const CommentModal = ({
       userID: 'test-user-1', 
       userName: '어떤유저123',
       userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
-      beforeDate: '5일',
-      text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
-    },
-    {
-      commentID: 'test-comment-id',
-      userID: 'test-user-1', 
-      userName: '어떤유저123',
-      userImage: require('../../../assets/images/logo-transparent.png'),
-      postDate: '2020-03-02 09:28',
+      postDate: '2024-09-07T09:28:00+09:00',
       beforeDate: '5일',
       text: '아악 쉽게 따라갈 수 있고 계량도 쉽고 너무 좋아요!!',
     },
@@ -136,19 +169,18 @@ const CommentModal = ({
   return(
     <Modal 
     style={{width: contentWidth}}
-    className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-2 pt-8 items-center justify-end`}
+    className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-2 pt-16 items-center justify-end`}
     isVisible={showCommentModal}
-    avoidKeyboard={true}
     onBackButtonPress={handleCloseModal}
     onModalWillShow={handleSetUp}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full' onPress={handleCloseModal}>
-        <View style={{ width: contentWidth }} className={`h-full ${wideScreen ? 'ml-64' : 'm-0'}`} />
+        <View style={{ width: contentWidth }} className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'}`} />
       </TouchableWithoutFeedback>
     }
     >
       <View className='shrink w-full h-fit bg-itemBgLight border-2 border-itemText rounded-2xl'>
-        <View className='flex-col shrink w-full h-fit p-4'>
+      <View className='flex-col shrink w-full h-fit p-4'>
           {/* Title */}
           <View className='flex-row w-full h-10 items-center justify-between'>
             <View className='flex-row w-fit h-fit mx-4'>
@@ -165,16 +197,19 @@ const CommentModal = ({
             <ExitButtonGeneral handleMainFunction={handleCloseModal} background={'bg-itemBgLight'} />
           </View>
 
+          <View className='shrink w-full h-fit mt-2'>
+            <View className='w-full h-[2px] bg-itemBgDark' />
+            <FlatList
+            className='shrink w-full h-fit'
+            scrollEnabled={true}
+            data={commentList}
+            renderItem={({item}) => <CommentCard item={item} />}
+            ItemSeparatorComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
+            />
+            <View className='w-full h-[2px] bg-itemBgDark' />
+          </View>
+
           {/* Comments */}
-          <FlatList
-          className='shrink w-full h-fit mt-2'
-          scrollEnabled={true}
-          data={commentList}
-          renderItem={({item}) => <CommentCard item={item} />}
-          ItemSeparatorComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
-          ListHeaderComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
-          ListFooterComponent={<View className='w-full h-[2px] bg-itemBgDark' />}
-          />
 
           <View className='flex-col w-full h-fit mt-2 items-center justify-center'>
             {

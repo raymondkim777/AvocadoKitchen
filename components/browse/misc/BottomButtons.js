@@ -10,7 +10,7 @@ const BottomButtons = ({ userLike, handleLikePress, handleRecipeAddPress, handle
     <TouchableHighlight className='w-12 h-12 rounded-xl'
     activeOpacity={0.9} onPress={handleLikePress}>
       <View className='w-full h-full items-center justify-center bg-buttonBg rounded-xl'>
-        <Heart width={38} height={38} stroke={'#85855B'} strokeWidth={2} />
+        <Heart width={38} height={38} stroke={'#85855B'} strokeWidth={2} fill={userLike ? '#85855B' : 'none'}/>
       </View>
     </TouchableHighlight>
 
