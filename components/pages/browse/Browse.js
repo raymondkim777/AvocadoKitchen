@@ -85,7 +85,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['샌드위치', '프로틴', '건강'],
-      public: false,
+      public: true,
       data: {
         likes: 800,
         comments: 40, 
@@ -210,7 +210,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['샌드위치', '프로틴', '건강'],
-      public: false,
+      public: true,
       data: {
         likes: 800,
         comments: 40, 
@@ -335,7 +335,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['샌드위치', '프로틴', '건강'],
-      public: false,
+      public: true,
       data: {
         likes: 800,
         comments: 40, 
@@ -460,7 +460,7 @@ const Browse = ({ navigation }) => {
         carb: 429,
       },
       tags: ['샌드위치', '프로틴', '건강'],
-      public: false,
+      public: true,
       data: {
         likes: 800,
         comments: 40, 
