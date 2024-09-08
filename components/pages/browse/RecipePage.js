@@ -11,7 +11,7 @@ import ProcedureSectionEmpty from '../../recipe/procedure/ProcedureSectionEmpty'
 import TitleTextComponent from '../../text/TitleTextComponent';
 import IngredientCardModal from '../../recipe/ingredient/IngredientCardModal';
 import ProcedureCardModal from '../../recipe/procedure/ProcedureCardModal';
-import CommentModal from '../../browse/misc/CommentModal';
+import CommentModal from './CommentModal';
 
 const RecipePage = ({ navigation }) => {
   
