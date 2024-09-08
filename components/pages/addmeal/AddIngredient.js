@@ -326,7 +326,6 @@ const AddIngredient = ({ navigation }) => {
                         {unitListSection[0].type}
                       </TitleTextComponent>
                       <FlatList
-                      key='flatList4'
                       className='w-full h-fit mt-1'
                       scrollEnabled={false}
                       numColumns={4}
@@ -354,7 +353,6 @@ const AddIngredient = ({ navigation }) => {
                         {unitListSection[1].type}
                       </TitleTextComponent>
                       <FlatList
-                      key='flatList4'
                       className='w-full h-fit mt-1'
                       scrollEnabled={false}
                       numColumns={4}

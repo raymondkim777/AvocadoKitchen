@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { SideBarContext } from '../../pages/control/HomeControl';
+import { SideBarContext } from '../control/HomeControl';
 import { View, TouchableWithoutFeedback, FlatList, Image, Text, TextInput, TouchableHighlight, ScrollView, Alert } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';

@@ -1,5 +1,5 @@
 import React, { useState, useContext, } from 'react';
-import { View, Image, SectionList, } from 'react-native';
+import { View, Image, SectionList, Alert, } from 'react-native';
 import { SideBarContext } from '../../pages/control/HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
 import TitleTextComponent from '../../text/TitleTextComponent';
@@ -131,6 +131,7 @@ const CartPage = () => {
       siteIdx: 0, 
       data: [
         {
+          index: 0,
           id: 1, 
           title: '복숭아',
           fastDelivery: true,
@@ -139,6 +140,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 1,
           id: 2, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
@@ -147,6 +149,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 2,
           id: 3, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
@@ -155,6 +158,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 3,
           id: 4, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
@@ -169,6 +173,7 @@ const CartPage = () => {
       siteIdx: 1, 
       data: [
         {
+          index: 0,
           id: 5, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
@@ -177,6 +182,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 1,
           id: 6, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: true,
@@ -185,6 +191,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 2,
           id: 7, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
@@ -193,6 +200,7 @@ const CartPage = () => {
           image: require('../../../assets/images/info-example/tofu.jpg'),
         },
         {
+          index: 3,
           id: 8, 
           title: '아삭 복숭아 1.2kg [품종:오도로끼-(딱복)]',
           fastDelivery: false,
@@ -205,7 +213,7 @@ const CartPage = () => {
   ]);
 
   const handleResetCart = () => {
-    null;
+    cartItems = JSON.parse(JSON.stringify(defaultCartItems));
   }
 
   const handleAddIngredient = () => {
@@ -214,6 +222,39 @@ const CartPage = () => {
   const [weeklyBudget, setWeeklyBudget] = useState(150000);
 
   const [resetEnabled, setResetEnabled] = useState(false);
+  const [defaultCartItems, setDefaultCartItems] = useState([...cartItems]);
+
+  const equalToDefault = () => {
+    if (cartItems[0].data.length != defaultCartItems[0].data.length 
+      || cartItems[1].data.length != defaultCartItems[1].data.length)
+      return false;
+    for (let i = 0; i < cartItems[0].data.length; i++) 
+      if (JSON.stringify(cartItems[0].data[i]) != JSON.stringify(defaultCartItems[0].data[i]))
+        return false;
+    for (let i = 0; i < cartItems[1].data.length; i++) 
+      if (JSON.stringify(cartItems[1].data[i]) != JSON.stringify(defaultCartItems[1].data[i]))
+        return false;
+    return true;
+  }
+
+  const updateAddCart = (item, siteIndex) => {
+    // index is 0 --> change to last index + 1
+  }
+
+  const updateEditCart = (item, siteIndex) => {
+    const newCart = cartItems;
+    newCart[siteIndex].data[item.index] = item;
+    setCartItems(newCart);
+  }
+
+  const updateDeleteCart = (index, siteIndex) => {
+    const newCart = cartItems;
+    newCart[siteIndex].data.splice(index, 1);
+    for (let i = index; i < newCart[siteIndex].data.length; i++)
+      newCart[siteIndex].data[i].index--;
+    setCartItems(newCart);
+  }
+
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [siteIndex, setSiteIndex] = useState(0);
@@ -251,6 +292,7 @@ const CartPage = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{flexGrow: 1}} 
           sections={cartItems}
+          extraData={cartItems}
           renderItem={({item, index, section: {site, siteIdx}}) => (
             <View className='flex-col w-full h-fit'>
               {/* Cards */}
@@ -294,6 +336,8 @@ const CartPage = () => {
       siteIndex={siteIndex}
       showEditModal={showEditModal} 
       setShowEditModal={setShowEditModal} 
+      updateEditCart={updateEditCart}
+      updateDeleteCart={updateDeleteCart}
       />
     </View>
   )

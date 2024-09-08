@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect, } from 'react';
+import React, { useState, useContext, } from 'react';
 import { SideBarContext } from '../../pages/control/HomeControl';
-import { Keyboard, View, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, Image, } from 'react-native';
+import { View, TouchableWithoutFeedback, TouchableHighlight, Image, Alert, } from 'react-native';
 import Modal from 'react-native-modal';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
@@ -14,36 +14,17 @@ import AlertCheck from '../../general/misc/AlertCheck';
 const CartEditModal = ({ 
   item, siteIndex, 
   showEditModal, setShowEditModal, 
+  updateEditCart, updateDeleteCart,
 }) => {
   const { wideScreen, contentWidth } = useContext(SideBarContext);
+  const [ currentItem, setCurrentItem ] = useState(item);
+  
+  const [autoCount, setAutoCount] = useState(3);
+  const [count, setCount] = useState(item?.quantity);
 
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-  useEffect(() => {
-     const keyboardDidShowListener = Keyboard.addListener(
-       'keyboardDidShow',
-       () => {
-         setKeyboardVisible(true); // or some other action
-       }
-     );
-     const keyboardDidHideListener = Keyboard.addListener(
-       'keyboardDidHide',
-       () => {
-         setKeyboardVisible(false); // or some other action
-       }
-     );
- 
-     return () => {
-       keyboardDidHideListener.remove();
-       keyboardDidShowListener.remove();
-     };
-   }, []);
-
-  const resetCount = () => {
+  const resetModal = () => {
     setCount(item.quantity);
-  }
-
-  const handleEditUpdate = () => {
-    // set item.quantity to count
+    setCurrentItem(item);
   }
   
   const handleCloseModal = () => {
@@ -60,16 +41,17 @@ const CartEditModal = ({
   }
 
   const handleSavePress = () => {
-    handleEditUpdate();
+    const newItem = currentItem;
+    newItem.quantity = count;
+    setCurrentItem(newItem);
+    updateEditCart(currentItem, siteIndex);
     handleCloseModal();
   }
 
   const handleDeleteItem = () => {
-    null;
+    updateDeleteCart(item.index, siteIndex);
+    handleCloseModal();
   }
-
-  const [autoCount, setAutoCount] = useState(3);
-  const [count, setCount] = useState(0);
 
   const [showBottomCard, setShowBottomCard] = useState(false);
   const [searchSiteIndex, setSearchSiteIndex] = useState(0);
@@ -133,7 +115,7 @@ const CartEditModal = ({
   const site = sites[siteIndex];
   let delivery = 'Regular';
   let textColor = 'text-grayText';
-  if (item.fastDelivery) {
+  if (item?.fastDelivery) {
     textColor = 'text-hyperLink';
     if (site === 'Coupang') {
       delivery = "Rocket";
@@ -147,8 +129,7 @@ const CartEditModal = ({
     style={{width: contentWidth}}
     className={`h-full ${wideScreen ? 'm-0 ml-64' : 'm-0'} p-4 items-center justify-center`}
     isVisible={showEditModal}
-    onModalWillShow={resetCount}
-    onModalHide={handleEditUpdate}
+    onModalWillShow={resetModal}
     onBackButtonPress={handleCloseModal}
     customBackdrop={
       <TouchableWithoutFeedback className='h-full'>
@@ -165,7 +146,7 @@ const CartEditModal = ({
             <View className='flex-row w-full h-8 justify-center'>
               <View className='shrink w-full h-full justify-center'>
                 <TitleTextComponent translate={true} size={'text-xl'} css={'shrink w-full text-itemText'} numberOfLines={1}>
-                  {item.title}
+                  {item?.title}
                 </TitleTextComponent>
               </View>
               <View className='w-fit h-full mx-2 items-center justify-center'>
@@ -192,14 +173,14 @@ const CartEditModal = ({
                     {delivery}
                   </TitleTextComponent>
                 </View>
-                <Image className='shrink w-28 mt-1 h-full rounded-md' source={item.image} />
+                <Image className='shrink w-28 mt-1 h-full rounded-md' source={item?.image} />
               </View>
 
               {/* Right Side */}
               <View className='shrink w-full h-full ml-2'>
                 <View className='flex-row w-full h-12 mt-3 items-center justify-center'>
                   <TitleTextComponent money={true} size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
-                    {item.price * count}
+                    {item?.price * count}
                   </TitleTextComponent>
                   <TitleTextComponent size={'text-2xl'} css={'w-fit text-itemText'} numberOfLines={1}>
                     원
