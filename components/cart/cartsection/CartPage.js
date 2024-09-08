@@ -243,41 +243,44 @@ const CartPage = () => {
 
       {/* SectionList  
       --> Might have to add key to force re-render when item gets deleted*/}
-      <View className='shrink w-full h-full mt-4 rounded-xl overflow-hidden'>
-        <SectionList
-        className='w-full h-full px-2 bg-itemBgLight'
-        scrollEnabled={true}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{flexGrow: 1}} 
-        sections={cartItems}
-        renderItem={({item, index, section: {site, siteIdx}}) => (
-          <View className='flex-col w-full h-fit'>
-            {/* Cards */}
-            <View className='w-full h-fit'>
-              <ItemCard 
-              item={item} 
-              index={index} 
-              site={site} 
-              siteIdx={siteIdx} 
-              setItemIndex={setItemIndex} 
-              setSiteIndex={setSiteIndex}
-              setShowEditModal={setShowEditModal}/>
+      <View className='shrink w-full h-full mt-4 px-2 rounded-xl bg-itemBgLight overflow-hidden'>
+        <View className='shrink w-full h-full rounded-md overflow-hidden'>
+          <SectionList
+          className='w-full h-full '
+          scrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{flexGrow: 1}} 
+          sections={cartItems}
+          renderItem={({item, index, section: {site, siteIdx}}) => (
+            <View className='flex-col w-full h-fit'>
+              {/* Cards */}
+              <View className='w-full h-fit'>
+                <ItemCard 
+                item={item} 
+                index={index} 
+                site={site} 
+                siteIdx={siteIdx} 
+                setItemIndex={setItemIndex} 
+                setSiteIndex={setSiteIndex}
+                setShowEditModal={setShowEditModal}/>
+              </View>
             </View>
-          </View>
-        )}
-        renderSectionHeader={({section: {site, siteIdx, data}}) => (
-          <View className='flex-row w-full h-fit pb-2 mt-2 items-center justify-between bg-itemBgLight'>
-            <TitleTextComponent translate={true} size={'text-xl'} css={'mx-2 text-itemText'}>
-              {site}
-            </TitleTextComponent>
-            <View className='w-fit h-fit mx-2'>
-              <SiteSummary weeklyBudget={weeklyBudget} siteIdx={siteIdx} data={data} />
+          )}
+          renderSectionHeader={({section: {site, siteIdx, data}}) => (
+            <View className='flex-row w-full h-fit pb-2 mt-2 items-center justify-between bg-itemBgLight'>
+              <TitleTextComponent translate={true} size={'text-xl'} css={'mx-2 text-itemText'}>
+                {site}
+              </TitleTextComponent>
+              <View className='w-fit h-fit mx-2'>
+                <SiteSummary weeklyBudget={weeklyBudget} siteIdx={siteIdx} data={data} />
+              </View>
             </View>
-          </View>
-        )}
-        ListFooterComponent={<PageSummary cartItems={cartItems} weeklyBudget={weeklyBudget} />}
-        ItemSeparatorComponent={ItemDiv}
-        />
+          )}
+          ItemSeparatorComponent={ItemDiv}
+          stickySectionHeadersEnabled={false}
+          />
+        </View>
+        <PageSummary cartItems={cartItems} weeklyBudget={weeklyBudget} />
       </View>
 
       {/* Modals */}
