@@ -9,12 +9,12 @@ const IngredientsTableRow = ({ item, handlePress }) => {
     activeOpacity={0.95} onPress={()=>handlePress(item)}>
       <View className='flex-row w-full h-full'>
         <View className={`w-2/3 h-full items-center justify-center bg-itemBgLight border-r border-itemBgDark`}>
-          <ItemTextComponent translate={true} size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
+          <ItemTextComponent size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
             {item.name}
           </ItemTextComponent>
         </View>
         <View className={`w-1/3 h-full items-center justify-center bg-itemBgLight `}>
-          <ItemTextComponent translate={true} size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
+          <ItemTextComponent size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
             {item.unit == '적당량' ? item.unit : item.amount + " " + item.unit}
           </ItemTextComponent>
         </View>

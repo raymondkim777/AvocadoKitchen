@@ -32,7 +32,7 @@ const ProcedureCard = ({ item, width, handlePress}) => {
                   ? "font-koreanFont2 text-itemText text-center text-3xl leading-7" 
                   : 'font-inconsolata text-itemText text-center text-base leading-4'}
               `}>
-                {t(item.description)}
+                {item.description}
               </Text>
             </View>
           </ScrollView>

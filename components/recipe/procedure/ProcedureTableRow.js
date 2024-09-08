@@ -8,12 +8,12 @@ const ProcedureTableRow = ({ item, handlePress }) => {
     activeOpacity={0.95} onPress={()=>handlePress(item)}>
       <View className='flex-row w-full h-full'>
         <View className={`w-12 h-full items-center justify-center bg-itemBgLight border-r border-itemBgDark`}>
-          <ItemTextComponent translate={true} size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
+          <ItemTextComponent size={'text-lg'} sizeDiff={-1} css={'text-itemText'}>
             {item.index + 1}
           </ItemTextComponent>
         </View>
         <View className={`shrink w-full h-full items-center justify-center px-2 bg-itemBgLight `}>
-          <ItemTextComponent translate={true} size={'text-lg'} sizeDiff={-1} css={'w-full text-start text-itemText'} numberOfLines={1}>
+          <ItemTextComponent size={'text-lg'} sizeDiff={-1} css={'w-full text-start text-itemText'} numberOfLines={1}>
             {item.description}
           </ItemTextComponent>
         </View>

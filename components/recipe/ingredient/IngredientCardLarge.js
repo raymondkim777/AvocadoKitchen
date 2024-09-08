@@ -19,7 +19,7 @@ const IngredientCardLarge = ({ item }) => {
               <TitleTextComponent size={'text-lg'} css={'h-full text-itemText text-center mr-2'}>
                 :
               </TitleTextComponent>
-              <TitleTextComponent translate={true} size={'text-lg'} css={'h-full text-itemText text-center'}>
+              <TitleTextComponent size={'text-lg'} css={'h-full text-itemText text-center'}>
                 {item.name}
               </TitleTextComponent>
             </View>
