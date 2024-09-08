@@ -18,7 +18,7 @@ const TagSuggest = ({tagQuery, tagID, addTagPress, showSuggest}) => {
 
   useEffect(() => {
     tagQuery == '' ? null : setShowTagSuggest(true);
-  }, [tagQuery])
+  }, [tagQuery, setShowTagSuggest])
 
   const addSuggestion = () => {
     addTagPress(tagQuery, tagID);

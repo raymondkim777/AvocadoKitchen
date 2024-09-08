@@ -102,20 +102,20 @@ const AddIngredient = ({ navigation }) => {
   const [ingredientName, setIngredientName] = useState(ingredientItem.name);
 
   const unitList = [
-    'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
-    '개', '마리', '포기', '톨', '꼬집', '줌', '주먹', '근', '적당량',
+    'g', 'kg', 'ml', 'L', 'ts',  'Ts',  '컵', '종이컵', 
+    '개', '근', '마리', '포기', '톨', '꼬집', '줌', '주먹', '적당량',
   ];
   const unitListSection = [
     {
       type: 'Specific', 
       data: [
-        'g', 'kg', 'ml', 'L', 'Ts', 'ts',  '컵', '종이컵', 
+        'g', 'kg', 'ml', 'L', 'ts', 'Ts', '컵', '종이컵', 
       ],
     }, 
     {
       type: 'General', 
       data: [
-        '개', '마리', '포기', '톨', '꼬집', '줌', '주먹', '근', '적당량',
+        '개', '근', '마리', '포기', '톨', '꼬집', '줌', '주먹', '적당량',
       ],
     }, 
   ];

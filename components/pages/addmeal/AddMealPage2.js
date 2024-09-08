@@ -1,4 +1,4 @@
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect, } from 'react';
 import { SideBarContext } from '../control/HomeControl';
 import { MealContext } from '../control/AddMealControl';
 import { useFocusEffect } from '@react-navigation/native';
@@ -148,6 +148,11 @@ const AddMealPage2 = ({ navigation }) => {
   const [tagInput, setTagInput] = useState('');
   const [tagSuggest, setTagSuggest] = useState('');
   const [tagSuggestID, setTagSuggestID] = useState('');
+  const [showTagSuggest, setShowTagSuggest] = useState();
+
+  useEffect(() => {
+    tagInput == '' ? null : setShowTagSuggest(true);
+  }, [tagInput, setShowTagSuggest])
 
   const updateTagInput = (text) => {
     setTagInput(text);
@@ -157,6 +162,7 @@ const AddMealPage2 = ({ navigation }) => {
   }
   
   const addNewTag = (text, id = '', ) => {
+    setShowTagSuggest(false);
     setTagInput('');
     const new_arr = tags.slice();
     new_arr.push({index: tags.length, id: id == '' ? 'example-tag': id, text: text})
@@ -285,7 +291,7 @@ const AddMealPage2 = ({ navigation }) => {
 
                 {/* Suggested Tag */}
                 <View className='flex-row w-fit h-10 items-center justify-center'>
-                  <TagSuggest tagQuery={tagInput} tagID={tagSuggestID} addTagPress={addNewTag} showSuggest={tagSuggest != ''} />
+                  <TagSuggest tagQuery={tagInput} tagID={tagSuggestID} addTagPress={addNewTag} showSuggest={tagSuggest != '' && showTagSuggest} />
                 </View>
               </View>
 
