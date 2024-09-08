@@ -35,9 +35,14 @@ const QuickSearchResultsUnit = ({ item, smallImage, background }) => {
                 <View className='flex-row w-full h-fit items-center justify-center space-x-2'>
                   {
                     item.price != null
-                    ? <TitleTextComponent size={'text-lg'} sizeDiff={-1} css={'text-redHighlight mr-2'}>
-                        ₩{item.price}
-                      </TitleTextComponent>
+                    ? <View className='flex-row w-fit h-fit items-center justify-center'>
+                        <TitleTextComponent money={true} size={'text-lg'} sizeDiff={-1} css={'text-redHighlight'}>
+                          {item.price}
+                        </TitleTextComponent>
+                        <TitleTextComponent size={'text-lg'} sizeDiff={-1} css={'text-redHighlight mr-2'}>
+                          원
+                        </TitleTextComponent>
+                      </View>
                     : null
                   }
                   {
