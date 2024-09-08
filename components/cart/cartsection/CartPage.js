@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from 'react';
 import { View, Image, SectionList, } from 'react-native';
 import { SideBarContext } from '../../pages/control/HomeControl';
+import { useFocusEffect } from '@react-navigation/native';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import SideBarButton from '../../general/sidebar/SideBarButton';
 import ExitButton from '../../general/buttons/ExitButton';
@@ -63,14 +64,14 @@ const ItemCard = ({
           </TitleTextComponent>
         </View>
       </View>
-      <View className='w-5 h-full items-center justify-center'>
+      <View className='w-5 h-full items-end justify-center'>
         <EditButton callback={openEditModal}/>
       </View>
     </View>
   )
 }
 
-const SiteSummary = ({weeklyBudget, siteIdx, data}) => {
+const SiteSummary = ({data}) => {
   let totalPrice = 0;
   for (let i = 0; i < data.length; i++) {
     totalPrice += data[i].price * data[i].quantity;
@@ -95,26 +96,36 @@ const SiteSummary = ({weeklyBudget, siteIdx, data}) => {
   )
 }
 
+const PageSummary = ({cartItems, weeklyBudget}) => {
+  let totalPrice = 0;
+  for (let i = 0; i < 2; i++)
+    for (let j = 0; j < cartItems[i].data.length; j++)
+      totalPrice += cartItems[i].data[j].price * cartItems[i].data[j].quantity;
+
+  const textColor = totalPrice > weeklyBudget ? 'text-redHighlight' : 'text-greenHighlight';
+
+  return(
+    <View className='flex-row w-full h-12 items-center justify-center bg-itemBgDark rounded-xl my-2 mr-3'>
+      <TitleTextComponent translate={true} size={'text-xl'} css={textColor}>
+        Total
+      </TitleTextComponent>
+      <TitleTextComponent size={'text-xl'} css={textColor}>
+        :
+      </TitleTextComponent>
+      <TitleTextComponent money={true} size={'text-xl'} css={`ml-2 ${textColor}`}>
+        {totalPrice}
+      </TitleTextComponent>
+      <TitleTextComponent size={'text-xl'} css={textColor}>
+        원
+      </TitleTextComponent>
+    </View>
+  )
+}
+
 const CartPage = () => {
   const { wideScreen, setShowSideBar, contentWidth } = useContext(SideBarContext);
 
-  const handleResetCart = () => {
-    null;
-  }
-
-  const handleAddIngredient = () => {
-    setShowAddModal(true);
-  }
-
-  const [weeklyBudget, setWeeklyBudget] = useState(150000);
-
-  const [resetEnabled, setResetEnabled] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [siteIndex, setSiteIndex] = useState(0);
-  const [itemIndex, setItemIndex] = useState(0);
-
-  const items = [
+  const [cartItems, setCartItems] = useState([
     {
       site: "Coupang",
       siteIdx: 0, 
@@ -191,7 +202,22 @@ const CartPage = () => {
         },
       ],
     }, 
-  ]
+  ]);
+
+  const handleResetCart = () => {
+    null;
+  }
+
+  const handleAddIngredient = () => {
+    setShowAddModal(true);
+  }
+  const [weeklyBudget, setWeeklyBudget] = useState(150000);
+
+  const [resetEnabled, setResetEnabled] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [siteIndex, setSiteIndex] = useState(0);
+  const [itemIndex, setItemIndex] = useState(0);
 
   return(
     <View className='shrink w-full h-full bg-screenBg'>
@@ -219,11 +245,11 @@ const CartPage = () => {
       --> Might have to add key to force re-render when item gets deleted*/}
       <View className='shrink w-full h-full mt-4 rounded-xl overflow-hidden'>
         <SectionList
-        className='w-full h-full px-2 pr-1 bg-itemBgLight'
+        className='w-full h-full px-2 bg-itemBgLight'
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{flexGrow: 1}} 
-        sections={items}
+        sections={cartItems}
         renderItem={({item, index, section: {site, siteIdx}}) => (
           <View className='flex-col w-full h-fit'>
             {/* Cards */}
@@ -249,17 +275,7 @@ const CartPage = () => {
             </View>
           </View>
         )}
-        ListHeaderComponent={
-        <View className=''>
-          <CartEditModal 
-          item={items[siteIndex].data[itemIndex]}
-          siteIndex={siteIndex}
-          showEditModal={showEditModal} 
-          setShowEditModal={setShowEditModal} 
-          />
-        </View>
-        }
-        ListFooterComponent={<View className='w-full h-2' />}
+        ListFooterComponent={<PageSummary cartItems={cartItems} weeklyBudget={weeklyBudget} />}
         ItemSeparatorComponent={ItemDiv}
         />
       </View>
@@ -268,6 +284,13 @@ const CartPage = () => {
       <CartAddModal
       showAddModal={showAddModal}
       setShowAddModal={setShowAddModal}
+      />
+
+      <CartEditModal 
+      item={cartItems[siteIndex].data[itemIndex]}
+      siteIndex={siteIndex}
+      showEditModal={showEditModal} 
+      setShowEditModal={setShowEditModal} 
       />
     </View>
   )
