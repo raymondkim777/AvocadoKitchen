@@ -133,8 +133,8 @@ const HomePage = ({ navigation }) => {
     setIsFocused(new_focus);
   }
   const [mealIndex, setMealIndex] = useState(
-    currentHour > 15 ? 2
-    : currentHour > 10 ? 1 
+    currentHour >= 15 ? 2
+    : currentHour >= 10 ? 1 
     : 0
   ); 
   const [mealColor, setMealColor] = useState(
