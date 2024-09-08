@@ -105,7 +105,7 @@ const PageSummary = ({cartItems, weeklyBudget}) => {
   const textColor = totalPrice > weeklyBudget ? 'text-redHighlight' : 'text-greenHighlight';
 
   return(
-    <View className='flex-row w-full h-12 items-center justify-center bg-itemBgDark rounded-xl my-2 mr-3'>
+    <View className='flex-row w-full h-12 items-center justify-center bg-itemBgDark rounded-lg my-2 mr-3'>
       <TitleTextComponent translate={true} size={'text-xl'} css={textColor}>
         Total
       </TitleTextComponent>
