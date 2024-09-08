@@ -15,6 +15,7 @@ import AccountImage from '../profile/AccountImage';
 import SmallButton from '../general/SmallButton';
 import LargeButton from '../general/LargeButton';
 import firestore from '@react-native-firebase/firestore';
+import { useFocusEffect } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,6 +24,11 @@ const ProfilePage = ({ navigation }) => {
   
   const handleLogOut = ({}) => {
     navigation.navigate('Login')
+  }
+
+  const handleSavePress = () => {
+    replaceBudget(budgetValues);
+    updatePage(0, true);
   }
 
   {/* References */}
@@ -168,6 +174,8 @@ const ProfilePage = ({ navigation }) => {
     setBudgetValues(new_values);
   }
 
+  const [requestGetBudget, setRequestGetBudget] = useState(true);
+
   const getBudget = async() => {
       const userDetails = auth().currentUser;
       try{
@@ -195,13 +203,17 @@ const ProfilePage = ({ navigation }) => {
     }
   };
 
-  /*
-  replaceBudget([1,2,3]);
-  */
-  useEffect(()=>{
-    getBudget();
-  },[]);
-  
+  useEffect(() => {
+    if (requestGetBudget) {
+      if (budgetValues.length > 0){
+        //Alert.alert(`${budgetValues.length} ${budgetTypeIndex} ${budgetValues[budgetTypeIndex]}`);
+        setBudgetDisplayValue(budgetValues[budgetTypeIndex]);
+        setRequestGetBudget(false);
+      }
+      else getBudget();
+    }
+  }, [budgetValues, requestGetBudget, setRequestGetBudget]); 
+
   return (
     <SafeAreaView id='screen' className='relative w-full h-full justify-center items-center bg-screenBg'>
       <ScrollView className='w-full h-full'>
@@ -423,7 +435,7 @@ const ProfilePage = ({ navigation }) => {
 
           {/* Save */}
           <View className='w-full h-fit items-center justify-center mt-6 mb-3'>
-            <LargeButton css={'px-8'} text={'Save'} textSize={'text-2xl'}/>
+            <LargeButton css={'px-8'} text={'Save'} textSize={'text-2xl'} callback={handleSavePress}/>
           </View>
 
         </View>
