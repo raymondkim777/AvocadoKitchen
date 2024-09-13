@@ -10,7 +10,9 @@ const AlertCheck = ({
   cancelText = 'Cancel', 
   mainText = 'Leave',
   showModal, setShowModal,
-  handleMainFunction, handleCloseParentModal = null,
+  handleMainFunction = null, handleCloseParentModal = null, 
+  handlePageChange = null,
+  nextPageIndex = 0, forceUpdateStack = true, pageOptions = {}
 }) => {
   const { wideScreen, contentWidth } = useContext(SideBarContext);
 
@@ -19,9 +21,12 @@ const AlertCheck = ({
   }
   const handleMainButtonPress = () => {
     setShowModal(false);
-    handleMainFunction();
+    if (handleMainFunction != null)
+      handleMainFunction();
     if (handleCloseParentModal != null) 
       handleCloseParentModal(false);
+    if (handlePageChange != null)
+      handlePageChange(nextPageIndex, forceUpdateStack, pageOptions);
   }
 
   return(

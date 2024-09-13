@@ -37,7 +37,7 @@ const Login = ({ navigation }) => {
 
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
- 
+
   return (
     <SafeAreaView id='screen' className='w-full h-full justify-center items-center bg-screenBg'>
       <View id='content' className='shrink w-full max-w-[560px] h-full items-center justify-center p-8'>
@@ -52,7 +52,7 @@ const Login = ({ navigation }) => {
           <ItemTextInputComponent
           translate={true}
           size={'text-xl'}
-          css={'shrink w-full h-10 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
+          css={'shrink w-full h-13 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
           placeholder={'Enter your email'}
           placeholderTextColor={'#85855B'}
           value={emailInput}
@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
           <ItemTextInputComponent
           translate={true}
           size={'text-xl'}
-          css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+          css={'shrink w-full h-13 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
           placeholder={'Enter your password'}
           placeholderTextColor={'#85855B'}
           value={passwordInput}

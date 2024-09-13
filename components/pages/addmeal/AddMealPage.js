@@ -404,7 +404,7 @@ const AddMealPage = ({ navigation }) => {
               <ItemTextInputComponent
               translate={true}
               size={'text-xl'}
-              css={'shrink w-full h-10 pb-1 pl-3 text-itemText'}
+              css={'shrink w-full h-13 pb-1 pl-3 text-itemText'}
               placeholder={"ex. Chicken Sandwich"}
               placeholderTextColor={'#85855B'}
               value={mealName} 

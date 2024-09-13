@@ -18,7 +18,7 @@ const ItemTextInputComponent = ({
   multiline=false,
   maxLength,
   inputMode,
-  secureTextEntry = false,
+  secureTextEntry=false,
   textAlignVertical
 }) => {
   const {t, i18n} = useTranslation();
@@ -62,6 +62,7 @@ const ItemTextInputComponent = ({
     underlineColorAndroid={underlineColorAndroid}
     multiline={multiline}
     maxLength={maxLength}
+    maxHeight={50}
     inputMode={inputMode}
     textAlignVertical={textAlignVertical}
     secureTextEntry={secureTextEntry}

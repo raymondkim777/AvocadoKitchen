@@ -181,7 +181,7 @@ const resources = {
       "weeks ago": " weeks ago",
       "months ago": " months ago",
       "years ago": " years ago",
-     
+
       // IngredientCardLarge
       "Ingredient Info": "Ingredient Info",
       "Coupang/MarketCurly Link": "Coupang/MarketCurly Link",

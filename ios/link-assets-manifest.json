@@ -34,10 +34,6 @@
       "sha1": "55181a8eafc09ca273f978d6e35d2ed46e47e570"
     },
     {
-      "path": "assets/fonts/LeeSeoyun.otf",
-      "sha1": "b3345390d6ee5672159aca050bd6a5c5d8fab681"
-    },
-    {
       "path": "assets/fonts/NPS-Bold.ttf",
       "sha1": "c4ed26b54dbbb1a5c28361390afa9baeddfae0ab"
     },
@@ -52,6 +48,10 @@
     {
       "path": "assets/fonts/SpaceMono-Regular.ttf",
       "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
+    },
+    {
+      "path": "assets/fonts/YaGeun.ttf",
+      "sha1": "bb6965a344b7f3e0bdfab515496766b3e8fb3b0d"
     }
   ]
 }

@@ -747,7 +747,7 @@ const Browse = ({ navigation }) => {
                 <ItemTextInputComponent
                 translate={true}
                 size={'text-xl'}
-                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                css={'shrink w-full h-13 text-itemText pb-1 pl-3'}
                 placeholder={"ex. Neapolitan Pizza"}
                 placeholderTextColor={'#85855B'}
                 value={searchQuery} 

@@ -13,6 +13,7 @@ import ProfilePage from '../main/ProfilePage';
 import UserInfoPage from '../main/UserInfoPage';
 import Tutorial from '../main/Tutorial';
 import SideBar from '../../general/sidebar/SideBar';
+import AlertCheck from '../../general/misc/AlertCheck';
 
 const { width, height } = Dimensions.get('window');
 const PageStack = createStackNavigator();
@@ -69,6 +70,7 @@ const HomeControl = ({ navigation }) => {
     new_text[index] = 'text-itemBgLight';
     setTextCSS(new_text);
   }
+
   const updateStack = (index, options = {}) => {
     let initialOptions = { screen: index == 3 ? 'Browse' : index == 4 ? 'AddMealPage' : undefined };
     if ('screen' in options) {
@@ -95,11 +97,27 @@ const HomeControl = ({ navigation }) => {
       });
   */}
   const updatePage = (index, forceUpdateStack = true, options = {}) => { 
+    if (!forceUpdateStack) {
+      setNextPageIndex(index);
+      setForceUpdateStack(forceUpdateStack);
+      setPageOptions(options);
+      setShowAlert(true);
+    } else {
+      updatePageExecute(index, forceUpdateStack, options);
+    }
+  }
+
+  const updatePageExecute = (index, forceUpdateStack = true, options = {}) => {
     updateSideBar(index);
     if (wideScreen || forceUpdateStack) {
       updateStack(index, options);
     } 
   }
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [nextPageIndex, setNextPageIndex] = useState(0);
+  const [forceUpdateStack, setForceUpdateStack] = useState(true);
+  const [pageOptions, setPageOptions] = useState({});
   
   /* HomeControl */
   const [username, setUsername] = useState('Username');
@@ -134,7 +152,7 @@ const HomeControl = ({ navigation }) => {
         <PageStack.Navigator 
           initialRouteName="HomePage"
           screenOptions={{ headerShown: false }}
-        >
+        > 
           <PageStack.Screen name="HomePage" component={HomePage}/>
           <PageStack.Screen name="MyMeals" component={MyMeals} />
           <PageStack.Screen name="MyCart" component={MyCart} />
@@ -144,9 +162,16 @@ const HomeControl = ({ navigation }) => {
           <PageStack.Screen name="ProfilePage" component={ProfilePage} />
           <PageStack.Screen name="Tutorial" component={Tutorial} />
           
-        </PageStack.Navigator>        
+        </PageStack.Navigator>
+        <AlertCheck 
+        showModal={showAlert} 
+        setShowModal={setShowAlert}
+        handlePageChange={updatePageExecute}
+        nextPageIndex={nextPageIndex} 
+        forceUpdateStack={forceUpdateStack} 
+        pageOptions={pageOptions}
+        />  
       </SideBarContext.Provider>
-        
     </Container>
   );
 }

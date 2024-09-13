@@ -224,7 +224,7 @@ const AddIngredient = ({ navigation }) => {
                 <ItemTextInputComponent
                 translate={true}
                 size={'text-xl'}
-                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
                 placeholder="ex. Canned Tuna" 
                 placeholderTextColor={'#85855B'}
                 value={ingSearchQuery} 
@@ -280,7 +280,7 @@ const AddIngredient = ({ navigation }) => {
                 <ItemTextInputComponent
                 translate={true}
                 size={'text-xl'}
-                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
                 placeholder={"ex. Canned Tuna"}
                 placeholderTextColor={'#85855B'}
                 value={ingredientName} 
@@ -297,18 +297,18 @@ const AddIngredient = ({ navigation }) => {
                   Amount
                 </TitleTextComponent>
               </View>
-              <View className='flex-row items-center justify-center shrink w-full h-fit mt-2'>
+              <View className='flex-row items-end justify-center shrink w-full h-fit mt-2'>
                 <ItemTextInputComponent
                 translate={true}
                 size={'text-xl'}
-                css={'shrink w-full h-10 text-itemText pb-1 pl-3 bg-itemBgLight rounded-lg'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3 bg-itemBgLight rounded-lg'}
                 placeholder="ex. 30" 
                 placeholderTextColor={'#85855B'}
                 value={amount} 
                 onChangeText={setAmount} 
                 underlineColorAndroid={'transparent'}
                 />
-                <TouchableHighlight className='w-16 h-10 ml-2 rounded-lg'
+                <TouchableHighlight className='w-16 h-12 ml-2 rounded-lg'
                 activeOpacity={0.9} onPress={handleUnitPress}>
                   <View className='w-full h-full items-center justify-center bg-buttonBg rounded-lg border-2 border-itemText'>
                     <TitleTextComponent size={'text-xl'} sizeDiff={-2} css={'text-itemText'}>
@@ -390,7 +390,7 @@ const AddIngredient = ({ navigation }) => {
                   imageFound
                   ? (
                     <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
-                      <Image className='w-full h-full' source={imageUploaded} /> 
+                      <Image className='w-full h-full' source={imageUploaded} resizeMode='contain' /> 
                     </View>
                   )
                   : null
@@ -418,7 +418,7 @@ const AddIngredient = ({ navigation }) => {
                 </TitleTextComponent>
               </View>
               <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-                <TextInput className='font-inconsolataLight shrink w-full h-10 text-itemText text-xl pb-1.5 pl-3'
+                <TextInput className='font-inconsolataLight shrink w-full h-12 text-itemText text-xl pb-1.5 pl-3'
                   placeholder="ex. https://coupang.com/insert_link" 
                   placeholderTextColor={'#85855B'}
                   value={itemLink} 
