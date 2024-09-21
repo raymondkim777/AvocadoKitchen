@@ -24,10 +24,10 @@ const ExitButtonGeneral = ({ handleMainFunction, background = 'bg-buttonBg', exi
       setShowModal={setShowAlert}
       handleMainFunction={handleAlertLeave}
       />
-      <TouchableHighlight className='w-8 h-8 rounded-lg'
+      <TouchableHighlight className='w-9 h-9 rounded-lg'
       activeOpacity={0.9} onPress={()=>(handleExitPress(exitCheck))}>
         <View className={`w-full h-full ${background} rounded-lg items-center justify-center`}>
-          <Exit width={30} height={30} stroke={'#85855B'} strokeWidth={3} />
+          <Exit width={34} height={34} stroke={'#85855B'} strokeWidth={3} />
         </View>
       </TouchableHighlight>
     </View>
