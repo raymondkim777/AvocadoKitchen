@@ -43,6 +43,8 @@ const HomeControl = ({ navigation }) => {
     'Profile', 
     'Tutorial',
   ];
+  const alertCheckPages = [4, 6];  // addmeal, profilepage
+  const [pageSaved, setPageSaved] = useState(false);  // in case page edit checking is implemendet for alertcheck
   const [pageIndex, setPageIndex] = useState(0);
   const [buttonCSS, setButtonCSS] = useState(
     new Array(pageIndex).fill('bg-itemBgLight').concat(
@@ -86,7 +88,7 @@ const HomeControl = ({ navigation }) => {
     );
   }
   {/*
-    forceUpdateStack is for Modal Sidebar delay; 
+    forceUpdateStack is for Modal Sidebar delay on wideScreen; 
     SideBarPage callback only runs updateSideBar, 
     Modal onModalHide runs updateStack.
 
@@ -97,16 +99,18 @@ const HomeControl = ({ navigation }) => {
       });
   */}
   const updatePage = (index, forceUpdateStack = true, options = {}) => { 
-    if (!forceUpdateStack) {
+    // if sidebar page press & current page should check for changes
+    if (!forceUpdateStack && alertCheckPages.includes(pageIndex)) {
       setNextPageIndex(index);
       setForceUpdateStack(forceUpdateStack);
       setPageOptions(options);
-      setShowAlert(true);
-    } else {
+      setShowAlert(true);  // AlertCheck runs updatePageExecute()
+    } else {  // regular updatePage function call
       updatePageExecute(index, forceUpdateStack, options);
     }
   }
 
+  // separate function, since AlertCheck requires function
   const updatePageExecute = (index, forceUpdateStack = true, options = {}) => {
     updateSideBar(index);
     if (wideScreen || forceUpdateStack) {
