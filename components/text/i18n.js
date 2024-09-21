@@ -55,6 +55,8 @@ const resources = {
       "Profile": "Profile",
       "Logout": "Logout", 
       "Coupang/MarketCurly Accounts": "Coupang/MarketCurly Accounts",
+      "Add Tag": "Add Tag",
+      "Add Allergy": "Add Allergy",
 
       // UserInfoPage
       "Information": "Information",
@@ -181,7 +183,7 @@ const resources = {
       "weeks ago": " weeks ago",
       "months ago": " months ago",
       "years ago": " years ago",
-
+     
       // IngredientCardLarge
       "Ingredient Info": "Ingredient Info",
       "Coupang/MarketCurly Link": "Coupang/MarketCurly Link",
@@ -326,6 +328,8 @@ const resources = {
       "Profile": "유저 설정",
       "Logout": "로그아웃", 
       "Coupang/MarketCurly Accounts": "쿠팡/마켓컬리 계정",
+      "Add Tag": "태그 추가",
+      "Add Allergy": "알레르기 추가",
 
       // UserInfoPage
       "Information": "식단 정보",
