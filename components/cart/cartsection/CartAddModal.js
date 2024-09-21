@@ -116,7 +116,7 @@ const CartAddModal = ({
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-13 text-itemText pb-1 pl-3'}
+            css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
             placeholder="ex. Canned Tuna" 
             placeholderTextColor={'#85855B'}
             value={ingSearchQuery} 

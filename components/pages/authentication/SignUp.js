@@ -51,7 +51,7 @@ const SignUp = ({ navigation }) => {
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-10 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
+            css={'shrink w-full h-12 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
             placeholder={'Enter your email'}
             placeholderTextColor={'#85855B'}
             value={emailInput}
@@ -64,7 +64,7 @@ const SignUp = ({ navigation }) => {
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+            css={'shrink w-full h-12 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
             placeholder={'Enter a username'}
             placeholderTextColor={'#85855B'}
             value={usernameInput}
@@ -76,7 +76,7 @@ const SignUp = ({ navigation }) => {
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-6 bg-itemBgLight rounded-xl'}
+            css={'shrink w-full h-12 text-itemText pb-1 pl-4 mt-8 bg-itemBgLight rounded-xl'}
             placeholder={'Enter your password'}
             placeholderTextColor={'#85855B'}
             value={passwordInput}
@@ -89,7 +89,7 @@ const SignUp = ({ navigation }) => {
             <ItemTextInputComponent
             translate={true}
             size={'text-xl'}
-            css={'shrink w-full h-10 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+            css={'shrink w-full h-12 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
             placeholder={'Enter your password again'}
             placeholderTextColor={'#85855B'}
             value={passwordCheck}

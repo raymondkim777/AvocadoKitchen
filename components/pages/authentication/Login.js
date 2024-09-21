@@ -52,7 +52,7 @@ const Login = ({ navigation }) => {
           <ItemTextInputComponent
           translate={true}
           size={'text-xl'}
-          css={'shrink w-full h-13 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
+          css={'shrink w-full h-12 text-itemText pb-1 pl-4 bg-itemBgLight rounded-xl'}
           placeholder={'Enter your email'}
           placeholderTextColor={'#85855B'}
           value={emailInput}
@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
           <ItemTextInputComponent
           translate={true}
           size={'text-xl'}
-          css={'shrink w-full h-13 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
+          css={'shrink w-full h-12 text-itemText pb-1 pl-4 mt-2 bg-itemBgLight rounded-xl'}
           placeholder={'Enter your password'}
           placeholderTextColor={'#85855B'}
           value={passwordInput}

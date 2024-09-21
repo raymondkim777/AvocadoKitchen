@@ -276,12 +276,12 @@ const AddMealPage2 = ({ navigation }) => {
                 Tags (Optional)
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-10 mt-2 '>
-              <View className='flex-row items-center justify-center shrink w-full h-10 pr-1.5 bg-itemBgLight rounded-xl'>
+            <View className='flex-row items-center justify-center shrink w-full h-12 mt-2 '>
+              <View className='flex-row items-center justify-center shrink w-full h-12 pr-1.5 bg-itemBgLight rounded-xl'>
                 <ItemTextInputComponent
                 translate={true}
                 size={'text-xl'}
-                css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
                 placeholder="Add Tag" 
                 placeholderTextColor={'#85855B'}
                 value={tagInput} 
