@@ -80,7 +80,7 @@ const RecipeBrowseCard = ({ item, handleRecipePress }) => {
                   #
                 </ItemTextComponent>
                 <ItemTextComponent translate={true} size={'text-base'} sizeDiff={0} css={'text-itemBgMid mr-3'}>
-                  {tag}
+                  {tag.text}
                 </ItemTextComponent>
               </View>
             ))}

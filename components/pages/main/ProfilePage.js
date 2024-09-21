@@ -1,4 +1,4 @@
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { SideBarContext } from '../control/HomeControl';
 import { useFocusEffect } from '@react-navigation/native';
 import { BackHandler, View, SafeAreaView, Pressable, TouchableOpacity, ScrollView, TouchableHighlight, } from 'react-native';
@@ -13,6 +13,7 @@ import AccountButton from '../../profile/AccountButton';
 import AccountImage from '../../profile/AccountImage';
 import SmallButton from '../../general/buttons/SmallButton';
 import LargeButton from '../../general/buttons/LargeButton';
+import SquareCheck from '../../../assets/icons/squarecheck.svg';
 
 const ProfilePage = ({ navigation }) => {
   const {wideScreen, setShowSideBar, updatePage} = useContext(SideBarContext);
@@ -74,54 +75,97 @@ const ProfilePage = ({ navigation }) => {
     }
   }
 
+  // Tags
   const [tags, setTags] = useState([
     {
-      id: '0',
-      text: 'Peanut'
-    },
-    {
-      id: '0',
-      text: 'Kiwi'
-    },
-    {
-      id: '0',
-      text: 'Peach'
+      index: 0,
+      id: 'tag-0',
+      text: '글루텐 프리'
     },
   ]);
-
   const [tagInput, setTagInput] = useState('');
-  const addNewTag = () => {
-    const new_arr = tags;
-    new_arr.push({id: '0', text: ''})
+  const [tagSuggest, setTagSuggest] = useState('');
+  const [tagSuggestID, setTagSuggestID] = useState('');
+  const [showTagSuggest, setShowTagSuggest] = useState();
+
+  const updateTagInput = (text) => {
+    setTagInput(text);
+    // search tag query for suggestions
+    setTagSuggest(text);
+    setTagSuggestID('example-suggested-tag');
+  }
+  
+  const addNewTag = (text, id = '', ) => {
+    setShowTagSuggest(false);
+    setTagInput('');
+    const new_arr = tags.slice();
+    new_arr.push({index: tags.length, id: id == '' ? 'example-tag': id, text: text})
     setTags(new_arr);
   }
-  const addTagByID = (id) => {
-    // ADD LATER
-  }
-  const removeTag = (tagID) => {
-    // ADD LATER
+
+  const removeTag = (item) => {
+    const new_arr = tags.slice();
+    new_arr.splice(item.index, 1);
+    for (let i = item.index; i < new_arr.length; i++) {
+      new_arr[i].index--;
+    }
+    setTags(new_arr);
   }
 
-  const [allergy, setAllergy] = useState([
+  // Allergies
+  const [allergies, setAllergies] = useState([
     {
-      id: '0',
-      text: 'Gluten Free'
+      index: 0,
+      id: 'allergy-0',
+      text: '땅콩'
     },
-  ])
-
+    {
+      index: 1,
+      id: 'allergy-1',
+      text: '키위'
+    },
+    {
+      index: 2,
+      id: 'allergy-2',
+      text: '복숭아'
+    },
+  ]);
   const [allergyInput, setAllergyInput] = useState('');
-  const addNewAllergy = () => {
-    const new_arr = allergy;
-    new_arr.push({id: '0', text:''})
-    setAllergy(new_arr);
+  const [allergySuggest, setAllergySuggest] = useState('');
+  const [allergySuggestID, setAllergySuggestID] = useState('');
+  const [showAllergySuggest, setShowAllergySuggest] = useState();
+
+  const updateAllergyInput = (text) => {
+    setAllergyInput(text);
+    // search tag query for suggestions
+    setAllergySuggest(text);
+    setAllergySuggestID('example-suggested-tag');
   }
-  const addAllergyByID = (id) => {
-    // ADD LATER
-  }
-  const removeAllergy = (tagID) => {
-    // ADD LATER
+  
+  const addNewAllergy = (text, id = '', ) => {
+    setShowAllergySuggest(false);
+    setAllergyInput('');
+    const new_arr = allergies.slice();
+    new_arr.push({index: allergies.length, id: id == '' ? 'example-tag': id, text: text})
+    setAllergies(new_arr);
   }
 
+  const removeAllergy = (item) => {
+    const new_arr = allergies.slice();
+    new_arr.splice(item.index, 1);
+    for (let i = item.index; i < new_arr.length; i++) {
+      new_arr[i].index--;
+    }
+    setAllergies(new_arr);
+  }
+
+  // useEffect for Tags/Allergies
+  useEffect(() => {
+    tagInput == '' ? null : setShowTagSuggest(true);
+    allergyInput == '' ? null : setShowAllergySuggest(true);
+  }, [tagInput, setShowTagSuggest, allergyInput, setShowAllergySuggest]);
+
+  // Budget
   const budgetType = [
     'Per Meal', 
     'Daily', 
@@ -251,28 +295,38 @@ const ProfilePage = ({ navigation }) => {
                 Tags (Optional)
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <ItemTextInputComponent
-              translate={true}
-              size={'text-xl'}
-              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
-              placeholder="Add Tag" 
-              placeholderTextColor={'#85855B'}
-              value={tagInput} 
-              onChangeText={setTagInput} 
-              underlineColorAndroid={'transparent'}
-              />
+            <View className='flex-row items-center justify-center shrink w-full h-fit mt-2 '>
+              <View className='flex-row items-center justify-center shrink w-full h-fit pr-1.5 bg-itemBgLight rounded-xl'>
+                <ItemTextInputComponent
+                translate={true}
+                size={'text-xl'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
+                placeholder="Add Tag" 
+                placeholderTextColor={'#85855B'}
+                value={tagInput} 
+                onChangeText={updateTagInput} 
+                underlineColorAndroid={'transparent'}
+                />
 
-              {/* Suggested Tag */}
-              <View className='flex-row w-fit h-10 items-center justify-center'>
-                <TagSuggest tagQuery={tagInput} addTag={addTagByID} />
+                {/* Suggested Tag */}
+                <View className='flex-row w-fit h-10 items-center justify-center'>
+                  <TagSuggest tagQuery={tagInput} tagID={tagSuggestID} addTagPress={addNewTag} showSuggest={tagSuggest != '' && showTagSuggest} />
+                </View>
               </View>
+
+              {/* Add Tag */}
+              <TouchableHighlight className='w-10 h-10 ml-2 rounded-xl'
+              activeOpacity={0.9} onPress={()=>addNewTag(tagInput)} disabled={tagInput == ''}>
+                <View className='w-full h-full items-center justify-center rounded-xl bg-itemBgLight'>
+                  <SquareCheck width={30} height={30} stroke={tagInput == '' ? '#ACACAC' : '#85855B'} strokeWidth={2} />
+                </View>
+              </TouchableHighlight>
             </View>
 
             {/* Display Tags */}
-            <View className='flex-row flex-wrap mt-2 -mr-2'>
+            <View key='display-tags' className='flex-row flex-wrap mt-2 -mr-2'>
               {tags.map((item, index) => (
-                <Tag tagID={item.id} tagName={item.text} removeTag={removeTag} />
+                <Tag item={item} removeTag={removeTag} />
               ))}
             </View>
           </View>
@@ -284,28 +338,38 @@ const ProfilePage = ({ navigation }) => {
                 Allergies (Optional)
               </TitleTextComponent>
             </View>
-            <View className='flex-row items-center justify-center shrink w-full h-fit pr-1 mt-2 bg-itemBgLight rounded-lg'>
-              <ItemTextInputComponent
-              translate={true}
-              size={'text-xl'}
-              css={'shrink w-full h-10 text-itemText pb-1 pl-3'}
-              placeholder="Add Tag" 
-              placeholderTextColor={'#85855B'}
-              value={allergyInput} 
-              onChangeText={setAllergyInput} 
-              underlineColorAndroid={'transparent'}
-              />
+            <View className='flex-row items-center justify-center shrink w-full h-fit mt-2 '>
+              <View className='flex-row items-center justify-center shrink w-full h-fit pr-1.5 bg-itemBgLight rounded-xl'>
+                <ItemTextInputComponent
+                translate={true}
+                size={'text-xl'}
+                css={'shrink w-full h-12 text-itemText pb-1 pl-3'}
+                placeholder="Add Allergy" 
+                placeholderTextColor={'#85855B'}
+                value={allergyInput} 
+                onChangeText={updateAllergyInput} 
+                underlineColorAndroid={'transparent'}
+                />
 
-              {/* Suggested Allergies */}
-              <View className='flex-row w-fit h-10 items-center justify-center'>
-                <TagSuggest tagQuery={allergyInput} addTag={addAllergyByID} />
+                {/* Suggested Allergy */}
+                <View className='flex-row w-fit h-10 items-center justify-center'>
+                  <TagSuggest tagQuery={allergyInput} tagID={allergySuggestID} addTagPress={addNewAllergy} showSuggest={allergySuggest != '' && showAllergySuggest} />
+                </View>
               </View>
+
+              {/* Add Allergy */}
+              <TouchableHighlight className='w-10 h-10 ml-2 rounded-xl'
+              activeOpacity={0.9} onPress={()=>addNewAllergy(allergyInput)} disabled={allergyInput == ''}>
+                <View className='w-full h-full items-center justify-center rounded-xl bg-itemBgLight'>
+                  <SquareCheck width={30} height={30} stroke={allergyInput == '' ? '#ACACAC' : '#85855B'} strokeWidth={2} />
+                </View>
+              </TouchableHighlight>
             </View>
 
             {/* Display Allergies */}
-            <View className='flex-row flex-wrap mt-2 -mr-2'>
-              {allergy.map((item, index) => (
-                <Tag tagID={item.id} tagName={item.text} removeTag={removeTag} />
+            <View key='display-tags' className='flex-row flex-wrap mt-2 -mr-2'>
+              {allergies.map((item, index) => (
+                <Tag item={item} removeTag={removeAllergy} />
               ))}
             </View>
           </View>
