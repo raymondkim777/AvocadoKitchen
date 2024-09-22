@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { SafeAreaView, View, ScrollView, Image } from 'react-native';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+import { MealContext } from '../control/AddMealControl';
+import { SafeAreaView, View, ScrollView, Image, Alert } from 'react-native';
+import * as ImagePicker from 'react-native-image-picker';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
 import '../../text/i18n'
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
+import AddImageModal from '../../addfunction/addimage/AddImageModal';
 import ExitButtonGeneral from '../../general/buttons/ExitButtonGeneral';
 import SmallButton from '../../general/buttons/SmallButton';
 import LargeButton from '../../general/buttons/LargeButton';
 import Counter from '../../general/misc/Counter';
-import { MealContext } from '../control/AddMealControl';
 
 const AddProcedure = ({ navigation }) => {
   const {t, i18n} = useTranslation();
@@ -64,7 +66,7 @@ const AddProcedure = ({ navigation }) => {
         preset: true,
         index: stepNum - 1, 
         description: description,
-        image: imageUploaded,
+        image: response?.assets[0].uri, 
       }
       const newRecipeItem = recipeItem;
       if (procedureItem.preset) {
@@ -104,17 +106,45 @@ const AddProcedure = ({ navigation }) => {
 
   const [description, setDescription] = useState(procedureItem.description);
 
-  const [imageFound, setImageFound] = useState(procedureItem.image != null);
-  const [imageUploaded, setImageUploaded] = useState(procedureItem.image);
+  // ImagePicker
+  const [showImageModal, setShowImageModal] = useState(false)
 
-  const updateImage = () => {
-    setImageUploaded(require('../../../assets/images/procedure-example/step-1.webp'));
-    setImageFound(true);
+  const includeExtra = true;
+  const [response, setResponse] = useState(null);
+
+  const launchImagePicker = useCallback((type, options) => {
+    if (type === 'capture') {
+      ImagePicker.launchCamera(options, setResponse);
+    } else {
+      ImagePicker.launchImageLibrary(options, setResponse);
+    }
+  }, []);
+  
+  const [imageUploaded, setImageUploaded] = useState(procedureItem.image);
+  
+  const handleCameraPress = () => {
+    launchImagePicker('capture', 
+    {
+      saveToPhotos: true,
+      mediaType: 'photo',
+      includeBase64: false,
+      includeExtra,
+    });
+  }
+
+  const handleSelectPress = () => {
+    launchImagePicker('library', 
+    {
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: false,
+      includeExtra,
+    });
   }
 
   const deleteImage = () => {
+    setResponse(null);
     setImageUploaded(null);
-    setImageFound(false);
   }
 
   const [saveCheck, setSaveCheck] = useState(true);
@@ -184,20 +214,24 @@ const AddProcedure = ({ navigation }) => {
               </View>
               <View className='flex-col items-center justify-center shrink w-full h-fit mt-2'>
                 {
-                  imageFound
-                  ? (
+                  response?.assets &&
+                  response?.assets.map(({uri}) => (
                     <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
-                      <Image className='w-full h-full' source={imageUploaded} /> 
+                      <Image
+                        className='w-full h-full'
+                        resizeMode="cover"
+                        resizeMethod="scale"
+                        source={{uri: uri}}
+                      />
                     </View>
-                  )
-                  : null
+                  ))
                 }
                 
                 {/* Add/Change Image */}
                 <View className='flex-row w-full h-fit items-center'>
-                  <SmallButton text={imageFound ? 'Change Image' : 'Add Image'} callback={updateImage}/>
+                  <SmallButton text={response?.assets ? 'Change Image' : 'Add Image'} callback={()=>setShowImageModal(true)}/>
                   {
-                    imageFound 
+                    response?.assets 
                     ? <View className='w-fit h-fit ml-2'>
                         <SmallButton text={'Delete Image'} callback={deleteImage} /> 
                       </View>
@@ -225,6 +259,14 @@ const AddProcedure = ({ navigation }) => {
               <LargeButton cssIn={'shrink w-full'} cssOut={'shrink w-full'} text={'Save'} textSize={'text-2xl'} callback={handleSavePress} />
             </View>
           </View>
+
+          {/* Add Image Modal */}
+          <AddImageModal
+          showImageModal={showImageModal}
+          setShowImageModal={setShowImageModal}
+          handleCameraPress={handleCameraPress} 
+          handleSelectPress={handleSelectPress}
+          />
 
         </View>
       </ScrollView>

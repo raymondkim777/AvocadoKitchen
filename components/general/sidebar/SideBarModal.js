@@ -15,7 +15,7 @@ const SideBarModal = ({
     animationIn={'slideInLeft'}
     animationInTiming={300}
     animationOut={'slideOutLeft'}
-    animationOutTiming={300}
+    animationOutTiming={450}
     onModalHide={()=>updateStack(pageIndex)}
     onSwipeComplete={() => setShowSideBar(false)}
     swipeDirection='left'
