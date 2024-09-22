@@ -3296,7 +3296,7 @@ const MyMeals = ({ navigation }) => {
           dropDownOpen={dropDownOpen} 
           closeDropDowns={closeDropDowns}
         />}
-        ListFooterComponent={<View className='w-full h-8' />}
+        ListFooterComponent={<View className='w-full h-4' />}
         ItemSeparatorComponent={ItemDiv}
         stickySectionHeadersEnabled={true}
         />
