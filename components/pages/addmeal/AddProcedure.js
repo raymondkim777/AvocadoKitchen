@@ -66,7 +66,7 @@ const AddProcedure = ({ navigation }) => {
         preset: true,
         index: stepNum - 1, 
         description: description,
-        image: response?.assets[0].uri, 
+        image: 'data:image/jpeg;base64,' + response.assets[0].base64, 
       }
       const newRecipeItem = recipeItem;
       if (procedureItem.preset) {
@@ -127,7 +127,7 @@ const AddProcedure = ({ navigation }) => {
     {
       saveToPhotos: true,
       mediaType: 'photo',
-      includeBase64: false,
+      includeBase64: true,
       includeExtra,
     });
   }
@@ -137,7 +137,7 @@ const AddProcedure = ({ navigation }) => {
     {
       selectionLimit: 1,
       mediaType: 'photo',
-      includeBase64: false,
+      includeBase64: true,
       includeExtra,
     });
   }
@@ -214,17 +214,23 @@ const AddProcedure = ({ navigation }) => {
               </View>
               <View className='flex-col items-center justify-center shrink w-full h-fit mt-2'>
                 {
-                  response?.assets &&
-                  response?.assets.map(({uri}) => (
-                    <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
-                      <Image
-                        className='w-full h-full'
-                        resizeMode="cover"
-                        resizeMethod="scale"
-                        source={{uri: uri}}
-                      />
-                    </View>
-                  ))
+                  response?.assets ?
+                  <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
+                    <Image
+                    className='w-full h-full'
+                    resizeMode="cover"
+                    resizeMethod="scale"
+                    source={{uri: response?.assets[0].uri}}
+                    />
+                  </View> : imageUploaded ?
+                  <View className='w-full h-64 bg-itemBgLight rounded-xl mb-2 overflow-hidden'>
+                    <Image
+                    className='w-full h-full'
+                    resizeMode="cover"
+                    resizeMethod="scale"
+                    source={{uri: imageUploaded}}
+                    />
+                  </View> : null
                 }
                 
                 {/* Add/Change Image */}
