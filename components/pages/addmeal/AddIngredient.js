@@ -2,6 +2,7 @@ import React, { useState, useContext, useCallback } from 'react';
 import { SideBarContext } from '../control/HomeControl';
 import { MealContext } from '../control/AddMealControl';
 import { SafeAreaView, View, ScrollView, TextInput, TouchableHighlight, FlatList, Image } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import * as ImagePicker from 'react-native-image-picker';
 import {useTranslation} from 'react-i18next';
 import 'intl-pluralrules';
@@ -19,6 +20,24 @@ import Search from "../../../assets/icons/search.svg";
 const AddIngredient = ({ navigation }) => {
   const {t, i18n} = useTranslation();
   const currentLanguage = i18n.language;
+  const exitCheck = true;
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        if (exitCheck)
+        navigation.goBack();
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => subscription.remove();
+    })
+  ); 
 
   const { wideScreen } = useContext(SideBarContext);
   const { 
@@ -244,7 +263,7 @@ const AddIngredient = ({ navigation }) => {
               <TitleTextComponent translate={true} size={'text-3xl'} css={'text-screenText mx-4'}>
                 {ingredientItem.preset ? 'Edit Ingredient' : 'Add Ingredient'}
               </TitleTextComponent>
-              <ExitButtonGeneral handleMainFunction={handleExitPress} />
+              <ExitButtonGeneral handleMainFunction={handleExitPress} exitCheck={exitCheck} />
             </View>
 
             {/* Quick Search */}
