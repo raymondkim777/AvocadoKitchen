@@ -18,8 +18,8 @@ A majority of the current progress was spent on developing the front-end applica
 The initial designs of each major page were drafed on Figma, where aspects like the color palette, page layout, and general navigation was experimented. More pages were added throughout the process as the app expanded in functionality and pages. 
 
 <div style="display: flex">
-   <img src="readmeimages/figma1.png" height=450>
-   <img src="readmeimages/figma2.png" height=450>
+   <img src="readmeimages/figma1.png" height=400 width=600>
+   <img src="readmeimages/figma2.png" height=400 width=200>
 </div>
 
 
