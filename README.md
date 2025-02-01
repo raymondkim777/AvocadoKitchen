@@ -1,79 +1,59 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Avocado Kitchen - A Smart Meal Plan App
 
-# Getting Started
+This application allows the user to manage their weekly meal plan, and algorithmically formulates plans based on nutrition, user diet restrictions, and adjustable budget. Users can create and upload their own recipes to a community, where other users can like, comment, and download/modify the recipe for themselves. The application also automatically tracks recipe ingredients and, with the user's permission, auto-orders them from South Korea's Coupang and MarketKurly online stores. 
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Periods of Development  
+- April 23, 2022 - Present
 
-## Step 1: Start the Metro Server
+## Development Environment  
+- 'NodeJS, React Native, TailwindCSS, Python' 
+- 'Database: Google Firebase'
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Front End Application
 
-To start Metro, run the following command from the _root_ of your React Native project:
+A majority of the current progress was spent on developing the front-end application for usability, navigability, and aesthetics. 
 
-```bash
-# using npm
-npm start
+### Figma Pre-Design
 
-# OR using Yarn
-yarn start
-```
+The initial designs of each major page were drafed on Figma, where aspects like the color palette, page layout, and general navigation was experimented. More pages were added throughout the process as the app expanded in functionality and pages. 
 
-## Step 2: Start your Application
+<div style="display: flex">
+   <img src="readmeimages/figma1.png" height=450>
+   <img src="readmeimages/figma2.png" height=450>
+</div>
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
-### For Android
+### Crawling & Natural Language Processing ([DataBase.py](DataBase.py))  
 
-```bash
-# using npm
-npm run android
 
-# OR using Yarn
-yarn android
-```
+### SQL ([DataBase.py](DataBase.py), [ArticleDatabase.db](ArticleDatabase.db]))  
 
-### For iOS
 
-```bash
-# using npm
-npm run ios
+### TF-IDF ([System.py](System.py))  
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Word Associativity  
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+#### Visual Display
 
-Now that you have successfully run the app, let's modify it.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Collecting Stock Data
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
+#### Predicting Stock Movement
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+### Stock GUI
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
+#### SubFrame1
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-# Learn More
+#### SubFrame2
 
-To learn more about React Native, take a look at the following resources:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+#### SubFrame3
+
+## Reference
+- Christopher D. Manning et al., 2008, Introduction to Information Retrieval (8th Edition)
