@@ -28,13 +28,14 @@ numberOfLines = 0, }) => {
     'text-8xl', 
     'text-9xl',
   ];
-  let sizeIdx = sizes.indexOf(size) + sizeDiff * (currentLanguage == 'ko-KR');
+  // let sizeIdx = sizes.indexOf(size) + sizeDiff * (currentLanguage == 'ko-KR');
+  let sizeIdx = sizes.indexOf(size) + sizeDiff - 1 * (currentLanguage == 'ko-KR' ? 0 : 1);
   if (sizeIdx > 12) {
     sizeIdx = 12;
   }
 
   const fontKRCSS = (bold ? 'font-koreanFont1' : 'font-koreanFont1');
-  const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
+  // const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
 
   const moneyFormat = (value) => {
     return new Intl.NumberFormat('ko-KR', {style:'decimal'}).format(value);
@@ -44,7 +45,10 @@ numberOfLines = 0, }) => {
     <Text 
     numberOfLines={numberOfLines}
     className={`
-      ${(currentLanguage  === 'ko-KR') ? fontKRCSS + " -mt-0.5" : fontENCSS} 
+      ${
+        // (currentLanguage  === 'ko-KR') ? fontKRCSS + " -mt-0.5" : fontENCSS
+        fontKRCSS + " -mt-0.5"
+      } 
       ${sizes[sizeIdx]} 
       ${css}
     `}>

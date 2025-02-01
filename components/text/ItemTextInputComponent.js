@@ -38,17 +38,18 @@ const ItemTextInputComponent = ({
     'text-7xl', 
     'text-8xl', 
     'text-9xl'];
-  let sizeIdx = sizes.indexOf(size) + 2 * (currentLanguage == 'ko-KR');
+  // let sizeIdx = sizes.indexOf(size) + 2 * (currentLanguage == 'ko-KR');
+  let sizeIdx = sizes.indexOf(size) + 2;
   if (sizeIdx > 12) {
     sizeIdx = 12;
   }
 
   const fontKRCSS = 'font-koreanFont2';
-  const fontENCSS = 'font-inconsolataLight';
+  // const fontENCSS = 'font-inconsolataLight';
 
   return(
     <TextInput className={`
-      ${(currentLanguage  === 'ko-KR') ? fontKRCSS : fontENCSS}
+      ${fontKRCSS}
       ${sizes[sizeIdx]}
       ${css}`}
     placeholder={

@@ -22,17 +22,21 @@ const ItemLargeTextComponent = ({ translate, children, size, sizeDiff = 0, bold 
     'text-7xl', 
     'text-8xl', 
     'text-9xl'];
-  let sizeIdx = sizes.indexOf(size) + (-1 + sizeDiff) * (currentLanguage == 'ko-KR');
+  // let sizeIdx = sizes.indexOf(size) + (-1 + sizeDiff) * (currentLanguage == 'ko-KR');
+  let sizeIdx = sizes.indexOf(size) + (-1 + sizeDiff);
   if (sizeIdx > 12) {
     sizeIdx = 12;
   }
 
   const fontKRCSS = (bold ? 'font-koreanFont1Bold' : 'font-koreanFont1');
-  const fontENCSS = (bold ? 'font-fredoka' : 'font-fredoka');
+  // const fontENCSS = (bold ? 'font-fredoka' : 'font-fredoka');
 
   return(
     <Text className={`
-      ${(currentLanguage  === 'ko-KR') ? fontKRCSS : fontENCSS} 
+      ${
+        // (currentLanguage  === 'ko-KR') ? fontKRCSS : fontENCSS
+        fontKRCSS
+      } 
       ${sizes[sizeIdx]} 
       ${css}
     `}>

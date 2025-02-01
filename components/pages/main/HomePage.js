@@ -3680,7 +3680,7 @@ const HomePage = ({ navigation }) => {
                       <TouchableHighlight className={`shrink w-full h-7 rounded-l-lg`}
                       activeOpacity={0.9} onPress={()=>setMealFocus(0)}>
                         <View className={`w-full h-full items-center justify-center rounded-l-lg ${mealColor[0]}`}>
-                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[0]}>
+                          <TitleTextComponent translate={true} size={'text-xl'} css={mealText[0]}>
                             Breakfast
                           </TitleTextComponent>
                         </View>
@@ -3688,7 +3688,7 @@ const HomePage = ({ navigation }) => {
                       <TouchableHighlight className={`shrink w-full h-7 ${mealColor[1]}`}
                       activeOpacity={0.9} onPress={()=>setMealFocus(1)}>
                         <View className={`w-full h-full items-center justify-center ${mealColor[1]}`}>
-                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[1]}>
+                          <TitleTextComponent translate={true} size={'text-xl'} css={mealText[1]}>
                             Lunch
                           </TitleTextComponent>
                         </View>
@@ -3696,7 +3696,7 @@ const HomePage = ({ navigation }) => {
                       <TouchableHighlight className={`shrink w-full h-7 rounded-r-lg`}
                       activeOpacity={0.9} onPress={()=>setMealFocus(2)}>
                         <View className={`w-full h-full items-center justify-center  rounded-r-lg ${mealColor[2]}`}>
-                          <TitleTextComponent translate={true} size={'text-xl'} bold={true} css={mealText[2]}>
+                          <TitleTextComponent translate={true} size={'text-xl'} css={mealText[2]}>
                             Dinner
                           </TitleTextComponent>
                         </View>

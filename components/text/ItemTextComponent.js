@@ -27,19 +27,23 @@ const ItemTextComponent = ({
     'text-8xl', 
     'text-9xl',
   ];
-  let sizeIdx = sizes.indexOf(size) + (sizeDiff + 4) * (currentLanguage == 'ko-KR');
+  // let sizeIdx = sizes.indexOf(size) + (sizeDiff + 4) * (currentLanguage == 'ko-KR');
+  let sizeIdx = sizes.indexOf(size) + (sizeDiff + 4);
   if (sizeIdx > 12) {
     sizeIdx = 12;
   }
 
   const fontKRCSS = (bold ? 'font-koreanFont2' : 'font-koreanFont2');
-  const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
+  // const fontENCSS = (bold ? 'font-inconsolataBold' : 'font-inconsolata');
 
   return(
     <Text 
     numberOfLines={numberOfLines}
     className={`
-      ${(currentLanguage  === 'ko-KR') ? fontKRCSS + " -mb-1 -mt-2" : fontENCSS} 
+      ${
+        // (currentLanguage  === 'ko-KR') ? fontKRCSS + " -mb-1 -mt-2" : fontENCSS
+        fontKRCSS + " -mb-1 -mt-2" 
+      } 
       ${sizes[sizeIdx]} 
       ${css}
     `}>
