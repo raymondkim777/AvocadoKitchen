@@ -9,51 +9,33 @@ This application allows the user to manage their weekly meal plan, and algorithm
 - 'NodeJS, React Native, TailwindCSS, Python' 
 - 'Database: Google Firebase'
 
-## Front End Application
+## Figma Pre-Design
 
 A majority of the current progress was spent on developing the front-end application for usability, navigability, and aesthetics. 
 
-### Figma Pre-Design
-
-The initial designs of each major page were drafed on Figma, where aspects like the color palette, page layout, and general navigation was experimented. More pages were added throughout the process as the app expanded in functionality and pages. 
+The initial designs of each major page were drafted on Figma, where aspects like the color palette, page layout, and general navigation was experimented. More pages were added throughout the process as the app expanded in functionality and pages. 
 
 <div style="display: flex">
    <img src="readmeimages/figma1.png" height=400 width=600>
    <img src="readmeimages/figma2.png" height=400 width=200>
 </div>
 
+Note that a large portion of the general navigation and widgets were edited during front-end development. The [Figma link](https://www.figma.com/design/Eqfgi0TAOecSLGTEpJMXLM/Meal-Plan-App?node-id=0-1&p=f&t=kHnIiwVHbvht7x5v-0) is provided if more in-depth exploration is desired. 
 
-### Crawling & Natural Language Processing ([DataBase.py](DataBase.py))  
+## Front-End Development
 
+Add Korean Support Info
 
-### SQL ([DataBase.py](DataBase.py), [ArticleDatabase.db](ArticleDatabase.db]))  
+### Login/SignUp Page
 
+### Profile/Settings Page
 
-### TF-IDF ([System.py](System.py))  
+### HomePage
 
+### Meal Page
 
-### Word Associativity  
+### Add Meal Page
 
+### Recipe Search Page
 
-#### Visual Display
-
-
-### Collecting Stock Data
-
-
-#### Predicting Stock Movement
-
-
-### Stock GUI
-
-
-#### SubFrame1
-
-
-#### SubFrame2
-
-
-#### SubFrame3
-
-## Reference
-- Christopher D. Manning et al., 2008, Introduction to Information Retrieval (8th Edition)
+### My Cart Page
