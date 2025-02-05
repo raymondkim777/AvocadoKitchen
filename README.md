@@ -120,9 +120,9 @@ The recipe browse page allows the user to browse recipes uploaded by other users
 Clicking a recipe card will navigate to a recipe page, with the recipe name, a table of ingredients, and procedure cards. The user can scroll through the ingredients table and select a specific row, where an ingredient card will pop up explaining the ingredient in detail. The user can also scroll through the recipe cards, and select each card to expand the recipe card for easier viewing. 
 
 <div style="display: flex; margin-bottom: 15px;">
-   <img src="readmeimages/recipecard1-small.png" height=600>
-   <img src="readmeimages/recipecard2-small.png" height=600>
-   <img src="readmeimages/recipecard3-small.png" height=600>
+   <img src="readmeimages/recipecard1-small.png" height=550>
+   <img src="readmeimages/recipecard2-small.png" height=550>
+   <img src="readmeimages/recipecard3-small.png" height=550>
 </div>
 
 The recipe page also has buttons on the bottom for the user to further interact with the recipe. The user can like the recipe by clicking the heart icon, or navigate to the comment section by clicking the comment button. This will bring up a comment popup where the user can read and post comments. 
