@@ -14,10 +14,12 @@ import LargeButton from '../../general/buttons/LargeButton';
 import CircleCheck from '../../../assets/icons/circlecheck.svg';
 import CirclePlus from '../../../assets/icons/circleplus.svg';
 import SquareCheck from '../../../assets/icons/squarecheck.svg';
+import { LogBox } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
 const AddMealPage2 = ({ navigation }) => {
+  LogBox.ignoreAllLogs();
   const { updatePage } = useContext(SideBarContext);
   const { 
     originPage,

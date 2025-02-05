@@ -11,8 +11,10 @@ import IngredientsTable from '../../recipe/ingredient/IngredientsTable';
 import ProcedureTable from '../../recipe/procedure/ProcedureTable';
 import TitleTextComponent from '../../text/TitleTextComponent';
 import ItemTextInputComponent from '../../text/ItemTextInputComponent';
+import { LogBox } from 'react-native';
 
 const AddMealPage = ({ navigation }) => {
+  LogBox.ignoreAllLogs();
   const { wideScreen, setShowSideBar, updatePage } = useContext(SideBarContext);
   const { 
     originPage,

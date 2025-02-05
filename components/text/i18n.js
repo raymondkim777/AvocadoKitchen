@@ -194,6 +194,7 @@ const resources = {
 
       // AddMealPage
       "Add Your Meal": "Add Your Meal",
+      "Meal Time": "Meal Time",
       "Choose a Recipe": "Choose a Recipe",
       "Ingredients": "Ingredients",
       "Add Ingredient": "Add Ingredient",
