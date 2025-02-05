@@ -136,7 +136,7 @@ Crucially, the user can select "Add Meal" to add the recipe to their own meal pl
 
 ### My Cart Page
 
-The cart page parses through the user's recipes and automatically displays the ingredients the user needs to buy from the Coupang/MarketKurly online stores in a table. The user can edit each ingredient's contents or count, or add new ingredients as they see fit. When adding ingredients, available options are read from the Coupang/MarketKurly stores, and each item's prices and delivery dates/methods are outlined. The total cost of ingredients is calculate for each store, and the final cost is displayed below. If the total is over the user's selected weekly budget, it is highlighted in red; otherwise, it is highlighted in green. 
+The cart page parses through the user's recipes and automatically displays the ingredients the user needs to buy from the Coupang/MarketKurly online stores in a table. The user can edit each ingredient's contents or count, or add new ingredients as they see fit. When adding ingredients, available options are read from the Coupang/MarketKurly stores, and each item's prices and delivery dates/methods are outlined. The total cost of ingredients is calculated for each store, and the final cost is displayed below. If the total is over the user's selected weekly budget, it is highlighted in red; otherwise, it is highlighted in green. 
 
 <div style="display: flex; margin-bottom: 15px;">
    <img src="readmeimages/mycart-small.gif" height=600>
