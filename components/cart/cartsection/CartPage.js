@@ -219,7 +219,7 @@ const CartPage = () => {
   const handleAddIngredient = () => {
     setShowAddModal(true);
   }
-  const [weeklyBudget, setWeeklyBudget] = useState(150000);
+  const [weeklyBudget, setWeeklyBudget] = useState(280000);
 
   const [resetEnabled, setResetEnabled] = useState(false);
   const [defaultCartItems, setDefaultCartItems] = useState([...cartItems]);

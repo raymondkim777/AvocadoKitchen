@@ -27,11 +27,12 @@ const ProcedureCard = ({ item, width, handlePress}) => {
           <ScrollView nestedScrollEnabled={true} className='w-full mt-2'>
             <View className='w-full h-fit max-h-1/3 items-center justify-center'>
               {/* Custom ItemTextComponent due to complications */}
-              <Text className={`
+              <Text className="font-koreanFont2 text-itemText text-center text-3xl leading-7">
+              {/* <Text className={`
                 ${(currentLanguage  === 'ko-KR') 
                   ? "font-koreanFont2 text-itemText text-center text-3xl leading-7" 
                   : 'font-inconsolata text-itemText text-center text-base leading-4'}
-              `}>
+              `}> */}
                 {item.description}
               </Text>
             </View>

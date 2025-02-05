@@ -69,11 +69,12 @@ const CommentCard = ({item}) => {
           <View className='flex-row w-full h-fit items-center justify-start'>
             <View className='w-full h-fit pb-1 items-center justify-center'>
               {/* Custom ItemTextComponent due to complications */}
-              <Text className={`
+              <Text className="w-full font-koreanFont2 text-itemText text-start text-2xl leading-5 pt-1">
+              {/* <Text className={`
                 ${(currentLanguage  === 'ko-KR') 
                   ? "w-full font-koreanFont2 text-itemText text-start text-2xl leading-5 pt-1" 
                   : 'w-full font-inconsolata text-itemText text-start text-base leading-4 pt-1'}
-              `}>
+              `}> */}
                 {item.text}
               </Text>
             </View>

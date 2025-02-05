@@ -23,11 +23,12 @@ const ProcedureCardLarge = ({item}) => {
       <View className='shrink w-full h-fit max-h-64 items-center justify-center'>
         <ScrollView nestedScrollEnabled={true} className='w-full mt-2'>
           <View className='w-full h-fit items-center justify-center'>
-            <Text className={`
+          <Text className="font-koreanFont2 text-itemText text-center text-3xl leading-7">
+            {/* <Text className={`
               ${(currentLanguage  === 'ko-KR') 
                 ? "font-koreanFont2 text-itemText text-center text-3xl leading-7" 
                 : 'font-inconsolata text-itemText text-center text-base leading-4'}
-            `}>
+            `}> */}
               {item.description}
             </Text>
           </View>

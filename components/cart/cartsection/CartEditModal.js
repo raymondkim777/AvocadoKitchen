@@ -10,12 +10,16 @@ import QuickSearchResults from '../../addfunction/quicksearch/QuickSearchResults
 import QuickSearchResultsEmpty from '../../addfunction/quicksearch/QuickSearchResultsEmpty';
 import Search from "../../../assets/icons/search.svg";
 import AlertCheck from '../../general/misc/AlertCheck';
+import { useTranslation } from 'react-i18next';
 
 const CartEditModal = ({ 
   item, siteIndex, 
   showEditModal, setShowEditModal, 
   updateEditCart, updateDeleteCart,
 }) => {
+  const {t, i18n} = useTranslation();
+  const currentLanguage = i18n.language;
+
   const { wideScreen, contentWidth } = useContext(SideBarContext);
   const [ currentItem, setCurrentItem ] = useState(item);
   
@@ -241,9 +245,10 @@ const CartEditModal = ({
                   <TitleTextComponent translate={true} size={'text-xl'} css={'text-itemText mx-4'}>
                     Quick Search
                   </TitleTextComponent>
-                  <TouchableHighlight className='w-20 h-7 rounded-full '
+                  <TouchableHighlight className='w-24 h-7 rounded-full '
                   activeOpacity={0.9} onPress={shiftSearchSite}>
-                    <View className='w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full border-2 border-itemText'>
+                    <View className={`w-full h-full px-2 items-center justify-center bg-itemBgDark rounded-full border-2 border-itemText
+                    ${currentLanguage === 'ko-KR' ? '' : 'pt-1'}`}>
                       <TitleTextComponent translate={true} size={'text-base'} css={'h-6 text-center text-itemText'}>
                         {searchSiteList[searchSiteIndex]}
                       </TitleTextComponent>

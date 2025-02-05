@@ -26,10 +26,14 @@ const QuickSearchResultsUnit = ({ item, smallImage, background }) => {
             <View className={`flex-1 h-fit items-center justify-start ${background} rounded-lg`}>
               <Image className={`shrink w-full ${imageHeight} rounded-lg`} source={item.image} />
               <View className='flex-col w-full h-fit items-center justify-center'>
-                <Text numberOfLines={2} className={`
+              <Text numberOfLines={2} className={`
+                  ${(currentLanguage  === 'ko-KR') ? "font-koreanFont1 my-1 text-base" : 'font-koreanFont1 my-1 text-sm'} 
+                   text-wrap text-center leading-4 text-itemText
+                `}>
+                {/* <Text numberOfLines={2} className={`
                   ${(currentLanguage  === 'ko-KR') ? "font-koreanFont1 my-1" : 'font-inconsolata'} 
                   text-base text-wrap text-center leading-4 text-itemText
-                `}>
+                `}> */}
                   {siteText} {t(item.name)}
                 </Text>
                 <View className='flex-row w-full h-fit items-center justify-center space-x-2'>

@@ -68,6 +68,10 @@ For pages such as the profile/settings page where user edit is possible/encourag
    <img src="readmeimages/profile-large.gif" height=600>
 </div>
 
+### Information Page
+
+NEED TO ADD
+
 ### Meal Plan Page
 
 The meal plan page is a more detailed overview of each meal included in the user's meal plan, and serves as an extension of the first widget in the homepage. This page includes additional features such as the user being able to edit and (delete???) specific meals. The meal plan page also includes a similar nutritional summary as the homepage, but shows the average daily nutrition for that meal plan instead of statistics for that specific day. 
@@ -79,7 +83,7 @@ The meal plan page is a more detailed overview of each meal included in the user
 
 ### Add Meal Page
 
-The add meal plage is where the user can add specific meals to their meal plan. They can select a specific day/meal, and manually input fields such as meal name, ingredients, and recipe steps. More conveniently, the user can also directly add existing recipes to their meal plan. This will auto fill the add meal page with the recipe information, which the user can edit to their liking. Once finished, the next page shows a budget estimation for online ordering, and allows the user to add additional tags or confirm whether they want their recipe published. 
+The add meal plage is where the user can add specific meals to their meal plan. They can select a specific day/meal, and manually input fields such as meal name, ingredients, and recipe steps. More conveniently, the user can also directly add existing recipes to their meal plan (explained later). This will auto fill the add meal page with the recipe information, which the user can edit to their liking. Once finished, the next page shows a budget estimation for online ordering, and allows the user to add additional tags or confirm whether they want their recipe published. 
 
 <div style="display: flex; margin-bottom: 15px;">
    <img src="readmeimages/addmeal1-small.png" height=600>
@@ -87,24 +91,68 @@ The add meal plage is where the user can add specific meals to their meal plan. 
 </div>
 
 #### Add Ingredients Page
+
 If the user wants to add a specific ingredient, they can utilize the "Quick Search" feature by inputting ingredients into the top search bar. This queries Coupang/MarketKurly for relevant items, and selecting them will auto fill the ingredients page. The user can also manually input ingredient information, as well as optionally provide a Coupang/MarketKurly link that the application will use to auto-order, if the user desires. 
 
 <div style="display: flex; margin-bottom: 15px;">
-   <img src="readmeimages/mealplan-small.png" height=600>
-   <img src="readmeimages/mealplan-large.png" height=600>
+   <img src="readmeimages/addingredient-small.gif" height=600>
+   <img src="readmeimages/addingredient-large.gif" height=600>
 </div>
 
 #### Add Recipe Step Page
+
 When adding recipe steps, the user can use a counter to specify which recipe step they wish to add. They are also allowed to add recipe descriptions of any length (may perhaps change later to scale), and upload images (encoded in base64). 
 
 <div style="display: flex; margin-bottom: 15px;">
-   <img src="readmeimages/mealplan-small.png" height=600>
-   <img src="readmeimages/mealplan-large.png" height=600>
+   <img src="readmeimages/addrecipe-small.png" height=600>
+   <img src="readmeimages/addrecipe-large.png" height=600>
 </div>
 
 ### Recipe Search Page
 
+The recipe browse page allows the user to browse recipes uploaded by other users in the community through a search bar at the top. The user can also open up option menus, where they can filter for specific diets, calorie/budget ranges, select whether to search by recipe name, users, or tags, and filter/order the results. A list of recipes will be displayed underneath the search bar as cards, split into multiple pages if necessary. 
+
+<div style="display: flex; margin-bottom: 15px;">
+   <img src="readmeimages/recipe-small.gif" height=600>
+   <img src="readmeimages/recipe-large.gif" height=600>
+</div>
+
+Clicking a recipe card will navigate to a recipe page, with the recipe name, a table of ingredients, and procedure cards. The user can scroll through the ingredients table and select a specific row, where an ingredient card will pop up explaining the ingredient in detail. The user can also scroll through the recipe cards, and select each card to expand the recipe card for easier viewing. 
+
+<div style="display: flex; margin-bottom: 15px;">
+   <img src="readmeimages/recipecard1-small.png" height=600>
+   <img src="readmeimages/recipecard2-small.png" height=600>
+   <img src="readmeimages/recipecard3-small.png" height=600>
+</div>
+
+The recipe page also has buttons on the bottom for the user to further interact with the recipe. The user can like the recipe by clicking the heart icon, or navigate to the comment section by clicking the comment button. This will bring up a comment popup where the user can read and post comments. 
+
+Crucially, the user can select "Add Meal" to add the recipe to their own meal plan. Clicking this button will navigate to the Add Meal Page, which will be auto-completed with the recipe information. The user is free to edit the recipe before adding it to their own meal plan (which will work identically as before). 
+
+<div style="display: flex; margin-bottom: 15px;">
+   <img src="readmeimages/recipebuttons-small.gif" height=600>
+   <img src="readmeimages/recipebuttons-large.gif" height=600>
+</div>
+
 ### My Cart Page
+
+The cart page parses through the user's recipes and automatically displays the ingredients the user needs to buy from the Coupang/MarketKurly online stores in a table. The user can edit each ingredient's contents or count, or add new ingredients as they see fit. When adding ingredients, available options are read from the Coupang/MarketKurly stores, and each item's prices and delivery dates/methods are outlined. The total cost of ingredients is calculate for each store, and the final cost is displayed below. If the total is over the user's selected weekly budget, it is highlighted in red; otherwise, it is highlighted in green. 
+
+<div style="display: flex; margin-bottom: 15px;">
+   <img src="readmeimages/mycart-small.gif" height=600>
+   <img src="readmeimages/mycart-large.gif" height=600>
+</div>
+
+The application avoids buying unnecessary ingredients by considering which items the user has in their fridge. Similarly to the cart page, the user is able to edit the amount of items, or add/remove items from their fridge. When adding items, the user will query from a list of consumer ingredients, sourced from a public [XML dataset](https://www.data.go.kr/data/15127578/openapi.do#/API%20%EB%AA%A9%EB%A1%9D/getFoodNtrCpntDbInq01) provided by the South Korean [Ministry of Food and Drug Safety](https://various.foodsafetykorea.go.kr/nutrient/). The application will refer to these items to avoid adding unnecessary items to the user's cart. The auto-ordering feature, should the user enable it, will use this cart to order the correct items. 
+
+<div style="display: flex; margin-bottom: 15px;">
+   <img src="readmeimages/myfridge-small.gif" height=600>
+   <img src="readmeimages/myfridge-large.gif" height=600>
+</div>
+
+### Pages In Progress
+
+Although most of the intended features of the application have been implemented, there are still some pages in progress. 
 
 ## Back-End Development
 
