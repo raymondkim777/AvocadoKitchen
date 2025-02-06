@@ -70,7 +70,12 @@ For pages such as the profile/settings page where user edit is possible/encourag
 
 ### Information Page
 
-NEED TO ADD
+The information page provides the user with information regarding their diet, such as which foods to avoid, or which foods/ingredients are suggested for their diet. Such foods are displayed that the user can scroll through, with images for easier viewing. The page also includes legal disclaimers, as this application is not intending to be a substitute for medical advice.
+
+<div style="display: flex">
+   <img src="readmeimages/info-small.png" height=600>
+   <img src="readmeimages/info-large.png" height=600>
+</div>
 
 ### Meal Plan Page
 
