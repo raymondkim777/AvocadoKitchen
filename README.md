@@ -134,7 +134,7 @@ The recipe page also has buttons on the bottom for the user to further interact 
 
 Crucially, the user can select "Add Meal" to add the recipe to their own meal plan. Clicking this button will navigate to the Add Meal Page, which will be auto-completed with the recipe information. The user is free to edit the recipe before adding it to their own meal plan (which will work identically as before). 
 
-<div align="center" style="display: flex; margin-bottom: 15px;">
+<div align="center" style="display: flex">
    <img src="readmeimages/recipebuttons-small.gif" height=600>
    <img src="readmeimages/recipebuttons-large.gif" height=600>
 </div>
