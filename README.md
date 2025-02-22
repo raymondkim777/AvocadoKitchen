@@ -172,3 +172,39 @@ The database selected was Firebase, as it was free for the intended scope of the
 </div>
 
 ### Meal Plan Algorithm
+
+Our application had to suggest varied, interesting mealplans that adhered to the user's dietary restrictions. To do this, a recipe selection algorithm was designed to query all existing recipes in the database. Our algorithm needed to achieve the following requirements: 
+
+1. Select 21 meals (3 meals per 7 days) to suggest to the user.
+2. Each meal should be appropriate for the time of day (ex. no steak for breakfast).
+3. Each day's meals should adhere to the user's daily dietary restrictions, recommended nutrition/calories, and selected budget.
+4. The meal plan should contain a variety of different types of meals (for a varied diet).
+5. Recipes with $n$ portion sizes should span $n$ meals.
+
+To fulfill Requirement #2, each recipe contains information about which meals of the day it is appropriate for, a data field mandatory for the author to fill in. The algorithm thus fulfills Requirement #1 by selecting 7 recipes for 7 meal slots, and repeating this process for breakfast, lunch, and dinner. 
+
+To fulfill Requirement #3, the algorithm used a fairly simple method of dividing the user's daily recommended nutrition/calorie amount across the 3 meals, and filtering out recipes that fell outside of a certain range of those values. Nutrition/calorie division was done with a 3:4:5 ratio for breakfast, lunch, and dinner, based on generally accepted scientific literature. It is worth noting that the varying range for calories is much stricter than the range for nutrition, as a varied diet (Req #4) will adequately cover nutrition. 
+
+The core of the selection algorithm is focused on satisfying Requirement #4. A high-level description of the algorithm is given below. 
+
+- The algorithm fills up 7 meal slots, one at a time. Each recipe is selected via probability to allow for variance. Once a recipe is selected, the probability of selecting it or other similar recipes is reduced. 
+- To achieve this, the algorithm is first initialized by forming all existing recipes into clusters based on similarity. All recipes inside the same cluster as the selected recipe will have their probability reduced, and recipes outside of the cluster will remain untouched.
+- The recipe probabilities are reset each time the algorithm starts selecting breakfast, lunch, and dinner. 
+
+Note that this algorithm naturally allows us to fulfill Requirement #5. Since each iteration selects a recipe to eventually fill 7 meal slots, a recipe with $n$ portion sizes can fulfill $n$ meal slots out of 7. Recipes with more portion sizes than available meal slots can be filtered out each iteration. 
+
+### Detailed Algorithm Description
+
+We now explain the inner workings of the algorithm, starting with its initialization.
+
+Although the original algorithm idea utilized clusters, this was thrown out as it was difficult to perfectly determine whether two recipes were similar/different enough to be considered the same/different cluster. Instead, a fully connected weighted graph was constructed, with each recipe as nodes and quantified similarity scores as edge weights. Whenever a recipe is selected by the algorithm, all recipes with weights larger than some standard value would have their probabilities reduced, with the reduction amount proportional to the edge weights themselves. A minimum standard value was used to prevent two completely distinct recipes influencing each other via negligible similarity scores. 
+
+The edge weights were computed by comparing each recipe's tags, ingredients, and procedures via Natural Language Processing. For any two recipes $A$ and $B$, each of $A$'s tags and $B$'s tags were inputted into a [Korean vector-space model](https://radimrehurek.com/gensim/models/word2vec.html) to yield a similarity score between 0 and 1. As a basis, a similarity value over 0.25 is significant. Thus each similarity value was divided by 0.25 and squared, such that values over 0.25 were amplified and values below 0.25 decreased in significance. The sum of these values became the similarity value for two recipes' tags. 
+
+$$TagSim_{A, B} = \sum(sim(t_a, t_b) \times \frac{1}{0.25})^2 \quad (\forall t_a \in A_{tags}, \forall t_b \in B_{tags})$$
+
+The same process was used to compute ingredient similarity for each recipe pair. As procedures were in sentences, TF-IDF was used to extract 5 keywords from procedures which was used with the above process to compute procedure similarity for each recipe pair. 
+
+The three similarity values (tag, ingredient, procedure) were then weighted and summed. Weights were used as similar tags were more significant than similar procedures (ex. "stew" vs "blanch/boil"). 
+
+$$Sim_{A, B} = (w_1 \times TagSim_{A, B}) + (w_2 \times IngredientSim_{A, B}) + (w_3 \times ProcedureSim_{A, B})$$
