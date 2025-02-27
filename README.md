@@ -199,12 +199,37 @@ We now explain the inner workings of the algorithm, starting with its initializa
 
 Although the original algorithm idea utilized clusters, this was thrown out as it was difficult to perfectly determine whether two recipes were similar/different enough to be considered the same/different cluster. Instead, a fully connected weighted graph was constructed, with each recipe as nodes and quantified similarity scores as edge weights. Whenever a recipe is selected by the algorithm, all recipes with weights larger than some standard value would have their probabilities reduced, with the reduction amount proportional to the edge weights themselves. A minimum standard value was used to prevent two completely distinct recipes influencing each other via negligible similarity scores. 
 
-The edge weights were computed by comparing each recipe's tags, ingredients, and procedures via Natural Language Processing. For any two recipes $A$ and $B$, each of $A$'s tags and $B$'s tags were inputted into a [Korean vector-space model](https://radimrehurek.com/gensim/models/word2vec.html) to yield a similarity score between 0 and 1. As a basis, a similarity value over 0.25 is significant. Thus each similarity value was divided by 0.25 and squared, such that values over 0.25 were amplified and values below 0.25 decreased in significance. The sum of these values became the similarity value for two recipes' tags. 
+#### Edge Weights
+
+During initialization, the edge weights were computed by comparing each recipe's tags, ingredients, and procedures via Natural Language Processing. For any two recipes $A$ and $B$, each of $A$'s tags and $B$'s tags were inputted into a [Korean vector-space model](https://radimrehurek.com/gensim/models/word2vec.html) to yield a similarity score between 0 and 1. As a basis, a similarity value over 0.25 was considered significant; thus values over 0.25 were amplified and values below 0.25 were reduced according to the formula below.
 
 $$TagSim_{A, B} = \sum(sim(t_a, t_b) \times \frac{1}{0.25})^2 \quad (\forall t_a \in A_{tags}, \forall t_b \in B_{tags})$$
 
-The same process was used to compute ingredient similarity for each recipe pair. As procedures were in sentences, TF-IDF was used to extract 5 keywords from procedures which was used with the above process to compute procedure similarity for each recipe pair. 
-
-The three similarity values (tag, ingredient, procedure) were then weighted and summed. Weights were used as similar tags were more significant than similar procedures (ex. "stew" vs "blanch/boil"). 
+The same formula was used to compute ingredient and procedure similarity for each recipe pair (as procedures used sentences, TF-IDF was used to extract 5 keywords). The three similarity values were then weighted and summed to compute the final recipe correlation value. 
 
 $$Sim_{A, B} = (w_1 \times TagSim_{A, B}) + (w_2 \times IngredientSim_{A, B}) + (w_3 \times ProcedureSim_{A, B})$$
+
+The specific weight values represent the similarity's importance, and were adjusted empirically based on testing while maintaining $w_1 \geq w_2 \geq w_3$.
+
+#### Recipe Filtering (Nutrition)
+
+After initialization, the algorithm is ready to run an arbitrary number of times until the user is satisfied with the outputted meal plan. We detail the specifics of each run. 
+
+The algorithm first references the user's desired daily calorie count and budget and divides both amongst three meals. Calories are divided by a ratio of 3:4:5 per scientific literature, and budget uses the same ratio for convenience. 
+
+The algorithm then filters out any recipes for each meal that fall outside a $\pm 500$ Cal or a $\pm ₩5000$ budget range. Additionally, the algorithm (NUTRITION ADD)
+
+2200 Cal daily
+20g protein each meal
+320g carbs daily
+
+#### Recipe Selection
+
+Once recipe candidates for all three meal types have been confirmed, the algorithm starts by assigning all 7 breakfasts. Each breakfast recipe receives a probability weight of $1$, and a recipe is selected based on the probability weights. Once a recipe $A$ is selected, each connected recipe $B$ with weights higher than a standard value has its probability reduced based on the formula below. (Here, $MaxSim$ refers to the largest edge weight in the graph.)
+
+$$RelSim_{A, B} = \frac{Sim_{A, B}}{MaxSim},$$
+$$P_{B} = \max (P_{B} \times (1 - RelSim_{A, B}), 0.001) \quad \forall B \in \{ B \mid RelSim_{A, B} \geq 0.25 \}$$
+
+A standard weight of $(0.25 \times MaxSim)$ was used to prevent unrelated recipes from influencing one another. Additionally, each probability has a minimum value of 0.001 to reduce excessive floating point and avoid a probability of 0, which would remove the recipe completely.
+
+The probabilty continually repeats until 7 recipes have been chosen for that meal type. The algorithm then repeats this process for the other two meal types. This successfully creates a nutritionally complete weekly meal plan that adheres to the user's preferred calorie/budget settings. 
